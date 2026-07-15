@@ -1,0 +1,31 @@
+<svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif" role="img" aria-label="Ilustracija: traka 'Trenutno si offline' u Canva uredivacu, dizajn je i dalje moguce urediti">
+  <rect x="0" y="0" width="640" height="300" rx="16" fill="#F4F1EC"/>
+  <rect x="0.75" y="0.75" width="638.5" height="298.5" rx="15.25" fill="none" stroke="rgba(23,18,15,0.12)" stroke-width="1.5"/>
+
+  <!-- sidebar -->
+  <rect x="16" y="16" width="56" height="268" rx="12" fill="#FFFFFF"/>
+  <rect x="34" y="40" width="20" height="20" rx="5" fill="#171412" opacity="0.75"/>
+  <rect x="34" y="76" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
+  <rect x="34" y="112" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
+  <rect x="34" y="148" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
+  <rect x="34" y="184" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
+
+  <!-- canvas area -->
+  <rect x="90" y="90" width="534" height="128" rx="10" stroke="rgba(23,18,15,0.18)" stroke-width="1.5" stroke-dasharray="6 6" fill="#FFFFFF"/>
+  <rect x="112" y="112" width="180" height="14" rx="4" fill="#171412" opacity="0.18"/>
+  <rect x="112" y="136" width="130" height="14" rx="4" fill="#171412" opacity="0.12"/>
+  <rect x="112" y="164" width="90" height="60" rx="8" fill="#FFD048" opacity="0.45"/>
+
+  <!-- offline banner -->
+  <rect x="90" y="24" width="380" height="56" rx="12" fill="#171412"/>
+  <g transform="translate(108,44)">
+    <path d="M0 8 a8 8 0 0 1 8 -8 a10 10 0 0 1 9.5 7 a6 6 0 0 1 1.5 11.8" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.85"/>
+    <line x1="-3" y1="-3" x2="21" y2="21" stroke="#FFFFFF" stroke-width="2" opacity="0.85"/>
+  </g>
+  <text x="140" y="46" fill="#FFFFFF" font-size="15" font-weight="700">Trenutno si offline</text>
+  <text x="140" y="65" fill="#FFFFFF" font-size="12.5" opacity="0.72">I dalje možeš uređivati spremljene dizajne</text>
+
+  <!-- button -->
+  <rect x="90" y="238" width="164" height="34" rx="8" fill="#7C5CFC"/>
+  <text x="172" y="260" fill="#FFFFFF" font-size="13" font-weight="600" text-anchor="middle">+ Dodaj tekstni okvir</text>
+</svg>
