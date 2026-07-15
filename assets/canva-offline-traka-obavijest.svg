@@ -1,31 +1,67 @@
-<svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif" role="img" aria-label="Ilustracija: traka 'Trenutno si offline' u Canva uredivacu, dizajn je i dalje moguce urediti">
-  <rect x="0" y="0" width="640" height="300" rx="16" fill="#F4F1EC"/>
-  <rect x="0.75" y="0.75" width="638.5" height="298.5" rx="15.25" fill="none" stroke="rgba(23,18,15,0.12)" stroke-width="1.5"/>
+<svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif" role="img" aria-label="Ilustracija: Canva urednik u tamnom nacinu prikazuje traku Nisi spojen/a na internet iznad gumba Dodaj tekstni okvir">
+  <rect x="0" y="0" width="700" height="420" rx="14" fill="#181818"/>
+  <rect x="0.75" y="0.75" width="698.5" height="418.5" rx="13.25" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
 
   <!-- sidebar -->
-  <rect x="16" y="16" width="56" height="268" rx="12" fill="#FFFFFF"/>
-  <rect x="34" y="40" width="20" height="20" rx="5" fill="#171412" opacity="0.75"/>
-  <rect x="34" y="76" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
-  <rect x="34" y="112" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
-  <rect x="34" y="148" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
-  <rect x="34" y="184" width="20" height="20" rx="5" fill="#171412" opacity="0.35"/>
+  <rect x="0" y="0" width="96" height="420" rx="14" fill="#121212"/>
+  <rect x="96" y="0" width="1" height="420" fill="rgba(255,255,255,0.06)"/>
 
-  <!-- canvas area -->
-  <rect x="90" y="90" width="534" height="128" rx="10" stroke="rgba(23,18,15,0.18)" stroke-width="1.5" stroke-dasharray="6 6" fill="#FFFFFF"/>
-  <rect x="112" y="112" width="180" height="14" rx="4" fill="#171412" opacity="0.18"/>
-  <rect x="112" y="136" width="130" height="14" rx="4" fill="#171412" opacity="0.12"/>
-  <rect x="112" y="164" width="90" height="60" rx="8" fill="#FFD048" opacity="0.45"/>
+  <!-- Dizajn -->
+  <rect x="26" y="34" width="44" height="34" rx="9" fill="none"/>
+  <rect x="34" y="38" width="18" height="14" rx="3" fill="none" stroke="#9a9a9a" stroke-width="1.6"/>
+  <rect x="40" y="46" width="18" height="14" rx="3" fill="none" stroke="#9a9a9a" stroke-width="1.6"/>
+  <text x="48" y="82" fill="#9a9a9a" font-size="9.5" text-anchor="middle">Dizajn</text>
 
-  <!-- offline banner -->
-  <rect x="90" y="24" width="380" height="56" rx="12" fill="#171412"/>
-  <g transform="translate(108,44)">
-    <path d="M0 8 a8 8 0 0 1 8 -8 a10 10 0 0 1 9.5 7 a6 6 0 0 1 1.5 11.8" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.85"/>
-    <line x1="-3" y1="-3" x2="21" y2="21" stroke="#FFFFFF" stroke-width="2" opacity="0.85"/>
+  <!-- Elementi -->
+  <circle cx="40" cy="112" r="5" fill="#9a9a9a"/>
+  <circle cx="56" cy="112" r="5" fill="#9a9a9a"/>
+  <circle cx="40" cy="126" r="5" fill="#9a9a9a"/>
+  <circle cx="56" cy="126" r="5" fill="#9a9a9a"/>
+  <text x="48" y="150" fill="#9a9a9a" font-size="9.5" text-anchor="middle">Elementi</text>
+
+  <!-- Tekst - active -->
+  <rect x="20" y="170" width="56" height="40" rx="10" fill="#FFFFFF"/>
+  <text x="48" y="197" fill="#141414" font-size="19" font-weight="700" text-anchor="middle">T</text>
+  <text x="48" y="226" fill="#FFFFFF" font-size="9.5" font-weight="600" text-anchor="middle">Tekst</text>
+
+  <!-- Marka -->
+  <path d="M32 250 l8 -10 l8 10 l8 -10 l8 10 v10 h-32 z" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-linejoin="round"/>
+  <text x="48" y="278" fill="#9a9a9a" font-size="9.5" text-anchor="middle">Marka</text>
+
+  <!-- Uploads -->
+  <path d="M40 300 v16 m0 0 l-6 -6 m6 6 l6 -6" stroke="#9a9a9a" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(8,0)"/>
+  <rect x="32" y="298" width="32" height="22" rx="4" fill="none" stroke="#9a9a9a" stroke-width="1.6"/>
+  <text x="48" y="338" fill="#9a9a9a" font-size="9.5" text-anchor="middle">Učitano</text>
+
+  <!-- offline notification card -->
+  <rect x="132" y="28" width="440" height="92" rx="14" fill="#2A2A2A" stroke="rgba(255,255,255,0.08)" stroke-width="1.25"/>
+  <g transform="translate(154,52)">
+    <path d="M0 10 a10 10 0 0 1 3.6 -19.3 A13 13 0 0 1 26 4 a8 8 0 0 1 -2 15.6 Z" fill="none" stroke="#E8E8E8" stroke-width="1.8"/>
+    <line x1="-4" y1="-6" x2="24" y2="22" stroke="#E8E8E8" stroke-width="1.8"/>
   </g>
-  <text x="140" y="46" fill="#FFFFFF" font-size="15" font-weight="700">Trenutno si offline</text>
-  <text x="140" y="65" fill="#FFFFFF" font-size="12.5" opacity="0.72">I dalje možeš uređivati spremljene dizajne</text>
+  <text x="196" y="62" fill="#FFFFFF" font-size="16" font-weight="700">Nisi spojen/a na internet</text>
+  <text x="196" y="84" fill="#B7B7B7" font-size="12.5">I dalje možeš pristupiti sadržaju koje je dostupno offline</text>
+  <g transform="translate(544,44)">
+    <line x1="0" y1="0" x2="12" y2="12" stroke="#9a9a9a" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="12" y1="0" x2="0" y2="12" stroke="#9a9a9a" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
 
-  <!-- button -->
-  <rect x="90" y="238" width="164" height="34" rx="8" fill="#7C5CFC"/>
-  <text x="172" y="260" fill="#FFFFFF" font-size="13" font-weight="600" text-anchor="middle">+ Dodaj tekstni okvir</text>
+  <!-- purple button -->
+  <rect x="132" y="140" width="216" height="42" rx="9" fill="#8B3DFF"/>
+  <text x="240" y="166" fill="#FFFFFF" font-size="13.5" font-weight="600" text-anchor="middle">+ Dodaj tekstni okvir</text>
+
+  <!-- section label -->
+  <text x="132" y="216" fill="#8a8a8a" font-size="11.5" font-weight="700" letter-spacing="0.5">ZADANI STILOVI TEKSTA</text>
+
+  <!-- heading card -->
+  <rect x="132" y="230" width="440" height="64" rx="10" fill="#242424"/>
+  <text x="152" y="272" fill="#FFFFFF" font-size="27" font-weight="800">Dodaj naslov</text>
+
+  <!-- subheading card -->
+  <rect x="132" y="302" width="440" height="52" rx="10" fill="#242424"/>
+  <text x="152" y="336" fill="#FFFFFF" font-size="19" font-weight="700">Dodaj podnaslov</text>
+
+  <!-- body card -->
+  <rect x="132" y="362" width="440" height="42" rx="10" fill="#242424"/>
+  <text x="152" y="388" fill="#E4E4E4" font-size="14" font-weight="400">Dodaj mali dio teksta</text>
 </svg>
