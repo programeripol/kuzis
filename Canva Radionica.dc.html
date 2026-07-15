@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#FFD048">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#FFD048"/>
+    <text x="50" y="58" font-family="Arial" font-weight="900" font-size="30" fill="#171412" text-anchor="middle">K</text>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#FFFFFF;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+</style>
+</helmet>
+
+<div style="background:#FFFFFF;color:#171412;overflow-x:hidden">
+
+  <!-- HEADER -->
+  <header style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,48px);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,18,15,.09)">
+    <a href="Pocetna.dc.html" style="font:800 22px/1 Inter;color:#171412;letter-spacing:-.01em;text-decoration:none">Kužiš</a>
+    <nav style="display:flex;flex-wrap:wrap;gap:clamp(14px,2.6vw,28px);align-items:center;font:500 14px Inter">
+      <a href="Pocetna.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Početna</a>
+      <a href="Edukacije.dc.html" style="text-decoration:none;color:#171412;font-weight:700;border-bottom:2.5px solid #FFD048;padding-bottom:2px">Edukacije</a>
+      <a href="Za Tvrtke.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Za tvrtke</a>
+      <a href="Mentorstvo.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Mentorstvo</a>
+      <a href="O Nama.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">O nama</a>
+      <a href="Blog.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Blog</a>
+      <a href="#kontakt" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section data-hero-fade="1" style="padding:clamp(56px,8vw,90px) 24px 20px;max-width:900px;margin:0 auto;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+    <a href="Edukacije.dc.html" style="display:inline-flex;align-items:center;gap:6px;font:500 13px Inter;color:rgba(23,18,15,.5);text-decoration:none;margin-bottom:24px">← Natrag na sve edukacije</a>
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:#FFF3C4;color:#171412;border-radius:999px;font:600 13px Inter;letter-spacing:.01em;margin-bottom:26px">Dostupno sada</div>
+    <h1 style="margin:0 0 20px;font-weight:800;font-size:clamp(32px,5.5vw,50px);line-height:1.14;font-family:Inter;letter-spacing:-.02em">Canva za organizacije</h1>
+    <p style="margin:0 0 36px;font-weight:400;font-size:clamp(16px,2vw,18px);line-height:1.65;font-family:Inter;color:rgba(23,18,15,.68);max-width:640px;margin-left:auto;margin-right:auto">Premium praktična radionica za timove koji sami izrađuju vizualne materijale - bez skupih agencija i bez gubljenja vremena na pokušaje i pogreške.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:56px">
+      <a href="#kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 30px;background:#FFD048;color:#171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,18,15,.2)">Pošaljite upit</a>
+      <a href="#program" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 28px;background:transparent;color:#171412;border:1.5px solid rgba(23,18,15,.28);border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,border-color .2s ease,background .2s ease" style-hover="transform:translateY(-3px);border-color:#171412;background:rgba(23,18,15,.04)">Pogledajte program</a>
+    </div>
+  </section>
+
+  <div data-reveal="1" style="max-width:1240px;margin:0 auto;padding:0 24px 60px;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+    <div style="width:100%;height:clamp(160px,18vw,220px);border-radius:18px;background:repeating-linear-gradient(135deg,#FFF8E1,#FFF8E1 12px,#E1EDE4 12px,#E1EDE4 24px);border:1px solid rgba(23,18,15,.08);display:flex;align-items:center;justify-content:center;font:500 13px ui-monospace,Menlo,monospace;color:rgba(23,18,15,.4);text-align:center;padding:16px">snimka zaslona Canva sučelja / rada na radionici - placeholder (široka traka)</div>
+  </div>
+
+  <!-- KOME JE NAMIJENJENA -->
+  <section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Kome je namijenjena</div>
+      <h2 style="margin:0 0 28px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.25;font-family:Inter;letter-spacing:-.01em">Svakom timu koji sam kreira svoje materijale.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+        <sc-for list="{{ audiences }}" as="a" hint-placeholder-count="8">
+          <div style="padding:20px;background:#FFFFFF;border-radius:12px;border:1px solid rgba(23,18,15,.08);font:600 14.5px Inter;text-align:center">{{ a }}</div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM -->
+  <section id="program" data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFF8E1;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+    <div style="max-width:1000px;margin:0 auto">
+      <div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Što polaznici nauče</div>
+      <h2 style="margin:0 0 28px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.25;font-family:Inter;letter-spacing:-.01em">Cjelovit program, bez suvišnog balasta.</h2>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="7">
+          <div style="display:flex;gap:20px;align-items:flex-start;padding:24px 26px;background:#FFFFFF;border-radius:14px;border:1px solid rgba(23,18,15,.08)">
+            <div style="font:800 20px Inter;color:#171412;min-width:34px">{{ m.num }}</div>
+            <div>
+              <h3 style="margin:0 0 6px;font:700 16.5px Inter">{{ m.title }}</h3>
+              <p style="margin:0;font:400 14.5px/1.6 Inter;color:rgba(23,18,15,.64)">{{ m.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- STO DOBIVAJU / FORMAT -->
+  <section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+    <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px">
+      <div>
+        <div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Što dobivate nakon edukacije</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ afterCourse }}" as="d" hint-placeholder-count="5">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div style="width:6px;height:6px;border-radius:50%;background:#FFD048;margin-top:9px;flex-shrink:0"></div>
+              <p style="margin:0;font:400 15px/1.6 Inter;color:rgba(23,18,15,.72)">{{ d }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Format edukacije</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="padding:22px 24px;background:#FFF8E1;border-radius:14px;border:1px solid rgba(23,18,15,.08)">
+            <div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Trajanje</div>
+            <p style="margin:0;font:600 15.5px Inter">Jednodnevna radionica (6–7 sati), s mogućnošću prilagodbe trajanja vašim potrebama</p>
+          </div>
+          <div style="padding:22px 24px;background:#FFF8E1;border-radius:14px;border:1px solid rgba(23,18,15,.08)">
+            <div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Izvedba</div>
+            <p style="margin:0;font:600 15.5px Inter">Uživo, u vašem prostoru ili u dogovorenom prostoru - ili online, uz istu razinu interakcije</p>
+          </div>
+          <div style="padding:22px 24px;background:#FFF8E1;border-radius:14px;border:1px solid rgba(23,18,15,.08)">
+            <div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Grupa</div>
+            <p style="margin:0;font:600 15.5px Inter">Prilagođeno veličini vašeg tima, uz individualnu pažnju svakom polazniku</p>
+          </div>
+          <div style="padding:22px 24px;background:#FFF8E1;border-radius:14px;border:1px solid rgba(23,18,15,.08)">
+            <div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Prilagodba</div>
+            <p style="margin:0;font:600 15.5px Inter">Sadržaj i primjeri prilagođeni vašoj djelatnosti - turizmu, kulturi, obrazovanju, malom biznisu. Za veće timove i višednevne programe pogledajte <a href="Za Tvrtke.dc.html" style="color:#171412;text-decoration:underline">edukacije za tvrtke</a>.</p>
+          </div>
+          <div style="padding:22px 24px;background:#FFF8E1;border-radius:14px;border:1px solid rgba(23,18,15,.08)">
+            <div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Cijena</div>
+            <p style="margin:0;font:600 15.5px Inter">Cijena na upit - ovisi o veličini grupe, trajanju i razini prilagodbe</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFF8E1;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+    <div style="max-width:800px;margin:0 auto">
+      <div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center">Često postavljena pitanja</div>
+      <h2 style="margin:0 0 32px;font-weight:800;font-size:clamp(22px,3.4vw,30px);line-height:1.25;font-family:Inter;letter-spacing:-.01em;text-align:center">Sve što trebate znati prije prijave.</h2>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ faq }}" as="f" hint-placeholder-count="5">
+          <div style="padding:24px 26px;background:#FFFFFF;border-radius:14px;border:1px solid rgba(23,18,15,.08)">
+            <h3 style="margin:0 0 8px;font:700 16px Inter">{{ f.q }}</h3>
+            <p style="margin:0;font:400 14.5px/1.6 Inter;color:rgba(23,18,15,.64)">{{ f.a }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section data-reveal="1" style="padding:clamp(56px,8vw,90px) 24px;background:#171412;color:#FFFFFF;text-align:center;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+    <div style="max-width:600px;margin:0 auto">
+      <h2 style="margin:0 0 16px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.25;font-family:Inter;letter-spacing:-.01em">Naš cilj nije samo održati edukaciju.</h2>
+      <p style="margin:0 0 36px;font:400 16px/1.7 Inter;color:rgba(255,255,255,.72)">Cilj je pomoći polaznicima da stvarno počnu koristiti ono što su naučili - u svakodnevnom radu, ne u teoriji.</p>
+      <a href="#kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;background:#FFD048;color:#171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,18,15,.2)">Dogovorite edukaciju</a>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" data-reveal="1" style="padding:clamp(56px,8vw,100px) 24px;background:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+    <div style="max-width:640px;margin:0 auto;text-align:center">
+      <div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Kontakt</div>
+      <h2 style="margin:0 0 16px;font-weight:800;font-size:clamp(26px,4vw,36px);line-height:1.2;font-family:Inter;letter-spacing:-.01em">Pošaljite upit za vaš tim.</h2>
+      <p style="margin:0 0 40px;font:400 16px/1.65 Inter;color:rgba(23,18,15,.66)">Javite nam veličinu tima, djelatnost i željeni termin - javljamo se s prijedlogom formata i ponudom.</p>
+    </div>
+
+    <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:520px;margin:0 auto;padding:32px;background:#FFF8E1;border-radius:16px;text-align:center;border:1px solid rgba(23,18,15,.08)">
+        <p style="margin:0;font:600 16px/1.6 Inter;color:#171412">Hvala! Vaš upit je zabilježen - javljamo se uskoro.</p>
+      </div>
+    </sc-if>
+
+    <form style="{{ formDisplay }};max-width:520px;margin:0 auto;flex-direction:column;gap:16px" onSubmit="{{ handleSubmit }}">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <input name="ime" type="text" placeholder="Ime i prezime" required="true" style="padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412" />
+        <input name="email" type="email" placeholder="Email" required="true" style="padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412" />
+      </div>
+      <input name="organizacija" type="text" placeholder="Organizacija / tvrtka" style="padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412" />
+      <textarea name="poruka" placeholder="Recite nam nešto o veličini tima i željenom terminu" rows="4" style="padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412;resize:vertical"></textarea>
+      <button type="submit" style="padding:16px;background:#FFD048;color:#171412;border:none;border-radius:9px;font:600 15px Inter;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 24px rgba(23,18,15,.2)">Pošaljite upit</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <!-- NEWSLETTER -->
+  <section style="padding:clamp(48px,7vw,72px) 24px;background:#171412;text-align:center">
+    <div style="max-width:520px;margin:0 auto">
+      <h2 style="margin:0 0 10px;font-weight:800;font-size:clamp(22px,3vw,28px);line-height:1.25;font-family:Inter;color:#FFFFFF;letter-spacing:-.01em">Ne propustite nijedan članak.</h2>
+      <p style="margin:0 0 24px;font:400 14.5px/1.6 Inter;color:rgba(255,255,255,.65)">Tjedni pregled najkorisnijih članaka, alata i savjeta za vaš tim - izravno u inbox.</p>
+      <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+        <div style="font:600 14.5px Inter;color:#FFD048">Hvala! Provjerite inbox za potvrdu prijave.</div>
+      </sc-if>
+      <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ onSubscribe }}" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+          <input type="email" required="{{ true }}" value="{{ email }}" onChange="{{ onEmailChange }}" placeholder="vasa@email.com" style="flex:1;min-width:220px;box-sizing:border-box;padding:13px 16px;border-radius:9px;border:none;font:400 14.5px Inter;outline:none" />
+          <button type="submit" style="padding:13px 24px;background:#FFD048;color:#171412;border:none;border-radius:9px;font:600 14.5px Inter;cursor:pointer;transition:transform .2s ease" style-hover="transform:translateY(-2px)">Prijavi me</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:64px 24px 32px;background:#171412;border-top:1px solid rgba(255,255,255,.1)">
+    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px">
+      <div>
+        <div style="font:800 22px Inter;color:#FFFFFF;margin-bottom:10px">Kužiš</div>
+        <p style="margin:0 0 20px;font:400 14px/1.6 Inter;color:rgba(255,255,255,.5);max-width:260px">Praktična digitalna rješenja, sustavi, optimizacija procesa, edukacije i mentorstvo za organizacije koje žele raditi bolje i brže.</p>
+        <a href="Kontakt.dc.html" style="display:inline-flex;align-items:center;justify-content:center;padding:11px 20px;background:#FFD048;color:#171412;border-radius:8px;font:600 13.5px Inter;text-decoration:none;transition:transform .25s ease" style-hover="transform:translateY(-2px)">Pošaljite upit</a>
+      </div>
+      <div>
+        <div style="font:700 12px Inter;color:rgba(255,255,255,.4);margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em">Program</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font:400 14.5px Inter;color:rgba(255,255,255,.7)">
+          <a href="Edukacije.dc.html" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Edukacije</a>
+          <a href="Za Tvrtke.dc.html" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Za tvrtke</a>
+          <a href="Mentorstvo.dc.html" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Mentorstvo</a>
+          <a href="O Nama.dc.html" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">O nama</a>
+          <a href="Blog.dc.html" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Blog</a>
+        </div>
+      </div>
+      <div>
+        <div style="font:700 12px Inter;color:rgba(255,255,255,.4);margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em">Kontakt</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font:400 14.5px Inter;color:rgba(255,255,255,.7)">
+          <a href="mailto:info@kuzis.hr" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">info@kuzis.hr</a>
+          <a href="#" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">LinkedIn</a>
+          <a href="Kontakt.dc.html" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Pošaljite upit</a>
+        </div>
+      </div>
+      <div>
+        <div style="font:700 12px Inter;color:rgba(255,255,255,.4);margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em">Pratite nas</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font:400 14.5px Inter;color:rgba(255,255,255,.7)">
+          <a href="#" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Instagram</a>
+          <a href="#" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1120px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font:400 13px Inter;color:rgba(255,255,255,.4)">
+      <span>© {{ year }} Kužiš. Sva prava pridržana.</span>
+      <span style="display:flex;gap:20px">
+        <a href="#" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Uvjeti korištenja</a>
+        <a href="#" style="text-decoration:none;color:inherit;transition:color .2s ease" style-hover="color:#FFD048">Privatnost</a>
+      </span>
+    </div>
+  </footer>
+
+  <button onClick="{{ scrollToTop }}" aria-label="Povratak na vrh" style="position:fixed;right:24px;bottom:24px;width:46px;height:46px;border-radius:50%;background:#FFD048;color:#171412;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(23,18,15,.28);opacity:{{ topBtnOpacity }};transform:{{ topBtnTransform }};pointer-events:{{ topBtnPointer }};transition:opacity .3s ease,transform .3s ease;z-index:60">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { submitted: false, showTop: false, email: '', subscribed: false };
+
+  componentDidMount() {
+    setTimeout(() => {
+      document.querySelectorAll('[data-hero-fade]').forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    }, 30);
+    this._onScrollTop = () => {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - window.innerHeight;
+      const show = scrollable > 0 && (window.scrollY / scrollable) > 0.66;
+      if (show !== this.state.showTop) this.setState({ showTop: show });
+    };
+    window.addEventListener('scroll', this._onScrollTop, { passive: true });
+    this._onScrollTop();
+    const els = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    els.forEach((el) => io.observe(el));
+    this._io = io;
+  }
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._onScrollTop) window.removeEventListener('scroll', this._onScrollTop);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ submitted: true });
+  }
+
+  renderVals() {
+    const audiences = ['Tvrtke', 'Udruge', 'Turističke zajednice', 'Kulturne ustanove', 'Škole i učilišta', 'Knjižnice', 'Mali biznisi', 'Timovi za promo materijale'];
+
+    const modules = [
+      { num: '01', title: 'Canva osnove i navigacija', desc: 'Sučelje, radni prostor, biblioteka elemenata i organizacija projekata.' },
+      { num: '02', title: 'Napredne funkcije', desc: 'Slojevi, animacije, brendiranje, mreže i alati za tim.' },
+      { num: '03', title: 'Dizajn za društvene mreže', desc: 'Formati, veličine i principi koji rade na svakoj platformi.' },
+      { num: '04', title: 'Vizualni identitet', desc: 'Boje, tipografija i dosljednost kroz sve materijale organizacije.' },
+      { num: '05', title: 'Predlošci', desc: 'Izrada vlastitih predložaka koje tim koristi mjesecima nakon edukacije.' },
+      { num: '06', title: 'AI alati u Canvi', desc: 'Generiranje teksta, slika i prijedloga dizajna uz pomoć AI alata.' },
+      { num: '07', title: 'Canva za promociju', desc: 'Praktična primjena u marketingu, komunikaciji i promociji organizacije.' },
+    ];
+
+    const afterCourse = [
+      'Snimljeni materijali i upute za samostalan nastavak rada',
+      'Gotovi predlošci prilagođeni vašoj organizaciji',
+      'Kratak podsjetnik s ključnim koracima i prečacima',
+      'Podrška putem emaila nakon edukacije za dodatna pitanja',
+      'Mogućnost dodatnog konzultacijskog termina za tim',
+    ];
+
+    const faq = [
+      { q: 'Trebamo li imati predznanje u Canvi?', a: 'Ne. Radionica pokriva osnove od početka, a napredniji polaznici brzo prelaze na složenije zadatke.' },
+      { q: 'Koliko ljudi može sudjelovati?', a: 'Format se prilagođava veličini vašeg tima - od manjih grupa do cijelih odjela.' },
+      { q: 'Trebamo li vlastitu opremu?', a: 'Dovoljan je laptop po polazniku i besplatan Canva račun. Ostalo pripremamo mi.' },
+      { q: 'Možemo li birati teme prema našoj djelatnosti?', a: 'Da - primjeri i zadaci se prilagođavaju vašem području rada prije same radionice.' },
+      { q: 'Što ako trebamo dulji program?', a: 'Radionica se može proširiti u višednevni program - pogledajte edukacije za tvrtke.' },
+    ];
+
+    return {
+      audiences, modules, afterCourse, faq,
+      submitted: this.state.submitted,
+      formDisplay: this.state.submitted ? 'display:none' : 'display:flex',
+      year: new Date().getFullYear(),
+      handleSubmit: (e) => this.handleSubmit(e),
+      topBtnOpacity: this.state.showTop ? 1 : 0,
+      topBtnTransform: this.state.showTop ? 'translateY(0) scale(1)' : 'translateY(12px) scale(.9)',
+      topBtnPointer: this.state.showTop ? 'auto' : 'none',
+      scrollToTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+      email: this.state.email,
+      onEmailChange: (e) => this.setState({ email: e.target.value }),
+      subscribed: this.state.subscribed,
+      notSubscribed: !this.state.subscribed,
+      onSubscribe: (e) => { e.preventDefault(); if (this.state.email) this.setState({ subscribed: true }); },
+    };
+  }
+}
+
+</script>
+</body>
+</html>
