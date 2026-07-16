@@ -1,0 +1,92 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+  <defs>
+    <style>
+      .ink { stroke:#171412; stroke-width:5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .inkThin { stroke:#171412; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#FFC93C"/>
+
+  <!-- headline -->
+  <text x="800" y="150" text-anchor="middle" font-size="86" font-weight="800" fill="#171412" letter-spacing="-1">Canva Code 2.0</text>
+  <text x="800" y="210" text-anchor="middle" font-size="40" font-weight="600" fill="#171412">napravi web stranicu bez koda</text>
+
+  <!-- stars / sparkles -->
+  <g class="ink">
+    <path d="M330 300 L338 320 L358 328 L338 336 L330 356 L322 336 L302 328 L322 320 Z"/>
+    <path d="M1230 260 L1236 274 L1250 280 L1236 286 L1230 300 L1224 286 L1210 280 L1224 274 Z"/>
+    <path d="M1080 330 L1086 342 L1098 348 L1086 354 L1080 366 L1074 354 L1062 348 L1074 342 Z"/>
+    <path d="M420 420 L425 431 L436 436 L425 441 L420 452 L415 441 L404 436 L415 431 Z"/>
+  </g>
+
+  <!-- coffee cup, left -->
+  <g transform="translate(230,470)">
+    <path class="ink" d="M20 40 Q10 40 10 55 L18 110 Q20 128 40 128 L110 128 Q130 128 132 110 L140 55 Q140 40 130 40 Z"/>
+    <path class="ink" d="M140 55 Q170 50 168 78 Q166 104 138 100"/>
+    <path class="inkThin" d="M40 15 Q48 0 40 -12"/>
+    <path class="inkThin" d="M65 15 Q73 0 65 -12"/>
+    <path class="inkThin" d="M90 15 Q98 0 90 -12"/>
+    <path class="ink" d="M25 70 Q70 80 128 70" stroke-width="4"/>
+  </g>
+
+  <!-- laptop, center -->
+  <g transform="translate(560,360)">
+    <rect x="0" y="0" width="360" height="230" rx="14" class="ink"/>
+    <rect x="26" y="26" width="180" height="130" rx="6" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+    <rect x="46" y="46" width="46" height="40" rx="4" fill="#FF5A3C" stroke="#171412" stroke-width="3"/>
+    <text x="59" y="74" font-size="26" font-weight="800" fill="#171412">L</text>
+    <path class="inkThin" d="M102 52 H182"/>
+    <path class="inkThin" d="M102 66 H182"/>
+    <path class="inkThin" d="M102 80 H160"/>
+    <path class="inkThin" d="M46 100 H150"/>
+    <path class="inkThin" d="M46 114 H182"/>
+    <path class="inkThin" d="M46 128 H140"/>
+    <path class="ink" d="M150 96 L184 130" stroke-width="4"/>
+    <path class="ink" d="M184 130 l10 -3 l-3 10 Z" fill="#171412"/>
+    <path class="ink" d="M-30 230 L0 260 L360 260 L390 230 Z"/>
+    <rect x="130" y="242" width="100" height="10" rx="5" fill="#171412"/>
+  </g>
+
+  <!-- notepad + pencil, right -->
+  <g transform="translate(1000,470)">
+    <rect x="0" y="0" width="110" height="140" rx="6" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+    <path class="inkThin" d="M18 30 H92"/>
+    <path class="inkThin" d="M18 48 H92"/>
+    <path class="inkThin" d="M18 66 H70"/>
+    <g transform="translate(64,58) rotate(45)">
+      <rect x="0" y="0" width="12" height="70" rx="4" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+      <path d="M0 70 L6 90 L12 70 Z" fill="#171412"/>
+    </g>
+  </g>
+
+  <!-- paper airplane -->
+  <g transform="translate(1150,560)">
+    <path class="ink" d="M0 30 L90 0 L58 20 L64 55 L46 35 Z" fill="#B98CE0"/>
+    <circle cx="45" cy="35" r="34" fill="none" stroke="#171412" stroke-width="4"/>
+  </g>
+
+  <!-- speech bubble badge: AI prompt -->
+  <g transform="translate(400,340)">
+    <path class="ink" d="M12 0 H128 Q140 0 140 12 V64 Q140 76 128 76 H55 L28 100 L34 76 H12 Q0 76 0 64 V12 Q0 0 12 0 Z" fill="#FFFFFF"/>
+    <text x="70" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#171412">AI</text>
+    <text x="70" y="56" text-anchor="middle" font-size="18" font-weight="700" fill="#171412">prompt</text>
+  </g>
+
+  <!-- circular badge: objava na webu -->
+  <g transform="translate(1160,300)">
+    <circle cx="60" cy="60" r="60" fill="#8FB9A8" stroke="#171412" stroke-width="4"/>
+    <text x="60" y="55" text-anchor="middle" font-size="16" font-weight="700" fill="#171412">Objava</text>
+    <text x="60" y="75" text-anchor="middle" font-size="16" font-weight="700" fill="#171412">na webu</text>
+  </g>
+
+  <!-- circular badge: 50+ predložaka -->
+  <g transform="translate(60,560)">
+    <circle cx="55" cy="55" r="55" fill="#F4D6E8" stroke="#171412" stroke-width="4"/>
+    <text x="55" y="50" text-anchor="middle" font-size="15" font-weight="700" fill="#171412">50+</text>
+    <text x="55" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#171412">predložaka</text>
+  </g>
+
+  <!-- wordmark -->
+  <text x="60" y="850" font-size="34" font-weight="800" fill="#171412">Kužiš.</text>
+</svg>
