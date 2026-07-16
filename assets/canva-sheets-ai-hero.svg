@@ -1,0 +1,68 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+  <defs>
+    <style>
+      .ink { stroke:#171412; stroke-width:5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .inkThin { stroke:#171412; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#FFC93C"/>
+
+  <text x="800" y="130" text-anchor="middle" font-size="72" font-weight="800" fill="#171412" letter-spacing="-1">Canva Sheets AI</text>
+  <text x="800" y="180" text-anchor="middle" font-size="32" font-weight="600" fill="#171412">napravi proračunsku tablicu iz obične rečenice</text>
+
+  <g class="ink">
+    <path d="M300 280 L307 297 L324 304 L307 311 L300 328 L293 311 L276 304 L293 297 Z"/>
+    <path d="M1260 250 L1266 264 L1280 270 L1266 276 L1260 290 L1254 276 L1240 270 L1254 264 Z"/>
+    <path d="M1120 310 L1126 322 L1138 328 L1126 334 L1120 346 L1114 334 L1102 328 L1114 322 Z"/>
+  </g>
+
+  <g transform="translate(220,470)">
+    <path class="ink" d="M20 40 Q10 40 10 55 L18 110 Q20 128 40 128 L110 128 Q130 128 132 110 L140 55 Q140 40 130 40 Z"/>
+    <path class="ink" d="M140 55 Q170 50 168 78 Q166 104 138 100"/>
+    <path class="inkThin" d="M40 15 Q48 0 40 -12"/>
+    <path class="inkThin" d="M65 15 Q73 0 65 -12"/>
+    <path class="inkThin" d="M90 15 Q98 0 90 -12"/>
+    <path class="ink" d="M25 70 Q70 80 128 70" stroke-width="4"/>
+  </g>
+
+  <g transform="translate(560,330)">
+    <rect x="0" y="0" width="480" height="300" rx="14" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
+    <path class="inkThin" d="M0 60 H480"/>
+    <path class="inkThin" d="M0 130 H480"/>
+    <path class="inkThin" d="M0 200 H480"/>
+    <path class="inkThin" d="M0 270 H480"/>
+    <path class="inkThin" d="M160 0 V300"/>
+    <path class="inkThin" d="M320 0 V300"/>
+    <rect x="0" y="0" width="480" height="60" fill="#FFD048" stroke="#171412" stroke-width="5"/>
+    <rect x="160" y="130" width="160" height="70" fill="#8FB9A8" opacity="0.6"/>
+    <text x="30" y="38" font-size="22" font-weight="700" fill="#171412">kanal</text>
+    <text x="190" y="38" font-size="22" font-weight="700" fill="#171412">iznos</text>
+    <text x="350" y="38" font-size="22" font-weight="700" fill="#171412">ROI</text>
+  </g>
+
+  <g transform="translate(1090,470)">
+    <rect x="0" y="0" width="110" height="140" rx="6" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+    <path class="inkThin" d="M18 30 H92"/>
+    <path class="inkThin" d="M18 48 H92"/>
+    <path class="inkThin" d="M18 66 H70"/>
+    <g transform="translate(64,58) rotate(45)">
+      <rect x="0" y="0" width="12" height="70" rx="4" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+      <path d="M0 70 L6 90 L12 70 Z" fill="#171412"/>
+    </g>
+  </g>
+
+  <g transform="translate(340,600)">
+    <path class="ink" d="M12 0 H150 Q162 0 162 12 V64 Q162 76 150 76 H70 L44 100 L50 76 H12 Q0 76 0 64 V12 Q0 0 12 0 Z" fill="#FFFFFF"/>
+    <text x="81" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#171412">opiši</text>
+    <text x="81" y="56" text-anchor="middle" font-size="17" font-weight="700" fill="#171412">tablicu</text>
+  </g>
+
+  <g transform="translate(1180,300)">
+    <circle cx="60" cy="60" r="60" fill="#B98CE0" stroke="#171412" stroke-width="4"/>
+    <text x="60" y="55" text-anchor="middle" font-size="15" font-weight="700" fill="#171412">gotova</text>
+    <text x="60" y="75" text-anchor="middle" font-size="15" font-weight="700" fill="#171412">tablica</text>
+  </g>
+
+  <text x="60" y="850" font-size="34" font-weight="800" fill="#171412">Kužiš.</text>
+</svg>
