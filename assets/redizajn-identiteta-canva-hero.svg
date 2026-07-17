@@ -1,0 +1,64 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif">
+  <defs>
+    <radialGradient id="bgGrad" cx="30%" cy="20%" r="90%">
+      <stop offset="0%" stop-color="#FFDE70"/>
+      <stop offset="100%" stop-color="#FFC93C"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgGrad)"/>
+
+  <!-- doodle stars -->
+  <g fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+    <path d="M120 120 l10 26 26 10 -26 10 -10 26 -10 -26 -26 -10 26 -10 z"/>
+    <path d="M1470 700 l8 20 20 8 -20 8 -8 20 -8 -20 -20 -8 20 -8 z"/>
+    <path d="M1380 150 l7 16 16 7 -16 7 -7 16 -7 -16 -16 -7 16 -7 z"/>
+  </g>
+
+  <!-- swirl / redesign arrows (two circling arrows suggesting "redesign") -->
+  <g fill="none" stroke="#171412" stroke-width="6" stroke-linecap="round">
+    <path d="M1290 470 a90 90 0 1 1 -30 -66" />
+    <path d="M1250 388 l16 20 24 -8" />
+    <path d="M1200 560 a90 90 0 1 1 30 66" />
+    <path d="M1236 640 l-16 -20 -24 8" />
+  </g>
+
+  <!-- old vs new swatches (small palette doodle) -->
+  <g stroke="#171412" stroke-width="5" stroke-linejoin="round">
+    <circle cx="205" cy="620" r="34" fill="#FFFFFF"/>
+    <circle cx="270" cy="600" r="34" fill="#FF8A65"/>
+    <circle cx="255" cy="670" r="34" fill="#171412"/>
+    <circle cx="190" cy="690" r="34" fill="#FFD048"/>
+  </g>
+  <path d="M150 560 q40 -30 90 0" fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- pencil doodle -->
+  <g transform="translate(1120,600) rotate(28)">
+    <rect x="0" y="0" width="150" height="26" rx="6" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
+    <rect x="150" y="0" width="24" height="26" fill="#171412"/>
+    <path d="M174 0 l26 13 -26 13 z" fill="#171412"/>
+  </g>
+
+  <!-- feature badges -->
+  <g font-size="21" font-weight="700" fill="#171412">
+    <g transform="translate(120,760)">
+      <circle cx="18" cy="18" r="18" fill="#FFFFFF" stroke="#171412" stroke-width="3"/>
+      <text x="0" y="24" font-size="18" text-anchor="middle" dx="18">✎</text>
+      <text x="46" y="24">Brand Kit vodi redizajn</text>
+    </g>
+    <g transform="translate(120,806)">
+      <circle cx="18" cy="18" r="18" fill="#FFFFFF" stroke="#171412" stroke-width="3"/>
+      <text x="0" y="24" font-size="18" text-anchor="middle" dx="18">◐</text>
+      <text x="46" y="24">Postupna tranzicija</text>
+    </g>
+  </g>
+
+  <!-- headline -->
+  <g fill="#171412" font-weight="800">
+    <text x="120" y="200" font-size="56" letter-spacing="-1">Kako redizajnirati vizualni</text>
+    <text x="120" y="266" font-size="56" letter-spacing="-1">identitet u Canvi bez gubljenja</text>
+    <text x="120" y="332" font-size="56" letter-spacing="-1">prepoznatljivosti</text>
+  </g>
+
+  <!-- Kužiš wordmark bottom-left -->
+  <text x="60" y="860" font-size="34" font-weight="800" fill="#171412">Kužiš.</text>
+</svg>
