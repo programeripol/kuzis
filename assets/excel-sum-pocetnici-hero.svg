@@ -1,0 +1,119 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" font-family="Inter, -apple-system, sans-serif">
+  <defs>
+    <style>
+      .ink { stroke:#171412; stroke-width:5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+      .inkThin { stroke:#171412; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#FFC93C"/>
+
+  <text x="800" y="88" text-anchor="middle" font-size="44" font-weight="800" fill="#171412" letter-spacing="-0.5">Kako zbrojiti brojeve u Excelu i</text>
+  <text x="800" y="140" text-anchor="middle" font-size="44" font-weight="800" fill="#171412" letter-spacing="-0.5">Google Sheetsu</text>
+  <text x="800" y="182" text-anchor="middle" font-size="27" font-weight="600" fill="#171412">(SUM formula za apsolutne početnike)</text>
+
+  <g class="ink">
+    <path d="M120 240 L127 257 L144 264 L127 271 L120 288 L113 271 L96 264 L113 257 Z"/>
+    <path d="M1460 220 L1466 234 L1480 240 L1466 246 L1460 260 L1454 246 L1440 240 L1454 234 Z"/>
+    <path d="M1420 620 L1426 632 L1438 638 L1426 644 L1420 656 L1414 644 L1402 638 L1414 632 Z"/>
+  </g>
+
+  <!-- spreadsheet grid, main illustration -->
+  <g transform="translate(470,300)">
+    <rect x="0" y="0" width="480" height="330" rx="14" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
+    <rect x="0" y="0" width="480" height="55" fill="#FFD048" stroke="#171412" stroke-width="5"/>
+    <text x="26" y="34" font-size="20" font-weight="700" fill="#171412">A</text>
+    <text x="146" y="34" font-size="20" font-weight="700" fill="#171412">B</text>
+    <text x="326" y="34" font-size="20" font-weight="700" fill="#171412">C</text>
+    <path class="inkThin" d="M120 0 V330"/>
+    <path class="inkThin" d="M300 0 V330"/>
+    <path class="inkThin" d="M0 110 H480"/>
+    <path class="inkThin" d="M0 165 H480"/>
+    <path class="inkThin" d="M0 220 H480"/>
+    <path class="inkThin" d="M0 275 H480"/>
+    <rect x="120" y="110" width="180" height="165" fill="#8FB9A8" opacity="0.55"/>
+    <text x="140" y="140" font-size="18" fill="#171412">450</text>
+    <text x="140" y="195" font-size="18" fill="#171412">85</text>
+    <text x="140" y="250" font-size="18" fill="#171412">220</text>
+    <rect x="0" y="275" width="480" height="55" fill="#FFF3CF"/>
+    <text x="26" y="309" font-size="19" font-weight="700" fill="#171412">Ukupno</text>
+    <text x="140" y="309" font-size="19" font-weight="800" fill="#171412">=SUM(B2:B6)</text>
+  </g>
+
+  <!-- fx formula bar chip -->
+  <g transform="translate(470,255)">
+    <rect x="0" y="0" width="200" height="34" rx="8" fill="#FFFFFF" stroke="#171412" stroke-width="3"/>
+    <text x="16" y="24" font-size="18" font-weight="800" fill="#171412" font-style="italic">fx</text>
+    <text x="52" y="24" font-size="16" fill="#171412">=SUM(B2:B6)</text>
+  </g>
+
+  <!-- calculator -->
+  <g transform="translate(200,470)">
+    <rect x="0" y="0" width="130" height="170" rx="12" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+    <rect x="14" y="16" width="102" height="34" rx="4" fill="#8FB9A8" opacity="0.5"/>
+    <circle cx="32" cy="76" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+    <circle cx="65" cy="76" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+    <circle cx="98" cy="76" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+    <circle cx="32" cy="110" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+    <circle cx="65" cy="110" r="12" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+    <circle cx="98" cy="110" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+    <circle cx="32" cy="144" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+    <circle cx="65" cy="144" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+    <circle cx="98" cy="144" r="12" fill="none" stroke="#171412" stroke-width="3"/>
+  </g>
+
+  <!-- pencil -->
+  <g transform="translate(1080,600) rotate(35)">
+    <rect x="0" y="0" width="16" height="110" rx="4" fill="#FFFFFF" stroke="#171412" stroke-width="3"/>
+    <path d="M0 110 L8 132 L16 110 Z" fill="#171412"/>
+    <rect x="0" y="-16" width="16" height="16" rx="3" fill="#F4907A" stroke="#171412" stroke-width="3"/>
+  </g>
+
+  <!-- coffee cup -->
+  <g transform="translate(1150,470)">
+    <path class="ink" d="M8 20 Q4 20 4 32 L10 78 Q12 92 28 92 L74 92 Q90 92 92 78 L98 32 Q98 20 90 20 Z"/>
+    <path class="ink" d="M98 32 Q120 28 118 50 Q116 70 96 66"/>
+    <path class="inkThin" d="M28 4 Q34 -8 28 -18"/>
+    <path class="inkThin" d="M48 4 Q54 -8 48 -18"/>
+    <path class="inkThin" d="M68 4 Q74 -8 68 -18"/>
+  </g>
+
+  <!-- checkmark badge -->
+  <g transform="translate(1300,270)">
+    <circle cx="42" cy="42" r="42" fill="#B98CE0" stroke="#171412" stroke-width="4"/>
+    <path class="ink" d="M22 44 L36 58 L64 26" stroke="#171412" stroke-width="6"/>
+  </g>
+
+  <!-- speech bubble aha trick -->
+  <g transform="translate(1020,185)">
+    <path class="ink" d="M12 0 H210 Q222 0 222 12 V80 Q222 92 210 92 H120 L96 118 L102 92 H12 Q0 92 0 80 V12 Q0 0 12 0 Z" fill="#FFFFFF"/>
+    <text x="111" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#171412">selektiraj mišem,</text>
+    <text x="111" y="58" text-anchor="middle" font-size="16" font-weight="700" fill="#171412">ne upisuj ručno</text>
+    <text x="111" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#171412">= manje grešaka</text>
+  </g>
+
+  <!-- small icon labels row -->
+  <g transform="translate(120,700)" font-size="17" font-weight="700" fill="#171412">
+    <g>
+      <rect x="0" y="0" width="30" height="30" rx="6" fill="#FFFFFF" stroke="#171412" stroke-width="3"/>
+      <text x="8" y="22" font-size="15">A1</text>
+      <text x="40" y="21">ćelija</text>
+    </g>
+    <g transform="translate(180,0)">
+      <rect x="0" y="0" width="30" height="30" rx="6" fill="#8FB9A8" opacity="0.6" stroke="#171412" stroke-width="3"/>
+      <text x="40" y="21">raspon</text>
+    </g>
+    <g transform="translate(330,0)">
+      <circle cx="15" cy="15" r="15" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+      <text x="9" y="21" font-size="14" font-style="italic">fx</text>
+      <text x="40" y="21">SUM formula</text>
+    </g>
+    <g transform="translate(540,0)">
+      <circle cx="15" cy="15" r="15" fill="#F4907A" stroke="#171412" stroke-width="3"/>
+      <text x="8" y="21" font-size="15" font-weight="800">Σ</text>
+      <text x="40" y="21">Auto Zbroj</text>
+    </g>
+  </g>
+
+  <text x="60" y="850" font-size="34" font-weight="800" fill="#171412">Kužiš.</text>
+</svg>
