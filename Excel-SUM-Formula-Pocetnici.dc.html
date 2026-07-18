@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kako zbrojiti u Excelu: SUM za početnike | Kužiš</title>
+<meta name="description" content="Nauči izračunati zbroj u Excelu i Google Sheetsu SUM formulom - korak po korak, s primjerom kućnog budžeta i objašnjenjem ćelija i raspona.">
+<link rel="canonical" href="https://programeripol.github.io/kuzis/Excel-SUM-Formula-Pocetnici.dc.html">
+<meta property="og:title" content="Kako zbrojiti brojeve u Excelu i Google Sheetsu (SUM formula za apsolutne početnike)">
+<meta property="og:description" content="Nauči izračunati zbroj u Excelu i Google Sheetsu SUM formulom - korak po korak, s primjerom kućnog budžeta i objašnjenjem ćelija i raspona.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="assets/excel-sum-pocetnici-hero.svg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Kako zbrojiti brojeve u Excelu i Google Sheetsu (SUM formula za apsolutne početnike)", "datePublished": "2026-07-18", "author": {"@type": "Organization", "name": "Kužiš"}, "publisher": {"@type": "Organization", "name": "Kužiš"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Zašto mi Excel prikazuje grešku #VALUE! kad koristim SUM?", "acceptedAnswer": {"@type": "Answer", "text": "To se obično dogodi kad je u odabranom rasponu ćelija koja sadrži tekst pomiješan s brojem na način koji Excel ne prepoznaje kao broj (na primjer “220 kn” umjesto samo 220). Provjeri sadržaj ćelija u rasponu i ukloni tekst iz brojčanih polja."}}, {"@type": "Question", "name": "Mogu li zbrojiti ćelije koje nisu jedna pored druge?", "acceptedAnswer": {"@type": "Answer", "text": "Da. Umjesto raspona sa dvotočkom, odvoji pojedinačne ćelije zarezom (ili točkom-zarezom u hrvatskim postavkama), na primjer =SUM(B2;B5;B9), ili kombiniraj oboje: =SUM(B2:B6;D2:D6)."}}, {"@type": "Question", "name": "Koja je razlika između SUM formule i Auto Zbroja?", "acceptedAnswer": {"@type": "Answer", "text": "Nema razlike u rezultatu - Auto Zbroj (Σ) je samo prečac koji za tebe upiše istu SUM formulu i sam pokuša pogoditi raspon. Rezultat je identičan kao da si formulu upisala ručno."}}, {"@type": "Question", "name": "Zašto SUM u mojoj tablici koristi točku-zarez (;) umjesto zareza?", "acceptedAnswer": {"@type": "Answer", "text": "Zato što su regionalne postavke tvog Excela ili Google Sheetsa postavljene na hrvatski (ili neki drugi europski jezik). To je normalno i ne utječe na rezultat, samo mijenja znak kojim odvajaš argumente unutar formule."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://programeripol.github.io/kuzis/Pocetna.dc.html"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://programeripol.github.io/kuzis/Blog.dc.html"}, {"@type": "ListItem", "position": 3, "name": "Excel i Tablice"}]}
+</script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif; color:#171412; line-height:1.6; background:#fff; }
+a { color:inherit; }
+.progress-bar { position:fixed; top:0; left:0; height:3px; width:0%; background:#FFD048; z-index:100; transition:width .1s linear; }
+header.site-header { position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding:18px clamp(20px,4vw,48px); background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-bottom:1px solid #f1efec; }
+header.site-header a.logo { font:800 22px/1 Inter; color:#171412; text-decoration:none; letter-spacing:-.01em; }
+header.site-header nav { display:flex; flex-wrap:wrap; gap:clamp(14px,2.6vw,28px); align-items:center; font:500 14px Inter; }
+header.site-header nav a { text-decoration:none; color:rgba(23,18,15,.72); transition:color .2s ease; }
+header.site-header nav a:hover { color:#171412; text-decoration:underline; text-underline-offset:4px; }
+header.site-header nav a.active { color:#171412; font-weight:700; border-bottom:2.5px solid #FFD048; padding-bottom:2px; }
+header.site-header nav a.cta { display:inline-flex; align-items:center; padding:10px 20px; background:#FFD048; color:#171412; border-radius:8px; font-weight:600; transition:transform .2s ease; }
+header.site-header nav a.cta:hover { transform:translateY(-2px); text-decoration:none; }
+.breadcrumb { max-width:960px; margin:0 auto; padding:24px 24px 0; font:500 13px Inter; color:rgba(23,18,15,.5); }
+.breadcrumb a { text-decoration:none; }
+.breadcrumb a:hover { color:#171412; }
+.breadcrumb .sep { margin:0 6px; }
+.breadcrumb .current { color:#171412; }
+.article-header { max-width:960px; margin:0 auto; padding:20px 24px 28px; }
+.badge { display:inline-block; font:700 11px Inter; color:#171412; background:#FFD048; padding:5px 12px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; margin-bottom:16px; }
+.article-header h1 { margin:0 0 18px; font-weight:800; font-size:clamp(28px,4.6vw,44px); line-height:1.18; letter-spacing:-.02em; }
+.article-meta { display:flex; align-items:center; gap:12px; font:400 14px Inter; color:rgba(23,18,15,.55); }
+.hero-wrap { max-width:960px; margin:0 auto; padding:0 24px 40px; }
+.hero-frame { width:100%; aspect-ratio:16/9; border-radius:18px; overflow:hidden; background:linear-gradient(135deg,#FFD048,#fff3cf); display:flex; align-items:center; justify-content:center; }
+.hero-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+.hero-frame span { font:600 14px Inter; color:rgba(23,18,15,.45); padding:0 24px; text-align:center; }
+.layout-grid { max-width:960px; margin:0 auto; padding:0 24px clamp(48px,7vw,72px); display:grid; grid-template-columns:1fr 200px; gap:56px; }
+@media (max-width:800px) { .layout-grid { grid-template-columns:1fr; } .toc-aside { display:none; } }
+article.post-body { min-width:0; max-width:680px; }
+article.post-body .lead { margin:0 0 22px; font-weight:500; font-size:19px; line-height:1.7; color:#171412; }
+.section-head { display:flex; gap:16px; align-items:center; margin:36px 0 14px; }
+.section-num { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; background:#FFD048; font:800 14px Inter; color:#171412; }
+.section-head h2 { margin:0; font-weight:800; font-size:24px; line-height:1.3; letter-spacing:-.01em; }
+article.post-body p { margin:0 0 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
+article.post-body ul { margin:0 0 18px; padding-left:22px; font:400 16px/1.85 Inter; color:rgba(23,18,15,.8); }
+article.post-body li { margin-bottom:6px; }
+.pull-quote { margin:28px 0; padding:22px 24px; background:#FFF8E1; border-radius:14px; border-left:4px solid #FFD048; }
+.pull-quote p { margin:0 !important; font:500 16px/1.6 Inter; font-style:italic; color:#171412 !important; }
+.tip-box { margin:28px 0; padding:22px 24px; background:#FDECEA; border-radius:14px; border-left:4px solid #F4907A; }
+.tip-box p { margin:0 !important; font:400 16px/1.7 Inter; color:#171412 !important; }
+.tip-box .tip-label { display:block; font:800 12px Inter; letter-spacing:.05em; text-transform:uppercase; color:#c0392b; margin-bottom:8px; }
+.faq-block { margin:40px 0 0; }
+.faq-block h2 { margin:0 0 18px; font-weight:800; font-size:22px; letter-spacing:-.01em; }
+.faq-item { margin:0 0 18px; }
+.faq-item h3 { margin:0 0 6px; font-weight:700; font-size:16px; }
+.faq-item p { margin:0; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
+.tag-chips { margin:36px 0 0; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.tag-chips .label { font:600 13px Inter; color:rgba(23,18,15,.5); margin-right:4px; }
+.tag-chips a { text-decoration:none; padding:7px 14px; border-radius:100px; background:#FFF8E1; color:#171412; font:600 13px Inter; transition:background .2s ease,transform .15s ease; }
+.tag-chips a:hover { background:#FFD048; transform:translateY(-2px); }
+.engage-row { margin:40px 0 0; padding-top:24px; border-top:1px solid rgba(23,18,15,.1); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; }
+.engage-row .label { font:600 14px Inter; color:#171412; }
+.engage-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.like-btn { display:flex; align-items:center; gap:8px; padding:9px 16px; border-radius:100px; border:1.5px solid rgba(23,18,15,.15); background:#FFFFFF; color:#171412; font:600 13.5px Inter; cursor:pointer; transition:transform .15s ease,background .2s ease,border-color .2s ease; }
+.like-btn:hover { transform:translateY(-2px); }
+.like-btn.liked { background:#FFD048; border-color:#FFD048; }
+.divider-v { width:1px; height:22px; background:rgba(23,18,15,.12); }
+.icon-btn { display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#FFF8E1; color:#171412; text-decoration:none; border:none; cursor:pointer; transition:background .2s ease,transform .2s ease; }
+.icon-btn:hover { background:#FFD048; transform:translateY(-2px); }
+.toast-msg { margin-top:8px; text-align:right; font:500 13px Inter; color:rgba(23,18,15,.5); min-height:18px; }
+.toc-aside { min-width:0; }
+.toc-box { position:sticky; top:96px; padding:20px; border:1px solid rgba(23,18,15,.14); border-radius:14px; }
+.toc-box .toc-label { font:700 12px Inter; color:#171412; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
+.toc-box nav { display:flex; flex-direction:column; gap:2px; font:500 13.5px Inter; }
+.toc-box nav a { text-decoration:none; padding:6px 0 6px 12px; border-left:2px solid transparent; color:rgba(23,18,15,.6); transition:color .2s ease,border-color .2s ease; }
+.toc-box nav a:hover { color:#171412; }
+.toc-box nav a.active { color:#171412; border-left-color:#FFD048; }
+.related-section { padding:0 24px clamp(56px,8vw,80px); }
+.related-inner { max-width:1120px; margin:0 auto; }
+.related-inner h2 { margin:0 0 22px; font-weight:800; font-size:clamp(19px,2.4vw,24px); letter-spacing:-.01em; }
+.related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+.related-card { display:flex; flex-direction:column; height:100%; text-decoration:none; color:inherit; border-radius:16px; overflow:hidden; border:1px solid rgba(23,18,15,.08); transition:transform .25s ease,box-shadow .25s ease; }
+.related-card:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(23,18,15,.1); }
+.related-card .thumb { width:100%; aspect-ratio:16/10; background:#FFF8E1; }
+.related-card .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.related-card .rc-body { display:flex; flex-direction:column; flex:1; padding:18px; }
+.related-card .rc-badge { display:inline-block; align-self:flex-start; font:700 11px Inter; color:#171412; background:#FFD048; padding:4px 10px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; margin-bottom:10px; }
+.related-card h3 { margin:0 0 8px; font-weight:700; font-size:16px; line-height:1.35; letter-spacing:-.005em; }
+.related-card .rc-meta { margin-top:auto; font:400 12.5px Inter; color:rgba(23,18,15,.5); }
+footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px solid rgba(255,255,255,.1); }
+.footer-grid { max-width:1120px; margin:0 auto 40px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; }
+@media (max-width:700px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+.footer-grid .brand { font:800 22px Inter; color:#FFFFFF; margin-bottom:10px; }
+.footer-grid p { font:400 14px/1.6 Inter; color:rgba(255,255,255,.5); max-width:260px; margin-bottom:20px; }
+.footer-cta { display:inline-flex; align-items:center; justify-content:center; padding:11px 20px; background:#FFD048; color:#171412; border-radius:8px; font:600 13.5px Inter; text-decoration:none; transition:transform .25s ease; }
+.footer-cta:hover { transform:translateY(-2px); }
+.footer-col-title { font:700 12px Inter; color:rgba(255,255,255,.4); margin-bottom:16px; text-transform:uppercase; letter-spacing:.08em; }
+.footer-links { display:flex; flex-direction:column; gap:12px; font:400 14.5px Inter; color:rgba(255,255,255,.7); }
+.footer-links a { text-decoration:none; color:inherit; transition:color .2s ease; }
+.footer-links a:hover { color:#FFD048; }
+.footer-bottom { max-width:1120px; margin:0 auto; padding-top:24px; border-top:1px solid rgba(255,255,255,.1); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font:400 13px Inter; color:rgba(255,255,255,.4); }
+.footer-bottom a { text-decoration:none; color:inherit; transition:color .2s ease; }
+.footer-bottom a:hover { color:#FFD048; }
+.footer-bottom-links { display:flex; gap:20px; }
+.back-to-top { position:fixed; right:24px; bottom:24px; width:46px; height:46px; border-radius:50%; background:#FFD048; color:#171412; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(23,18,15,.28); opacity:0; transform:translateY(12px) scale(.9); pointer-events:none; transition:opacity .3s ease,transform .3s ease; z-index:60; }
+.back-to-top.visible { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"></div>
+
+<header class="site-header">
+  <a class="logo" href="Pocetna.dc.html">Kužiš</a>
+    <nav>
+      <a href="Pocetna.dc.html">Početna</a>
+      <a href="Edukacije.dc.html">Edukacije</a>
+      <a href="Za Tvrtke.dc.html">Za tvrtke</a>
+      <a href="Mentorstvo.dc.html">Mentorstvo</a>
+      <a href="O Nama.dc.html">O nama</a>
+      <a href="Blog.dc.html" class="active">Blog</a>
+      <a href="Kontakt.dc.html" class="cta">Pošaljite upit</a>
+    </nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="Pocetna.dc.html">Početna</a>
+  <span class="sep">/</span>
+  <a href="Blog.dc.html">Blog</a>
+  <span class="sep">/</span>
+  <span class="current">Excel i Tablice</span>
+</nav>
+
+<header class="article-header">
+  <div class="badge">Excel i Tablice</div>
+  <h1>Kako zbrojiti brojeve u Excelu i Google Sheetsu (SUM formula za apsolutne početnike)</h1>
+  <div class="article-meta">
+    <time datetime="2026-07-18">18. srp 2026.</time>
+    <span>·</span>
+    <span>5 min čitanja</span>
+  </div>
+</header>
+
+<div class="hero-wrap">
+    <div class="hero-frame"><img src="assets/excel-sum-pocetnici-hero.svg" alt="Kako zbrojiti brojeve u Excelu i Google Sheetsu (SUM formula za apsolutne početnike)" loading="lazy" width="1600" height="900"></div>
+</div>
+
+<div class="layout-grid">
+  <article class="post-body">
+    <p class="lead">Otvoriš praznu ćeliju ispod ili pored brojeva koje želiš zbrojiti, upišeš =SUM(raspon ćelija) i pritisneš Enter - to je, u biti, cijela formula za zbrajanje. Zvuči jednostavno, i jest, ali ako nikad prije nisi otvorila Excel ili Google Sheets, ni ta jedna rečenica ne znači puno. Zato u ovom vodiču krećemo doslovno od nule: što je ćelija, kako selektirati raspon i tek onda kako napraviti prvi pravi zbroj.</p>
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 id="osnovni-pojmovi">Prije SUM-a: osnovni pojmovi koje moraš znati</h2>
+      </div>
+      <p>Tablica u Excelu ili Google Sheetsu sastoji se od stupaca (idu okomito, označeni slovima A, B, C...) i redaka (idu vodoravno, označeni brojevima 1, 2, 3...). Svaki mali pravokutnik gdje se stupac i redak sijeku zove se ćelija, i svaka ćelija ima svoju adresu - na primjer, ćelija u stupcu B i retku 4 zove se B4. Kad klikneš na ćeliju, ta adresa se prikaže u malom polju gore lijevo, iznad same tablice.</p>
+      <p>Raspon je jednostavno skupina ćelija koje promatraš zajedno, na primjer sve ćelije od A1 do A5. Taj raspon pišeš kao A1:A5, gdje dvotočka znači "sve od ovoga do ovoga". To je zapravo jedina "sintaksa" koju moraš znati da bi razumjela većinu formula koje dolaze poslije.</p>
+      <p>Formula je bilo koji izračun koji Excel ili Sheets rade umjesto tebe, i uvijek počinje znakom jednakosti (=). Taj znak govori programu da ono što slijedi nije obični tekst, nego izračun koji treba riješiti. Bez njega, ako upišeš SUM(A1:A5) u ćeliju, program će to prikazati kao običan tekst, a ne kao formulu.</p>
+      <div class="pull-quote"><p>&quot;Umjesto da ručno upisuješ raspon, samo selektiraj ćelije mišem dok si u zagradi formule - Excel ili Sheets sam upiše točne reference umjesto tebe, i puno je manje šanse da pogriješiš adresu.&quot;</p></div>
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 id="selektiranje-celija">Kako selektirati ćelije i raspon</h2>
+      </div>
+      <p>Prije nego napraviš prvu formulu, korisno je znati par osnovnih načina selektiranja, jer ćeš ih koristiti stalno, ne samo kod SUM-a.</p>
+      <ul>
+        <li>Klikni na jednu ćeliju da je odabereš - oko nje se pojavi tamniji okvir</li>
+        <li>Za raspon susjednih ćelija klikni na prvu i, dok držiš lijevu tipku miša, povuci do zadnje ćelije u nizu (klik-povuci selekcija)</li>
+        <li>Ako je raspon dulji nego što stane na ekran, klikni na prvu ćeliju, pomakni se do zadnje i klikni na nju dok držiš tipku Shift - sve između bit će odabrano</li>
+        <li>Za ćelije koje nisu jedna pored druge, drži tipku Ctrl (na Macu Cmd) i klikaj svaku posebno</li>
+      </ul>
+      <p>Ovo ti je posebno korisno kad radiš s popisom troškova ili narudžbi koji je predug za jedan pogled - ne moraš skrolati polako, dovoljno je Shift + klik na zadnji red.</p>
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 id="prva-sum-formula">Tvoja prva SUM formula, korak po korak</h2>
+      </div>
+      <p>Zamislimo da vodiš mjesečni budžet za kućanstvo i imaš popis troškova u stupcu B, jedan ispod drugog:</p>
+      <ul>
+        <li>Stanarina - 450</li>
+        <li>Struja i voda - 85</li>
+        <li>Namirnice - 220</li>
+        <li>Internet i telefon - 35</li>
+        <li>Ostalo - 60</li>
+      </ul>
+      <p>Recimo da su ti iznosi u ćelijama B2 do B6 (u B1 ti je naslov "Trošak"). Da izračunaš ukupan mjesečni trošak, klikneš na praznu ćeliju ispod, na primjer B7, upišeš =SUM(B2:B6) i pritisneš Enter. Excel ili Sheets će odmah prikazati zbroj svih pet iznosa - u ovom slučaju 850.</p>
+      <p>Ako radiš u regionalnim (hrvatskim) postavkama, formula za dva odvojena raspona izgleda ovako: =SUM(B2:B6;D2:D6) - koristiš točku-zarez (;) kao razdjelnik umjesto zareza. To vrijedi i za Excel i za Google Sheets kad je jezik sučelja postavljen na hrvatski.</p>
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 id="auto-zbroj">Auto Zbroj: brži prečac za isto</h2>
+      </div>
+      <p>Ne moraš svaki put ručno upisivati SUM. Postoji gumb "Auto Zbroj" (na engleskom AutoSum, oznaka Σ) koji se nalazi na kartici Početna (Home) u Excelu, krajnje desno. Klikneš na praznu ćeliju ispod ili pored brojeva, zatim na taj gumb, i program sam pogodi raspon i upiše formulu - samo još potvrdiš s Enter.</p>
+      <p>Tipkovnički prečac u Excelu je Alt + = (istovremeno) - jednako brzo kao klik na gumb, samo bez miša. U Google Sheetsu prečaca nema, ali funkcija SUM se ponaša identično, a i tamo postoji ikona Σ pod "Umetni" (Insert) → "Funkcija".</p>
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2 id="excel-vs-sheets">Excel i Google Sheets - gdje se razlikuju</h2>
+      </div>
+      <p>Dobra vijest: sama funkcija SUM zove se identično u oba alata, na svim jezicima sučelja, i radi na isti način. Razlike su sitne, ali vrijedi ih znati. U hrvatskim regionalnim postavkama oba programa koriste točku-zarez (;) kao razdjelnik argumenata unutar formule, dok engleske (US/UK) postavke koriste zarez (,). Ako kopiraš formulu s interneta koja koristi zarez, a tvoja tablica je na hrvatskim postavkama, dobit ćeš grešku - jednostavno zamijeni zareze točkama-zarezom.</p>
+      <div class="tip-box">
+        <span class="tip-label">Čest problem početnika</span>
+        <p>Najčešća greška je kad u raspon slučajno uključiš i ćeliju s naslovom stupca, na primjer =SUM(B1:B6) umjesto =SUM(B2:B6), gdje je B1 tekst "Trošak", a ne broj. Excel i Sheets su dovoljno pametni da tekstualne ćelije jednostavno preskoče prilikom zbrajanja, pa formula neće pući - ali ako je tvoj "naslov" zapravo broj (na primjer godina ili šifra), on će se pogrešno uračunati u zbroj, a da to uopće ne primijetiš. Zato je dobra navika uvijek na trenutak provjeriti koji točno raspon si odabrala prije nego pritisneš Enter.</p>
+      </div>
+      <div class="faq-block">
+        <h2>Najčešća pitanja</h2>
+        <div class="faq-item">
+          <h3>Zašto mi Excel prikazuje grešku #VALUE! kad koristim SUM?</h3>
+          <p>To se obično dogodi kad je u odabranom rasponu ćelija koja sadrži tekst pomiješan s brojem na način koji Excel ne prepoznaje kao broj (na primjer "220 kn" umjesto samo 220). Provjeri sadržaj ćelija u rasponu i ukloni tekst iz brojčanih polja.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Mogu li zbrojiti ćelije koje nisu jedna pored druge?</h3>
+          <p>Da. Umjesto raspona sa dvotočkom, odvoji pojedinačne ćelije zarezom (ili točkom-zarezom u hrvatskim postavkama), na primjer =SUM(B2;B5;B9), ili kombiniraj oboje: =SUM(B2:B6;D2:D6).</p>
+        </div>
+        <div class="faq-item">
+          <h3>Koja je razlika između SUM formule i Auto Zbroja?</h3>
+          <p>Nema razlike u rezultatu - Auto Zbroj (Σ) je samo prečac koji za tebe upiše istu SUM formulu i sam pokuša pogoditi raspon. Rezultat je identičan kao da si formulu upisala ručno.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Zašto SUM u mojoj tablici koristi točku-zarez (;) umjesto zareza?</h3>
+          <p>Zato što su regionalne postavke tvog Excela ili Google Sheetsa postavljene na hrvatski (ili neki drugi europski jezik). To je normalno i ne utječe na rezultat, samo mijenja znak kojim odvajaš argumente unutar formule.</p>
+        </div>
+      </div>
+      <div class="tag-chips">
+        <span class="label">Teme:</span>
+        <a href="Blog.dc.html">Excel</a>
+        <a href="Blog.dc.html">Google Sheets</a>
+        <a href="Blog.dc.html">SUM formula</a>
+        <a href="Blog.dc.html">Excel i Tablice</a>
+      </div>
+      <div class="engage-row">
+        <div class="label">Svidio vam se članak?</div>
+        <div class="engage-actions">
+          <button class="like-btn" type="button" aria-label="Sviđa mi se">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"></path></svg>
+            <span class="like-count">0</span>
+          </button>
+          <div class="divider-v"></div>
+          <button class="icon-btn" type="button" data-action="native-share" aria-label="Podijeli" style="display:none;width:auto;border-radius:100px;padding:9px 16px;gap:8px;background:#FFFFFF;border:1.5px solid rgba(23,18,15,.15)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>
+            <span>Podijeli</span>
+          </button>
+          <a class="icon-btn" href="#" data-share-linkedin target="_blank" rel="noopener" aria-label="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.9 8.65 21 11.3 21 14.1V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.16V21H9z"></path></svg>
+          </a>
+          <button class="icon-btn" type="button" data-action="share-instagram" aria-label="Podijeli na Instagramu" title="Podijeli na Instagramu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+          </button>
+          <a class="icon-btn" href="#" data-share-email aria-label="Podijeli e-mailom">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+          </a>
+          <button class="icon-btn" type="button" data-action="copy-link" aria-label="Kopiraj poveznicu" title="Kopiraj poveznicu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2-2a5 5 0 00-7.07-7.07l-1.14 1.13"></path><path d="M14 11a5 5 0 00-7.07 0l-2 2a5 5 0 007.07 7.07l1.13-1.13"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="toast-msg"></div>
+  </article>
+    <aside class="toc-aside">
+      <div class="toc-box">
+        <div class="toc-label">Sadržaj</div>
+        <nav aria-label="Sadržaj članka">
+          <a href="#osnovni-pojmovi" data-toc-target="osnovni-pojmovi">Osnovni pojmovi</a>
+          <a href="#selektiranje-celija" data-toc-target="selektiranje-celija">Selektiranje ćelija</a>
+          <a href="#prva-sum-formula" data-toc-target="prva-sum-formula">Prva SUM formula</a>
+          <a href="#auto-zbroj" data-toc-target="auto-zbroj">Auto Zbroj</a>
+          <a href="#excel-vs-sheets" data-toc-target="excel-vs-sheets">Excel vs Sheets</a>
+        </nav>
+      </div>
+    </aside>
+</div>
+
+  <section class="related-section">
+    <div class="related-inner">
+      <h2>Nastavite čitati</h2>
+      <div class="related-grid">
+        <a class="related-card" href="Canva-Code-Web-Stranica-Bez-Programiranja.dc.html">
+          <div class="thumb"><img src="assets/canva-code-2-0-hero.jpg" alt="Canva Code 2.0: besplatna izrada web stranice bez ijednog reda koda" loading="lazy"></div>
+          <div class="rc-body">
+            <div class="rc-badge">Canva savjeti</div>
+            <h3>Canva Code 2.0: besplatna izrada web stranice bez ijednog reda koda</h3>
+            <div class="rc-meta">14. srp 2026. · 2 min čitanja</div>
+          </div>
+        </a>
+        <a class="related-card" href="Canva-Print-Shop.dc.html">
+          <div class="thumb"><img src="assets/canva-print-shop-hero.jpg" alt="Canva sad i tiska: kako naručiti posjetnice, letke i još 60-ak proizvoda izravno iz dizajna" loading="lazy"></div>
+          <div class="rc-body">
+            <div class="rc-badge">Canva savjeti</div>
+            <h3>Canva sad i tiska: kako naručiti posjetnice, letke i još 60-ak proizvoda izravno iz dizajna</h3>
+            <div class="rc-meta">13. srp 2026. · 3 min čitanja</div>
+          </div>
+        </a>
+        <a class="related-card" href="Canva-Offline-Nacin-Rada.dc.html">
+          <div class="thumb"><img src="assets/canva-offline-hero.jpg" alt="Canva offline: kako dizajnirati bez interneta" loading="lazy"></div>
+          <div class="rc-body">
+            <div class="rc-badge">Canva savjeti</div>
+            <h3>Canva offline: kako dizajnirati bez interneta</h3>
+            <div class="rc-meta">12. srp 2026. · 2 min čitanja</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand">Kužiš</div>
+      <p>Praktična digitalna rješenja, sustavi, optimizacija procesa, edukacije i mentorstvo za organizacije koje žele raditi bolje i brže.</p>
+      <a class="footer-cta" href="Kontakt.dc.html">Pošaljite upit</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Program</div>
+      <div class="footer-links">
+        <a href="Edukacije.dc.html">Edukacije</a>
+        <a href="Za Tvrtke.dc.html">Za tvrtke</a>
+        <a href="Mentorstvo.dc.html">Mentorstvo</a>
+        <a href="O Nama.dc.html">O nama</a>
+        <a href="Blog.dc.html">Blog</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontakt</div>
+      <div class="footer-links">
+        <a href="mailto:info@kuzis.hr">info@kuzis.hr</a>
+        <a href="#">LinkedIn</a>
+        <a href="Kontakt.dc.html">Pošaljite upit</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Pratite nas</div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Kužiš. Sva prava pridržana.</span>
+    <span class="footer-bottom-links">
+      <a href="#">Uvjeti korištenja</a>
+      <a href="#">Privatnost</a>
+    </span>
+  </div>
+</footer>
+
+<button class="back-to-top" type="button" aria-label="Povratak na vrh">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<script>
+(function () {
+  var progressBar = document.querySelector('.progress-bar');
+  var articleEl = document.querySelector('.post-body');
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc-box nav a'));
+  var backToTop = document.querySelector('.back-to-top');
+  var sectionEls = tocLinks.map(function (l) { return document.getElementById(l.getAttribute('data-toc-target')); });
+
+  function onScroll() {
+    if (articleEl) {
+      var scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      var articleBottom = articleEl.offsetTop + articleEl.offsetHeight;
+      var total = articleBottom - window.innerHeight;
+      var progress = total > 0 ? Math.min(100, Math.max(0, (scrollTop / total) * 100)) : 0;
+      if (progressBar) progressBar.style.width = progress.toFixed(1) + '%';
+    }
+    var active = 0;
+    sectionEls.forEach(function (el, i) {
+      if (el && el.getBoundingClientRect().top < 140) active = i;
+    });
+    tocLinks.forEach(function (l, i) { l.classList.toggle('active', i === active); });
+
+    var doc = document.documentElement;
+    var scrollable = doc.scrollHeight - window.innerHeight;
+    var showTop = scrollable > 0 && (window.scrollY / scrollable) > 0.66;
+    if (backToTop) backToTop.classList.toggle('visible', showTop);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  if (backToTop) {
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  var toast = document.querySelector('.toast-msg');
+  var toastTimer;
+  function flashToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.textContent = ''; }, 2200);
+  }
+
+  var likeBtn = document.querySelector('.like-btn');
+  if (likeBtn) {
+    var liked = false;
+    var countEl = likeBtn.querySelector('.like-count');
+    var baseCount = parseInt(countEl ? countEl.textContent : '0', 10) || 0;
+    likeBtn.addEventListener('click', function () {
+      liked = !liked;
+      likeBtn.classList.toggle('liked', liked);
+      if (countEl) countEl.textContent = String(baseCount + (liked ? 1 : 0));
+    });
+  }
+
+  var url = window.location.href;
+  var pageTitle = document.title;
+  var copyLinkBtn = document.querySelector('[data-action="copy-link"]');
+  if (copyLinkBtn) {
+    copyLinkBtn.addEventListener('click', function () {
+      if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function () {});
+      flashToast('Poveznica kopirana!');
+    });
+  }
+  var igBtn = document.querySelector('[data-action="share-instagram"]');
+  if (igBtn) {
+    igBtn.addEventListener('click', function () {
+      if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function () {});
+      flashToast('Link kopiran — zalijepite ga u Instagram Story ili poruku.');
+    });
+  }
+  var nativeShareBtn = document.querySelector('[data-action="native-share"]');
+  if (nativeShareBtn) {
+    if (navigator.share) {
+      nativeShareBtn.style.display = 'flex';
+      nativeShareBtn.addEventListener('click', function () {
+        navigator.share({ title: pageTitle, url: url }).catch(function () {});
+      });
+    } else {
+      nativeShareBtn.style.display = 'none';
+    }
+  }
+})();
+
+document.querySelector('[data-share-linkedin]').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href);
+document.querySelector('[data-share-email]').href = 'mailto:?subject=' + encodeURIComponent(document.title) + '&body=' + encodeURIComponent(window.location.href);
+</script>
+
+</body>
+</html>
