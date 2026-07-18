@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect width="1600" height="900" fill="#FFC93C"/>
+
+  <!-- scattered stars -->
+  <g fill="#171412">
+    <path d="M120 90 l8 20 20 8 -20 8 -8 20 -8 -20 -20 -8 20 -8 z"/>
+    <path d="M1500 130 l6 15 15 6 -15 6 -6 15 -6 -15 -15 -6 15 -6 z"/>
+    <path d="M1460 700 l7 17 17 7 -17 7 -7 17 -7 -17 -17 -7 17 -7 z"/>
+    <path d="M90 560 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6 z"/>
+  </g>
+
+  <!-- clouds -->
+  <g fill="#FFFFFF" stroke="#171412" stroke-width="4" stroke-linejoin="round">
+    <path d="M1250 90 q-10 -30 20 -32 q6 -22 30 -14 q20 -14 34 6 q26 -4 24 22 q18 8 4 26 q-6 14 -24 10 q-10 12 -28 2 q-20 10 -34 -6 q-24 2 -26 -14 z"/>
+    <path d="M60 220 q-8 -22 15 -24 q4 -16 22 -10 q15 -10 25 4 q19 -3 18 16 q13 6 3 19 q-4 10 -18 7 q-8 9 -21 1 q-14 8 -25 -4 q-18 2 -19 -9 z"/>
+  </g>
+
+  <!-- paper airplane -->
+  <g transform="translate(1330,240) rotate(18)">
+    <path d="M0 0 L120 40 L0 80 L18 40 Z" fill="#FFFFFF" stroke="#171412" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M0 0 L18 40 L0 80" fill="none" stroke="#171412" stroke-width="4"/>
+  </g>
+
+  <!-- headline -->
+  <g fill="#171412" font-weight="900">
+    <text x="70" y="150" font-size="64" letter-spacing="-1">Canva Learn Grid:</text>
+    <text x="70" y="226" font-size="64" letter-spacing="-1">kako za 10 minuta</text>
+    <text x="70" y="302" font-size="64" letter-spacing="-1">napraviti tri razine</text>
+    <text x="70" y="378" font-size="64" letter-spacing="-1">iste lekcije</text>
+  </g>
+
+  <!-- laptop with canva-like editor screen -->
+  <g transform="translate(140,470)">
+    <rect x="0" y="0" width="360" height="230" rx="14" fill="#171412"/>
+    <rect x="14" y="14" width="332" height="202" rx="6" fill="#FFFFFF"/>
+    <!-- editor mock content -->
+    <rect x="30" y="30" width="140" height="18" rx="4" fill="#FFC93C" stroke="#171412" stroke-width="3"/>
+    <rect x="30" y="58" width="90" height="90" rx="8" fill="#FF8A65" stroke="#171412" stroke-width="3"/>
+    <circle cx="230" cy="100" r="42" fill="#7FD6C2" stroke="#171412" stroke-width="3"/>
+    <rect x="30" y="160" width="286" height="14" rx="4" fill="#171412" opacity="0.15"/>
+    <rect x="30" y="182" width="200" height="14" rx="4" fill="#171412" opacity="0.15"/>
+    <path d="M0 230 L-30 280 L390 280 L360 230 Z" fill="#3a3632"/>
+    <rect x="-30" y="280" width="420" height="16" rx="6" fill="#171412"/>
+  </g>
+
+  <!-- coffee cup -->
+  <g transform="translate(560,560)">
+    <path d="M0 20 h90 v55 a45 45 0 0 1 -90 0 z" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
+    <path d="M90 35 q35 -6 35 25 q0 30 -35 26" fill="none" stroke="#171412" stroke-width="5"/>
+    <ellipse cx="45" cy="20" rx="45" ry="9" fill="#6F4E37" stroke="#171412" stroke-width="5"/>
+    <path d="M18 -6 q-8 -14 2 -24" fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round"/>
+    <path d="M45 -6 q-8 -14 2 -24" fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round"/>
+    <path d="M72 -6 q-8 -14 2 -24" fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- notebook + pencil -->
+  <g transform="translate(730,540)">
+    <rect x="0" y="0" width="150" height="110" rx="8" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
+    <line x1="18" y1="30" x2="132" y2="30" stroke="#171412" stroke-width="3" opacity="0.4"/>
+    <line x1="18" y1="52" x2="132" y2="52" stroke="#171412" stroke-width="3" opacity="0.4"/>
+    <line x1="18" y1="74" x2="100" y2="74" stroke="#171412" stroke-width="3" opacity="0.4"/>
+    <g transform="translate(120,-10) rotate(35)">
+      <rect x="0" y="0" width="16" height="90" fill="#FFD048" stroke="#171412" stroke-width="4"/>
+      <path d="M0 90 L16 90 L8 110 Z" fill="#E2B27A" stroke="#171412" stroke-width="4"/>
+      <rect x="0" y="-14" width="16" height="14" fill="#F5A3A3" stroke="#171412" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- feature chips -->
+  <g font-size="22" font-weight="700" fill="#171412">
+    <g transform="translate(950,470)">
+      <rect x="0" y="0" width="270" height="58" rx="29" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+      <circle cx="34" cy="29" r="16" fill="#7FD6C2" stroke="#171412" stroke-width="3"/>
+      <path d="M27 29 l5 6 11 -13" fill="none" stroke="#171412" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="62" y="37">Diferencijacija</text>
+    </g>
+    <g transform="translate(950,540)">
+      <rect x="0" y="0" width="270" height="58" rx="29" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+      <circle cx="34" cy="29" r="16" fill="#FF8A65" stroke="#171412" stroke-width="3"/>
+      <path d="M34 18 v10 l8 6" fill="none" stroke="#171412" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="62" y="37">AI generator</text>
+    </g>
+    <g transform="translate(950,610)">
+      <rect x="0" y="0" width="270" height="58" rx="29" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+      <circle cx="34" cy="29" r="16" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+      <path d="M26 29 h16 M34 21 v16" stroke="#171412" stroke-width="3" stroke-linecap="round"/>
+      <text x="62" y="37">Besplatno za škole</text>
+    </g>
+  </g>
+
+  <!-- Kužiš wordmark bottom-left -->
+  <text x="70" y="850" font-size="42" font-weight="900" fill="#171412">Kužiš.</text>
+</svg>
