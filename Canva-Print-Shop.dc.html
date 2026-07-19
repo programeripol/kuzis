@@ -40,6 +40,8 @@ header.site-header nav a.cta:hover { transform:translateY(-2px); text-decoration
 .breadcrumb .current { color:#171412; }
 .article-header { max-width:960px; margin:0 auto; padding:20px 24px 28px; }
 .badge, .crumb-pill { display:inline-block; font:700 11px Inter; color:#171412; background:var(--accent); padding:5px 12px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; }
+.crumb-pill { transition:filter .2s ease; }
+.crumb-pill:hover { filter:brightness(.93); }
 .badge { margin-bottom:16px; }
 .article-header h1 { margin:0 0 18px; font-weight:800; font-size:clamp(28px,4.6vw,44px); line-height:1.18; letter-spacing:-.02em; }
 .article-meta { display:flex; align-items:center; gap:12px; font:400 14px Inter; color:rgba(23,18,15,.55); }
@@ -114,11 +116,16 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 .footer-bottom-links { display:flex; gap:20px; }
 .back-to-top { position:fixed; right:24px; bottom:24px; width:46px; height:46px; border-radius:50%; background:#FFD048; color:#171412; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(23,18,15,.28); opacity:0; transform:translateY(12px) scale(.9); pointer-events:none; transition:opacity .3s ease,transform .3s ease; z-index:60; }
 .back-to-top.visible { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
-.faq-item { margin:0 0 12px; border:1px solid rgba(23,18,15,.12); border-radius:10px; overflow:hidden; }
+.cta-underline { position:relative; text-decoration:none; padding-bottom:3px; display:inline-block; }
+.cta-underline::after { content:''; position:absolute; left:0; bottom:0; width:100%; height:1.5px; background:#FFD048; border-radius:2px; transform-origin:center; }
+.cta-underline:hover::after { animation:underline-swipe .6s cubic-bezier(.65,0,.35,1) forwards; }
+.cta-underline:hover { transform:translateY(-1px); transition:transform .3s ease; }
+@keyframes underline-swipe { 0%{transform:scaleX(1)} 45%{transform:scaleX(0)} 100%{transform:scaleX(1)} }
+.faq-item { margin:0 0 12px; border:1px solid color-mix(in srgb, var(--accent) 45%, white); border-radius:10px; overflow:hidden; }
 .faq-item summary { list-style:none; cursor:pointer; padding:16px 44px 16px 18px; position:relative; font:700 16px Inter; color:#171412; }
 .faq-item summary::-webkit-details-marker { display:none; }
-.faq-item summary::after { content:'+'; position:absolute; right:18px; top:50%; transform:translateY(-50%); font:400 22px Inter; color:rgba(23,18,15,.4); transition:transform .2s ease; }
-.faq-item[open] summary::after { transform:translateY(-50%) rotate(45deg); }
+.faq-item summary::after { content:'\25BE'; position:absolute; right:18px; top:50%; transform:translateY(-50%); font-size:15px; color:var(--accent); transition:transform .25s ease; }
+.faq-item[open] summary::after { transform:translateY(-50%) rotate(180deg); }
 .faq-item p { margin:0; padding:0 18px 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
 </style>
 </head>
@@ -144,7 +151,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
   <span class="sep">/</span>
   <a href="Blog.dc.html">Blog</a>
   <span class="sep">/</span>
-  <span class="crumb-pill">Canva savjeti</span>
+  <a class="crumb-pill" href="Blog.dc.html?kategorija=Canva%20savjeti">Canva savjeti</a>
 </nav>
 
 <header class="article-header">
@@ -260,34 +267,37 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
     </aside>
 </div>
 
-  <section class="related-section">
+  <section class="related-section" data-current-href="Canva-Print-Shop.dc.html">
     <div class="related-inner">
       <h2>Nastavite čitati</h2>
-      <div class="related-grid">
-        <a class="related-card" href="canva-za-pocetnike-7-dana.dc.html">
-          <div class="thumb"><img src="assets/canva-7-dana-hero.jpg" alt="Canva za apsolutne početnike: plan za prvih 7 dana" loading="lazy"></div>
+      <div class="related-grid" id="related-grid">
+        <a class="related-card" href="Canva-Grow-Oglasi.dc.html">
+          <div class="thumb"><img src="assets/canva-grow-oglasi-hero.png" alt="Canva Grow 2.0: AI koji ti sam radi i pušta oglase" loading="lazy"></div>
           <div class="rc-body">
             <div class="rc-badge">Canva savjeti</div>
-            <h3>Canva za apsolutne početnike: plan za prvih 7 dana</h3>
-            <div class="rc-meta">8. srp 2026. · 1 min čitanja</div>
+            <h3>Canva Grow 2.0: AI koji ti sam radi i pušta oglase</h3>
+            <div class="rc-meta">19. srp 2026. · 4 min čitanja</div>
           </div>
         </a>
-        <a class="related-card" href="canva-novosti-2026.dc.html">
-          <div class="thumb"><img src="assets/canva-ai-2-0-hero.jpg" alt="Što je novo u Canvi: AI 2.0" loading="lazy"></div>
+        <a class="related-card" href="canva-learn-grid-diferencirana-nastava.dc.html">
+          <div class="thumb"><img src="assets/canva-learn-grid-hero.png" alt="Canva Learn Grid: kako za 10 minuta napraviti tri razine iste lekcije" loading="lazy"></div>
           <div class="rc-body">
             <div class="rc-badge">Canva savjeti</div>
-            <h3>Što je novo u Canvi: AI 2.0</h3>
-            <div class="rc-meta">8. srp 2026. · 1 min čitanja</div>
+            <h3>Canva Learn Grid: kako za 10 minuta napraviti tri razine iste lekcije</h3>
+            <div class="rc-meta">18. srp 2026. · 4 min čitanja</div>
           </div>
         </a>
-        <a class="related-card" href="redizajn-identiteta-canva.dc.html">
-          <div class="thumb"></div>
+        <a class="related-card" href="canva-sheets-ai-tablice.dc.html">
+          <div class="thumb"><img src="assets/canva-sheets-ai-hero.png" alt="Canva Sheets AI: napravi proračunsku tablicu iz obične rečenice" loading="lazy"></div>
           <div class="rc-body">
             <div class="rc-badge">Canva savjeti</div>
-            <h3>Kako redizajnirati vizualni identitet u Canvi bez gubljenja prepoznatljivosti</h3>
-            <div class="rc-meta">8. srp 2026. · 1 min čitanja</div>
+            <h3>Canva Sheets AI: napravi proračunsku tablicu iz obične rečenice</h3>
+            <div class="rc-meta">16. srp 2026. · 2 min čitanja</div>
           </div>
         </a>
+      </div>
+      <div style="margin-top:28px;text-align:center">
+        <a href="Blog.dc.html" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="22" height="14" viewBox="0 0 22 14" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:5px"><path d="M1 7.5c5-3.4 9.5-3.4 15-1M1 7.5c5 3 9.5 3 15 .6" stroke="#171412" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 3c1.6 1.4 3 2.7 4.2 4.3-1.4 1.2-2.9 2.3-4.6 3.5" stroke="#171412" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </section>
@@ -429,5 +439,29 @@ document.querySelector('[data-share-linkedin]').href = 'https://www.linkedin.com
 document.querySelector('[data-share-email]').href = 'mailto:?subject=' + encodeURIComponent(document.title) + '&body=' + encodeURIComponent(window.location.href);
 </script>
 
+<script>
+(function () {
+  var grid = document.getElementById('related-grid');
+  var section = document.querySelector('.related-section');
+  if (!grid || !section) return;
+  var currentHref = section.getAttribute('data-current-href') || '';
+  var pillEl = document.querySelector('.crumb-pill');
+  var currentCategory = pillEl ? pillEl.textContent.trim() : '';
+  fetch('assets/posts.json').then(function (r) { return r.json(); }).then(function (posts) {
+    var others = posts.filter(function (p) { return p.href !== currentHref; });
+    var sameCat = others.filter(function (p) { return p.category === currentCategory; });
+    var rest = others.filter(function (p) { return p.category !== currentCategory; });
+    var picks = sameCat.concat(rest).slice(0, 3);
+    if (!picks.length) return;
+    grid.innerHTML = picks.map(function (p) {
+      var alt = String(p.title).replace(/"/g, '&quot;');
+      return '<a class="related-card" href="' + p.href + '">' +
+        '<div class="thumb"><img src="' + p.img + '" alt="' + alt + '" loading="lazy"></div>' +
+        '<div class="rc-body"><div class="rc-badge">' + p.category + '</div><h3>' + p.title + '</h3>' +
+        '<div class="rc-meta">' + p.date + ' \u00b7 ' + p.readingTime + ' min \u010ditanja</div></div></a>';
+    }).join('');
+  }).catch(function () {});
+})();
+</script>
 </body>
 </html>
