@@ -6,7 +6,7 @@
     </style>
   </defs>
 
-  <rect width="1600" height="900" fill="#FFC93C"/>
+  <rect width="1600" height="900" fill="#9FC68D"/>
 
   <text x="800" y="80" text-anchor="middle" font-size="40" font-weight="800" fill="#171412" letter-spacing="-0.5">Kako izračunati prosjek u Excelu i</text>
   <text x="800" y="128" text-anchor="middle" font-size="40" font-weight="800" fill="#171412" letter-spacing="-0.5">Google Sheetsu</text>
@@ -21,10 +21,10 @@
   <!-- spreadsheet grid, main illustration -->
   <g transform="translate(470,300)">
     <rect x="0" y="0" width="480" height="340" rx="14" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
-    <rect x="0" y="0" width="480" height="52" fill="#FFD048" stroke="#171412" stroke-width="5"/>
-    <text x="26" y="33" font-size="19" font-weight="700" fill="#171412">A</text>
-    <text x="146" y="33" font-size="19" font-weight="700" fill="#171412">B</text>
-    <text x="326" y="33" font-size="19" font-weight="700" fill="#171412">C</text>
+    <rect x="0" y="0" width="480" height="52" fill="#266D35" stroke="#171412" stroke-width="5"/>
+    <text x="26" y="33" font-size="19" font-weight="700" fill="#FFFFFF">A</text>
+    <text x="146" y="33" font-size="19" font-weight="700" fill="#FFFFFF">B</text>
+    <text x="326" y="33" font-size="19" font-weight="700" fill="#FFFFFF">C</text>
     <path class="inkThin" d="M120 0 V340"/>
     <path class="inkThin" d="M300 0 V340"/>
     <path class="inkThin" d="M0 100 H480"/>
@@ -37,7 +37,7 @@
     <text x="140" y="176" font-size="17" fill="#171412">9</text>
     <text x="140" y="224" font-size="17" fill="#171412">15</text>
     <text x="140" y="270" font-size="17" fill="#171412">7</text>
-    <rect x="0" y="285" width="480" height="55" fill="#FFF3CF"/>
+    <rect x="0" y="285" width="480" height="55" fill="#E4F0DD"/>
     <text x="26" y="319" font-size="18" font-weight="700" fill="#171412">Prosjek</text>
     <text x="140" y="319" font-size="18" font-weight="800" fill="#171412">=AVERAGE(B2:B6)</text>
   </g>
@@ -58,7 +58,7 @@
     <circle cx="65" cy="76" r="12" fill="none" stroke="#171412" stroke-width="3"/>
     <circle cx="98" cy="76" r="12" fill="none" stroke="#171412" stroke-width="3"/>
     <circle cx="32" cy="110" r="12" fill="none" stroke="#171412" stroke-width="3"/>
-    <circle cx="65" cy="110" r="12" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+    <circle cx="65" cy="110" r="12" fill="#266D35" stroke="#171412" stroke-width="3"/>
     <circle cx="98" cy="110" r="12" fill="none" stroke="#171412" stroke-width="3"/>
     <circle cx="32" cy="144" r="12" fill="none" stroke="#171412" stroke-width="3"/>
     <circle cx="65" cy="144" r="12" fill="none" stroke="#171412" stroke-width="3"/>
@@ -107,8 +107,8 @@
       <text x="40" y="21">raspon</text>
     </g>
     <g transform="translate(325,0)">
-      <circle cx="15" cy="15" r="15" fill="#FFD048" stroke="#171412" stroke-width="3"/>
-      <text x="7" y="21" font-size="13" font-style="italic">fx</text>
+      <circle cx="15" cy="15" r="15" fill="#266D35" stroke="#171412" stroke-width="3"/>
+      <text x="7" y="21" font-size="13" font-style="italic" fill="#FFFFFF">fx</text>
       <text x="40" y="21">AVERAGE formula</text>
     </g>
     <g transform="translate(600,0)">
