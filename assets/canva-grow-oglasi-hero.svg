@@ -1,0 +1,102 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect width="1600" height="900" fill="#FFC93C"/>
+
+  <!-- scattered stars -->
+  <g fill="#171412">
+    <path d="M130 100 l8 20 20 8 -20 8 -8 20 -8 -20 -20 -8 20 -8 z"/>
+    <path d="M1510 150 l6 15 15 6 -15 6 -6 15 -6 -15 -15 -6 15 -6 z"/>
+    <path d="M1470 690 l7 17 17 7 -17 7 -7 17 -7 -17 -17 -7 17 -7 z"/>
+    <path d="M100 600 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6 z"/>
+  </g>
+
+  <!-- clouds -->
+  <g fill="#FFFFFF" stroke="#171412" stroke-width="4" stroke-linejoin="round">
+    <path d="M1260 80 q-10 -30 20 -32 q6 -22 30 -14 q20 -14 34 6 q26 -4 24 22 q18 8 4 26 q-6 14 -24 10 q-10 12 -28 2 q-20 10 -34 -6 q-24 2 -26 -14 z"/>
+    <path d="M70 200 q-8 -22 15 -24 q4 -16 22 -10 q15 -10 25 4 q19 -3 18 16 q13 6 3 19 q-4 10 -18 7 q-8 9 -21 1 q-14 8 -25 -4 q-18 2 -19 -9 z"/>
+  </g>
+
+  <!-- paper airplane -->
+  <g transform="translate(1340,230) rotate(18)">
+    <path d="M0 0 L120 40 L0 80 L18 40 Z" fill="#FFFFFF" stroke="#171412" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M0 0 L18 40 L0 80" fill="none" stroke="#171412" stroke-width="4"/>
+  </g>
+
+  <!-- speech bubble -->
+  <g transform="translate(1180,470)">
+    <path d="M0 10 q0 -18 18 -18 h120 q18 0 18 18 v56 q0 18 -18 18 h-70 l-24 26 v-26 h-26 q-18 0 -18 -18 z" fill="#FFFFFF" stroke="#171412" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="34" cy="42" r="7" fill="#171412"/>
+    <circle cx="66" cy="42" r="7" fill="#171412"/>
+    <circle cx="98" cy="42" r="7" fill="#171412"/>
+  </g>
+
+  <!-- headline -->
+  <g fill="#171412" font-weight="900">
+    <text x="70" y="150" font-size="60" letter-spacing="-1">Canva Grow 2.0:</text>
+    <text x="70" y="222" font-size="60" letter-spacing="-1">AI koji ti sam radi</text>
+    <text x="70" y="294" font-size="60" letter-spacing="-1">i pušta oglase</text>
+  </g>
+
+  <!-- laptop with ad-like editor screen -->
+  <g transform="translate(140,470)">
+    <rect x="0" y="0" width="360" height="230" rx="14" fill="#171412"/>
+    <rect x="14" y="14" width="332" height="202" rx="6" fill="#FFFFFF"/>
+    <!-- ad mock content -->
+    <rect x="30" y="30" width="140" height="18" rx="4" fill="#FFC93C" stroke="#171412" stroke-width="3"/>
+    <rect x="30" y="58" width="130" height="90" rx="8" fill="#7FD6C2" stroke="#171412" stroke-width="3"/>
+    <path d="M75 90 l24 14 -24 14 z" fill="#171412"/>
+    <rect x="176" y="58" width="140" height="42" rx="8" fill="#FF8A65" stroke="#171412" stroke-width="3"/>
+    <rect x="176" y="110" width="140" height="38" rx="20" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+    <rect x="30" y="160" width="286" height="14" rx="4" fill="#171412" opacity="0.15"/>
+    <rect x="30" y="182" width="200" height="14" rx="4" fill="#171412" opacity="0.15"/>
+    <path d="M0 230 L-30 280 L390 280 L360 230 Z" fill="#3a3632"/>
+    <rect x="-30" y="280" width="420" height="16" rx="6" fill="#171412"/>
+  </g>
+
+  <!-- coffee cup -->
+  <g transform="translate(560,560)">
+    <path d="M0 20 h90 v55 a45 45 0 0 1 -90 0 z" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
+    <path d="M90 35 q35 -6 35 25 q0 30 -35 26" fill="none" stroke="#171412" stroke-width="5"/>
+    <ellipse cx="45" cy="20" rx="45" ry="9" fill="#6F4E37" stroke="#171412" stroke-width="5"/>
+    <path d="M18 -6 q-8 -14 2 -24" fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round"/>
+    <path d="M45 -6 q-8 -14 2 -24" fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round"/>
+    <path d="M72 -6 q-8 -14 2 -24" fill="none" stroke="#171412" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- notebook + pencil -->
+  <g transform="translate(730,540)">
+    <rect x="0" y="0" width="150" height="110" rx="8" fill="#FFFFFF" stroke="#171412" stroke-width="5"/>
+    <line x1="18" y1="30" x2="132" y2="30" stroke="#171412" stroke-width="3" opacity="0.4"/>
+    <line x1="18" y1="52" x2="132" y2="52" stroke="#171412" stroke-width="3" opacity="0.4"/>
+    <line x1="18" y1="74" x2="100" y2="74" stroke="#171412" stroke-width="3" opacity="0.4"/>
+    <g transform="translate(120,-10) rotate(35)">
+      <rect x="0" y="0" width="16" height="90" fill="#FFD048" stroke="#171412" stroke-width="4"/>
+      <path d="M0 90 L16 90 L8 110 Z" fill="#E2B27A" stroke="#171412" stroke-width="4"/>
+      <rect x="0" y="-14" width="16" height="14" fill="#F5A3A3" stroke="#171412" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- feature chips: Create / Launch / Learn -->
+  <g font-size="22" font-weight="700" fill="#171412">
+    <g transform="translate(950,470)">
+      <rect x="0" y="0" width="230" height="58" rx="29" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+      <circle cx="34" cy="29" r="16" fill="#7FD6C2" stroke="#171412" stroke-width="3"/>
+      <path d="M34 19 v20 M24 29 h20" stroke="#171412" stroke-width="3" stroke-linecap="round"/>
+      <text x="62" y="37">Kreiraj</text>
+    </g>
+    <g transform="translate(950,540)">
+      <rect x="0" y="0" width="230" height="58" rx="29" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+      <circle cx="34" cy="29" r="16" fill="#FF8A65" stroke="#171412" stroke-width="3"/>
+      <path d="M27 37 l14 -22 M41 37 l-4 -10" fill="none" stroke="#171412" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="62" y="37">Pokreni</text>
+    </g>
+    <g transform="translate(950,610)">
+      <rect x="0" y="0" width="230" height="58" rx="29" fill="#FFFFFF" stroke="#171412" stroke-width="4"/>
+      <circle cx="34" cy="29" r="16" fill="#FFD048" stroke="#171412" stroke-width="3"/>
+      <path d="M24 34 l10 -14 10 8 8 -12" fill="none" stroke="#171412" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="62" y="37">Nauči</text>
+    </g>
+  </g>
+
+  <!-- Kužiš wordmark bottom-left -->
+  <text x="70" y="850" font-size="42" font-weight="900" fill="#171412">Kužiš.</text>
+</svg>
