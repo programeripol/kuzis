@@ -124,7 +124,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 .faq-item { margin:0 0 12px; border:1px solid color-mix(in srgb, var(--accent) 45%, white); border-radius:10px; overflow:hidden; }
 .faq-item summary { list-style:none; cursor:pointer; padding:16px 44px 16px 18px; position:relative; font:700 16px Inter; color:#171412; }
 .faq-item summary::-webkit-details-marker { display:none; }
-.faq-item summary::after { content:'\25BE'; position:absolute; right:18px; top:50%; transform:translateY(-50%); font-size:15px; color:var(--accent); transition:transform .25s ease; }
+.faq-item summary::after { content:''; position:absolute; right:16px; top:50%; width:14px; height:9px; background-color:var(--accent); -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; transform:translateY(-50%); transition:transform .25s ease; }
 .faq-item[open] summary::after { transform:translateY(-50%) rotate(180deg); }
 .faq-item p { margin:0; padding:0 18px 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
 </style>
