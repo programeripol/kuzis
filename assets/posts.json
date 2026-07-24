@@ -1,5 +1,45 @@
 [
   {
+    "href": "Canva-Raspored-Objava-Drustvene-Mreze.dc.html",
+    "title": "Canva raspored objava: isplaniraj mjesec društvenih mreža u jednom sjedenju",
+    "category": "Canva savjeti",
+    "date": "24. srp 2026.",
+    "iso": "2026-07-24",
+    "readingTime": 3,
+    "img": "assets/canva-raspored-objava-hero.png",
+    "excerpt": "Kako u Canvi zakazati objave za Facebook, Instagram, LinkedIn i Pinterest izravno iz dizajna - bez prebacivanja u treću aplikaciju."
+  },
+  {
+    "href": "Excel-VLOOKUP-XLOOKUP-Pocetnici.dc.html",
+    "title": "Kako pretraživati podatke po uvjetu u Excelu i Google Sheetsu (VLOOKUP i XLOOKUP za apsolutne početnike)",
+    "category": "Excel i Google Sheets",
+    "date": "24. srp 2026.",
+    "iso": "2026-07-24",
+    "readingTime": 3,
+    "img": "assets/excel-vlookup-xlookup-pocetnici-hero.png",
+    "excerpt": "Kako pomoću VLOOKUP i XLOOKUP formule pronaći podatak u drugoj tablici automatski - objašnjeno korak po korak, s primjerom iz svakodnevnog posla."
+  },
+  {
+    "href": "Web-Dizajn-UX-Pojmovi-Recnik.dc.html",
+    "title": "5 UX pojmova koje ćeš čuti kad naručuješ web stranicu (i što zapravo znače)",
+    "category": "Web dizajn",
+    "date": "24. srp 2026.",
+    "iso": "2026-07-24",
+    "readingTime": 4,
+    "img": "assets/web-dizajn-ux-pojmovi-hero.png",
+    "excerpt": "Above the fold, hero sekcija, F-pattern, skeleton loading i hamburger meni objašnjeni jednostavno - da razumiješ svog web dizajnera od prve rečenice."
+  },
+  {
+    "href": "SEO-Schema-Markup-Objasnjeno.dc.html",
+    "title": "Što je schema markup i kako pomaže da te Google i ChatGPT bolje razumiju",
+    "category": "SEO savjeti",
+    "date": "24. srp 2026.",
+    "iso": "2026-07-24",
+    "readingTime": 5,
+    "img": "assets/schema-markup-objasnjeno-hero.png",
+    "excerpt": "Schema markup objašnjen jednostavno: kako strukturirani podaci pomažu Googleu i ChatGPT-u da razumiju i citiraju tvoju stranicu ili obrt."
+  },
+  {
     "href": "Excel-COUNTIF-Brojanje-Pocetnici.dc.html",
     "title": "Kako brojati ćelije po uvjetu u Excelu i Google Sheetsu (COUNTIF za apsolutne početnike)",
     "category": "Excel i Google Sheets",
@@ -18,6 +58,16 @@
     "readingTime": 4,
     "img": "assets/web-dizajn-greske-male-firme-hero.png",
     "excerpt": "7 čestih grešaka koje male tvrtke prave na webu - i kako ih prepoznati prije nego klijent ode konkurenciji."
+  },
+  {
+    "href": "SEO-Sto-Je-AEO-Objasnjeno.dc.html",
+    "title": "Što je AEO i kako pisati odgovore koje Google i ChatGPT odmah preuzmu",
+    "category": "SEO savjeti",
+    "date": "23. srp 2026.",
+    "iso": "2026-07-23",
+    "readingTime": 4,
+    "img": "assets/sto-je-aeo-objasnjeno-hero.png",
+    "excerpt": "AEO objašnjen jednostavno: kako pisati odgovore koje Google i ChatGPT odmah preuzmu, umjesto da čekaš klik na svoj link."
   },
   {
     "href": "Canva-Grow-Oglasi.dc.html",
