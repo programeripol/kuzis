@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VLOOKUP i XLOOKUP objašnjeno za početnike | Kužiš</title>
+<meta name="description" content="Kako pomoću VLOOKUP i XLOOKUP formule pronaći podatak u drugoj tablici automatski - objašnjeno korak po korak, s primjerom iz svakodnevnog posla.">
+<link rel="canonical" href="https://programeripol.github.io/kuzis/Excel-VLOOKUP-XLOOKUP-Pocetnici.dc.html">
+<meta property="og:title" content="Kako pretraživati podatke po uvjetu u Excelu i Google Sheetsu (VLOOKUP i XLOOKUP za apsolutne početnike)">
+<meta property="og:description" content="Kako pomoću VLOOKUP i XLOOKUP formule pronaći podatak u drugoj tablici automatski - objašnjeno korak po korak, s primjerom iz svakodnevnog posla.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="assets/excel-vlookup-xlookup-pocetnici-hero.png">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Kako pretraživati podatke po uvjetu u Excelu i Google Sheetsu (VLOOKUP i XLOOKUP za apsolutne početnike)", "datePublished": "2026-07-24", "author": {"@type": "Organization", "name": "Kužiš"}, "publisher": {"@type": "Organization", "name": "Kužiš"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Koja je razlika između VLOOKUP i XLOOKUP formule?", "acceptedAnswer": {"@type": "Answer", "text": "VLOOKUP traži samo prema desno od stupca sa šifrom i rezultat određuje brojem stupca, dok XLOOKUP direktno navodi raspon za pretragu i raspon za rezultat te može tražiti i lijevo i desno. XLOOKUP je noviji i manje podložan grešci, ali nije dostupan u starijim, jednokratno kupljenim verzijama Excela."}}, {"@type": "Question", "name": "Zašto mi VLOOKUP vraća grešku #N/A?", "acceptedAnswer": {"@type": "Answer", "text": "Najčešće zato što tražena vrijednost stvarno ne postoji u prvom stupcu odabranog raspona, ili postoji razlika u zapisu (razmak, veliko/malo slovo, broj zapisan kao tekst umjesto broja)."}}, {"@type": "Question", "name": "Mogu li koristiti VLOOKUP između dva različita lista (sheeta)?", "acceptedAnswer": {"@type": "Answer", "text": "Da - to je i najčešća upotreba. U formulu samo dodaš naziv lista i uskličnik ispred raspona, na primjer Cjenik!A2:B20, kako je pokazano u primjeru gore."}}, {"@type": "Question", "name": "Treba li mi VLOOKUP ili mi je dovoljan SUM/COUNTIF?", "acceptedAnswer": {"@type": "Answer", "text": "Ovisi što radiš: SUM i COUNTIF zbrajaju ili broje, dok VLOOKUP i XLOOKUP dohvaćaju konkretan podatak (npr. cijenu, ime, status) iz druge tablice na temelju zajedničkog podatka poput šifre ili OIB-a."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://programeripol.github.io/kuzis/Pocetna.dc.html"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://programeripol.github.io/kuzis/Blog.dc.html"}, {"@type": "ListItem", "position": 3, "name": "Excel i Google Sheets"}]}
+</script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --accent:#FFD048; }
+body { font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif; color:#171412; line-height:1.6; background:#fff; }
+a { color:inherit; }
+.progress-bar { position:fixed; top:0; left:0; height:3px; width:0%; background:var(--accent); z-index:100; transition:width .1s linear; }
+header.site-header { position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding:18px clamp(20px,4vw,48px); background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-bottom:1px solid #f1efec; }
+header.site-header a.logo { font:800 22px/1 Inter; color:#171412; text-decoration:none; letter-spacing:-.01em; }
+header.site-header nav { display:flex; flex-wrap:wrap; gap:clamp(14px,2.6vw,28px); align-items:center; font:500 14px Inter; }
+header.site-header nav a { text-decoration:none; color:rgba(23,18,15,.72); transition:color .2s ease; }
+header.site-header nav a:hover { color:#171412; text-decoration:underline; text-underline-offset:4px; }
+header.site-header nav a.active { color:#171412; font-weight:700; border-bottom:2.5px solid #FFD048; padding-bottom:2px; }
+header.site-header nav a.cta { display:inline-flex; align-items:center; padding:10px 20px; background:#FFD048; color:#171412; border-radius:8px; font-weight:600; transition:transform .2s ease; }
+header.site-header nav a.cta:hover { transform:translateY(-2px); text-decoration:none; }
+.breadcrumb { max-width:960px; margin:0 auto; padding:24px 24px 0; font:500 13px Inter; color:rgba(23,18,15,.5); }
+.breadcrumb a { text-decoration:none; }
+.breadcrumb a:hover { color:#171412; }
+.breadcrumb .sep { margin:0 6px; }
+.breadcrumb .current { color:#171412; }
+.article-header { max-width:960px; margin:0 auto; padding:20px 24px 28px; }
+.badge, .crumb-pill { display:inline-block; font:700 11px Inter; color:#171412; background:var(--accent); padding:5px 12px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; }
+.crumb-pill { transition:filter .2s ease; }
+.crumb-pill:hover { filter:brightness(.93); }
+.badge { margin-bottom:16px; }
+.article-header h1 { margin:0 0 18px; font-weight:800; font-size:clamp(28px,4.6vw,44px); line-height:1.18; letter-spacing:-.02em; }
+.article-meta { display:flex; align-items:center; gap:12px; font:400 14px Inter; color:rgba(23,18,15,.55); }
+.hero-wrap { max-width:960px; margin:0 auto; padding:0 24px 40px; }
+.hero-frame { width:100%; aspect-ratio:16/9; border-radius:18px; overflow:hidden; background:linear-gradient(135deg,#FFD048,#fff3cf); display:flex; align-items:center; justify-content:center; }
+.hero-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+.hero-frame span { font:600 14px Inter; color:rgba(23,18,15,.45); padding:0 24px; text-align:center; }
+.layout-grid { max-width:960px; margin:0 auto; padding:0 24px clamp(48px,7vw,72px); display:grid; grid-template-columns:1fr 200px; gap:56px; }
+@media (max-width:800px) { .layout-grid { grid-template-columns:1fr; } .toc-aside { display:none; } }
+article.post-body { min-width:0; max-width:680px; }
+article.post-body .lead { margin:0 0 22px; font-weight:500; font-size:19px; line-height:1.7; color:#171412; }
+.section-head { display:flex; gap:16px; align-items:center; margin:36px 0 14px; }
+.section-num { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; background:var(--accent); font:800 14px Inter; color:#171412; }
+.section-head h2 { margin:0; font-weight:800; font-size:24px; line-height:1.3; letter-spacing:-.01em; }
+article.post-body p { margin:0 0 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
+article.post-body ul { margin:0 0 18px; padding-left:22px; font:400 16px/1.85 Inter; color:rgba(23,18,15,.8); }
+article.post-body li { margin-bottom:6px; }
+.pull-quote { margin:28px 0; padding:22px 24px; background:color-mix(in srgb, var(--accent) 18%, white); border-radius:14px; border-left:4px solid var(--accent); }
+.pull-quote p { margin:0 !important; font:500 16px/1.6 Inter; font-style:italic; color:#171412 !important; }
+.tip-box { margin:28px 0; padding:22px 24px; background:color-mix(in srgb, var(--accent) 18%, white); border-radius:14px; border-left:4px solid var(--accent); }
+.tip-box p { margin:0 !important; font:400 16px/1.7 Inter; color:#171412 !important; }
+.tip-box .tip-label { display:block; font:800 12px Inter; letter-spacing:.05em; text-transform:uppercase; color:color-mix(in srgb, var(--accent) 55%, black); margin-bottom:8px; }
+.faq-block { margin:40px 0 0; }
+.faq-block h2 { margin:0 0 18px; font-weight:800; font-size:22px; letter-spacing:-.01em; }
+
+
+
+.tag-chips { margin:36px 0 0; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.tag-chips .label { font:600 13px Inter; color:rgba(23,18,15,.5); margin-right:4px; }
+.tag-chips a { text-decoration:none; padding:7px 14px; border-radius:100px; background:#FFF8E1; color:#171412; font:600 13px Inter; transition:background .2s ease,transform .15s ease; }
+.tag-chips a:hover { background:#FFD048; transform:translateY(-2px); }
+.engage-row { margin:40px 0 0; padding-top:24px; border-top:1px solid rgba(23,18,15,.1); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; }
+.engage-row .label { font:600 14px Inter; color:#171412; }
+.engage-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.like-btn { display:flex; align-items:center; gap:8px; padding:9px 16px; border-radius:100px; border:1.5px solid rgba(23,18,15,.15); background:#FFFFFF; color:#171412; font:600 13.5px Inter; cursor:pointer; transition:transform .15s ease,background .2s ease,border-color .2s ease; }
+.like-btn:hover { transform:translateY(-2px); }
+.like-btn.liked { background:#FFD048; border-color:#FFD048; }
+.divider-v { width:1px; height:22px; background:rgba(23,18,15,.12); }
+.icon-btn { display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#FFF8E1; color:#171412; text-decoration:none; border:none; cursor:pointer; transition:background .2s ease,transform .2s ease; }
+.icon-btn:hover { background:#FFD048; transform:translateY(-2px); }
+.toast-msg { margin-top:8px; text-align:right; font:500 13px Inter; color:rgba(23,18,15,.5); min-height:18px; }
+.toc-aside { min-width:0; }
+.toc-box { position:sticky; top:96px; padding:20px; border:1px solid rgba(23,18,15,.14); border-radius:14px; }
+.toc-box .toc-label { font:700 12px Inter; color:#171412; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
+.toc-box nav { display:flex; flex-direction:column; gap:2px; font:500 13.5px Inter; }
+.toc-box nav a { text-decoration:none; padding:6px 0 6px 12px; border-left:2px solid transparent; color:rgba(23,18,15,.6); transition:color .2s ease,border-color .2s ease; }
+.toc-box nav a:hover { color:#171412; }
+.toc-box nav a.active { color:#171412; border-left-color:var(--accent); }
+.related-section { padding:0 24px clamp(56px,8vw,80px); }
+.related-inner { max-width:1120px; margin:0 auto; }
+.related-inner h2 { margin:0 0 22px; font-weight:800; font-size:clamp(19px,2.4vw,24px); letter-spacing:-.01em; }
+.related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+.related-card { display:flex; flex-direction:column; height:100%; text-decoration:none; color:inherit; border-radius:16px; overflow:hidden; border:1px solid rgba(23,18,15,.08); transition:transform .25s ease,box-shadow .25s ease; }
+.related-card:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(23,18,15,.1); }
+.related-card .thumb { width:100%; aspect-ratio:16/10; background:#FFF8E1; }
+.related-card .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.related-card .rc-body { display:flex; flex-direction:column; flex:1; padding:18px; }
+.related-card .rc-badge { display:inline-block; align-self:flex-start; font:700 11px Inter; color:#171412; background:#FFD048; padding:4px 10px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; margin-bottom:10px; }
+.related-card h3 { margin:0 0 8px; font-weight:700; font-size:16px; line-height:1.35; letter-spacing:-.005em; }
+.related-card .rc-meta { margin-top:auto; font:400 12.5px Inter; color:rgba(23,18,15,.5); }
+footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px solid rgba(255,255,255,.1); }
+.footer-grid { max-width:1120px; margin:0 auto 40px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; }
+@media (max-width:700px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+.footer-grid .brand { font:800 22px Inter; color:#FFFFFF; margin-bottom:10px; }
+.footer-grid p { font:400 14px/1.6 Inter; color:rgba(255,255,255,.5); max-width:260px; margin-bottom:20px; }
+.footer-cta { display:inline-flex; align-items:center; justify-content:center; padding:11px 20px; background:#FFD048; color:#171412; border-radius:8px; font:600 13.5px Inter; text-decoration:none; transition:transform .25s ease; }
+.footer-cta:hover { transform:translateY(-2px); }
+.footer-col-title { font:700 12px Inter; color:rgba(255,255,255,.4); margin-bottom:16px; text-transform:uppercase; letter-spacing:.08em; }
+.footer-links { display:flex; flex-direction:column; gap:12px; font:400 14.5px Inter; color:rgba(255,255,255,.7); }
+.footer-links a { text-decoration:none; color:inherit; transition:color .2s ease; }
+.footer-links a:hover { color:#FFD048; }
+.footer-bottom { max-width:1120px; margin:0 auto; padding-top:24px; border-top:1px solid rgba(255,255,255,.1); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font:400 13px Inter; color:rgba(255,255,255,.4); }
+.footer-bottom a { text-decoration:none; color:inherit; transition:color .2s ease; }
+.footer-bottom a:hover { color:#FFD048; }
+.footer-bottom-links { display:flex; gap:20px; }
+.back-to-top { position:fixed; right:24px; bottom:24px; width:46px; height:46px; border-radius:50%; background:#FFD048; color:#171412; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(23,18,15,.28); opacity:0; transform:translateY(12px) scale(.9); pointer-events:none; transition:opacity .3s ease,transform .3s ease; z-index:60; }
+.back-to-top.visible { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+.cta-underline { position:relative; text-decoration:none; padding-bottom:3px; display:inline-block; }
+.cta-underline::after { content:''; position:absolute; left:0; bottom:0; width:100%; height:1.5px; background:#FFD048; border-radius:2px; transform-origin:center; }
+.cta-underline:hover::after { animation:underline-swipe .6s cubic-bezier(.65,0,.35,1) forwards; }
+.cta-underline:hover { transform:translateY(-1px); transition:transform .3s ease; }
+@keyframes underline-swipe { 0%{transform:scaleX(1)} 45%{transform:scaleX(0)} 100%{transform:scaleX(1)} }
+.faq-item { margin:0 0 12px; border:1px solid color-mix(in srgb, var(--accent) 45%, white); border-radius:10px; overflow:hidden; }
+.faq-item summary { list-style:none; cursor:pointer; padding:16px 44px 16px 18px; position:relative; font:700 16px Inter; color:#171412; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::after { content:''; position:absolute; right:16px; top:50%; width:14px; height:9px; background-color:var(--accent); -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; transform:translateY(-50%); transition:transform .25s ease; }
+.faq-item[open] summary::after { transform:translateY(-50%) rotate(180deg); }
+.faq-item p { margin:0; padding:0 18px 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
+</style>
+</style>
+</head>
+<body style="--accent:#9FC58C;">
+
+<div class="progress-bar"></div>
+
+<header class="site-header">
+  <a class="logo" href="Pocetna.dc.html">Kužiš</a>
+<div class="progress-bar"></div>
+
+<header class="site-header">
+  <a class="logo" href="Pocetna.dc.html">Kužiš</a>
+    <nav>
+      <a href="Pocetna.dc.html">Početna</a>
+      <a href="Edukacije.dc.html">Edukacije</a>
+      <a href="Za Tvrtke.dc.html">Za tvrtke</a>
+      <a href="Mentorstvo.dc.html">Mentorstvo</a>
+      <a href="O Nama.dc.html">O nama</a>
+      <a href="Blog.dc.html" class="active">Blog</a>
+      <a href="Kontakt.dc.html" class="cta">Pošaljite upit</a>
+    </nav>
+</header>
+
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="Pocetna.dc.html">Početna</a>
+  <span class="sep">/</span>
+  <a href="Blog.dc.html">Blog</a>
+  <span class="sep">/</span>
+  <a class="crumb-pill" href="Blog.dc.html?kategorija=Excel%20i%20Google%20Sheets">Excel i Google Sheets</a>
+</nav>
+
+<header class="article-header">
+  <h1>Kako pretraživati podatke po uvjetu u Excelu i Google Sheetsu (VLOOKUP i XLOOKUP za apsolutne početnike)</h1>
+  <div class="article-meta">
+    <time datetime="2026-07-24">24. srp 2026.</time>
+    <span>·</span>
+    <span>3 min čitanja</span>
+  </div>
+</header>
+
+<div class="hero-wrap">
+    <div class="hero-frame"><img src="assets/excel-vlookup-xlookup-pocetnici-hero.png" alt="Kako pretraživati podatke po uvjetu u Excelu i Google Sheetsu (VLOOKUP i XLOOKUP za apsolutne početnike)" loading="lazy" width="1600" height="900"></div>
+</div>
+
+<div class="layout-grid">
+  <article class="post-body">
+    <p class="lead">VLOOKUP i XLOOKUP su formule koje umjesto tebe pretražuju veliku tablicu i vrate točan podatak koji tražiš - na primjer, upišeš šifru proizvoda i formula sama pronađe njegovu cijenu, umjesto da je tražiš ručno skrolajući kroz stotine redaka. U ovom vodiču prolazimo oboje, korak po korak, uz konkretan primjer s popisom proizvoda.</p>
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 id="zasto-ti-treba">Zašto ti ove formule trebaju (i kad ih koristiš)</h2>
+      </div>
+      <p>Zamisli da vodiš dvije tablice: jednu s narudžbama kupaca (samo šifra proizvoda i količina), i drugu sa svim proizvodima i njihovim cijenama. Bez formule, za svaku narudžbu moraš ručno otvoriti drugu tablicu, pronaći šifru i prepisati cijenu - sporo je i lako se pogriješi.</p>
+      <p>VLOOKUP (i noviji XLOOKUP) rade to umjesto tebe: kažeš formuli \u201cuzmi ovu šifru, potraži je u toj tablici, i vrati mi cijenu koja stoji pored nje\u201d - i to se automatski ponovi za svaki redak kad formulu prekopiraš dolje.</p>
+      <p>Ime VLOOKUP dolazi od \u201cvertical lookup\u201d, dakle pretraga koja ide okomito, po stupcu - to je i njeno glavno ograničenje, koje XLOOKUP rješava, o čemu više u nastavku.</p>
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 id="vlookup-korak-po-korak">VLOOKUP korak po korak, na konkretnom primjeru</h2>
+      </div>
+      <p>Recimo da u listu \u201cCjenik\u201d imaš stupac A sa šiframa proizvoda (A2:A20) i stupac B s cijenama (B2:B20). U drugom listu, \u201cNarudžbe\u201d, u stupcu A imaš šifre koje su naručene, a u stupac B želiš automatski dobiti cijenu.</p>
+      <p>U ćeliju B2 lista \u201cNarudžbe\u201d upišeš: =VLOOKUP(A2;Cjenik!A2:B20;2;NETOČNO</p>
+      <ul>
+        <li>A2 - šifra koju tražiš (iz trenutnog lista)</li>
+        <li>Cjenik!A2:B20 - raspon u kojem se traži, uvijek počevši od stupca gdje je šifra</li>
+        <li>2 - redni broj stupca s rezultatom unutar tog raspona (stupac B je drugi po redu, pa ide 2)</li>
+        <li>NETOČNO (ili FALSE na engleskom sučelju) - tražiš točno podudaranje, ne približno</li>
+      </ul>
+      <div class="tip-box">
+        <span class="tip-label">Čest problem početnika</span>
+        <p>Najčešća greška je kad zaboraviš zadnji argument (NETOČNO/FALSE) ili staviš TOČNO/TRUE umjesto njega. Bez njega Excel ponekad vrati najbliži sličan rezultat umjesto točnog - za šifre proizvoda, cijene ili OIB-ove to gotovo uvijek želiš izbjeći, pa taj argument nikad ne izostavljaj.</p>
+      </div>
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 id="xlookup-razlika">XLOOKUP: novija i jednostavnija verzija</h2>
+      </div>
+      <p>XLOOKUP je noviji nasljednik VLOOKUP-a, dostupan u Excelu 365 i Google Sheetsu (ali ne u starijim verzijama Excela s licencom kupljenom jednokratno). Ista pretraga izgleda ovako: =XLOOKUP(A2;Cjenik!A2:A20;Cjenik!B2:B20)</p>
+      <p>Razlika je u tome što VLOOKUP uvijek traži prema desno od stupca sa šifrom i broji stupce (\u201c2\u201d, \u201c3\u201d...), dok XLOOKUP direktno kažeš koji je raspon za pretragu, a koji za rezultat - pa čak može tražiti i lijevo od šifre, što VLOOKUP uopće ne zna napraviti.</p>
+      <div class="pull-quote"><p>&quot;Ako imaš pristup XLOOKUP-u, koristi njega - manje je podložan grešci jer se ne oslanja na brojanje stupaca koje se lako pomakne kad naknadno dodaš novi stupac u tablicu.&quot;</p></div>
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 id="excel-vs-sheets-i-greske">Excel i Google Sheets - razlike i najčešće greške</h2>
+      </div>
+      <p>Obje formule postoje i u Excelu i u Google Sheetsu, s identičnom logikom. Jedina razlika je razdjelnik unutar formule - hrvatske regionalne postavke koriste točku-zarez (;), dok engleske koriste zarez (,).</p>
+      <p>Najčešća greška kod VLOOKUP-a nije u samoj formuli nego u rasponu: ako šifra koju tražiš nije u prvom stupcu odabranog raspona, formula neće raditi - VLOOKUP uvijek gleda prvi stupac raspona kao onaj po kojem se traži.</p>
+      <p>Druga česta greška je zaboravljeno \u201czamrzavanje\u201d raspona (dodavanjem znaka $) kad formulu kopiraš niz cijeli stupac - raspon za pretragu treba ostati isti za svaki redak, pa je pravilnije pisati Cjenik!$A$2:$B$20.</p>
+      <div class="faq-block" id="faq">
+        <h2>Najčešća pitanja</h2>
+        <details class="faq-item">
+          <summary><span class="faq-q">Koja je razlika između VLOOKUP i XLOOKUP formule?</span></summary>
+          <p>VLOOKUP traži samo prema desno od stupca sa šifrom i rezultat određuje brojem stupca, dok XLOOKUP direktno navodi raspon za pretragu i raspon za rezultat te može tražiti i lijevo i desno. XLOOKUP je noviji i manje podložan grešci, ali nije dostupan u starijim, jednokratno kupljenim verzijama Excela.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Zašto mi VLOOKUP vraća grešku #N/A?</span></summary>
+          <p>Najčešće zato što tražena vrijednost stvarno ne postoji u prvom stupcu odabranog raspona, ili postoji razlika u zapisu (razmak, veliko/malo slovo, broj zapisan kao tekst umjesto broja).</p>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Mogu li koristiti VLOOKUP između dva različita lista (sheeta)?</span></summary>
+          <p>Da - to je i najčešća upotreba. U formulu samo dodaš naziv lista i uskličnik ispred raspona, na primjer Cjenik!A2:B20, kako je pokazano u primjeru gore.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-q">Treba li mi VLOOKUP ili mi je dovoljan SUM/COUNTIF?</span></summary>
+          <p>Ovisi što radiš: SUM i COUNTIF zbrajaju ili broje, dok VLOOKUP i XLOOKUP dohvaćaju konkretan podatak (npr. cijenu, ime, status) iz druge tablice na temelju zajedničkog podatka poput šifre ili OIB-a.</p>
+        </details>
+      </div>
+      <div class="tag-chips">
+        <span class="label">Teme:</span>
+        <a href="Blog.dc.html">Excel</a>
+        <a href="Blog.dc.html">Google Sheets</a>
+        <a href="Blog.dc.html">VLOOKUP</a>
+        <a href="Blog.dc.html">XLOOKUP</a>
+        <a href="Blog.dc.html">Excel i Google Sheets</a>
+      </div>
+      <div class="engage-row">
+        <div class="label">Svidio vam se članak?</div>
+        <div class="engage-actions">
+          <button class="like-btn" type="button" aria-label="Sviđa mi se">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"></path></svg>
+            <span class="like-count">0</span>
+          </button>
+          <div class="divider-v"></div>
+          <button class="icon-btn" type="button" data-action="native-share" aria-label="Podijeli" style="display:none;width:auto;border-radius:100px;padding:9px 16px;gap:8px;background:#FFFFFF;border:1.5px solid rgba(23,18,15,.15)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>
+            <span>Podijeli</span>
+          </button>
+          <a class="icon-btn" href="#" data-share-linkedin target="_blank" rel="noopener" aria-label="Podijeli na LinkedInu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.9 8.65 21 11.3 21 14.1V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.16V21H9z"></path></svg>
+          </a>
+          <button class="icon-btn" type="button" data-action="share-instagram" aria-label="Podijeli na Instagramu" title="Podijeli na Instagramu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+          </button>
+          <a class="icon-btn" href="#" data-share-email aria-label="Podijeli e-mailom">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+          </a>
+          <button class="icon-btn" type="button" data-action="copy-link" aria-label="Kopiraj poveznicu" title="Kopiraj poveznicu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2-2a5 5 0 00-7.07-7.07l-1.14 1.13"></path><path d="M14 11a5 5 0 00-7.07 0l-2 2a5 5 0 007.07 7.07l1.13-1.13"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="toast-msg"></div>
+  </article>
+    <aside class="toc-aside">
+      <div class="toc-box">
+        <div class="toc-label">Sadržaj</div>
+        <nav aria-label="Sadržaj članka">
+          <a href="#zasto-ti-treba" data-toc-target="zasto-ti-treba">Zašto ti ove formule trebaju (i kad ih koristiš)</a>
+          <a href="#vlookup-korak-po-korak" data-toc-target="vlookup-korak-po-korak">VLOOKUP korak po korak, na konkretnom primjeru</a>
+          <a href="#xlookup-razlika" data-toc-target="xlookup-razlika">XLOOKUP: novija i jednostavnija verzija</a>
+          <a href="#excel-vs-sheets-i-greske" data-toc-target="excel-vs-sheets-i-greske">Excel i Google Sheets - razlike i najčešće greške</a>
+          <a href="#faq" data-toc-target="faq">Najčešća pitanja</a>
+</nav>
+      </div>
+    </aside>
+</div>
+  <section class="related-section" data-current-href="Excel-VLOOKUP-XLOOKUP-Pocetnici.dc.html">
+    <div class="related-inner">
+      <h2>Nastavite čitati</h2>
+      <div class="related-grid" id="related-grid">
+        <a class="related-card" href="Excel-COUNTIF-Brojanje-Pocetnici.dc.html">
+          <div class="thumb"><img src="assets/excel-countif-brojanje-pocetnici-hero.png" alt="Kako brojati ćelije po uvjetu u Excelu i Google Sheetsu (COUNTIF za apsolutne početnike)" loading="lazy"></div>
+          <div class="rc-body">
+            <div class="rc-badge">Excel i Google Sheets</div>
+            <h3>Kako brojati ćelije po uvjetu u Excelu i Google Sheetsu (COUNTIF za apsolutne početnike)</h3>
+            <div class="rc-meta">23. srp 2026. · 4 min čitanja</div>
+          </div>
+        </a>
+        <a class="related-card" href="Excel-AVERAGE-Prosjek-Pocetnici.dc.html">
+          <div class="thumb"><img src="assets/excel-average-prosjek-pocetnici-hero.png" alt="Kako izračunati prosjek u Excelu i Google Sheetsu (AVERAGE za apsolutne početnike)" loading="lazy"></div>
+          <div class="rc-body">
+            <div class="rc-badge">Excel i Google Sheets</div>
+            <h3>Kako izračunati prosjek u Excelu i Google Sheetsu (AVERAGE za apsolutne početnike)</h3>
+            <div class="rc-meta">19. srp 2026. · 5 min čitanja</div>
+          </div>
+        </a>
+        <a class="related-card" href="Excel-SUM-Formula-Pocetnici.dc.html">
+          <div class="thumb"><img src="assets/excel-sum-pocetnici-hero.png" alt="Kako zbrojiti brojeve u Excelu i Google Sheetsu (SUM formula za apsolutne početnike)" loading="lazy"></div>
+          <div class="rc-body">
+            <div class="rc-badge">Excel i Google Sheets</div>
+            <h3>Kako zbrojiti brojeve u Excelu i Google Sheetsu (SUM formula za apsolutne početnike)</h3>
+            <div class="rc-meta">18. srp 2026. · 5 min čitanja</div>
+          </div>
+        </a>
+      </div>
+      <div style="margin-top:28px;text-align:center">
+        <a href="Blog.dc.html" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="brand">Kužiš</div>
+      <p>Praktična digitalna rješenja, sustavi, optimizacija procesa, edukacije i mentorstvo za organizacije koje žele raditi bolje i brže.</p>
+      <a class="footer-cta" href="Kontakt.dc.html">Pošaljite upit</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Program</div>
+      <div class="footer-links">
+        <a href="Edukacije.dc.html">Edukacije</a>
+        <a href="Za Tvrtke.dc.html">Za tvrtke</a>
+        <a href="Mentorstvo.dc.html">Mentorstvo</a>
+        <a href="O Nama.dc.html">O nama</a>
+        <a href="Blog.dc.html">Blog</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontakt</div>
+      <div class="footer-links">
+        <a href="mailto:info@kuzis.hr">info@kuzis.hr</a>
+        <a href="#">LinkedIn</a>
+        <a href="Kontakt.dc.html">Pošaljite upit</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Pratite nas</div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Kužiš. Sva prava pridržana.</span>
+    <span class="footer-bottom-links">
+      <a href="#">Uvjeti korištenja</a>
+      <a href="#">Privatnost</a>
+    </span>
+  </div>
+</footer>
+
+<button class="back-to-top" type="button" aria-label="Povratak na vrh">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<script>
+(function () {
+  var progressBar = document.querySelector('.progress-bar');
+  var articleEl = document.querySelector('.post-body');
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc-box nav a'));
+  var backToTop = document.querySelector('.back-to-top');
+  var sectionEls = tocLinks.map(function (l) { return document.getElementById(l.getAttribute('data-toc-target')); });
+
+  function onScroll() {
+    if (articleEl) {
+      var scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      var articleBottom = articleEl.offsetTop + articleEl.offsetHeight;
+      var total = articleBottom - window.innerHeight;
+      var progress = total > 0 ? Math.min(100, Math.max(0, (scrollTop / total) * 100)) : 0;
+      if (progressBar) progressBar.style.width = progress.toFixed(1) + '%';
+    }
+    var active = 0;
+    sectionEls.forEach(function (el, i) { if (el && el.getBoundingClientRect().top < 140) active = i; });
+    tocLinks.forEach(function (l, i) { l.classList.toggle('active', i === active); });
+
+    var doc = document.documentElement;
+    var scrollable = doc.scrollHeight - window.innerHeight;
+    var showTop = scrollable > 0 && (window.scrollY / scrollable) > 0.66;
+    if (backToTop) backToTop.classList.toggle('visible', showTop);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  if (backToTop) {
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  var toast = document.querySelector('.toast-msg');
+  var toastTimer;
+  function flashToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.textContent = ''; }, 2200);
+  }
+
+  var likeBtn = document.querySelector('.like-btn');
+  if (likeBtn) {
+    var liked = false;
+    var countEl = likeBtn.querySelector('.like-count');
+    var baseCount = parseInt(countEl ? countEl.textContent : '0', 10) || 0;
+    likeBtn.addEventListener('click', function () {
+      liked = !liked;
+      likeBtn.classList.toggle('liked', liked);
+      if (countEl) countEl.textContent = String(baseCount + (liked ? 1 : 0));
+    });
+  }
+
+  var url = window.location.href;
+  var pageTitle = document.title;
+  var copyLinkBtn = document.querySelector('[data-action="copy-link"]');
+  if (copyLinkBtn) {
+    copyLinkBtn.addEventListener('click', function () {
+      if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function () {});
+      flashToast('Poveznica kopirana!');
+    });
+  }
+  var igBtn = document.querySelector('[data-action="share-instagram"]');
+  if (igBtn) {
+    igBtn.addEventListener('click', function () {
+      if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function () {});
+      flashToast('Link kopiran — zalijepite ga u Instagram Story ili poruku.');
+    });
+  }
+  var nativeShareBtn = document.querySelector('[data-action="native-share"]');
+  if (nativeShareBtn) {
+    if (navigator.share) {
+      nativeShareBtn.style.display = 'flex';
+      nativeShareBtn.addEventListener('click', function () {
+        navigator.share({ title: pageTitle, url: url }).catch(function () {});
+      });
+    } else {
+      nativeShareBtn.style.display = 'none';
+    }
+  }
+})();
+
+document.querySelector('[data-share-linkedin]').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href);
+document.querySelector('[data-share-email]').href = 'mailto:?subject=' + encodeURIComponent(document.title) + '&body=' + encodeURIComponent(window.location.href);
+</script>
+
+<script>
+(function () {
+  var grid = document.getElementById('related-grid');
+  var section = document.querySelector('.related-section');
+  if (!grid || !section) return;
+  var currentHref = section.getAttribute('data-current-href') || '';
+  var pillEl = document.querySelector('.crumb-pill');
+  var currentCategory = pillEl ? pillEl.textContent.trim() : '';
+  fetch('assets/posts.json').then(function (r) { return r.json(); }).then(function (posts) {
+    var others = posts.filter(function (p) { return p.href !== currentHref; });
+    var sameCat = others.filter(function (p) { return p.category === currentCategory; });
+    var rest = others.filter(function (p) { return p.category !== currentCategory; });
+    var picks = sameCat.concat(rest).slice(0, 3);
+    if (!picks.length) return;
+    grid.innerHTML = picks.map(function (p) {
+      var alt = String(p.title).replace(/"/g, '&quot;');
+      return '<a class="related-card" href="' + p.href + '">' +
+        '<div class="thumb"><img src="' + p.img + '" alt="' + alt + '" loading="lazy"></div>' +
+        '<div class="rc-body"><div class="rc-badge">' + p.category + '</div><h3>' + p.title + '</h3>' +
+        '<div class="rc-meta">' + p.date + ' \u00b7 ' + p.readingTime + ' min \u010ditanja</div></div></a>';
+    }).join('');
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>
