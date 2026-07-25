@@ -1,5 +1,45 @@
 [
   {
+    "href": "Canva-Brand-Intelligence.dc.html",
+    "title": "Canva Brand Intelligence: kako tvoj brend ostaje isti u svakom dizajnu",
+    "category": "Canva savjeti",
+    "date": "25. srp 2026.",
+    "iso": "2026-07-25",
+    "readingTime": 2,
+    "img": "assets/canva-brand-intelligence-hero.png",
+    "excerpt": "Canva Brand Intelligence sam prepoznaje tvoje boje, fontove i stil i primjenjuje ih na svaki novi dizajn - čak i u ChatGPT-u i Claudeu."
+  },
+  {
+    "href": "Excel-Pivot-Tablice-Pocetnici.dc.html",
+    "title": "Pivot tablice u Excelu i Google Sheetsu: sažetak od 1000 redaka za 5 minuta",
+    "category": "Excel i Google Sheets",
+    "date": "25. srp 2026.",
+    "iso": "2026-07-25",
+    "readingTime": 2,
+    "img": "assets/excel-pivot-tablice-hero.png",
+    "excerpt": "Pivot tablica pretvara tisuće redaka u kratak, jasan sažetak bez ijedne formule. Objašnjeno korak po korak, s primjerom prodaje po mjesecima."
+  },
+  {
+    "href": "Web-Dizajn-Prije-Poslije-Primjer.dc.html",
+    "title": "Prije i poslije: web stranica frizerskog salona koja ne prodaje (i ona koja prodaje)",
+    "category": "Web dizajn",
+    "date": "25. srp 2026.",
+    "iso": "2026-07-25",
+    "readingTime": 2,
+    "img": "assets/web-dizajn-prije-poslije-hero.png",
+    "excerpt": "Isti salon, dvije web stranice - jedna gubi klijente u prvih 5 sekundi, druga ih pretvara u rezervacije. Konkretna razlika, korak po korak."
+  },
+  {
+    "href": "SEO-Sto-Je-EEAT-Objasnjeno.dc.html",
+    "title": "Što je E-E-A-T i zašto Google (i AI) nekim stranicama vjeruje više nego drugima",
+    "category": "SEO savjeti",
+    "date": "25. srp 2026.",
+    "iso": "2026-07-25",
+    "readingTime": 2,
+    "img": "assets/seo-eeat-hero.png",
+    "excerpt": "E-E-A-T su četiri signala povjerenja koje Google i AI alati traže prije nego ti povjeruju. Objašnjeno na primjeru malog obrta, bez žargona."
+  },
+  {
     "href": "Canva-Raspored-Objava-Drustvene-Mreze.dc.html",
     "title": "Canva raspored objava: isplaniraj mjesec društvenih mreža u jednom sjedenju",
     "category": "Canva savjeti",
