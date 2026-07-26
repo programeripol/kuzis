@@ -17,7 +17,7 @@
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Moram li znati programirati da dodam schema markup?", "acceptedAnswer": {"@type": "Answer", "text": "Ne. JSON-LD kod možeš dobiti iz gotovog generatora ili predloška i samo ga zalijepiti u <head> stranice - ne moraš razumjeti kod, samo pravilno popuniti podatke poput imena, adrese i radnog vremena."}}, {"@type": "Question", "name": "Hoće li schema markup sam po sebi popraviti moj rang na Googleu?", "acceptedAnswer": {"@type": "Answer", "text": "Ne izravno. Schema ne diže rang sama po sebi, nego pomaže Googleu i AI alatima da točno razumiju i prikažu tvoj sadržaj - rich rezultate, citate u AI odgovorima - što posredno povećava klikove i vidljivost."}}, {"@type": "Question", "name": "Vrijedi li se truditi oko FAQPage sheme kad je Google u svibnju 2026. ukinuo FAQ rich rezultate?", "acceptedAnswer": {"@type": "Answer", "text": "Da. Sam prošireni prikaz u Google pretrazi je ukinut, ali FAQPage shema i dalje pomaže da te AI Overviews, ChatGPT i Perplexity točno citiraju kad netko postavi pitanje iz tvog FAQ bloka."}}, {"@type": "Question", "name": "Gdje točno stavljam schema kod na stranici?", "acceptedAnswer": {"@type": "Answer", "text": "U <head> dio HTML-a, unutar <script type=\"application/ld+json\"> oznake. Ne mora biti vidljiv posjetitelju - dovoljno je da postoji u izvornom kodu stranice."}}]}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://programeripol.github.io/kuzis/Pocetna.dc.html"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://programeripol.github.io/kuzis/Blog.dc.html"}, {"@type": "ListItem", "position": 3, "name": "SEO savjeti"}]}
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://programeripol.github.io/kuzis/Pocetna.dc.html"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://programeripol.github.io/kuzis/Blog.dc.html"}, {"@type": "ListItem", "position": 3, "name": "SEO"}]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
@@ -156,7 +156,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
   <span class="sep">/</span>
   <a href="Blog.dc.html">Blog</a>
   <span class="sep">/</span>
-  <a class="crumb-pill" href="Blog.dc.html?kategorija=SEO%20savjeti">SEO savjeti</a>
+  <a class="crumb-pill" href="Blog.dc.html?kategorija=SEO">SEO</a>
 </nav>
 
 <header class="article-header">
@@ -185,7 +185,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         <span class="section-num">02</span>
         <h2 id="koje-sheme-su-najbitnije">Koje vrste sheme su najbitnije za tvoj obrt, blog ili firmu</h2>
       </div>
-      <p>Ne treba ti sve odjednom - za većinu malih stranica dovoljne su četiri vrste. Organization ili LocalBusiness shema opisuje tvoju firmu ili obrt: naziv, adresu, telefon, radno vrijeme. Article shema opisuje blog članak: naslov, datum objave, autora - Googleu i AI alatima to služi kao signal da sadržaj ima jasnog izdavača, što je dio onoga što se stručno zove E-E-A-T (iskustvo, stručnost, autoritet, povjerenje). FAQPage shema označava pitanja i odgovore, poput bloka na dnu ovog članka. BreadcrumbList shema opisuje "stazu" do stranice (Početna → Blog → SEO savjeti), istu koju vidiš pri vrhu ove stranice.</p>
+      <p>Ne treba ti sve odjednom - za većinu malih stranica dovoljne su četiri vrste. Organization ili LocalBusiness shema opisuje tvoju firmu ili obrt: naziv, adresu, telefon, radno vrijeme. Article shema opisuje blog članak: naslov, datum objave, autora - Googleu i AI alatima to služi kao signal da sadržaj ima jasnog izdavača, što je dio onoga što se stručno zove E-E-A-T (iskustvo, stručnost, autoritet, povjerenje). FAQPage shema označava pitanja i odgovore, poput bloka na dnu ovog članka. BreadcrumbList shema opisuje "stazu" do stranice (Početna → Blog → SEO), istu koju vidiš pri vrhu ove stranice.</p>
       <div class="pull-quote"><p>"AI sustavi ne pogađaju značenje tvog teksta - čitaju ga izravno iz sheme, ako im je daš. Bez nje rade s nagađanjem; s njom rade s činjenicom."</p></div>
       <p>Jedna stvar je ovdje presudna, a lako se zaboravi: naziv, adresa i telefon (kraće NAP - name, address, phone) moraju biti identični posvuda - na stranici, u schema kodu, na Google poslovnom profilu, na Facebooku. Čim se negdje piše "Trg bana Jelačića 3" a drugdje "Trg bana Jelačića 3, 21000 Split", Google to prepoznaje kao nesigurnost i to slabi povjerenje u tvoje podatke.</p>
       <div class="section-head">
@@ -240,7 +240,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         <a href="Blog.dc.html">Schema markup</a>
         <a href="Blog.dc.html">Strukturirani podaci</a>
         <a href="Blog.dc.html">JSON-LD</a>
-        <a href="Blog.dc.html">SEO savjeti</a>
+        <a href="Blog.dc.html">SEO</a>
       </div>
       <div class="engage-row">
         <div class="label">Svidio vam se članak?</div>
@@ -291,7 +291,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         <a class="related-card" href="SEO-Sto-Je-AEO-Objasnjeno.dc.html">
           <div class="thumb"><img src="assets/sto-je-aeo-objasnjeno-hero.png" alt="Što je AEO i kako pisati odgovore koje Google i ChatGPT odmah preuzmu" loading="lazy"></div>
           <div class="rc-body">
-            <div class="rc-badge">SEO savjeti</div>
+            <div class="rc-badge">SEO</div>
             <h3>Što je AEO i kako pisati odgovore koje Google i ChatGPT odmah preuzmu</h3>
             <div class="rc-meta">23. srp 2026. · 4 min čitanja</div>
           </div>
@@ -299,7 +299,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         <a class="related-card" href="SEO-Sto-Je-GEO-Objasnjeno.dc.html">
           <div class="thumb"><img src="assets/seo-geo-objasnjeno-hero.png" alt="Što je GEO i zašto je važniji od klasičnog SEO-a u 2026." loading="lazy"></div>
           <div class="rc-body">
-            <div class="rc-badge">SEO savjeti</div>
+            <div class="rc-badge">SEO</div>
             <h3>Što je GEO i zašto je važniji od klasičnog SEO-a u 2026.</h3>
             <div class="rc-meta">19. srp 2026. · 5 min čitanja</div>
           </div>
@@ -307,7 +307,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         <a class="related-card" href="SEO-Osnove-Sto-Je-SEO.dc.html">
           <div class="thumb"><img src="assets/seo-osnove-sto-je-seo-hero.png" alt="Što je SEO? Objašnjeno jednostavno" loading="lazy"></div>
           <div class="rc-body">
-            <div class="rc-badge">SEO savjeti</div>
+            <div class="rc-badge">SEO</div>
             <h3>Što je SEO? Objašnjeno jednostavno</h3>
             <div class="rc-meta">18. srp 2026. · 5 min čitanja</div>
           </div>
