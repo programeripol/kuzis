@@ -86,9 +86,8 @@
           <div style="font-weight:800;font-size:clamp(44px,6.4vw,72px);line-height:1.05;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Napokon.</div>
         </h1>
         <p style="margin:0 0 36px;font-weight:400;font-size:clamp(16px,1.6vw,19px);line-height:1.65;font-family:Inter;color:rgba(23,18,15,.72);max-width:460px;margin-left:auto;margin-right:auto;opacity:0;transform:translateY(16px);transition:opacity .6s ease .34s,transform .6s ease .34s">Praktična digitalna rješenja, sustavi, optimizacija procesa, edukacije i mentorstvo za pojedince i organizacije koje žele raditi bolje i brže.</p>
-        <div style="display:flex;flex-wrap:nowrap;gap:14px;justify-content:center;max-width:460px;margin:0 auto;opacity:0;transform:translateY(16px);transition:opacity .6s ease .46s,transform .6s ease .46s">
-          <a href="Kontakt.dc.html" style="display:inline-flex;align-items:center;justify-content:center;flex:1;min-width:0;white-space:nowrap;padding:12px 20px;background:#171412;color:#FFFFFF;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 24px rgba(23,18,15,.28)">Javite se</a>
-          <a href="#usluge" style="display:inline-flex;align-items:center;justify-content:center;flex:1;min-width:0;white-space:nowrap;padding:12px 20px;background:#FFFFFF;color:#171412;border:2px solid #171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,background .2s ease" style-hover="transform:translateY(-3px);background:#FFF8E1">Sve usluge</a>
+        <div style="display:flex;flex-wrap:nowrap;gap:14px;justify-content:center;margin:0 auto;opacity:0;transform:translateY(16px);transition:opacity .6s ease .46s,transform .6s ease .46s">
+          <a href="Kontakt.dc.html" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:14px 32px;background:#171412;color:#FFFFFF;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 24px rgba(23,18,15,.28)">Javite se</a>
         </div>
       </div>
 
@@ -352,8 +351,18 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { email: '', subscribed: false, showTop: false };
+  state = { email: '', subscribed: false, showTop: false, blogPreview: [
+    { title: 'Canva raspored objava: isplaniraj mjesec društvenih mreža u jednom sjedenju', category: 'Canva savjeti', date: '24. srp 2026.', readingTime: 3, href: 'Canva-Raspored-Objava-Drustvene-Mreze.dc.html', imgId: 'home-blog-1', img: 'assets/canva-raspored-objava-hero.png' },
+    { title: '5 UX pojmova koje ćeš čuti kad naručuješ web stranicu (i što zapravo znače)', category: 'Web dizajn', date: '24. srp 2026.', readingTime: 4, href: 'Web-Dizajn-UX-Pojmovi-Recnik.dc.html', imgId: 'home-blog-2', img: 'assets/web-dizajn-ux-pojmovi-hero.png' },
+    { title: 'Što je schema markup i kako pomaže da te Google i ChatGPT bolje razumiju', category: 'SEO savjeti', date: '24. srp 2026.', readingTime: 5, href: 'SEO-Schema-Markup-Objasnjeno.dc.html', imgId: 'home-blog-3', img: 'assets/schema-markup-objasnjeno-hero.png' },
+  ] };
   componentDidMount() {
+    fetch('assets/posts.json').then((r) => r.json()).then((posts) => {
+      const top3 = posts.slice().sort((a, b) => new Date(b.iso) - new Date(a.iso)).slice(0, 3).map((p, i) => ({
+        title: p.title, category: p.category, date: p.date, readingTime: p.readingTime, href: p.href, img: p.img, imgId: 'home-blog-' + (i + 1),
+      }));
+      if (top3.length) this.setState({ blogPreview: top3 });
+    }).catch(() => {});
     this._onScrollTop = () => {
       const doc = document.documentElement;
       const scrollable = doc.scrollHeight - window.innerHeight;
@@ -432,14 +441,9 @@ class Component extends DCLogic {
     ];
 
     const BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-    const blogPreview = [
-      { title: 'Canva raspored objava: isplaniraj mjesec društvenih mreža u jednom sjedenju', category: 'Canva savjeti', date: '24. srp 2026.', readingTime: 3, href: 'Canva-Raspored-Objava-Drustvene-Mreze.dc.html', imgId: 'home-blog-1', img: 'assets/canva-raspored-objava-hero.png' },
-      { title: '5 UX pojmova koje ćeš čuti kad naručuješ web stranicu (i što zapravo znače)', category: 'Web dizajn', date: '24. srp 2026.', readingTime: 4, href: 'Web-Dizajn-UX-Pojmovi-Recnik.dc.html', imgId: 'home-blog-2', img: 'assets/web-dizajn-ux-pojmovi-hero.png' },
-      { title: 'Što je schema markup i kako pomaže da te Google i ChatGPT bolje razumiju', category: 'SEO savjeti', date: '24. srp 2026.', readingTime: 5, href: 'SEO-Schema-Markup-Objasnjeno.dc.html', imgId: 'home-blog-3', img: 'assets/schema-markup-objasnjeno-hero.png' },
-    ];
 
     return {
-      overview, audiences, methodology, blogPreview, year: new Date().getFullYear(),
+      overview, audiences, methodology, blogPreview: this.state.blogPreview, year: new Date().getFullYear(),
       email: this.state.email,
       onEmailChange: (e) => this.setState({ email: e.target.value }),
       subscribed: this.state.subscribed,
