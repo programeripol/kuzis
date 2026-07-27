@@ -380,7 +380,7 @@ class Component extends DCLogic {
         const track = document.getElementById('blog-slider-track');
         if (!track) return;
         const amt = Math.min(320, track.clientWidth * 0.9);
-        track.scrollBy({ left: prevBtn ? -amt : amt, behavior: 'smooth' });
+        track.scrollLeft += prevBtn ? -amt : amt;
       });
     }
     this._onScrollTop = () => {
