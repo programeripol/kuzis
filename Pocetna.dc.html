@@ -17,6 +17,7 @@
 <helmet>
 <style>
   .usluga-card:hover .usluga-icon { transform: scale(1.14) rotate(-4deg); }
+  #blog-slider-track::-webkit-scrollbar { display: none; }
   .cta-underline { position: relative; text-decoration: none; padding-bottom: 3px; display: inline-block; }
   .cta-underline::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: #FFD048; border-radius: 2px; transform-origin: center; }
   .cta-underline:hover::after { animation: underline-swipe .6s cubic-bezier(.65,0,.35,1) forwards; }
@@ -254,11 +255,15 @@
           <div style="display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">Blog</div>
           <h2 style="margin:0;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Najnovije s bloga</h2>
         </div>
+        <div style="display:flex;align-items:center;gap:14px">
         <a href="Blog.dc.html" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+        <button id="blog-slider-prev" aria-label="Prethodni članci" style="width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(23,18,15,.15);background:#FFFFFF;color:#171412;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <button id="blog-slider-next" aria-label="Sljedeći članci" style="width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(23,18,15,.15);background:#FFFFFF;color:#171412;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+        </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
-        <sc-for list="{{ blogPreview }}" as="p" hint-placeholder-count="3">
-          <a href="{{ p.href }}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid rgba(23,18,15,.08);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-4px);box-shadow:0 14px 28px rgba(23,18,15,.1)">
+      <div id="blog-slider-track" style="display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none">
+        <sc-for list="{{ blogPreview }}" as="p" hint-placeholder-count="5">
+          <a href="{{ p.href }}" style="flex:0 0 auto;width:min(78vw,300px);scroll-snap-align:start;display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid rgba(23,18,15,.08);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-4px);box-shadow:0 14px 28px rgba(23,18,15,.1)">
             <div style="width:100%;aspect-ratio:16/10;background:#FFF8E1">
               <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.imgId }}" src="{{ p.img }}" shape="rect" fit="cover" placeholder="slika članka" hint-size="100%,100%" style="width:100%;height:100%"></x-import>
             </div>
@@ -358,11 +363,22 @@ class Component extends DCLogic {
   ] };
   componentDidMount() {
     fetch('assets/posts.json').then((r) => r.json()).then((posts) => {
-      const top3 = posts.slice().sort((a, b) => new Date(b.iso) - new Date(a.iso)).slice(0, 3).map((p, i) => ({
+      const order = ['Canva', 'Excel i Google Sheets', 'Web dizajn', 'SEO', 'Claude savjeti'];
+      const byCat = {};
+      posts.slice().sort((a, b) => new Date(b.iso) - new Date(a.iso)).forEach((p) => { if (!byCat[p.category]) byCat[p.category] = p; });
+      const top5 = order.filter((c) => byCat[c]).map((c) => byCat[c]).map((p, i) => ({
         title: p.title, category: p.category, date: p.date, readingTime: p.readingTime, href: p.href, img: p.img, imgId: 'home-blog-' + (i + 1),
       }));
-      if (top3.length) this.setState({ blogPreview: top3 });
+      if (top5.length) this.setState({ blogPreview: top5 });
     }).catch(() => {});
+    const sliderTrack = document.getElementById('blog-slider-track');
+    const sliderPrev = document.getElementById('blog-slider-prev');
+    const sliderNext = document.getElementById('blog-slider-next');
+    if (sliderTrack && sliderPrev && sliderNext) {
+      const scrollAmt = () => Math.min(320, sliderTrack.clientWidth * 0.9);
+      sliderPrev.addEventListener('click', () => sliderTrack.scrollBy({ left: -scrollAmt(), behavior: 'smooth' }));
+      sliderNext.addEventListener('click', () => sliderTrack.scrollBy({ left: scrollAmt(), behavior: 'smooth' }));
+    }
     this._onScrollTop = () => {
       const doc = document.documentElement;
       const scrollable = doc.scrollHeight - window.innerHeight;
