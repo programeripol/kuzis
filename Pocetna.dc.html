@@ -371,13 +371,17 @@ class Component extends DCLogic {
       }));
       if (top5.length) this.setState({ blogPreview: top5 });
     }).catch(() => {});
-    const sliderTrack = document.getElementById('blog-slider-track');
-    const sliderPrev = document.getElementById('blog-slider-prev');
-    const sliderNext = document.getElementById('blog-slider-next');
-    if (sliderTrack && sliderPrev && sliderNext) {
-      const scrollAmt = () => Math.min(320, sliderTrack.clientWidth * 0.9);
-      sliderPrev.addEventListener('click', () => sliderTrack.scrollBy({ left: -scrollAmt(), behavior: 'smooth' }));
-      sliderNext.addEventListener('click', () => sliderTrack.scrollBy({ left: scrollAmt(), behavior: 'smooth' }));
+    if (!window.__blogSliderWired) {
+      window.__blogSliderWired = true;
+      document.addEventListener('click', (e) => {
+        const prevBtn = e.target.closest('#blog-slider-prev');
+        const nextBtn = e.target.closest('#blog-slider-next');
+        if (!prevBtn && !nextBtn) return;
+        const track = document.getElementById('blog-slider-track');
+        if (!track) return;
+        const amt = Math.min(320, track.clientWidth * 0.9);
+        track.scrollBy({ left: prevBtn ? -amt : amt, behavior: 'smooth' });
+      });
     }
     this._onScrollTop = () => {
       const doc = document.documentElement;
