@@ -11,7 +11,7 @@
 <meta property="og:type" content="article">
 <meta property="og:image" content="assets/excel-vlookup-xlookup-pocetnici-hero.png">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Article", "headline": "Kako pretraživati podatke po uvjetu u Excelu i Google Sheetsu (VLOOKUP i XLOOKUP za apsolutne početnike)", "datePublished": "2026-07-24", "author": {"@type": "Organization", "name": "Kužiš"}, "publisher": {"@type": "Organization", "name": "Kužiš"}}
+{"@context": "https://schema.org", "@type": "Article", "headline": "Kako pretraživati podatke po uvjetu u Excelu i Google Sheetsu (VLOOKUP i XLOOKUP za apsolutne početnike)", "datePublished": "2026-07-24", "author": {"@type": "Person", "name": "Dora Šušković Stipanović", "jobTitle": "Specijalistica digitalnog marketinga"}, "publisher": {"@type": "Organization", "name": "Kužiš"}}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Koja je razlika između VLOOKUP i XLOOKUP formule?", "acceptedAnswer": {"@type": "Answer", "text": "VLOOKUP traži samo prema desno od stupca sa šifrom i rezultat određuje brojem stupca, dok XLOOKUP direktno navodi raspon za pretragu i raspon za rezultat te može tražiti i lijevo i desno. XLOOKUP je noviji i manje podložan grešci, ali nije dostupan u starijim, jednokratno kupljenim verzijama Excela."}}, {"@type": "Question", "name": "Zašto mi VLOOKUP vraća grešku #N/A?", "acceptedAnswer": {"@type": "Answer", "text": "Najčešće zato što tražena vrijednost stvarno ne postoji u prvom stupcu odabranog raspona, ili postoji razlika u zapisu (razmak, veliko/malo slovo, broj zapisan kao tekst umjesto broja)."}}, {"@type": "Question", "name": "Mogu li koristiti VLOOKUP između dva različita lista (sheeta)?", "acceptedAnswer": {"@type": "Answer", "text": "Da - to je i najčešća upotreba. U formulu samo dodaš naziv lista i uskličnik ispred raspona, na primjer Cjenik!A2:B20, kako je pokazano u primjeru gore."}}, {"@type": "Question", "name": "Treba li mi VLOOKUP ili mi je dovoljan SUM/COUNTIF?", "acceptedAnswer": {"@type": "Answer", "text": "Ovisi što radiš: SUM i COUNTIF zbrajaju ili broje, dok VLOOKUP i XLOOKUP dohvaćaju konkretan podatak (npr. cijenu, ime, status) iz druge tablice na temelju zajedničkog podatka poput šifre ili OIB-a."}}]}
@@ -171,7 +171,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
     <time datetime="2026-07-24">24. srp 2026.</time>
     <span>·</span>
     <span>3 min čitanja</span>
-  </div>
+  <span>·</span><span>Dora Šušković Stipanović</span></div>
 </header>
 
 <div class="hero-wrap">
@@ -237,7 +237,14 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
           <p>Ovisi što radiš: SUM i COUNTIF zbrajaju ili broje, dok VLOOKUP i XLOOKUP dohvaćaju konkretan podatak (npr. cijenu, ime, status) iz druge tablice na temelju zajedničkog podatka poput šifre ili OIB-a.</p>
         </details>
       </div>
-      <div class="tag-chips">
+      <div style="margin:36px 0 0;padding:20px 22px;border:1px solid rgba(23,18,15,.1);border-radius:14px;display:flex;gap:16px;align-items:flex-start">
+  <div style="flex-shrink:0;width:44px;height:44px;border-radius:50%;background:#D97757;display:flex;align-items:center;justify-content:center;color:#fff;font:800 16px Inter">DŠ</div>
+  <div>
+    <div style="font:700 15px Inter;color:#171412;margin-bottom:4px">O autorici</div>
+    <p style="margin:0;font:400 14.5px/1.7 Inter;color:rgba(23,18,15,.75)">Dora Šušković Stipanović radi kao specijalistica digitalnog marketinga u jednom od najvećih webshopova u Hrvatskoj, uz freelance projekte u marketingu i web dizajnu. Vodila je Canva AI edukacije za međunarodnu tvrtku i javnu instituciju, a kroz Kužiš dijeli praktične digitalne alate i AI savjete za male biznise i obrte.</p>
+  </div>
+</div>
+<div class="tag-chips">
         <span class="label">Teme:</span>
         <a href="Blog.dc.html">Excel</a>
         <a href="Blog.dc.html">Google Sheets</a>
