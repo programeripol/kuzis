@@ -11,7 +11,7 @@
 <meta property="og:type" content="article">
 <meta property="og:image" content="assets/excel-average-prosjek-pocetnici-hero.png">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Article", "headline": "Kako izračunati prosjek u Excelu i Google Sheetsu (AVERAGE za apsolutne početnike)", "datePublished": "2026-07-19", "author": {"@type": "Organization", "name": "Kužiš"}, "publisher": {"@type": "Organization", "name": "Kužiš"}}
+{"@context": "https://schema.org", "@type": "Article", "headline": "Kako izračunati prosjek u Excelu i Google Sheetsu (AVERAGE za apsolutne početnike)", "datePublished": "2026-07-19", "author": {"@type": "Person", "name": "Dora Šušković Stipanović", "jobTitle": "Specijalistica digitalnog marketinga"}, "publisher": {"@type": "Organization", "name": "Kužiš"}}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Što ako u rasponu imam praznu ćeliju - hoće li pokvariti prosjek?", "acceptedAnswer": {"@type": "Answer", "text": "Ne. AVERAGE potpuno preskoči prazne ćelije - ne broji ih ni u zbroj ni u nazivnik. Ako je jedna ćelija u rasponu prazna, prosjek se računa samo iz preostalih ispunjenih ćelija."}}, {"@type": "Question", "name": "Zašto je moj prosjek niži nego što očekujem kad neki dani imaju 0 narudžbi?", "acceptedAnswer": {"@type": "Answer", "text": "Zato što AVERAGE nule računa kao stvarnu vrijednost, dok prazne ćelije preskače. Ako dan bez podataka upišeš kao 0 umjesto da ga ostaviš praznim, taj 0 uđe u izračun i umjetno spusti prosjek."}}, {"@type": "Question", "name": "Mogu li izračunati prosjek samo za ćelije koje zadovoljavaju određeni uvjet?", "acceptedAnswer": {"@type": "Answer", "text": "Da, za to postoji AVERAGEIF (na primjer prosjek narudžbi samo za radne dane ili samo za jedan proizvod). To je sljedeći korak nakon običnog AVERAGE-a i radi na istom principu kao COUNTIF."}}, {"@type": "Question", "name": "Radi li AVERAGE identično u Excelu i Google Sheetsu?", "acceptedAnswer": {"@type": "Answer", "text": "Da, naziv i ponašanje formule su identični u oba alata. Jedina razlika je znak kojim odvajaš više raspona unutar formule - zarez u engleskim postavkama, točka-zarez u hrvatskim."}}]}
@@ -166,7 +166,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
     <time datetime="2026-07-19">19. srp 2026.</time>
     <span>·</span>
     <span>5 min čitanja</span>
-  </div>
+  <span>·</span><span>Dora Šušković Stipanović</span></div>
 </header>
 
 <div class="hero-wrap">
@@ -238,7 +238,14 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
           <p>Da, naziv i ponašanje formule su identični u oba alata. Jedina razlika je znak kojim odvajaš više raspona unutar formule - zarez u engleskim postavkama, točka-zarez u hrvatskim.</p>
         </details>
       </div>
-      <div class="tag-chips">
+      <div style="margin:36px 0 0;padding:20px 22px;border:1px solid rgba(23,18,15,.1);border-radius:14px;display:flex;gap:16px;align-items:flex-start">
+  <div style="flex-shrink:0;width:44px;height:44px;border-radius:50%;background:#D97757;display:flex;align-items:center;justify-content:center;color:#fff;font:800 16px Inter">DŠ</div>
+  <div>
+    <div style="font:700 15px Inter;color:#171412;margin-bottom:4px">O autorici</div>
+    <p style="margin:0;font:400 14.5px/1.7 Inter;color:rgba(23,18,15,.75)">Dora Šušković Stipanović radi kao specijalistica digitalnog marketinga u jednom od najvećih webshopova u Hrvatskoj, uz freelance projekte u marketingu i web dizajnu. Vodila je Canva AI edukacije za međunarodnu tvrtku i javnu instituciju, a kroz Kužiš dijeli praktične digitalne alate i AI savjete za male biznise i obrte.</p>
+  </div>
+</div>
+<div class="tag-chips">
         <span class="label">Teme:</span>
         <a href="Blog.dc.html">Excel</a>
         <a href="Blog.dc.html">Google Sheets</a>
