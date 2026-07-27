@@ -363,7 +363,7 @@ class Component extends DCLogic {
   ] };
   componentDidMount() {
     fetch('assets/posts.json').then((r) => r.json()).then((posts) => {
-      const order = ['Canva', 'Excel i Google Sheets', 'Web dizajn', 'SEO', 'Claude savjeti'];
+      const order = ['Canva', 'Excel i Google Sheets', 'Web dizajn', 'SEO', 'Claude'];
       const byCat = {};
       posts.slice().sort((a, b) => new Date(b.iso) - new Date(a.iso)).forEach((p) => { if (!byCat[p.category]) byCat[p.category] = p; });
       const top5 = order.filter((c) => byCat[c]).map((c) => byCat[c]).map((p, i) => ({
