@@ -1,5 +1,125 @@
 [
   {
+    "href": "Canva-Konektori-Gmail-Slack-Drive.dc.html",
+    "title": "Canva konektori: poveži Gmail, Slack i Drive pa dizajn nastaje sam",
+    "category": "Canva",
+    "date": "31. srp 2026.",
+    "iso": "2026-07-31",
+    "readingTime": 4,
+    "img": "assets/ChatGPT Image 31. srp 2026. 08_14_16.png",
+    "excerpt": "Canva konektori povezuju Gmail, Slack i Google Drive s Canvom pa AI složi dizajn iz tvojih stvarnih podataka. Kako ih uključiti i za što ih koristiti."
+  },
+  {
+    "href": "Excel-Uvjetno-Oblikovanje-Pocetnici.dc.html",
+    "title": "Uvjetno oblikovanje: neka tablica sama oboji ono što je važno",
+    "category": "Excel i Google Sheets",
+    "date": "31. srp 2026.",
+    "iso": "2026-07-31",
+    "readingTime": 4,
+    "img": "assets/ChatGPT Image 31. srp 2026. 08_34_09.png",
+    "excerpt": "Uvjetno oblikovanje u Excelu i Google Sheetsu objašnjeno korak po korak: tablica sama oboji dugove, zalihe i rokove, bez formula i bez predznanja."
+  },
+  {
+    "href": "Web-Dizajn-Mobile-First.dc.html",
+    "title": "Mobile-first dizajn: tvoj web većina ljudi gleda na mobitelu",
+    "category": "Web dizajn",
+    "date": "31. srp 2026.",
+    "iso": "2026-07-31",
+    "readingTime": 4,
+    "img": "assets/ChatGPT Image 31. srp 2026. 08_45_25.png",
+    "excerpt": "Mobile-first dizajn objašnjen jednostavno: zašto većina posjetitelja tvoju stranicu gleda na mobitelu, koje greške ih tjeraju i kako sve provjeriš za 5 minuta."
+  },
+  {
+    "href": "SEO-Lokalni-SEO-Objasnjeno.dc.html",
+    "title": "Lokalni SEO: kako te pronađu ljudi iz tvog grada",
+    "category": "SEO",
+    "date": "31. srp 2026.",
+    "iso": "2026-07-31",
+    "readingTime": 4,
+    "img": "assets/ChatGPT Image 31. srp 2026. 08_55_51.png",
+    "excerpt": "Lokalni SEO objašnjen jednostavno: kako Google poslovni profil, recenzije i dosljedni podaci dovode kupce iz tvog grada do tvog obrta. Vodič za početnike."
+  },
+  {
+    "href": "Claude-Projects-Razgovori-Na-Jednom-Mjestu.dc.html",
+    "title": "Claude Projects: svi razgovori o istom klijentu na jednom mjestu",
+    "category": "Claude",
+    "date": "31. srp 2026.",
+    "iso": "2026-07-31",
+    "readingTime": 4,
+    "img": "assets/ChatGPT Image 31. srp 2026. 09_08_41.png",
+    "excerpt": "Claude Projects objašnjen jednostavno: grupiraj razgovore o istom klijentu, dodaj cjenik i upute jednom pa svaki novi razgovor odmah sve zna."
+  },
+  {
+    "href": "Claude-Kako-Postaviti-Pitanje.dc.html",
+    "title": "Kako postaviti pitanje da dobiješ točno ono što trebaš",
+    "category": "Claude",
+    "date": "28. srp 2026.",
+    "iso": "2026-07-28",
+    "readingTime": 4,
+    "img": "assets/claude-placeholder-hero.svg",
+    "excerpt": "Kako napisati dobar prompt za Claude: budi konkretna, daj kontekst i odredi ton. Primjeri lošeg i dobrog pitanja."
+  },
+  {
+    "href": "Claude-Pisi-Emailove-Kupcima.dc.html",
+    "title": "Piši emailove i poruke kupcima brže uz Claude",
+    "category": "Claude",
+    "date": "28. srp 2026.",
+    "iso": "2026-07-28",
+    "readingTime": 4,
+    "img": "assets/claude-placeholder-hero.svg",
+    "excerpt": "Gotovi predlošci za Claude: potvrda narudžbe, isprika za kašnjenje i podsjetnik na plaćanje."
+  },
+  {
+    "href": "Claude-Organiziraj-Svoj-Dan.dc.html",
+    "title": "Organiziraj svoj dan i zadatke uz Claude",
+    "category": "Claude",
+    "date": "28. srp 2026.",
+    "iso": "2026-07-28",
+    "readingTime": 4,
+    "img": "assets/claude-placeholder-hero.svg",
+    "excerpt": "Kako uz Claude napraviti listu zadataka, isplanirati tjedan i postaviti podsjetnike."
+  },
+  {
+    "href": "Claude-Sazmi-Duge-Dokumente.dc.html",
+    "title": "Sažmi duge dokumente i ugovore u par rečenica",
+    "category": "Claude",
+    "date": "28. srp 2026.",
+    "iso": "2026-07-28",
+    "readingTime": 4,
+    "img": "assets/claude-placeholder-hero.svg",
+    "excerpt": "Nauči kako u Claude ubaciti PDF ugovora ili ponude i za par sekundi dobiti sažetak s ključnim točkama i rokovima."
+  },
+  {
+    "href": "Claude-Kalkulator-Artifacts.dc.html",
+    "title": "Napravi jednostavan kalkulator ili grafikon bez da znaš kodirati",
+    "category": "Claude",
+    "date": "28. srp 2026.",
+    "iso": "2026-07-28",
+    "readingTime": 4,
+    "img": "assets/claude-placeholder-hero.svg",
+    "excerpt": "Nauči kako uz Claude Artifacts napraviš kalkulator cijene usluge za klijente, bez ijedne linije koda."
+  },
+  {
+    "href": "Claude-Scheduled-Tasks-Automatizacija.dc.html",
+    "title": "Neka Claude sam obavlja ponavljajuće zadatke",
+    "category": "Claude",
+    "date": "28. srp 2026.",
+    "iso": "2026-07-28",
+    "readingTime": 4,
+    "img": "assets/claude-placeholder-hero.svg",
+    "excerpt": "Postavi scheduled tasks (zakazane zadatke) u Claudeu za dnevne izvještaje, podsjetnike i automatske sažetke."
+  },
+  {
+    "href": "Claude-MCP-Konektori-Gmail-Kalendar.dc.html",
+    "title": "Poveži Claude s Gmailom, kalendarom i drugim alatima za pravu automatizaciju",
+    "category": "Claude",
+    "date": "28. srp 2026.",
+    "iso": "2026-07-28",
+    "readingTime": 4,
+    "img": "assets/claude-placeholder-hero.svg",
+    "excerpt": "Saznaj što su MCP konektori, kako povezati Claude s Gmailom i kalendarom te kako to stvarno štedi vrijeme u poslu."
+  },
+  {
     "href": "Claude-Sto-Je-Claude-Ustedi-Vrijeme.dc.html",
     "title": "Što je Claude i kako ti štedi vrijeme svaki dan",
     "category": "Claude",
