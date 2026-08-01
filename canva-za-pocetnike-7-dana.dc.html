@@ -96,7 +96,7 @@ article.post-body li { margin-bottom:6px; }
 .related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
 .related-card { display:flex; flex-direction:column; height:100%; text-decoration:none; color:inherit; border-radius:16px; overflow:hidden; border:1px solid rgba(23,18,15,.08); transition:transform .25s ease,box-shadow .25s ease; }
 .related-card:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(23,18,15,.1); }
-.related-card .thumb { width:100%; aspect-ratio:16/10; background:#FFF8E1; }
+.related-card .thumb { width:100%; aspect-ratio:16/9; background:#FFF8E1; }
 .related-card .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
 .related-card .rc-body { display:flex; flex-direction:column; flex:1; padding:18px; }
 .related-card .rc-badge { display:inline-block; align-self:flex-start; font:700 11px Inter; color:#171412; background:#FFD048; padding:4px 10px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; margin-bottom:10px; }
@@ -125,7 +125,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 .cta-underline:hover { transform:translateY(-1px); transition:transform .3s ease; }
 @keyframes underline-swipe { 0%{transform:scaleX(1)} 45%{transform:scaleX(0)} 100%{transform:scaleX(1)} }
 .faq-item { margin:0 0 12px; border:1px solid color-mix(in srgb, var(--accent) 45%, white); border-radius:10px; overflow:hidden; }
-.faq-item summary { list-style:none; cursor:pointer; padding:16px 44px 16px 18px; position:relative; font:700 16px Inter; color:#171412; }
+.faq-item summary { list-style:none; cursor:pointer; padding:16px 44px 16px 18px; position:relative; font:500 16px Inter; color:#171412; }
 .faq-item summary::-webkit-details-marker { display:none; }
 .faq-item summary::after { content:''; position:absolute; right:16px; top:50%; width:14px; height:9px; background-color:var(--accent); -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; transform:translateY(-50%); transition:transform .25s ease; }
 .faq-item[open] summary::after { transform:translateY(-50%) rotate(180deg); }
@@ -137,7 +137,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 <div class="progress-bar"></div>
 
 <header class="site-header">
-  <a class="logo" href="Pocetna.dc.html">Kužiš</a>
+  <a class="logo" href="Pocetna.dc.html"><img src="assets/logo.png" alt="Kužiš" style="height:88px;margin:-30px 0;display:block"></a>
     <nav>
       <a href="Pocetna.dc.html">Početna</a>
       <a href="Edukacije.dc.html">Edukacije</a>
@@ -154,7 +154,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
   <span class="sep">/</span>
   <a href="Blog.dc.html">Blog</a>
   <span class="sep">/</span>
-  <a class="crumb-pill" href="Blog.dc.html?kategorija=Canva%20savjeti">Canva savjeti</a>
+  <a class="crumb-pill" href="Blog.dc.html">Canva</a>
 </nav>
 
 <header class="article-header">
@@ -211,20 +211,13 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         </details>
       </div>
       <div style="margin:36px 0 0;padding:20px 22px;border:1px solid rgba(23,18,15,.1);border-radius:14px;display:flex;gap:16px;align-items:flex-start">
-  <div style="flex-shrink:0;width:44px;height:44px;border-radius:50%;background:#D97757;display:flex;align-items:center;justify-content:center;color:#fff;font:800 16px Inter">DŠ</div>
+  <img src="assets/dora-autorica.jpg" alt="Dora Šušković Stipanović" width="44" height="44" loading="lazy" style="flex-shrink:0;width:44px;height:44px;border-radius:50%;object-fit:cover">
   <div>
     <div style="font:700 15px Inter;color:#171412;margin-bottom:4px">O autorici</div>
     <p style="margin:0;font:400 14.5px/1.7 Inter;color:rgba(23,18,15,.75)">Dora Šušković Stipanović radi kao specijalistica digitalnog marketinga u jednom od najvećih webshopova u Hrvatskoj, uz freelance projekte u marketingu i web dizajnu. Vodila je Canva AI edukacije za međunarodnu tvrtku i javnu instituciju, a kroz Kužiš dijeli praktične digitalne alate i AI savjete za male biznise i obrte.</p>
   </div>
 </div>
-<div class="tag-chips">
-        <span class="label">Teme:</span>
-        <a href="Blog.dc.html">Canva</a>
-        <a href="Blog.dc.html">Početnici</a>
-        <a href="Blog.dc.html">Učenje</a>
-        <a href="Blog.dc.html">Canva savjeti</a>
-      </div>
-      <div class="engage-row">
+<div class="engage-row">
         <div class="label">Svidio vam se članak?</div>
         <div class="engage-actions">
           <button class="like-btn" type="button" aria-label="Sviđa mi se">
@@ -269,7 +262,10 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 
   <section class="related-section" data-current-href="canva-za-pocetnike-7-dana.dc.html">
     <div class="related-inner">
-      <h2>Nastavite čitati</h2>
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px">
+        <h2 style="margin:0">Nastavite čitati</h2>
+        <a href="Blog.dc.html" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      </div>
       <div class="related-grid" id="related-grid">
         <a class="related-card" href="Canva-Grow-Oglasi.dc.html">
           <div class="thumb"><img src="assets/canva-grow-oglasi-hero.png" alt="Canva Grow 2.0: AI koji ti sam radi i pušta oglase" loading="lazy"></div>
@@ -295,9 +291,6 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
             <div class="rc-meta">16. srp 2026. · 2 min čitanja</div>
           </div>
         </a>
-      </div>
-      <div style="margin-top:28px;text-align:center">
-        <a href="Blog.dc.html" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
       </div>
     </div>
   </section>
