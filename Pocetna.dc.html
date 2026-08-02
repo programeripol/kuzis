@@ -263,7 +263,7 @@
       <div style="position:relative">
       <div id="blog-slider-track" style="display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none">
         <sc-for list="{{ blogPreview }}" as="p" hint-placeholder-count="5">
-          <a href="{{ p.href }}" style="flex:0 0 auto;width:min(78vw,300px);scroll-snap-align:start;display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid rgba(23,18,15,.08);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-4px);box-shadow:0 14px 28px rgba(23,18,15,.1)">
+          <a href="{{ p.href }}" style="flex:0 0 auto;width:min(78vw,368px);scroll-snap-align:start;display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid rgba(23,18,15,.08);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-4px);box-shadow:0 14px 28px rgba(23,18,15,.1)">
             <div style="width:100%;aspect-ratio:16/9;background:#FFF8E1">
               <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.imgId }}" src="{{ p.img }}" shape="rect" fit="cover" placeholder="slika članka" hint-size="100%,100%" style="width:100%;height:100%"></x-import>
             </div>
