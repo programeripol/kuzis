@@ -67,7 +67,7 @@ article.post-body li { margin-bottom:6px; }
 .tip-box { margin:28px 0; padding:22px 24px; background:color-mix(in srgb, var(--accent) 18%, white); border-radius:14px; border-left:4px solid var(--accent); }
 .tip-box p { margin:0 !important; font:400 16px/1.7 Inter; color:#171412 !important; }
 .tip-box .tip-label { display:flex; align-items:center; gap:7px; font:800 12px Inter; letter-spacing:.05em; text-transform:uppercase; color:color-mix(in srgb, var(--accent) 55%, black); margin-bottom:8px; }
-.tip-box .tip-label img { display:block; width:20px; height:20px; object-fit:contain; }
+.tip-box .tip-label img { display:block; width:40px; height:40px; object-fit:contain; }
 .faq-block { margin:40px 0 0; }
 .faq-block h2 { margin:0 0 18px; font-weight:800; font-size:22px; letter-spacing:-.01em; font-family:'Baloo 2',Inter,sans-serif; }
 
@@ -223,7 +223,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
       </div>
       <p>Dobra vijest: sama funkcija SUM zove se identično u oba alata, na svim jezicima sučelja, i radi na isti način. Razlike su sitne, ali vrijedi ih znati. U hrvatskim regionalnim postavkama oba programa koriste točku-zarez (;) kao razdjelnik argumenata unutar formule, dok engleske (US/UK) postavke koriste zarez (,). Ako kopiraš formulu s interneta koja koristi zarez, a tvoja tablica je na hrvatskim postavkama, dobit ćeš grešku - jednostavno zamijeni zareze točkama-zarezom.</p>
       <div class="tip-box">
-        <span class="tip-label"><img src="assets/icon-cesta-greska.png" alt="" width="20" height="20" loading="lazy">Čest problem početnika</span>
+        <span class="tip-label"><img src="assets/icon-cesta-greska.png" alt="" width="40" height="40" loading="lazy">Čest problem početnika</span>
         <p>Najčešća greška je kad u raspon slučajno uključiš i ćeliju s naslovom stupca, na primjer =SUM(B1:B6) umjesto =SUM(B2:B6), gdje je B1 tekst "Trošak", a ne broj. Excel i Sheets su dovoljno pametni da tekstualne ćelije jednostavno preskoče prilikom zbrajanja, pa formula neće pući - ali ako je tvoj "naslov" zapravo broj (na primjer godina ili šifra), on će se pogrešno uračunati u zbroj, a da to uopće ne primijetiš. Zato je dobra navika uvijek na trenutak provjeriti koji točno raspon si odabrala prije nego pritisneš Enter.</p>
       </div>
       <div class="faq-block" id="faq">
