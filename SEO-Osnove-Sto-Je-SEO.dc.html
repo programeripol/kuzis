@@ -128,6 +128,18 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 .faq-item summary::after { content:''; position:absolute; right:16px; top:50%; width:14px; height:9px; background-color:var(--accent); -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; transform:translateY(-50%); transition:transform .25s ease; }
 .faq-item[open] summary::after { transform:translateY(-50%) rotate(180deg); }
 .faq-item p { margin:0; padding:0 18px 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
+  .kz-hamb{display:none}
+  #kz-nav-toggle{display:none}
+  @media (max-width:860px){
+    .kz-nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;box-shadow:0 14px 28px rgba(23,18,15,.14);padding:6px 24px 22px;margin:0}
+    .kz-nav a{width:100%;padding:13px 0}
+    .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
+    .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+    #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  }
 </style>
 </head>
 <body style="--accent:#8ECAE6;">
@@ -136,7 +148,8 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 
 <header class="site-header">
 <a class="logo" href="Pocetna.dc.html"><img src="assets/logo.png" alt="Kužiš" style="height:88px;margin:-30px 0;display:block"></a>
-<nav>
+<input type="checkbox" id="kz-nav-toggle"><label for="kz-nav-toggle" class="kz-hamb" aria-label="Izbornik"><span></span><span></span><span></span></label>
+<nav class="kz-nav">
 <a href="Pocetna.dc.html">Početna</a>
 <a href="Edukacije.dc.html">Edukacije</a>
 <a href="Za Tvrtke.dc.html">Za tvrtke</a>
