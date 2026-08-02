@@ -22,14 +22,18 @@
   .kz-hamb{display:none}
   #kz-nav-toggle{display:none}
   @media (max-width:860px){
-    .kz-nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;box-shadow:0 14px 28px rgba(23,18,15,.14);padding:6px 24px 22px;margin:0}
+    .kz-nav{display:none!important;position:fixed;top:0;left:0;right:0;bottom:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;padding:84px 24px 22px;margin:0;overflow-y:auto;z-index:40}
     .kz-nav a{width:100%;padding:13px 0}
+    .kz-nav a.active{width:auto!important;display:inline-block!important}
+    .kz-nav a.kz-nav-cta{width:auto!important;align-self:center!important;font-size:0!important;background:#FFD048!important;color:#171412!important;border-radius:12px!important;border:2.5px solid #171412!important;padding:14px 36px!important;box-shadow:0 10px 26px rgba(23,18,15,.24)!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+    .kz-nav a.kz-nav-cta::after{content:"Javite se";font:700 19px Inter;color:#171412}
     .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
     .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
     #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+    header img[alt="Kužiš"]{height:35px!important;margin:-12px 0!important}
   }
 </style>
 </helmet>
@@ -44,9 +48,9 @@
       <a href="Edukacije.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Edukacije</a>
       <a href="Za Tvrtke.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Za tvrtke</a>
       <a href="Mentorstvo.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Mentorstvo</a>
-      <a href="O Nama.dc.html" style="text-decoration:none;color:#171412;font-weight:700;border-bottom:2.5px solid #FFD048;padding-bottom:2px">O nama</a>
+      <a href="O Nama.dc.html" class="active" style="text-decoration:none;color:#171412;font-weight:700;border-bottom:2.5px solid #FFD048;padding-bottom:2px">O nama</a>
       <a href="Blog.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Blog</a>
-      <a href="Kontakt.dc.html" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
+      <a href="Kontakt.dc.html" class="kz-nav-cta" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
     </nav>
   </header>
 
