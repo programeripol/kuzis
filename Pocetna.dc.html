@@ -53,6 +53,18 @@
   @keyframes badgePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
   @keyframes logoMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   image-slot::part(frame){background:transparent}
+  .kz-hamb{display:none}
+  @media (max-width:860px){
+    .kz-nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;box-shadow:0 14px 28px rgba(23,18,15,.14);padding:6px 24px 22px;margin:0}
+    .kz-nav a{width:100%;padding:13px 0;border-bottom:1px solid rgba(23,18,15,.08)}
+    .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
+    .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+    #kz-nav-toggle{display:none}
+    #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  }
 </style>
 </helmet>
 
@@ -61,7 +73,9 @@
   <!-- HEADER -->
   <header style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,48px);background:rgba(255,255,255,.92);backdrop-filter:blur(8px)">
     <a href="Pocetna.dc.html" style="font:800 22px/1 Inter;color:#171412;letter-spacing:-.01em;text-decoration:none"><img src="assets/logo.png" alt="Kužiš" style="height:88px;margin:-30px 0;display:block"></a>
-    <nav style="display:flex;flex-wrap:wrap;gap:clamp(14px,2.6vw,28px);align-items:center;font:500 14px Inter">
+    <input type="checkbox" id="kz-nav-toggle">
+    <label for="kz-nav-toggle" class="kz-hamb" aria-label="Izbornik"><span></span><span></span><span></span></label>
+    <nav class="kz-nav" style="display:flex;flex-wrap:wrap;gap:clamp(14px,2.6vw,28px);align-items:center;font:500 14px Inter">
       <a href="Pocetna.dc.html" style="text-decoration:none;color:#171412;font-weight:700;border-bottom:2.5px solid #FFD048;padding-bottom:2px">Početna</a>
       <a href="Edukacije.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Edukacije</a>
       <a href="Za Tvrtke.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Za tvrtke</a>
@@ -76,7 +90,7 @@
   <section style="position:relative;overflow:hidden;background:#FFD048">
     <img src="assets/pocetna-hero-alati-kuzis.png" alt="Kužiš — Canva, Excel, Figma, SEO i Claude na jednom mjestu" width="1600" height="900" style="display:block;width:100%;height:auto">
     <div style="position:absolute;left:50%;bottom:clamp(22px,4vw,48px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:20px;max-width:680px;padding:0 20px;text-align:center">
-      <p style="margin:0;font-weight:800;font-size:clamp(17px,2.3vw,23px);line-height:1.4;font-family:'Baloo 2';color:#171412">Praktična digitalna rješenja, sustavi, edukacije i mentorstvo za one koji žele raditi bolje i brže.</p>
+      <p style="margin:0;font-weight:800;font-size:clamp(16px,2.1vw,21px);line-height:1.45;font-family:'Baloo 2';color:#171412">Praktična digitalna rješenja, sustavi, optimizacija<br>procesa, edukacije i mentorstvo za<br>pojedince i organizacije koje žele<br>raditi bolje i brže.</p>
       <a href="Kontakt.dc.html" style="display:inline-flex;align-items:center;padding:19px 44px;background:#FFD048;color:#171412;border-radius:100px;font:700 19px Inter;text-decoration:none;box-shadow:0 10px 26px rgba(23,18,15,.24);border:2.5px solid #171412;transition:transform .2s ease,background .2s ease,color .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px)">Javi se</a>
     </div>
   </section>
