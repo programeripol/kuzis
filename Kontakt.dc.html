@@ -19,6 +19,18 @@
 <style>
   body{margin:0;background:#FFFFFF;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   a{color:inherit}
+  .kz-hamb{display:none}
+  #kz-nav-toggle{display:none}
+  @media (max-width:860px){
+    .kz-nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;box-shadow:0 14px 28px rgba(23,18,15,.14);padding:6px 24px 22px;margin:0}
+    .kz-nav a{width:100%;padding:13px 0}
+    .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
+    .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+    #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  }
 </style>
 </helmet>
 
@@ -26,7 +38,8 @@
 
   <header style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,48px);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,18,15,.09)">
     <a href="Pocetna.dc.html" style="font:800 22px/1 Inter;color:#171412;letter-spacing:-.01em;text-decoration:none">Kužiš</a>
-    <nav style="display:flex;flex-wrap:wrap;gap:clamp(14px,2.6vw,28px);align-items:center;font:500 14px Inter">
+    <input type="checkbox" id="kz-nav-toggle"><label for="kz-nav-toggle" class="kz-hamb" aria-label="Izbornik"><span></span><span></span><span></span></label>
+    <nav class="kz-nav" style="display:flex;flex-wrap:wrap;gap:clamp(14px,2.6vw,28px);align-items:center;font:500 14px Inter">
       <a href="Pocetna.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Početna</a>
       <a href="Edukacije.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Edukacije</a>
       <a href="Za Tvrtke.dc.html" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Za tvrtke</a>
