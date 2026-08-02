@@ -14,7 +14,7 @@
 {"@context": "https://schema.org", "@type": "Article", "headline": "Canva konektori: poveži Gmail, Slack i Drive pa dizajn nastaje sam", "datePublished": "2026-07-31", "author": {"@type": "Person", "name": "Dora Šušković Stipanović", "jobTitle": "Specijalistica digitalnog marketinga"}, "publisher": {"@type": "Organization", "name": "Kužiš"}}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Što su Canva konektori?", "acceptedAnswer": {"@type": "Answer", "text": "Konektori su mostovi između Canve i alata koje već koristiš, poput Gmaila, Slacka, Zooma, Notiona, Google Drivea i kalendara. Kad ih uključiš, Canva AI smije pročitati podatke iz tih alata i iskoristiti ih u dizajnu."}}, {"@type": "Question", "name": "Koje alate mogu povezati s Canvom?", "acceptedAnswer": {"@type": "Answer", "text": "U prvom krugu dostupni su Slack, Notion, Zoom, Gmail, Google Drive i Google Calendar, a Canva najavljuje da će popis rasti."}}, {"@type": "Question", "name": "Kako znam jesu li Canva konektori dostupni u mojoj Canvi?", "acceptedAnswer": {"@type": "Answer", "text": "Canva konektori dio su paketa Canva AI 2.0, predstavljenog u travnju 2026. Značajka je postupno puštana korisnicima kao probna verzija, a danas je dostupna i korisnicima u Hrvatskoj. Provjeriš ih ovako: na početnoj stranici Canve otvori Canva AI, u polju za razgovor klikni na +, zatim odaberi Connectors. Ako vidiš popis alata poput Gmaila, Google Drivea ili Slacka, konektori su dostupni na tvom računu."}}, {"@type": "Question", "name": "Mogu li konektor kasnije isključiti?", "acceptedAnswer": {"@type": "Answer", "text": "Možeš. Pristup svakom povezanom alatu opozivaš u postavkama Canva računa, a dodatno ga možeš ukinuti i u postavkama samog alata, npr. u Google računu pod odjeljkom za aplikacije s pristupom."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Što su Canva konektori?", "acceptedAnswer": {"@type": "Answer", "text": "Konektori su mostovi između Canve i alata koje već koristiš, poput Gmaila, Slacka, Zooma, Notiona, Google Drivea i kalendara. Kad ih uključiš, Canva AI smije pročitati podatke iz tih alata i iskoristiti ih u dizajnu."}}, {"@type": "Question", "name": "Koje alate mogu povezati s Canvom?", "acceptedAnswer": {"@type": "Answer", "text": "U prvom krugu dostupni su Slack, Notion, Zoom, Gmail, Google Drive i Google Calendar, a Canva najavljuje da će popis rasti."}}, {"@type": "Question", "name": "Kako znam jesu li konektori dostupni na mom računu?", "acceptedAnswer": {"@type": "Answer", "text": "Konektori su dio paketa Canva AI 2.0 koji se od travnja 2026. postupno otvara korisnicima kao probna verzija. Otvori Canva AI razgovor na početnoj stranici Canve i potraži opciju za povezivanje alata. Ako je još ne vidiš, pričekaj koji tjedan."}}, {"@type": "Question", "name": "Mogu li konektor kasnije isključiti?", "acceptedAnswer": {"@type": "Answer", "text": "Možeš. Pristup svakom povezanom alatu opozivaš u postavkama Canva računa, a dodatno ga možeš ukinuti i u postavkama samog alata, npr. u Google računu pod odjeljkom za aplikacije s pristupom."}}]}
 </script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://programeripol.github.io/kuzis/Pocetna.dc.html"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://programeripol.github.io/kuzis/Blog.dc.html"}, {"@type": "ListItem", "position": 3, "name": "Canva savjeti"}]}
@@ -36,6 +36,18 @@ header.site-header nav a.active { color:#171412; font-weight:700; border-bottom:
 header.site-header nav a.active:hover { text-decoration:none; }
 header.site-header nav a.cta { display:inline-flex; align-items:center; padding:10px 20px; background:#FFD048; color:#171412; border-radius:8px; font-weight:600; transition:transform .2s ease; }
 header.site-header nav a.cta:hover { transform:translateY(-2px); text-decoration:none; }
+  .kz-hamb{display:none}
+  #kz-nav-toggle{display:none}
+  @media (max-width:860px){
+    .kz-nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;box-shadow:0 14px 28px rgba(23,18,15,.14);padding:6px 24px 22px;margin:0}
+    .kz-nav a{width:100%;padding:13px 0}
+    .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
+    .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+    #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  }
 .breadcrumb { max-width:960px; margin:0 auto; padding:24px 24px 0; font:500 13px Inter; color:rgba(23,18,15,.5); }
 .breadcrumb a { text-decoration:none; }
 .breadcrumb a:hover { color:#171412; }
@@ -60,7 +72,7 @@ article.post-body .lead { margin:0 0 22px; font-weight:500; font-size:19px; line
 .section-num { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; background:var(--accent); font:800 14px Inter; color:#171412; }
 .section-head h2 { margin:0; font-weight:800; font-size:24px; line-height:1.3; letter-spacing:-.01em; font-family:'Baloo 2',Inter,sans-serif; }
 article.post-body p { margin:0 0 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
-article.post-body ul, article.post-body ol { margin:0 0 18px; padding-left:22px; font:400 16px/1.85 Inter; color:rgba(23,18,15,.8); }
+article.post-body ul { margin:0 0 18px; padding-left:22px; font:400 16px/1.85 Inter; color:rgba(23,18,15,.8); }
 article.post-body li { margin-bottom:6px; }
 .pull-quote { margin:28px 0; padding:22px 24px; background:color-mix(in srgb, var(--accent) 18%, white); border-radius:14px; border-left:4px solid var(--accent); }
 .pull-quote p { margin:0 !important; font:500 16px/1.6 Inter; font-style:italic; color:#171412 !important; }
@@ -138,7 +150,8 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 
 <header class="site-header">
   <a class="logo" href="Pocetna.dc.html"><img src="assets/logo.png" alt="Kužiš" style="height:88px;margin:-30px 0;display:block"></a>
-    <nav>
+<input type="checkbox" id="kz-nav-toggle"><label for="kz-nav-toggle" class="kz-hamb" aria-label="Izbornik"><span></span><span></span><span></span></label>
+    <nav class="kz-nav">
       <a href="Pocetna.dc.html">Početna</a>
       <a href="Edukacije.dc.html">Edukacije</a>
       <a href="Za Tvrtke.dc.html">Za tvrtke</a>
@@ -201,20 +214,17 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         <h2 id="kako-ukljuciti-konektore">Kako uključiti konektore korak po korak</h2>
       </div>
       <p>Postupak traje par minuta i ne traži nikakvo tehničko predznanje:</p>
-      <ol>
-        <li>Otvori Canvu i na početnoj stranici odaberi <strong>Canva AI</strong>.</li>
-        <li>Otvorit će se razgovor sličan ChatGPT-u.</li>
-        <li>U polju u koje upisuješ prompt klikni na <strong>+</strong>.</li>
-        <li>Odaberi <strong>Connectors</strong>.</li>
-        <li>Izaberi alat koji želiš povezati (npr. Gmail, Google Drive ili Slack).</li>
-        <li>Prijavi se u odabrani alat svojim korisničkim računom.</li>
-        <li>Potvrdi da Canvi dopuštaš pristup tom alatu.</li>
-        <li>Vrati se u Canva AI razgovor i zadaj prvi zadatak koji koristi povezani alat putem konektora.</li>
-      </ol>
-      <p>Bitno je znati da svaki konektor odobravaš posebno i da Canva bez tvoje potvrde ne može čitati nijedan alat.</p>
+      <ul>
+        <li>Otvori Canvu i pokreni Canva AI razgovor s početne stranice</li>
+        <li>U polju za razgovor potraži opciju za povezivanje alata (konektore)</li>
+        <li>Odaberi alat koji želiš povezati, npr. Gmail</li>
+        <li>Prijavi se u taj alat i potvrdi da Canvi dopuštaš pristup</li>
+        <li>Vrati se u razgovor i zatraži prvi zadatak koji koristi povezane podatke</li>
+      </ul>
+      <p>Sučelje se u probnoj verziji još mijenja, pa gumbi mogu biti drugačije raspoređeni nego danas. Bitno je znati da svaki konektor odobravaš posebno i da Canva bez tvoje potvrde ne može čitati nijedan alat.</p>
       <div class="section-head">
         <span class="section-num">04</span>
-        <h2 id="tri-primjera-iz-malog-biznisa">Tri primjera za male tvrtke</h2>
+        <h2 id="tri-primjera-iz-malog-biznisa">Tri primjera iz malog biznisa</h2>
       </div>
       <p><strong>Ponuda iz emaila.</strong> Vodiš stolarski obrt i kupac ti je poslao dugačak email sa željama i mjerama. Kažeš Canva AI-ju da iz tog emaila složi ponudu s tvojim cjenikom i logom. Dobiješ nacrt koji samo dotjeruješ, umjesto da kreneš od prazne stranice.</p>
       <p><strong>Sažetak Zoom sastanka.</strong> Nakon online sastanka s klijentom zatražiš jednostranični sažetak dogovorenog. Canva AI pročita transkript i složi dokument koji odmah možeš poslati klijentu na potvrdu.</p>
@@ -226,7 +236,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
       <p>Konektori su moćni upravo zato što Canvi daju pristup tvojim podacima, pa je zdravo malo stati i razmisliti. Poveži samo račune koje stvarno trebaš za posao. Ako u privatnom Gmailu držiš i osobne stvari, razmisli želiš li baš njega povezati ili je pametnije koristiti poslovni račun.</p>
       <p>Uz to, probna verzija znači da ponešto može zapeti ili se promijeniti preko noći. Rezultat uvijek pregledaj prije slanja kupcu, pogotovo brojke i cijene koje je AI povukao iz tvojih dokumenata.</p>
       <div style="margin:28px 0;padding:20px 22px;border:1.5px solid var(--accent);border-radius:14px;background:color-mix(in srgb, var(--accent) 10%, white)">
-        <div style="font:700 14px Inter;color:#171412;margin-bottom:6px">⚠️ Česta greška</div>
+        <div style="display:flex;align-items:center;gap:8px;font:700 14px Inter;color:#171412;margin-bottom:6px"><img src="assets/icon-cesta-greska.png" alt="" width="40" height="40" loading="lazy" style="display:block;object-fit:contain">Česta greška</div>
         <p style="margin:0 !important">Povezivanje svih šest alata odjednom, &quot;za svaki slučaj&quot;. Uključi samo konektor koji ti treba za konkretan zadatak. Svaki povezani alat znači još jedno mjesto s kojeg se podaci dijele, a višak izvora zna i zbuniti AI pa dobiješ dizajn s krivim podacima.</p>
       </div>
       <div class="faq-block" id="faq">
@@ -240,8 +250,8 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
           <p>U prvom krugu dostupni su Slack, Notion, Zoom, Gmail, Google Drive i Google Calendar, a Canva najavljuje da će popis rasti.</p>
         </details>
         <details class="faq-item">
-          <summary><span class="faq-q">Kako znam jesu li Canva konektori dostupni u mojoj Canvi?</span></summary>
-          <p>Canva konektori dio su paketa Canva AI 2.0, predstavljenog u travnju 2026. Značajka je postupno puštana korisnicima kao probna verzija, a danas je dostupna i korisnicima u Hrvatskoj. Provjeriš ih ovako: na početnoj stranici Canve otvori Canva AI, u polju za razgovor klikni na +, zatim odaberi Connectors. Ako vidiš popis alata poput Gmaila, Google Drivea ili Slacka, konektori su dostupni na tvom računu.</p>
+          <summary><span class="faq-q">Kako znam jesu li konektori dostupni na mom računu?</span></summary>
+          <p>Konektori su dio paketa Canva AI 2.0 koji se od travnja 2026. postupno otvara korisnicima kao probna verzija. Otvori Canva AI razgovor na početnoj stranici Canve i potraži opciju za povezivanje alata. Ako je još ne vidiš, pričekaj koji tjedan.</p>
         </details>
         <details class="faq-item">
           <summary><span class="faq-q">Mogu li konektor kasnije isključiti?</span></summary>
@@ -290,7 +300,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
           <a href="#sto-su-canva-konektori" data-toc-target="sto-su-canva-konektori">Što su Canva konektori</a>
           <a href="#koje-alate-mozes-povezati" data-toc-target="koje-alate-mozes-povezati">Koje alate možeš povezati</a>
           <a href="#kako-ukljuciti-konektore" data-toc-target="kako-ukljuciti-konektore">Kako ih uključiti</a>
-          <a href="#tri-primjera-iz-malog-biznisa" data-toc-target="tri-primjera-iz-malog-biznisa">Tri primjera za male tvrtke</a>
+          <a href="#tri-primjera-iz-malog-biznisa" data-toc-target="tri-primjera-iz-malog-biznisa">Tri primjera iz malog biznisa</a>
           <a href="#ogranicenja-i-privatnost" data-toc-target="ogranicenja-i-privatnost">Ograničenja i oprez</a>
           <a href="#faq" data-toc-target="faq">Najčešća pitanja</a>
 </nav>

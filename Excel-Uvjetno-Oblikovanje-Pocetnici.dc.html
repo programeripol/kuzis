@@ -36,6 +36,18 @@ header.site-header nav a.active { color:#171412; font-weight:700; border-bottom:
 header.site-header nav a.active:hover { text-decoration:none; }
 header.site-header nav a.cta { display:inline-flex; align-items:center; padding:10px 20px; background:#FFD048; color:#171412; border-radius:8px; font-weight:600; transition:transform .2s ease; }
 header.site-header nav a.cta:hover { transform:translateY(-2px); text-decoration:none; }
+  .kz-hamb{display:none}
+  #kz-nav-toggle{display:none}
+  @media (max-width:860px){
+    .kz-nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;box-shadow:0 14px 28px rgba(23,18,15,.14);padding:6px 24px 22px;margin:0}
+    .kz-nav a{width:100%;padding:13px 0}
+    .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
+    .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+    #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  }
 .breadcrumb { max-width:960px; margin:0 auto; padding:24px 24px 0; font:500 13px Inter; color:rgba(23,18,15,.5); }
 .breadcrumb a { text-decoration:none; }
 .breadcrumb a:hover { color:#171412; }
@@ -138,7 +150,8 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
 
 <header class="site-header">
   <a class="logo" href="Pocetna.dc.html"><img src="assets/logo.png" alt="Kužiš" style="height:88px;margin:-30px 0;display:block"></a>
-    <nav>
+<input type="checkbox" id="kz-nav-toggle"><label for="kz-nav-toggle" class="kz-hamb" aria-label="Izbornik"><span></span><span></span><span></span></label>
+    <nav class="kz-nav">
       <a href="Pocetna.dc.html">Početna</a>
       <a href="Edukacije.dc.html">Edukacije</a>
       <a href="Za Tvrtke.dc.html">Za tvrtke</a>
@@ -220,7 +233,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
       </div>
       <p>Na isti raspon možeš staviti više pravila, npr. crveno za dug veći od 100 eura i žuto za dug veći od nule. Kad se pravila preklope, pobjeđuje ono koje je više na popisu. Redoslijed mijenjaš u upravitelju pravila (u Excelu: Uvjetno oblikovanje pa Upravljaj pravilima; u Sheetsu povlačenjem pravila u panelu).</p>
       <div style="margin:28px 0;padding:20px 22px;border:1.5px solid var(--accent);border-radius:14px;background:color-mix(in srgb, var(--accent) 10%, white)">
-        <div style="font:700 14px Inter;color:#171412;margin-bottom:6px">⚠️ Česta greška</div>
+        <div style="display:flex;align-items:center;gap:8px;font:700 14px Inter;color:#171412;margin-bottom:6px"><img src="assets/icon-cesta-greska.png" alt="" width="40" height="40" loading="lazy" style="display:block;object-fit:contain">Česta greška</div>
         <p style="margin:0 !important">Označavanje cijelog stupca (npr. klikom na slovo C) prije postavljanja pravila. Pravilo se tada primjenjuje na milijun praznih ćelija pa tablica uspori, a prazne ćelije se znaju krivo obojiti. Uvijek označi samo raspon koji stvarno koristiš, npr. C2:C200.</p>
       </div>
       <div class="faq-block" id="faq">
