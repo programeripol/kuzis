@@ -66,6 +66,7 @@
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
     #blog-slider-prev,#blog-slider-next{display:none!important}
     .hp-mobile-blog-btn{display:flex!important}
+    .hp-blog-toplink{display:none!important}
   }
 </style>
 </helmet>
@@ -253,7 +254,7 @@
           <h2 style="margin:0;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Najnovije s bloga</h2>
         </div>
         <div style="display:flex;align-items:center;gap:14px">
-        <a href="Blog.dc.html" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+        <a href="Blog.dc.html" class="cta-underline hp-blog-toplink" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
         </div>
       </div>
       <div style="position:relative">
@@ -276,7 +277,7 @@
       <button type="button" id="blog-slider-prev" aria-label="Prethodni članci" style="position:absolute;left:10px;top:0;bottom:8px;margin:auto 0;z-index:5;width:44px;height:44px;border-radius:50%;border:none;background:#FFD048;color:#171412;box-shadow:0 6px 18px rgba(23,18,15,.22);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s ease"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
       <button type="button" id="blog-slider-next" aria-label="Sljedeći članci" style="position:absolute;right:10px;top:0;bottom:8px;margin:auto 0;z-index:5;width:44px;height:44px;border-radius:50%;border:none;background:#FFD048;color:#171412;box-shadow:0 6px 18px rgba(23,18,15,.22);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:auto;transition:opacity .35s ease"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
       </div>
-      <a href="Blog.dc.html" class="hp-mobile-blog-btn" style="display:none;align-items:center;justify-content:center;gap:8px;margin-top:20px;padding:14px 28px;background:#FFD048;color:#171412;border-radius:12px;font:700 15px Inter;text-decoration:none">Pogledajte cijeli blog<svg width="20" height="13" viewBox="0 0 24 15" fill="none"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      <a href="Blog.dc.html" class="hp-mobile-blog-btn" style="display:none;align-items:center;justify-content:center;margin-top:20px;padding:14px 28px;background:#FFD048;color:#171412;border-radius:12px;font:700 15px Inter;text-decoration:none">Pogledajte cijeli blog</a>
     </div>
   </section>
 
