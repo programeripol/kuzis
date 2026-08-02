@@ -66,7 +66,8 @@ article.post-body li { margin-bottom:6px; }
 .pull-quote p { margin:0 !important; font:500 16px/1.6 Inter; font-style:italic; color:#171412 !important; }
 .tip-box { margin:28px 0; padding:22px 24px; background:color-mix(in srgb, var(--accent) 18%, white); border-radius:14px; border-left:4px solid var(--accent); }
 .tip-box p { margin:0 !important; font:400 16px/1.7 Inter; color:#171412 !important; }
-.tip-box .tip-label { display:block; font:800 12px Inter; letter-spacing:.05em; text-transform:uppercase; color:color-mix(in srgb, var(--accent) 55%, black); margin-bottom:8px; }
+.tip-box .tip-label { display:flex; align-items:center; gap:7px; font:800 12px Inter; letter-spacing:.05em; text-transform:uppercase; color:color-mix(in srgb, var(--accent) 55%, black); margin-bottom:8px; }
+.tip-box .tip-label img { display:block; width:20px; height:20px; object-fit:contain; }
 .faq-block { margin:40px 0 0; }
 .faq-block h2 { margin:0 0 18px; font-weight:800; font-size:22px; letter-spacing:-.01em; font-family:'Baloo 2',Inter,sans-serif; }
 
@@ -201,7 +202,7 @@ footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px 
         <li>NETOČNO (ili FALSE na engleskom sučelju) - tražiš točno podudaranje, ne približno</li>
       </ul>
       <div class="tip-box">
-        <span class="tip-label">Čest problem početnika</span>
+        <span class="tip-label"><img src="assets/icon-cesta-greska.png" alt="" width="20" height="20" loading="lazy">Čest problem početnika</span>
         <p>Najčešća greška je kad zaboraviš zadnji argument (NETOČNO/FALSE) ili staviš TOČNO/TRUE umjesto njega. Bez njega Excel ponekad vrati najbliži sličan rezultat umjesto točnog - za šifre proizvoda, cijene ili OIB-ove to gotovo uvijek želiš izbjeći, pa taj argument nikad ne izostavljaj.</p>
       </div>
       <div class="section-head">
