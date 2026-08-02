@@ -54,12 +54,12 @@
   @keyframes logoMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   image-slot::part(frame){background:transparent}
   .kz-hamb{display:none}
+  #kz-nav-toggle{display:none}
   @media (max-width:860px){
     .kz-nav{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0!important;background:#fff;box-shadow:0 14px 28px rgba(23,18,15,.14);padding:6px 24px 22px;margin:0}
     .kz-nav a{width:100%;padding:13px 0;border-bottom:1px solid rgba(23,18,15,.08)}
     .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
     .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
-    #kz-nav-toggle{display:none}
     #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
