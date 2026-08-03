@@ -40,10 +40,10 @@ header.site-header nav a.cta:hover { transform:translateY(-2px); text-decoration
   #kz-nav-toggle{display:none}
   @media (max-width:860px){
     .kz-nav{display:none!important;position:fixed!important;top:0;left:0;right:0;bottom:0;height:100vh!important;height:100dvh!important;flex-direction:column!important;align-items:stretch!important;flex-wrap:nowrap!important;gap:0!important;background:#fff;padding:84px 24px 22px;margin:0;overflow-y:auto;z-index:40}
-    .kz-nav a{width:100%!important;padding:13px 0}
-    .kz-nav a.active{width:auto!important;display:inline-block!important}
-    .kz-nav a.cta{width:auto!important;align-self:center!important;font-size:0!important;background:#FFD048!important;color:#171412!important;border-radius:12px!important;border:2.5px solid #171412!important;padding:14px 36px!important;box-shadow:0 10px 26px rgba(23,18,15,.24)!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-    .kz-nav a.cta::after{content:"Javite se";font:700 19px Inter;color:#171412}
+    .kz-nav a{width:100%!important;padding:18px 0!important;font-size:24px!important}
+    .kz-nav a.active{width:auto!important;display:inline-block!important;align-self:flex-start!important}
+    .kz-nav a.cta{width:auto!important;align-self:flex-start!important;font-size:0!important;background:#FFD048!important;color:#171412!important;border-radius:9px!important;border:2px solid #171412!important;padding:9px 20px!important;box-shadow:0 6px 16px rgba(23,18,15,.22)!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-top:6px!important}
+    .kz-nav a.cta::after{content:"Javite se";font:700 14px Inter;color:#171412}
     .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
     .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
     #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
@@ -124,7 +124,7 @@ article.post-body li { margin-bottom:6px; }
 .related-card .rc-meta { margin-top:auto; font:400 12.5px Inter; color:rgba(23,18,15,.5); }
 footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px solid rgba(255,255,255,.1); }
 .footer-grid { max-width:1120px; margin:0 auto 40px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; }
-@media (max-width:860px) { .footer-grid { grid-template-columns:1fr; } footer.site-footer{padding:44px 20px 26px!important} .footer-grid{gap:32px!important;margin-bottom:32px!important} }
+@media (max-width:860px) { .footer-grid { grid-template-columns:repeat(3,1fr)!important; } footer.site-footer{padding:44px 20px 26px!important} .footer-grid{gap:14px!important;margin-bottom:32px!important} .footer-grid>div:first-child{grid-column:1/-1!important;margin-bottom:12px} header.site-header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important} }
 .footer-grid .brand { font:800 22px Inter; color:#FFFFFF; margin-bottom:34px; }
 .footer-grid .brand img { height:35px; margin:-12px 0; filter:brightness(0) invert(1); display:block; }
 .footer-grid p { font:400 14px/1.6 Inter; color:rgba(255,255,255,.5); max-width:260px; margin-bottom:20px; }
