@@ -57,7 +57,7 @@
   #kz-nav-toggle{display:none}
   @media (max-width:860px){
     .kz-nav{display:none!important;position:fixed!important;top:0;left:0;right:0;bottom:0;height:100vh!important;height:100dvh!important;flex-direction:column!important;align-items:stretch!important;flex-wrap:nowrap!important;gap:0!important;background:#fff;padding:84px 24px 22px;margin:0;overflow-y:auto;z-index:40}
-    .kz-nav a{width:100%!important;padding:13px 0}
+    .kz-nav a{width:100%!important;padding:18px 0!important;font-size:24px!important}
     .kz-nav a.active{width:auto!important;display:inline-block!important;align-self:flex-start!important}
     .kz-nav a.kz-nav-cta{width:auto!important;align-self:flex-start!important;font-size:0!important;background:#FFD048!important;color:#171412!important;border-radius:9px!important;border:2px solid #171412!important;padding:9px 20px!important;box-shadow:0 6px 16px rgba(23,18,15,.22)!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-top:6px!important}
     .kz-nav a.kz-nav-cta::after{content:"Javite se";font:700 14px Inter;color:#171412}
@@ -68,18 +68,20 @@
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
     #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
     #blog-slider-prev,#blog-slider-next{display:none!important}
-    .hp-mobile-blog-btn{display:flex!important}
+    .hp-mobile-blog-btn{display:inline-flex!important;width:fit-content!important}
     .hp-blog-toplink{display:none!important}
     .hp-fade-right{width:34px!important}
     .hp-fade-left{width:24px!important}
-    .hp-hero-wrap{bottom:calc(160px + clamp(22px,4vw,48px))!important;gap:13px!important}
-    .hp-hero-text{font-size:clamp(13px,1.82vw,17.5px)!important;line-height:1.15!important}
-    .hp-hero-btn{padding:7px 18px!important;font-size:10px!important;border-radius:7px!important;border-width:1.7px!important;box-shadow:0 5px 13px rgba(23,18,15,.24)!important}
+    .hp-hero-wrap{bottom:calc(40px + clamp(16px,3vw,32px))!important;gap:13px!important;padding:0 14px!important}
+    .hp-hero-text{font-size:13px!important;line-height:1.3!important}
+    .hp-hero-btn{padding:10px 26px!important;font-size:13px!important;border-radius:8px!important;border-width:2px!important;box-shadow:0 6px 16px rgba(23,18,15,.24)!important}
     header img[alt="Kužiš"]{height:35px!important;margin:-12px 0!important}
     .hp-logo-link{display:none!important}
     #kz-nav-toggle:checked ~ .hp-logo-link{display:flex!important}
+    header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
     footer{padding:44px 20px 26px!important}
-    .footer-grid{grid-template-columns:1fr!important;gap:32px!important;margin-bottom:32px!important}
+    .footer-grid{grid-template-columns:repeat(3,1fr)!important;gap:14px!important;margin-bottom:32px!important}
+    .footer-grid>div:first-child{grid-column:1/-1!important;margin-bottom:12px}
   }
 </style>
 </helmet>
@@ -293,7 +295,7 @@
       <button type="button" id="blog-slider-prev" aria-label="Prethodni članci" style="position:absolute;left:10px;top:0;bottom:56px;margin:auto 0;z-index:5;width:40px;height:40px;border-radius:0;border:none;background:transparent;color:#171412;box-shadow:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s ease"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
       <button type="button" id="blog-slider-next" aria-label="Sljedeći članci" style="position:absolute;right:10px;top:0;bottom:56px;margin:auto 0;z-index:5;width:40px;height:40px;border-radius:0;border:none;background:transparent;color:#171412;box-shadow:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:auto;transition:opacity .35s ease"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
       </div>
-      <a href="Blog.dc.html" class="cta-underline hp-mobile-blog-btn" style="display:none;align-items:center;justify-content:center;margin-top:20px;font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      <a href="Blog.dc.html" class="cta-underline hp-mobile-blog-btn" style="display:none;align-items:center;margin-top:20px;font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
     </div>
   </section>
 
