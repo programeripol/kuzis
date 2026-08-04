@@ -17,6 +17,8 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://programeripol.github.io/kuzis/">
 <script src="./support.js"></script>
+<link rel="stylesheet" href="assets/mobile-nav.css">
+<script defer src="assets/nav-behavior.js"></script>
 </head>
 <body>
 <x-dc>
@@ -59,8 +61,9 @@
   @keyframes badgePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
   @keyframes logoMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   image-slot::part(frame){background:transparent}
-  #blog-slider-track image-slot,#blog-slider-track x-import{touch-action:pan-x pan-y!important}
-  #blog-slider-track a,#blog-slider-track image-slot,#blog-slider-track x-import{-webkit-tap-highlight-color:transparent!important}
+  #blog-slider-track a{touch-action:pan-x pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent!important}
+  #blog-slider-track a:focus-visible{outline:2.5px solid #171412;outline-offset:2px}
+  #blog-slider-track image-slot,#blog-slider-track x-import{touch-action:pan-x pan-y!important;-webkit-tap-highlight-color:transparent!important}
   .kz-hamb{display:none}
   #kz-nav-toggle{display:none}
   @media (max-width:860px){
@@ -80,15 +83,16 @@
     .hp-blog-toplink{display:none!important}
     .hp-fade-right{width:34px!important}
     .hp-fade-left{width:24px!important}
-    .hp-hero-wrap{bottom:38%!important;gap:12px!important;padding:0 10px!important;width:100%!important;box-sizing:border-box!important}
-    .hp-hero-text{width:100%!important;font-size:15px!important;line-height:1.34!important}
+    .hp-hero-wrap{bottom:24%!important;gap:12px!important;padding:0 10px!important;width:100%!important;box-sizing:border-box!important}
+    .hp-hero-text{width:100%!important;font-size:20px!important;line-height:1.34!important}
     .hp-hero-br{display:none!important}
-    .hp-hero-btn{padding:8px 32px!important;font-size:13px!important;border-radius:22px!important;border-width:2px!important;box-shadow:0 6px 16px rgba(23,18,15,.24)!important}
+    .hp-hero-btn{padding:8px 32px!important;font-size:13px!important;border-radius:10px!important;border-width:2px!important;box-shadow:0 6px 16px rgba(23,18,15,.24)!important}
     header img[alt="Kužiš"]{height:35px!important;margin:-12px 0!important}
     header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
     .hp-audience-grid{grid-template-columns:repeat(2,1fr)!important;gap:4px 8px!important}
     .hp-audience-item{padding:12px 6px!important;gap:8px!important}
     .hp-audience-blob-wrap{width:104px!important;height:104px!important}
+    .hp-audience-blob-wrap .sc-host-x{width:150px!important;height:150px!important;display:flex!important;align-items:center!important;justify-content:center!important}
     .hp-audience-icon{width:150px!important;height:150px!important}
     .hp-audience-label{font-size:15px!important}
     footer{padding:44px 20px 26px!important}
@@ -123,7 +127,7 @@
       <img src="assets/hero kuzis.png" alt="Kužiš — Canva, Excel, Figma, SEO i Claude na jednom mjestu" width="1600" height="900" style="display:block;width:100%;height:auto;margin-top:-10px">
     </picture>
     <div class="hp-hero-wrap" style="position:absolute;left:50%;bottom:calc(60px + clamp(22px,4vw,48px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:20px;max-width:680px;padding:0 20px;text-align:center">
-      <p class="hp-hero-text" style="margin:0;font-weight:800;font-size:clamp(16px,2.1vw,21px);line-height:1.45;font-family:'Baloo 2';color:#171412">Praktična digitalna rješenja, sustavi, optimizacija procesa,<br class="hp-hero-br">edukacije i mentorstvo za pojedince i organizacije<br class="hp-hero-br">koje žele raditi bolje i brže.</p>
+      <p class="hp-hero-text" style="margin:0;font-weight:800;font-size:clamp(16px,2.1vw,21px);line-height:1.45;font-family:'Baloo 2';color:#171412">Praktična digitalna rješenja, sustavi, optimizacija procesa, <br class="hp-hero-br">edukacije i mentorstvo za pojedince i organizacije <br class="hp-hero-br">koje žele raditi bolje i brže.</p>
       <a href="Kontakt.dc.html" class="hp-hero-btn" style="display:inline-flex;align-items:center;padding:14px 36px;background:#FFD048;color:#171412;border-radius:12px;font:700 19px Inter;text-decoration:none;box-shadow:0 10px 26px rgba(23,18,15,.24);border:2.5px solid #171412;transition:transform .2s ease,background .2s ease,color .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px)">Javi se</a>
     </div>
   </section>
@@ -396,12 +400,9 @@ class Component extends DCLogic {
     { title: 'Što je schema markup i kako pomaže da te Google i ChatGPT bolje razumiju', category: 'SEO', date: '24. srp 2026.', readingTime: 5, href: 'SEO-Schema-Markup-Objasnjeno.dc.html', imgId: 'home-blog-3', img: 'assets/schema-markup-objasnjeno-hero.png', excerpt: 'Schema markup objašnjen jednostavno: kako strukturirani podaci pomažu Googleu i ChatGPT-u da razumiju i citiraju tvoju stranicu ili obrt.' },
   ] };
   componentDidMount() {
-    this._setHeaderHeightVar = () => {
-      const header = document.querySelector('header');
-      if (header) document.documentElement.style.setProperty('--kz-header-h', header.offsetHeight + 'px');
-    };
-    this._setHeaderHeightVar();
-    window.addEventListener('resize', this._setHeaderHeightVar);
+    // Header height (--kz-header-h) and mobile-menu scroll lock are handled
+    // globally by assets/nav-behavior.js (loaded on every page) — no
+    // page-local duplicate needed here.
     fetch('assets/posts.json').then((r) => r.json()).then((posts) => {
       const order = ['Canva', 'Excel i Google Sheets', 'Web dizajn', 'SEO', 'Claude'];
       const CAT_STYLE = { 'Canva': { t: '#A8790A', b: '#FFC93C' }, 'Excel i Google Sheets': { t: '#5E8C4A', b: '#9FC58C' }, 'Web dizajn': { t: '#6F55B8', b: '#D8C8F7' }, 'SEO': { t: '#2E7FA8', b: '#8ECAE6' }, 'Claude': { t: '#8A3D1F', b: '#D97757' } };
@@ -491,7 +492,6 @@ class Component extends DCLogic {
   componentWillUnmount() {
     if (this._io) this._io.disconnect();
     if (this._onScrollTop) window.removeEventListener('scroll', this._onScrollTop);
-    if (this._setHeaderHeightVar) window.removeEventListener('resize', this._setHeaderHeightVar);
   }
   renderVals() {
     const overview = [

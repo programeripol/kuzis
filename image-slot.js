@@ -278,13 +278,21 @@
     // Explicit width/height on the element override all of this.
     ':host{display:block;position:relative;' +
     '  font:13px/1.3 system-ui,-apple-system,sans-serif;color:rgba(0,0,0,.55);' +
-    '  width:100%;height:100%;aspect-ratio:3/2}' +
+    '  width:100%;height:100%;aspect-ratio:3/2;-webkit-tap-highlight-color:transparent}' +
     '.frame{position:absolute;inset:0;overflow:hidden;background:rgba(0,0,0,.04)}' +
     // .frame img (clipped) and .spill (unclipped ghost + handles) share the
     // same left/top/width/height in frame-%, computed by _applyView(), so the
     // inside-mask crop and the outside-mask spill stay pixel-aligned.
+    // touch-action is pan-x/pan-y (not none) here so a swipe that starts on
+    // the image scrolls/swipes its container normally — the reframe/pan-zoom
+    // gesture lives entirely on .spill (below), which only exists while
+    // [data-reframe] is set, so it does not need this element blocked too.
+    // -webkit-touch-callout:none suppresses iOS's long-press "Save Image /
+    // Copy" sheet; user-drag/user-select/tap-highlight suppress the desktop
+    // drag-ghost, text-selection halo, and mobile tap flash respectively.
     '.frame img{position:absolute;max-width:none;transform:translate(-50%,-50%);' +
-    '  -webkit-user-drag:none;user-select:none;touch-action:none}' +
+    '  -webkit-user-drag:none;user-select:none;touch-action:pan-x pan-y;' +
+    '  -webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}' +
     // Reframe mode (double-click): the full image spills past the mask. The
     // spill layer is sized to the IMAGE bounds so its corners are where the
     // resize handles belong. The ghost <img> inside is translucent; the real
