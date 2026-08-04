@@ -1,0 +1,39 @@
+/* Kužiš — shared mobile header/nav styles.
+   Loaded on every page so the mobile menu looks and behaves identically
+   everywhere. Edit ONLY this file to change menu spacing, underline
+   position, or the CTA button style site-wide — do not re-add page-local
+   copies of these rules. Placed after each page's own <style> block so it
+   wins the cascade (same selectors, same !important, later wins). */
+
+@media (max-width:860px){
+  .kz-nav a.active{
+    padding-top:18px!important;
+    padding-bottom:4px!important;
+  }
+  .kz-nav a.kz-nav-cta{
+    box-sizing:border-box!important;
+    width:auto!important;
+    max-width:calc(100% - 4px)!important;
+    align-self:flex-start!important;
+    padding:14px 40px!important;
+    border-radius:10px!important;
+    border:2px solid #171412!important;
+    background:#FFD048!important;
+    color:#171412!important;
+    box-shadow:0 6px 16px rgba(23,18,15,.22)!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    margin-top:14px!important;
+    font-size:0!important;
+  }
+  .kz-nav a.kz-nav-cta::after{
+    content:"Javite se";
+    font:700 17px Inter;
+    color:#171412;
+  }
+  /* Opaque, fully covering menu panel — no page content should show through. */
+  .kz-nav{
+    background:#fff!important;
+  }
+}
