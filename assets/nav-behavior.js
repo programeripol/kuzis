@@ -4,7 +4,19 @@
      the real header, on any page)
    - scroll lock while the mobile menu is open (position:fixed body trick —
      plain overflow:hidden on body is not reliable on iOS Safari)
-   Edit ONLY this file to change menu open/close behavior site-wide. */
+   Edit ONLY this file to change menu open/close behavior site-wide.
+
+   Note: several pages are rendered by an async template runtime (x-dc /
+   sc-for components) that can (re)build the <header> markup — including
+   replacing the #kz-nav-toggle checkbox node — AFTER this script's
+   DOMContentLoaded handler first runs. Two things below exist specifically
+   to survive that:
+   1. setHeaderHeightVar() never writes a 0px value (0 just means "header
+      isn't painted yet", not "header is 0px tall"), and it keeps retrying
+      + watches DOM mutations until it gets a real measurement.
+   2. The scroll-lock toggle listener is bound on `document` via event
+      delegation instead of on the checkbox element directly, so it keeps
+      working even if the template runtime swaps in a new checkbox node. */
 (function () {
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
@@ -12,17 +24,35 @@
   }
 
   ready(function () {
-    var header = document.querySelector('header');
     function setHeaderHeightVar() {
-      if (header) {
+      var header = document.querySelector('header');
+      if (header && header.offsetHeight > 0) {
         document.documentElement.style.setProperty('--kz-header-h', header.offsetHeight + 'px');
       }
+      // If header is missing or still 0px tall, leave the var alone so the
+      // safe CSS fallback (var(--kz-header-h,72px)) keeps applying.
     }
+
     setHeaderHeightVar();
+    window.addEventListener('load', setHeaderHeightVar);
     window.addEventListener('resize', setHeaderHeightVar);
 
-    var toggle = document.getElementById('kz-nav-toggle');
-    if (!toggle) return;
+    // Retry for ~2s in case the header is still being rendered by the
+    // template runtime when this script first runs.
+    var attempts = 0;
+    var retryTimer = setInterval(function () {
+      attempts++;
+      setHeaderHeightVar();
+      if (attempts >= 20) clearInterval(retryTimer);
+    }, 100);
+
+    // Also react to late DOM changes (e.g. the template runtime inserting
+    // the real header content after an initial empty/placeholder render).
+    if (window.MutationObserver) {
+      var mo = new MutationObserver(function () { setHeaderHeightVar(); });
+      mo.observe(document.documentElement, { childList: true, subtree: true });
+      setTimeout(function () { mo.disconnect(); }, 5000);
+    }
 
     var lockedScrollY = 0;
     var isLocked = false;
@@ -51,18 +81,22 @@
       window.scrollTo(0, lockedScrollY);
     }
 
-    toggle.addEventListener('change', function () {
-      if (toggle.checked) lockScroll();
+    // Delegated listener: survives the toggle checkbox being re-rendered
+    // (replaced with a new node) by the page's template runtime after this
+    // script first ran — binding directly to the original node would get
+    // silently orphaned in that case.
+    document.addEventListener('change', function (e) {
+      var t = e.target;
+      if (!t || t.id !== 'kz-nav-toggle') return;
+      if (t.checked) lockScroll();
       else unlockScroll();
     });
 
-    // If a nav link inside the open menu is clicked, the checkbox stays
-    // checked while navigation happens — no need to unlock manually, the
-    // new page load resets everything. But if the user hits back/forward
-    // into a bfcache'd page with the menu still visually open, make sure
-    // state is consistent on show.
+    // If the user hits back/forward into a bfcache'd page with the menu
+    // still visually open, make sure state is consistent on show.
     window.addEventListener('pageshow', function () {
-      if (!toggle.checked) unlockScroll();
+      var toggle = document.getElementById('kz-nav-toggle');
+      if (toggle && !toggle.checked) unlockScroll();
     });
   });
 })();
