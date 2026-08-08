@@ -1,337 +1,337 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://kuzis.hr/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/Edukacije.dc.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/Za%20Tvrtke.dc.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/Mentorstvo.dc.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/Canva%20Radionica.dc.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/O%20Nama.dc.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/Kontakt.dc.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/Blog.dc.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/google-search-console-indeksiranje-vodic.dc.html</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/search-console-ai-izvjestaj-vidljivost.dc.html</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/google-preferred-sources-objasnjeno.dc.html</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-chronically-online-gen-z.dc.html</loc>
-    <lastmod>2026-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-konektori-gmail-slack-drive.dc.html</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/excel-uvjetno-oblikovanje-pocetnici.dc.html</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/web-dizajn-mobile-first.dc.html</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/seo-lokalni-seo-objasnjeno.dc.html</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-projects-razgovori-na-jednom-mjestu.dc.html</loc>
-    <lastmod>2026-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-kako-postaviti-pitanje.dc.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-pisi-emailove-kupcima.dc.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-organiziraj-svoj-dan.dc.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-sazmi-duge-dokumente.dc.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-kalkulator-artifacts.dc.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-scheduled-tasks-automatizacija.dc.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-mcp-konektori-gmail-kalendar.dc.html</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/claude-sto-je-claude-ustedi-vrijeme.dc.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-brand-intelligence.dc.html</loc>
-    <lastmod>2026-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/excel-pivot-tablice-pocetnici.dc.html</loc>
-    <lastmod>2026-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/web-dizajn-prije-poslije-primjer.dc.html</loc>
-    <lastmod>2026-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/seo-sto-je-eeat-objasnjeno.dc.html</loc>
-    <lastmod>2026-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-raspored-objava-drustvene-mreze.dc.html</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/excel-vlookup-xlookup-pocetnici.dc.html</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/web-dizajn-ux-pojmovi-recnik.dc.html</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/seo-schema-markup-objasnjeno.dc.html</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/excel-countif-brojanje-pocetnici.dc.html</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/web-dizajn-greske-male-firme.dc.html</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/seo-sto-je-aeo-objasnjeno.dc.html</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-grow-oglasi.dc.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/excel-average-prosjek-pocetnici.dc.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/seo-sto-je-geo-objasnjeno.dc.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/web-dizajn-trendovi-2026.dc.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/excel-sum-formula-pocetnici.dc.html</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/seo-osnove-sto-je-seo.dc.html</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/web-dizajn-hero-sekcija.dc.html</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-learn-grid-diferencirana-nastava.dc.html</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-sheets-ai-tablice.dc.html</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-code-web-stranica-bez-programiranja.dc.html</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-print-shop.dc.html</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-offline-nacin-rada.dc.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-kampanje-aktivizam.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-novosti-2026.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-photo-editor-vodic.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-video-suite-vodic.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-vodic-kompletan-pregled.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-za-pocetnike-7-dana.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-za-tvrtke-profesionalno.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/canva-za-udruge-izvjestaji.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kuzis.hr/redizajn-identiteta-canva.dc.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+<loc>https://kuzis.hr/</loc>
+<changefreq>weekly</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/edukacije.dc.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/za-tvrtke.dc.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/mentorstvo.dc.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-radionica.dc.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/o-nama.dc.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/kontakt.dc.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/blog.dc.html</loc>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/google-search-console-indeksiranje-vodic.dc.html</loc>
+<lastmod>2026-08-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/search-console-ai-izvjestaj-vidljivost.dc.html</loc>
+<lastmod>2026-08-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/google-preferred-sources-objasnjeno.dc.html</loc>
+<lastmod>2026-08-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-chronically-online-gen-z.dc.html</loc>
+<lastmod>2026-08-01</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-konektori-gmail-slack-drive.dc.html</loc>
+<lastmod>2026-07-31</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/excel-uvjetno-oblikovanje-pocetnici.dc.html</loc>
+<lastmod>2026-07-31</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/web-dizajn-mobile-first.dc.html</loc>
+<lastmod>2026-07-31</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/seo-lokalni-seo-objasnjeno.dc.html</loc>
+<lastmod>2026-07-31</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-projects-razgovori-na-jednom-mjestu.dc.html</loc>
+<lastmod>2026-07-31</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-kako-postaviti-pitanje.dc.html</loc>
+<lastmod>2026-07-28</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-pisi-emailove-kupcima.dc.html</loc>
+<lastmod>2026-07-28</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-organiziraj-svoj-dan.dc.html</loc>
+<lastmod>2026-07-28</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-sazmi-duge-dokumente.dc.html</loc>
+<lastmod>2026-07-28</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-kalkulator-artifacts.dc.html</loc>
+<lastmod>2026-07-28</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-scheduled-tasks-automatizacija.dc.html</loc>
+<lastmod>2026-07-28</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-mcp-konektori-gmail-kalendar.dc.html</loc>
+<lastmod>2026-07-28</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/claude-sto-je-claude-ustedi-vrijeme.dc.html</loc>
+<lastmod>2026-07-27</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-brand-intelligence.dc.html</loc>
+<lastmod>2026-07-25</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/excel-pivot-tablice-pocetnici.dc.html</loc>
+<lastmod>2026-07-25</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/web-dizajn-prije-poslije-primjer.dc.html</loc>
+<lastmod>2026-07-25</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/seo-sto-je-eeat-objasnjeno.dc.html</loc>
+<lastmod>2026-07-25</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-raspored-objava-drustvene-mreze.dc.html</loc>
+<lastmod>2026-07-24</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/excel-vlookup-xlookup-pocetnici.dc.html</loc>
+<lastmod>2026-07-24</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/web-dizajn-ux-pojmovi-recnik.dc.html</loc>
+<lastmod>2026-07-24</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/seo-schema-markup-objasnjeno.dc.html</loc>
+<lastmod>2026-07-24</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/excel-countif-brojanje-pocetnici.dc.html</loc>
+<lastmod>2026-07-23</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/web-dizajn-greske-male-firme.dc.html</loc>
+<lastmod>2026-07-23</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/seo-sto-je-aeo-objasnjeno.dc.html</loc>
+<lastmod>2026-07-23</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-grow-oglasi.dc.html</loc>
+<lastmod>2026-07-19</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/excel-average-prosjek-pocetnici.dc.html</loc>
+<lastmod>2026-07-19</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/seo-sto-je-geo-objasnjeno.dc.html</loc>
+<lastmod>2026-07-19</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/web-dizajn-trendovi-2026.dc.html</loc>
+<lastmod>2026-07-19</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/excel-sum-formula-pocetnici.dc.html</loc>
+<lastmod>2026-07-18</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/seo-osnove-sto-je-seo.dc.html</loc>
+<lastmod>2026-07-18</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/web-dizajn-hero-sekcija.dc.html</loc>
+<lastmod>2026-07-18</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-learn-grid-diferencirana-nastava.dc.html</loc>
+<lastmod>2026-07-18</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-sheets-ai-tablice.dc.html</loc>
+<lastmod>2026-07-16</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-code-web-stranica-bez-programiranja.dc.html</loc>
+<lastmod>2026-07-14</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-print-shop.dc.html</loc>
+<lastmod>2026-07-13</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-offline-nacin-rada.dc.html</loc>
+<lastmod>2026-07-12</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-kampanje-aktivizam.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-novosti-2026.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-photo-editor-vodic.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-video-suite-vodic.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-vodic-kompletan-pregled.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-za-pocetnike-7-dana.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-za-tvrtke-profesionalno.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/canva-za-udruge-izvjestaji.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://kuzis.hr/redizajn-identiteta-canva.dc.html</loc>
+<lastmod>2026-07-08</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
 </urlset>
