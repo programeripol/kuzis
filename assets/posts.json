@@ -1,5 +1,35 @@
 [
   {
+    "href": "google-search-console-indeksiranje-vodic.dc.html",
+    "title": "Zašto web stranica ne postoji na Googlu čim je objaviš — rješenje u 3 koraka",
+    "category": "SEO",
+    "date": "8. kol 2026.",
+    "iso": "2026-08-08",
+    "readingTime": 5,
+    "img": "assets/google-search-console-indeksiranje-vodic.webp",
+    "excerpt": "Spojila si domenu, objavila kod, web stranica radi — ali je nema na Googleu. Evo rješenja u 3 koraka, istih kojima to rješavam za svaku stranicu koju pokrenem."
+  },
+  {
+    "href": "search-console-ai-izvjestaj-vidljivost.dc.html",
+    "title": "Google Search Console sad mjeri AI vidljivost — evo kako provjeriti imaš li već taj izvještaj",
+    "category": "SEO",
+    "date": "8. kol 2026.",
+    "iso": "2026-08-08",
+    "readingTime": 4,
+    "img": "assets/search-console-ai-izvjestaj-vidljivost.webp",
+    "excerpt": "Google je u Search Console dodao izvještaj o AI Overviews vidljivosti — ali ga još nema svatko. Evo gdje ga tražiti i što raditi dok čekaš pristup."
+  },
+  {
+    "href": "google-preferred-sources-objasnjeno.dc.html",
+    "title": "Google Preferred Sources: kako da te kupci označe kao omiljeni izvor (i udvostruče ti klikove)",
+    "category": "SEO",
+    "date": "8. kol 2026.",
+    "iso": "2026-08-08",
+    "readingTime": 5,
+    "img": "assets/google-preferred-sources-objasnjeno.webp",
+    "excerpt": "Google na I/O 2026 pustio je značajku koja izvorima koje ljudi označe kao omiljene daje dvostruko više klikova. Evo što je to i kako je iskoristiti i za mali biznis."
+  },
+  {
     "href": "canva-chronically-online-gen-z.dc.html",
     "title": "Canva sad priča Gen Z: uključi chronically online engleski",
     "category": "Canva",
