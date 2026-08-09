@@ -550,7 +550,7 @@ class Component extends DCLogic {
       onEmailChange: (e) => this.setState({ email: e.target.value }),
       subscribed: this.state.subscribed,
       notSubscribed: !this.state.subscribed,
-      onSubscribe: (e) => { e.preventDefault(); if (this.state.email) this.setState({ subscribed: true }); },
+      onSubscribe: (e) => { e.preventDefault(); if (this.state.email) { const fd = new FormData(); fd.append('fields[email]', this.state.email); fetch('https://assets.mailerlite.com/jsonp/2532018/forms/194591584556156410/subscribe', { method: 'POST', body: fd }).catch(() => {}); this.setState({ subscribed: true }); } },
       topBtnOpacity: this.state.showTop ? 1 : 0,
       topBtnTransform: this.state.showTop ? 'translateY(0) scale(1)' : 'translateY(12px) scale(.9)',
       topBtnPointer: this.state.showTop ? 'auto' : 'none',
