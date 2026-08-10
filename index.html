@@ -77,7 +77,10 @@
   #blog-slider-track image-slot,#blog-slider-track x-import{touch-action:pan-x pan-y!important;-webkit-tap-highlight-color:transparent!important}
   .kz-hamb{display:none}
   #kz-nav-toggle{display:none}
-  @media (max-width:860px){
+  @media (min-width:861px){
+.hp-hero-cut{margin-top:-30px!important}
+}
+@media (max-width:860px){
     .kz-nav{display:none!important;position:fixed!important;top:var(--kz-header-h,72px)!important;left:0;right:0;bottom:0;flex-direction:column!important;align-items:stretch!important;flex-wrap:nowrap!important;gap:0!important;background:#fff;padding:22px 24px;margin:0;overflow-y:auto;z-index:40}
     .kz-nav a{width:100%!important;padding:18px 0!important;font-size:24px!important}
     .kz-nav a.active{width:auto!important;display:inline-block!important;align-self:flex-start!important;padding-top:18px!important;padding-bottom:4px!important}
@@ -135,7 +138,7 @@
   <section style="position:relative;overflow:hidden;background:#FFD048">
     <picture>
       <source media="(max-width:860px)" srcset="assets/hero%20kuzis%20mobile.png">
-      <img src="assets/hero kuzis.png" alt="Kužiš — Canva, Excel, Figma, SEO i Claude na jednom mjestu" width="1600" height="900" style="display:block;width:100%;height:auto;margin-top:-10px">
+      <img class="hp-hero-cut" src="assets/hero kuzis.png" alt="Kužiš — Canva, Excel, Figma, SEO i Claude na jednom mjestu" width="1600" height="900" style="display:block;width:100%;height:auto;margin-top:-10px">
     </picture>
     <div class="hp-hero-wrap" style="position:absolute;left:50%;bottom:calc(60px + clamp(22px,4vw,48px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:20px;max-width:680px;padding:0 20px;text-align:center">
       <p class="hp-hero-text" style="margin:0;font-weight:800;font-size:clamp(16px,2.1vw,21px);line-height:1.45;font-family:'Baloo 2';color:#171412">Praktična digitalna rješenja, sustavi, optimizacija procesa, <br class="hp-hero-br">edukacije i mentorstvo za pojedince i organizacije <br class="hp-hero-br">koje žele raditi bolje i brže.</p>
@@ -305,7 +308,7 @@
       <div style="position:relative">
       <div id="blog-slider-track" style="display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none">
         <sc-for list="{{ blogPreview }}" as="p" hint-placeholder-count="5">
-          <a href="{{ p.href }}" style="flex:0 0 auto;width:min(78vw,368px);scroll-snap-align:start;display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid rgba(23,18,15,.08);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-4px);box-shadow:0 14px 28px rgba(23,18,15,.1)">
+          <a href="{{ p.href }}" style="flex:0 0 auto;width:min(80vw,430px);scroll-snap-align:start;display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid rgba(23,18,15,.08);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-4px);box-shadow:0 14px 28px rgba(23,18,15,.1)">
             <div style="width:100%;aspect-ratio:16/9;background:#FFF8E1">
               <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ p.imgId }}" src="{{ p.img }}" shape="rect" fit="cover" placeholder="slika članka" hint-size="100%,100%" style="width:100%;height:100%"></x-import>
             </div>
@@ -419,7 +422,7 @@ class Component extends DCLogic {
       const CAT_STYLE = { 'Canva': { t: '#A8790A', b: '#FFC93C' }, 'Excel i Google Sheets': { t: '#5E8C4A', b: '#9FC58C' }, 'Web dizajn': { t: '#6F55B8', b: '#D8C8F7' }, 'SEO': { t: '#2E7FA8', b: '#8ECAE6' }, 'Claude': { t: '#8A3D1F', b: '#D97757' } };
       const byCat = {};
       posts.slice().sort((a, b) => new Date(b.iso) - new Date(a.iso)).forEach((p) => { if (!byCat[p.category]) byCat[p.category] = p; });
-      const top5 = order.filter((c) => byCat[c]).map((c) => byCat[c]).map((p, i) => {
+      const top5 = order.filter((c) => byCat[c]).map((c) => byCat[c]).sort((a, b) => new Date(b.iso) - new Date(a.iso)).map((p, i) => {
         const cs = CAT_STYLE[p.category] || { t: '#171412', b: '#FFD048' };
         return { title: p.title, category: p.category, date: p.date, readingTime: p.readingTime, href: p.href, img: p.img, imgId: 'home-blog-' + (i + 1), catText: cs.t, catBar: cs.b, excerpt: p.excerpt };
       });
