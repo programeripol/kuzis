@@ -132,7 +132,11 @@ article.post-body li { margin-bottom:6px; }
 .related-card .thumb { width:100%; aspect-ratio:16/9; background:color-mix(in srgb, var(--accent) 22%, white); }
 .related-card .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
 .related-card .rc-body { display:flex; flex-direction:column; flex:1; padding:18px; }
-.related-card .rc-badge { display:inline-block; align-self:flex-start; font:700 11px Inter; color:#171412; background:var(--accent); padding:4px 10px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; margin-bottom:10px; }
+.rc-badge{display:inline-block;align-self:flex-start;font:600 11.5px Inter;color:#A8790A;border-bottom:3px solid #FFC93C;padding:0 0 3px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.rc-badge[data-cat="Excel i Google Sheets"]{color:#5E8C4A;border-bottom-color:#9FC58C}
+.rc-badge[data-cat="Web dizajn"]{color:#6F55B8;border-bottom-color:#D8C8F7}
+.rc-badge[data-cat="SEO"]{color:#2E7FA8;border-bottom-color:#8ECAE6}
+.rc-badge[data-cat="Claude"]{color:#8A3D1F;border-bottom-color:#D97757}
 .related-card h3 { margin:0 0 8px; font-weight:700; font-size:16px; line-height:1.35; letter-spacing:-.005em; }
 .related-card .rc-meta { margin-top:auto; font:400 12.5px Inter; color:rgba(23,18,15,.5); }
 footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px solid rgba(255,255,255,.1); }
@@ -489,7 +493,7 @@ document.querySelector('[data-share-email]').href = 'mailto:?subject=' + encodeU
       var alt = String(p.title).replace(/"/g, '&quot;');
       return '<a class="related-card" href="' + p.href + '">' +
         '<div class="thumb"><img src="' + p.img + '" alt="' + alt + '" loading="lazy"></div>' +
-        '<div class="rc-body"><div class="rc-badge">' + p.category + '</div><h3>' + p.title + '</h3>' +
+        '<div class="rc-body"><div class="rc-badge" data-cat="' + p.category + '">' + p.category + '</div><h3>' + p.title + '</h3>' +
         '<div class="rc-meta">' + p.date + ' · ' + p.readingTime + ' min čitanja</div></div></a>';
     }).join('');
   }).catch(function () {});
