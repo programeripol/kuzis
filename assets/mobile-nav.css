@@ -64,8 +64,5 @@ header.site-header nav a.active{
 /* CTA button hover (also dead via style-hover on inline-styled pages before this fix). */
 .kz-nav a.kz-nav-cta:hover,
 header.site-header nav a.cta:hover{
-  background:#171412!important;
-  color:#FFD048!important;
   transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(23,18,15,.18);
 }
