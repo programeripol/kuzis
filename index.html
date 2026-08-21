@@ -38,12 +38,12 @@
   .usluga-card:hover .usluga-icon { transform: scale(1.14) rotate(-4deg); }
   #blog-slider-track::-webkit-scrollbar { display: none; }
   .cta-underline { position: relative; text-decoration: none; padding-bottom: 3px; display: inline-block; }
-  .cta-underline::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: #FFD048; border-radius: 2px; transform-origin: center; }
-  .cta-underline:hover::after { animation: underline-swipe .6s cubic-bezier(.65,0,.35,1) forwards; }
+  .cta-underline::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: #FFD048; border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.4,0,.2,1); }
+  .cta-underline:hover::after { transform: scaleX(1); }
   .cta-underline:hover { transform: translateY(-1px); transition: transform .3s ease; }
   .cta-underline-inv { position: relative; text-decoration: none; display: inline-block; padding-bottom: 3px; color: #171412; font: 800 14px Inter; white-space: nowrap; }
-  .cta-underline-inv::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: #171412; border-radius: 2px; transform-origin: center; }
-  .cta-underline-inv:hover::after { animation: underline-swipe-inv .6s cubic-bezier(.65,0,.35,1) forwards; }
+  .cta-underline-inv::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: #171412; border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.4,0,.2,1); }
+  .cta-underline-inv:hover::after { transform: scaleX(1); }
   .cta-underline-inv:hover { transform: translateY(-1px); transition: transform .3s ease; }
   @keyframes underline-swipe-inv {
     0% { transform: scaleX(1); }
@@ -140,7 +140,7 @@
       <source media="(max-width:860px)" srcset="assets/hero%20kuzis%20mobile.png">
       <img class="hp-hero-cut" src="assets/hero kuzis.png" alt="Kužiš - Canva, Excel, Figma, SEO i Claude na jednom mjestu" width="1600" height="900" style="display:block;width:100%;height:auto;margin-top:-10px">
     </picture>
-    <div class="hp-hero-wrap" style="position:absolute;left:50%;bottom:calc(150px + clamp(22px,4vw,48px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:20px;max-width:680px;padding:0 20px;text-align:center">
+    <div class="hp-hero-wrap" style="position:absolute;left:50%;bottom:calc(160px + clamp(22px,4vw,48px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:20px;max-width:680px;padding:0 20px;text-align:center">
       <p class="hp-hero-text" style="margin:0;font-weight:800;font-size:clamp(16px,2.1vw,21px);line-height:1.45;font-family:'Baloo 2';color:#171412;transform:translateY(-10px)">Praktična digitalna rješenja, sustavi, optimizacija procesa, <br class="hp-hero-br">edukacije i mentorstvo za pojedince i organizacije <br class="hp-hero-br">koje žele raditi bolje i brže.</p>
       <a href="/kontakt" class="hp-hero-btn" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;font-size:14px;font-family:Inter;text-decoration:none;border:2.5px solid #171412;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
     </div>
