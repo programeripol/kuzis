@@ -52,6 +52,10 @@ header.site-header nav a:not(.cta){
   border-bottom:2.5px solid transparent;
   transition:color .2s ease;
 }
+.kz-nav a.active,
+header.site-header nav a.active{
+  border-bottom-color:transparent!important;
+}
 .kz-nav a:not(.kz-nav-cta)::after,
 header.site-header nav a:not(.cta)::after{
   content:'';
