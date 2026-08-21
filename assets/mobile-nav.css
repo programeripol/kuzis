@@ -70,3 +70,7 @@ header.site-header nav a.cta:hover{
 .hp-hero-btn:hover{
   transform:translateY(-2px);
 }
+
+.usluga-cta-btn:hover{
+  transform:translateY(-2px);
+}
