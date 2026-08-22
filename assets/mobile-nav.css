@@ -181,3 +181,17 @@ header.site-header nav a.cta:hover{
 .usluga-cta-btn:hover{
   transform:translateY(-2px);
 }
+
+/* ==========================================================================
+   DVOSTRUKI SCROLLER (Dorin bug 2026-08-22)
+   Svaka DC stranica ima omotac <div style="...;overflow-x:hidden"> oko cijelog
+   sadrzaja. Po CSS specifikaciji, ako je JEDNA os razlicita od 'visible',
+   druga se racuna kao 'auto' — pa taj div postane vlastiti scroll kontejner i
+   nacrta DRUGU vertikalnu traku pored trake stranice.
+   'overflow-x:clip' je jedina vrijednost koja se smije pariti s 'visible',
+   pa i dalje rezemo vodoravno, ali bez druge trake.
+   NE mijenjaj ovo natrag u hidden. */
+html body div[style*="overflow-x:hidden"]{
+  overflow-x:clip!important;
+  overflow-y:visible!important;
+}
