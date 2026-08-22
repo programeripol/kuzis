@@ -273,21 +273,40 @@ w.style.transform=tf;
 p.style.transform='none';
 }
 var enterFns=[kzLine0Enter,kzLine1Enter,kzLine2Enter,kzLine3Enter,kzLine4Enter];
+function applyIntro(ep, rect){
+var bgA=document.querySelector('.scrolly-bg-a');
+var bgB=document.querySelector('.scrolly-bg-b');
+if(bgA){ bgA.style.background='#ffffff'; }
+if(bgB){ bgB.style.background=kzColors[0]; bgB.style.clipPath=kzBlobClip(rect, 2, ep*1.6); }
+var lines=document.querySelectorAll('.scrolly-line');
+for(var i=0;i<lines.length;i++){
+var p=lines[i];
+if(i===0){
+p.style.opacity = ep>0 ? '1':'0';
+kzLine0Enter(p, ep);
+} else {
+p.style.opacity='0';
+}
+}
+}
 function applyContinuous(v, wrapRect){
 var n=5;
 var idx=Math.floor(v);
 if(idx>=n-1) idx=n-1;
 var localT=(idx===n-1)?0:Math.max(0,Math.min(1,v-idx));
+var exitT=Math.min(1, localT/0.5);
 var lines=document.querySelectorAll('.scrolly-line');
 for(var li=0; li<lines.length; li++){
 var p=lines[li];
 if(li===idx){
+var et=(idx===n-1)?0:exitT;
+enterFns[li](p,1);
+p.style.transform=exitFns[li](et);
+p.style.opacity=(idx===n-1)?'1':(exitT<1?'1':'0');
+} else if(li===idx+1 && localT>0.5){
+var enterT=(localT-0.5)/0.5;
 p.style.opacity='1';
-enterFns[li](p, 1);
-p.style.transform=exitFns[li](localT);
-} else if(li===idx+1 && localT>0){
-p.style.opacity='1';
-enterFns[li](p, localT);
+enterFns[li](p, enterT);
 } else {
 p.style.opacity='0';
 }
@@ -331,7 +350,15 @@ var wrap=document.querySelector('.scrolly-wrap');
 var lines=document.querySelectorAll('.scrolly-line');
 if(!wrap || !lines.length) return;
 var rect=wrap.getBoundingClientRect();
-var total=rect.height-window.innerHeight;
+var vh=window.innerHeight;
+if(rect.top>0){
+var ep=Math.max(0,Math.min(1,(vh-rect.top)/vh));
+applyIntro(ep, rect);
+pin(wrap);
+window.__kzScrollyMarker='intro:'+ep.toFixed(2);
+return;
+}
+var total=rect.height-vh;
 var scrolled=Math.min(Math.max(-rect.top,0),total);
 var progress=total>0?scrolled/total:0;
 var v=progress*lines.length;
