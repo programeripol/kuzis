@@ -150,45 +150,78 @@
 <style>
 @media(max-width:860px){.scrolly-wrap{height:300vh!important}.scrolly-line{font-size:clamp(22px,6vw,32px)!important}}
 </style>
-<section class="scrolly-wrap" style="position:relative;background:#FFC93C;transition:background-color .7s ease;height:360vh">
+<section class="scrolly-wrap" style="position:relative;height:360vh;background:#FFC93C">
+<div class="scrolly-bg-a" style="position:absolute;inset:0;background:#FFC93C"></div>
+<div class="scrolly-bg-b" style="position:absolute;inset:0;background:#8ECAE6;clip-path:inset(0 100% 0 0)"></div>
 <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
-<svg style="position:absolute;top:-8%;left:-10%;width:56vw;max-width:520px;filter:blur(40px);opacity:.32;mix-blend-mode:multiply" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#171412" d="M52.4,-62.3C67.3,-52.9,78.3,-36.4,81.6,-18.6C84.9,-0.8,80.5,18.3,70.6,33.6C60.8,48.9,45.5,60.4,28.4,66.9C11.4,73.4,-7.5,74.9,-24.9,69.6C-42.3,64.3,-58.2,52.2,-67.5,36.3C-76.8,20.4,-79.5,0.7,-75.1,-16.9C-70.7,-34.5,-59.2,-49.9,-44.7,-59.2C-30.2,-68.5,-15.1,-71.7,1.8,-74.1C18.7,-76.5,37.4,-71.7,52.4,-62.3Z" transform="translate(100 100)"></path></svg>
-<svg style="position:absolute;bottom:-12%;right:-10%;width:50vw;max-width:480px;filter:blur(44px);opacity:.28;mix-blend-mode:multiply" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M44.7,-58.7C56.9,-50.4,64.8,-35.3,68.6,-19.1C72.4,-2.9,72.1,14.4,64.9,28.4C57.7,42.4,43.6,53.1,28,60.2C12.4,67.3,-4.7,70.8,-21.1,67.3C-37.5,63.8,-53.2,53.3,-62.6,38.7C-72,24.1,-75.1,5.4,-71.6,-11.5C-68.1,-28.4,-58,-43.5,-44.6,-51.8C-31.2,-60.1,-15.6,-61.6,0.8,-62.7C17.2,-63.8,34.4,-64.5,44.7,-58.7Z" transform="translate(100 100)"></path></svg>
-<svg style="position:absolute;top:34%;left:40%;width:34vw;max-width:320px;filter:blur(32px);opacity:.2;mix-blend-mode:multiply" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#171412" d="M39.4,-51.2C50.4,-42.8,58.5,-30.1,62.6,-15.7C66.7,-1.3,66.8,14.8,60.6,28.3C54.4,41.8,41.9,52.7,27.6,59.2C13.3,65.7,-2.8,67.8,-18.5,64.3C-34.2,60.8,-49.5,51.7,-58.9,38.4C-68.3,25.1,-71.8,7.6,-69.1,-8.6C-66.4,-24.8,-57.5,-39.7,-45.1,-48.2C-32.7,-56.7,-16.4,-58.8,-0.6,-58.1C15.2,-57.4,30.4,-54.9,39.4,-51.2Z" transform="translate(100 100)"></path></svg>
+<svg style="position:absolute;top:-8%;left:-10%;width:56vw;max-width:520px;filter:blur(40px);opacity:.4;mix-blend-mode:soft-light" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M52.4,-62.3C67.3,-52.9,78.3,-36.4,81.6,-18.6C84.9,-0.8,80.5,18.3,70.6,33.6C60.8,48.9,45.5,60.4,28.4,66.9C11.4,73.4,-7.5,74.9,-24.9,69.6C-42.3,64.3,-58.2,52.2,-67.5,36.3C-76.8,20.4,-79.5,0.7,-75.1,-16.9C-70.7,-34.5,-59.2,-49.9,-44.7,-59.2C-30.2,-68.5,-15.1,-71.7,1.8,-74.1C18.7,-76.5,37.4,-71.7,52.4,-62.3Z" transform="translate(100 100)"></path></svg>
+<svg style="position:absolute;bottom:-14%;right:-10%;width:50vw;max-width:480px;filter:blur(44px);opacity:.35;mix-blend-mode:soft-light" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M44.7,-58.7C56.9,-50.4,64.8,-35.3,68.6,-19.1C72.4,-2.9,72.1,14.4,64.9,28.4C57.7,42.4,43.6,53.1,28,60.2C12.4,67.3,-4.7,70.8,-21.1,67.3C-37.5,63.8,-53.2,53.3,-62.6,38.7C-72,24.1,-75.1,5.4,-71.6,-11.5C-68.1,-28.4,-58,-43.5,-44.6,-51.8C-31.2,-60.1,-15.6,-61.6,0.8,-62.7C17.2,-63.8,34.4,-64.5,44.7,-58.7Z" transform="translate(100 100)"></path></svg>
+<svg style="position:absolute;top:32%;left:38%;width:34vw;max-width:320px;filter:blur(32px);opacity:.3;mix-blend-mode:soft-light" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M39.4,-51.2C50.4,-42.8,58.5,-30.1,62.6,-15.7C66.7,-1.3,66.8,14.8,60.6,28.3C54.4,41.8,41.9,52.7,27.6,59.2C13.3,65.7,-2.8,67.8,-18.5,64.3C-34.2,60.8,-49.5,51.7,-58.9,38.4C-68.3,25.1,-71.8,7.6,-69.1,-8.6C-66.4,-24.8,-57.5,-39.7,-45.1,-48.2C-32.7,-56.7,-16.4,-58.8,-0.6,-58.1C15.2,-57.4,30.4,-54.9,39.4,-51.2Z" transform="translate(100 100)"></path></svg>
 </div>
-<div class="scrolly-sticky" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center">
+<div class="scrolly-sticky" style="position:absolute;top:0;left:0;width:100%;height:100vh;display:flex;align-items:center;justify-content:center">
 <div class="scrolly-track" style="position:relative;width:100%;max-width:820px;padding:0 24px;min-height:clamp(160px,26vw,260px)">
-<p class="scrolly-line" data-i="0" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:1;transform:translateY(0) scale(1);transition:opacity .55s ease,transform .55s ease">Sustavi koji rade umjesto vas.</p>
-<p class="scrolly-line" data-i="1" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Znanje koje ostaje.</p>
-<p class="scrolly-line" data-i="2" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Podrška kad zapne.</p>
-<p class="scrolly-line" data-i="3" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Posao prestaje biti teret.</p>
-<p class="scrolly-line" data-i="4" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Možete se posvetiti onome što vas ispunjava, onome u čemu ste zaista najbolji.</p>
+<p class="scrolly-line" data-i="0" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:1;will-change:transform,opacity,filter">Sustavi koji rade umjesto vas.</p>
+<p class="scrolly-line" data-i="1" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;will-change:transform,opacity,filter">Znanje koje ostaje.</p>
+<p class="scrolly-line" data-i="2" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;will-change:transform,opacity,filter">Podrška kad zapne.</p>
+<p class="scrolly-line" data-i="3" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;will-change:transform,opacity,filter">Posao prestaje biti teret.</p>
+<p class="scrolly-line" data-i="4" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;will-change:transform,opacity,filter">Možete se posvetiti onome što vas ispunjava, onome u čemu ste zaista najbolji.</p>
 </div>
 </div>
 </section>
 <script>
 window.__kzScrollyMarker = 'init-start';
 (function(){
-function kzScrollyInit(){
-window.__kzScrollyMarker = 'init-ran';
-var ticking = false;
 var kzColors=['#FFC93C','#8ECAE6','#D8C8F7','#9FC58C','#D97757'];
-function apply(idx){
-var lines = document.querySelectorAll('.scrolly-line');
+var enterFns=[
+function(t){ return 'scale('+(0.55+0.45*t)+')'; },
+function(t){ return 'translateX('+((1-t)*60)+'px) scale('+(0.92+0.08*t)+')'; },
+function(t){ return 'rotate('+((1-t)*-10)+'deg) scale('+(0.84+0.16*t)+')'; },
+function(t){ return 'translateX('+((1-t)*-60)+'px) scale('+(0.92+0.08*t)+')'; },
+function(t){ return 'scale('+(0.62+0.38*t)+')'; }
+];
+var enterBlur=[0,0,0,0,1];
+var exitFns=[
+function(t){ return 'scale('+(1-0.14*t)+')'; },
+function(t){ return 'translateX('+(t*-46)+'px) scale('+(1-0.08*t)+')'; },
+function(t){ return 'rotate('+(t*8)+'deg) scale('+(1-0.12*t)+')'; },
+function(t){ return 'translateX('+(t*46)+'px) scale('+(1-0.08*t)+')'; },
+function(t){ return 'scale('+(1-0.1*t)+')'; }
+];
+function applyContinuous(v){
+var n=5;
+var idx=Math.floor(v);
+if(idx>=n-1) idx=n-1;
+var localT=(idx===n-1)?0:Math.max(0,Math.min(1,v-idx));
+var lines=document.querySelectorAll('.scrolly-line');
 for(var i=0;i<lines.length;i++){
-var el = lines[i];
-if(i===idx){ el.style.opacity='1'; el.style.transform='translateY(0) scale(1)'; }
-else if(i<idx){ el.style.opacity='0'; el.style.transform='translateY(-24px) scale(.96)'; }
-else { el.style.opacity='0'; el.style.transform='translateY(24px) scale(.96)'; }
+var el=lines[i];
+if(i===idx){
+el.style.opacity=String(1-localT);
+el.style.transform=exitFns[i](localT);
+el.style.filter='none';
+} else if(i===idx+1 && localT>0){
+el.style.opacity=String(localT);
+el.style.transform=enterFns[i](localT);
+el.style.filter=enterBlur[i]?('blur('+((1-localT)*10)+'px)'):'none';
+} else {
+el.style.opacity='0';
+el.style.filter='none';
 }
-var wrap = document.querySelector('.scrolly-wrap');
-if(wrap && kzColors[idx]) wrap.style.backgroundColor = kzColors[idx];
+}
+var bgA=document.querySelector('.scrolly-bg-a');
+var bgB=document.querySelector('.scrolly-bg-b');
+if(bgA && bgB){
+bgA.style.background=kzColors[idx];
+var nextIdx=Math.min(idx+1,n-1);
+bgB.style.background=kzColors[nextIdx];
+bgB.style.clipPath='inset(0 '+((1-localT)*100)+'% 0 0)';
+}
 }
 function pin(wrap){
-var sticky = wrap.querySelector('.scrolly-sticky');
+var sticky=wrap.querySelector('.scrolly-sticky');
 if(!sticky) return;
-var rect = wrap.getBoundingClientRect();
-var vh = window.innerHeight;
+var rect=wrap.getBoundingClientRect();
+var vh=window.innerHeight;
 if(rect.top<=0 && rect.bottom>=vh){
 sticky.style.position='fixed';
 sticky.style.top='0px';
@@ -210,25 +243,27 @@ sticky.style.height=vh+'px';
 }
 }
 function update(){
-var wrap = document.querySelector('.scrolly-wrap');
-var lines = document.querySelectorAll('.scrolly-line');
-if(!wrap || !lines.length){ ticking=false; return; }
-var rect = wrap.getBoundingClientRect();
-var total = rect.height - window.innerHeight;
-var scrolled = Math.min(Math.max(-rect.top,0), total);
-var progress = total>0 ? scrolled/total : 0;
-var idx = Math.min(lines.length-1, Math.floor(progress*lines.length));
-apply(idx);
+var wrap=document.querySelector('.scrolly-wrap');
+var lines=document.querySelectorAll('.scrolly-line');
+if(!wrap || !lines.length) return;
+var rect=wrap.getBoundingClientRect();
+var total=rect.height-window.innerHeight;
+var scrolled=Math.min(Math.max(-rect.top,0),total);
+var progress=total>0?scrolled/total:0;
+var v=progress*lines.length;
+if(v>lines.length-0.0001) v=lines.length-0.0001;
+applyContinuous(v);
 pin(wrap);
-window.__kzScrollyMarker = 'updated:'+idx;
-ticking=false;
+window.__kzScrollyMarker='updated:'+v.toFixed(2);
 }
 function onScroll(){ update(); }
+function kzScrollyInit(){
+window.__kzScrollyMarker='init-ran';
 window.addEventListener('scroll', onScroll, {passive:true});
 window.addEventListener('resize', onScroll);
 update();
-setTimeout(update, 800);
-setTimeout(update, 2000);
+setTimeout(update,800);
+setTimeout(update,2000);
 }
 if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', kzScrollyInit); } else { kzScrollyInit(); }
 window.addEventListener('load', kzScrollyInit);
