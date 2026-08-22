@@ -62,24 +62,22 @@ header.site-header nav a.active{
   left:0;
   bottom:-2.5px;
   width:100%;
-  height:2.5px;
+  height:1.5px;
   background:#FFD048;
   border-radius:2px;
-  opacity:0;
-  transform:translateY(4px);
-  transition:opacity .25s ease, transform .25s ease;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
 }
 .kz-nav a:not(.kz-nav-cta):hover, header.site-header nav a:not(.cta):hover{
   color:#171412!important;
   text-decoration:none!important;
 }
 .kz-nav a:not(.kz-nav-cta):hover::after, header.site-header nav a:not(.cta):hover::after{
-  opacity:1;
-  transform:translateY(0);
+  transform:scaleX(1);
 }
 .kz-nav a.active::after, header.site-header nav a.active::after{
-  opacity:1;
-  transform:translateY(0);
+  transform:scaleX(1);
 }
 /* CTA button hover (also dead via style-hover on inline-styled pages before this fix). */
 .kz-nav a.kz-nav-cta:hover,
