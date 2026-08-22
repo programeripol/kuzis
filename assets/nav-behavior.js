@@ -149,6 +149,8 @@
       '.kz-nl-go{padding:12px 20px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:14px 16px 12px 15px;font:700 14.5px Inter;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}',
       '.kz-nl-go:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 #171412}',
       '.kz-nl-fine{margin:10px 0 0;font:400 12px/1.5 Inter;color:rgba(23,18,15,.5)}',
+      '.kz-nl-fine a{color:#171412;font-weight:600}',
+      '.kz-nl-cv{display:block;width:100%;height:auto;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;background:#FFFCF2;cursor:pointer;touch-action:manipulation}',
       '.kz-nl-doodle{position:absolute;pointer-events:none}',
       '@media(max-width:520px){.kz-nl-card{padding:24px 20px 20px;border-radius:24px}.kz-nl-h{font-size:22px}}',
       '.kz-fnl{max-width:1120px;margin:0 auto 34px;padding:22px 24px;border:2.5px dashed rgba(255,255,255,.35);border-radius:22px 26px 20px 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}',
@@ -195,31 +197,7 @@
     });
   }
 
-  /* ---------- pop-up quiz ---------- */
-  var QS = [
-    {
-      q: 'Što ti trenutno jede najviše vremena?',
-      a: [
-        ['Dizajn objava i materijala', 'canva'],
-        ['Tablice, papirologija, izvještaji', 'excel'],
-        ['Web, vidljivost, "gdje sam na Googleu"', 'web']
-      ]
-    },
-    {
-      q: 'Kad zapneš, ti...',
-      a: [
-        ['Guglaš pola sata i nađeš pola rješenja', 'a'],
-        ['Pitaš nekog tko to već zna', 'b'],
-        ['Odgodiš za sutra (pa opet za sutra)', 'c']
-      ]
-    }
-  ];
-  var RESULTS = {
-    canva: ['Ti si Vizualac.', 'Sve ti je u glavi, samo treba brže izaći van. Canva trikovi ti štede najviše vremena.'],
-    excel: ['Ti si Sistematičar.', 'Voliš kad stvari štimaju. Par Excel formula i predložaka i pola posla radi se samo.'],
-    web: ['Ti si Graditelj.', 'Želiš da te ljudi nađu i zapamte. Web i SEO savjeti su tvoj teren.']
-  };
-
+  /* ---------- pop-up: mini igrica ---------- */
   function popup() {
     if (ls(K_CLOSED) || ls(K_DONE)) return;
     styles();
@@ -233,72 +211,190 @@
     document.body.appendChild(ov);
     requestAnimationFrame(function () { ov.classList.add('on'); });
 
-    var step = 0, profile = 'canva';
+    var raf = null, keyH = null;
 
     function close(flag) {
       lsSet(flag || K_CLOSED, '1');
+      if (raf) cancelAnimationFrame(raf);
+      if (keyH) window.removeEventListener('keydown', keyH);
       ov.classList.remove('on');
       setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 350);
     }
 
-    function dots(n) {
-      var h = '<div class="kz-nl-dots">';
-      for (var i = 0; i < 3; i++) h += '<div class="kz-nl-dot' + (i <= n ? ' on' : '') + '"></div>';
-      return h + '</div>';
+    function xBtn() {
+      var b = card.querySelector('.kz-nl-x');
+      if (b) b.addEventListener('click', function () { close(K_CLOSED); });
     }
 
-    function draw() {
-      var h = '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>';
-      if (step < QS.length) {
-        var Q = QS[step];
-        h += dots(step) + '<div class="kz-nl-kicker">Kužiš kviz</div>';
-        h += '<h3 class="kz-nl-h">' + Q.q + '</h3>';
-        h += '<p class="kz-nl-p">Dva pitanja, deset sekundi.</p>';
-        for (var i = 0; i < Q.a.length; i++) {
-          h += '<button class="kz-nl-opt" data-v="' + Q.a[i][1] + '">' + Q.a[i][0] + '</button>';
-        }
-      } else if (step === QS.length) {
-        var R = RESULTS[profile] || RESULTS.canva;
-        h += dots(2) + '<div class="kz-nl-kicker">Tvoj rezultat</div>';
-        h += '<h3 class="kz-nl-h">' + R[0] + '</h3>';
-        h += '<p class="kz-nl-p">' + R[1] + ' Šaljemo takve stvari jednom mjesečno - upiši mail pa ti pošaljemo.</p>';
-        h += '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="vasa@email.com" aria-label="Email adresa">' +
-             '<button class="kz-nl-go" type="submit">Šalji</button></form>';
-        h += '<p class="kz-nl-fine">Bez spama. Odjava jednim klikom.</p>';
-      } else {
-        h += '<div class="kz-nl-kicker">Gotovo</div>';
-        h += '<h3 class="kz-nl-h">Hvala! Provjeri inbox.</h3>';
-        h += '<p class="kz-nl-p">Poslali smo ti mail za potvrdu prijave - klikni i to je to.</p>';
-      }
-      card.innerHTML = h;
-
-      card.querySelector('.kz-nl-x').addEventListener('click', function () { close(K_CLOSED); });
-      var opts = card.querySelectorAll('.kz-nl-opt');
-      for (var j = 0; j < opts.length; j++) {
-        opts[j].addEventListener('click', function () {
-          if (step === 0) profile = this.getAttribute('data-v');
-          step++;
-          draw();
-        });
-      }
+    /* ---- korak 2: mail ---- */
+    function showForm(score) {
+      if (raf) cancelAnimationFrame(raf);
+      raf = null;
+      var praise = score >= 12 ? 'Ozbiljno dobro.' : (score >= 6 ? 'Solidno!' : 'Idemo ponovo?');
+      card.innerHTML =
+        '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
+        '<div class="kz-nl-kicker">Skor: ' + score + '</div>' +
+        '<h3 class="kz-nl-h">' + praise + '</h3>' +
+        '<p class="kz-nl-p">Ovako preskačemo i sve ostalo što vam krade vrijeme. Jednom mjesečno šaljemo konkretne trikove za Canvu, Excel i web - upiši mail pa ti pošaljemo.</p>' +
+        '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="vasa@email.com" aria-label="Email adresa">' +
+        '<button class="kz-nl-go" type="submit">Šalji</button></form>' +
+        '<p class="kz-nl-fine"><a href="#" class="kz-nl-again">Još jednom igra</a> &nbsp;·&nbsp; Bez spama, odjava jednim klikom.</p>';
+      xBtn();
+      var again = card.querySelector('.kz-nl-again');
+      again.addEventListener('click', function (e) { e.preventDefault(); showGame(); });
       var form = card.querySelector('form');
-      if (form) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var v = form.querySelector('input').value.trim();
-          if (!v || v.indexOf('@') < 0) return;
-          subscribe(v);
-          step++;
-          draw();
-          setTimeout(function () { close(K_DONE); }, 2600);
-        });
-      }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = form.querySelector('input').value.trim();
+        if (!v || v.indexOf('@') < 0) return;
+        subscribe(v);
+        card.innerHTML =
+          '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
+          '<div class="kz-nl-kicker">Gotovo</div>' +
+          '<h3 class="kz-nl-h">Hvala! Provjeri inbox.</h3>' +
+          '<p class="kz-nl-p">Poslali smo ti mail za potvrdu prijave - klikni i to je to.</p>';
+        xBtn();
+        setTimeout(function () { close(K_DONE); }, 2600);
+      });
     }
-    draw();
 
-    document.addEventListener('keydown', function esc(e) {
-      if (e.key === 'Escape' && ov.parentNode) { close(K_CLOSED); document.removeEventListener('keydown', esc); }
-    });
+    /* ---- korak 1: igrica ---- */
+    function showGame() {
+      card.innerHTML =
+        '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
+        '<div class="kz-nl-kicker">Pauza od posla</div>' +
+        '<h3 class="kz-nl-h">Preskoči prepreke</h3>' +
+        '<p class="kz-nl-p">Klik ili razmaknica za skok. Koliko ih preskočiš?</p>' +
+        '<canvas class="kz-nl-cv" width="760" height="300"></canvas>' +
+        '<p class="kz-nl-fine"><a href="#" class="kz-nl-skip">Preskoči igru i samo se prijavi</a></p>';
+      xBtn();
+      card.querySelector('.kz-nl-skip').addEventListener('click', function (e) { e.preventDefault(); showForm(0); });
+
+      var cv = card.querySelector('.kz-nl-cv');
+      var ctx = cv.getContext('2d');
+      var W = 760, H = 300, GY = 232;
+      var st = { y: 0, v: 0, run: false, over: false, score: 0, sp: 5.8, t: 0, obs: [], next: 110 };
+
+      function jump() {
+        if (st.over) return;
+        if (!st.run) { st.run = true; loop(); return; }
+        if (st.y <= 0.5) { st.v = 18.4; }
+      }
+      cv.addEventListener('mousedown', function (e) { e.preventDefault(); jump(); });
+      cv.addEventListener('touchstart', function (e) { e.preventDefault(); jump(); }, { passive: false });
+      keyH = function (e) {
+        if (e.key === ' ' || e.code === 'Space' || e.key === 'ArrowUp') { e.preventDefault(); jump(); }
+        if (e.key === 'Escape') close(K_CLOSED);
+      };
+      window.addEventListener('keydown', keyH);
+
+      function blob(x, y, s) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.fillStyle = '#FFD048';
+        ctx.strokeStyle = '#171412';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        var r = s * 0.42;
+        ctx.moveTo(-s + r, -s);
+        ctx.arcTo(s, -s, s, s, r);
+        ctx.arcTo(s, s, -s, s, r * 1.3);
+        ctx.arcTo(-s, s, -s, -s, r);
+        ctx.arcTo(-s, -s, s, -s, r * 1.15);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#171412';
+        ctx.beginPath(); ctx.arc(s * 0.2, -s * 0.18, s * 0.15, 0, 7); ctx.fill();
+        ctx.beginPath(); ctx.arc(-s * 0.34, -s * 0.18, s * 0.15, 0, 7); ctx.fill();
+        ctx.restore();
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#FFFCF2';
+        ctx.fillRect(0, 0, W, H);
+        ctx.strokeStyle = '#171412';
+        ctx.lineWidth = 5;
+        ctx.beginPath(); ctx.moveTo(0, GY + 26); ctx.lineTo(W, GY + 26); ctx.stroke();
+        ctx.setLineDash([14, 16]);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = 'rgba(23,18,15,.28)';
+        ctx.beginPath(); ctx.moveTo(-((st.t * st.sp) % 30), GY + 48); ctx.lineTo(W, GY + 48); ctx.stroke();
+        ctx.setLineDash([]);
+
+        blob(112, GY - st.y, 34);
+
+        ctx.fillStyle = '#171412';
+        for (var i = 0; i < st.obs.length; i++) {
+          var o = st.obs[i];
+          ctx.beginPath();
+          var rr = 9;
+          ctx.moveTo(o.x + rr, GY + 26);
+          ctx.lineTo(o.x + o.w - rr, GY + 26);
+          ctx.quadraticCurveTo(o.x + o.w, GY + 26, o.x + o.w, GY + 26 - rr);
+          ctx.lineTo(o.x + o.w, GY + 26 - o.h + rr);
+          ctx.quadraticCurveTo(o.x + o.w, GY + 26 - o.h, o.x + o.w - rr, GY + 26 - o.h);
+          ctx.lineTo(o.x + rr, GY + 26 - o.h);
+          ctx.quadraticCurveTo(o.x, GY + 26 - o.h, o.x, GY + 26 - o.h + rr);
+          ctx.lineTo(o.x, GY + 26 - rr);
+          ctx.quadraticCurveTo(o.x, GY + 26, o.x + rr, GY + 26);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = '#171412';
+        ctx.font = '700 30px Inter, system-ui, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText(st.score, W - 24, 48);
+        ctx.textAlign = 'left';
+
+        if (!st.run) {
+          ctx.fillStyle = 'rgba(23,18,15,.55)';
+          ctx.font = '700 26px Inter, system-ui, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('klikni za start', W / 2, 90);
+          ctx.textAlign = 'left';
+        }
+        if (st.over) {
+          ctx.fillStyle = '#171412';
+          ctx.font = '800 40px Inter, system-ui, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('BUM!', W / 2, 96);
+          ctx.textAlign = 'left';
+        }
+      }
+
+      function step() {
+        st.t++;
+        st.v -= 1.05;
+        st.y += st.v;
+        if (st.y < 0) { st.y = 0; st.v = 0; }
+        st.sp = 5.8 + st.score * 0.24;
+        st.next--;
+        if (st.next <= 0) {
+          var h = 46 + Math.floor((st.t * 37 % 5)) * 13;
+          st.obs.push({ x: W + 20, w: 34 + (st.t % 3) * 10, h: h, hit: false });
+          st.next = Math.round(74 + (st.t * 13 % 46) - Math.min(28, st.score * 1.4));
+        }
+        for (var i = st.obs.length - 1; i >= 0; i--) {
+          var o = st.obs[i];
+          o.x -= st.sp;
+          if (!o.hit && o.x + o.w < 86) { o.hit = true; st.score++; }
+          if (o.x + o.w < -40) st.obs.splice(i, 1);
+          var px = 112, pr = 34, py = GY - st.y;
+          if (o.x < px + pr - 8 && o.x + o.w > px - pr + 8 && (py + pr) > (GY + 26 - o.h + 5)) {
+            st.over = true;
+          }
+        }
+        draw();
+        if (st.over) { setTimeout(function () { showForm(st.score); }, 900); return; }
+        raf = requestAnimationFrame(step);
+      }
+      function loop() { raf = requestAnimationFrame(step); }
+      draw();
+    }
+
+    showGame();
     ov.addEventListener('click', function (e) { if (e.target === ov) close(K_CLOSED); });
   }
 
