@@ -253,6 +253,32 @@
     }
   }
 
+  /* Aktivna stavka izbornika racuna se iz URL-a, a ne iz hardkodirane
+     class="active" u svakom fajlu. Nove stranice (privatnost, uvjeti...)
+     tako ne moraju nista mijenjati, a stara aktivna stavka se ocisti. */
+  function navActive() {
+    var nav = document.querySelector('.kz-nav') || document.querySelector('header.site-header nav');
+    if (!nav) return;
+    function norm(p) { return (p || '').replace(/\.html$/, '').replace(/\/+$/, '') || '/'; }
+    var path = norm(location.pathname);
+    var as = nav.querySelectorAll('a');
+    for (var i = 0; i < as.length; i++) {
+      var a = as[i];
+      if (a.classList.contains('kz-nav-cta') || a.classList.contains('cta')) continue;
+      var href = norm(a.getAttribute('href'));
+      var on = href === path || (href !== '/' && path.indexOf(href + '/') === 0);
+      if (on) {
+        a.classList.add('active');
+        a.style.color = '#171412';
+        a.style.fontWeight = '700';
+      } else if (a.classList.contains('active') || a.style.fontWeight === '700') {
+        a.classList.remove('active');
+        a.style.color = 'rgba(23,18,15,.72)';
+        a.style.fontWeight = '500';
+      }
+    }
+  }
+
   function footerForm() {
     var f = document.querySelector('footer');
     if (!f || f.getAttribute('data-kz-footer') === '1') return;
@@ -721,13 +747,13 @@
   }
 
   window.kzOpenNewsletter = function () { popup(true); };
-  function init() { footerForm(); legalLinks(); arm(); }
+  function init() { footerForm(); legalLinks(); navActive(); arm(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
-  window.addEventListener('load', function () { footerForm(); legalLinks(); });
+  window.addEventListener('load', function () { footerForm(); legalLinks(); navActive(); });
   /* Template runtime zna prerenderati footer nakon nasih poziva - guard je
      data-kz-footer atribut na <footer>, pa ponovni pozivi nisu skupi. */
-  function kzFooterAll() { footerForm(); legalLinks(); }
+  function kzFooterAll() { footerForm(); legalLinks(); navActive(); }
   setTimeout(kzFooterAll, 1200);
   setTimeout(kzFooterAll, 3000);
   setTimeout(kzFooterAll, 6000);
