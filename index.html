@@ -135,10 +135,7 @@
   </header>
 
   <div class="kz-wave-overlay" style="position:fixed;inset:0;z-index:9998;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
-<div class="kz-glow" style="position:fixed;left:50%;top:50%;width:120px;height:120px;z-index:9999;border-radius:50%;transform:translate(-50%,-50%) scale(1);pointer-events:none;opacity:0;background:radial-gradient(circle, rgba(255,255,255,.95) 0%, rgba(255,255,255,.35) 40%, rgba(255,255,255,0) 72%)"></div>
-<div class="kz-burst" style="position:fixed;left:50%;top:50%;width:0;height:0;z-index:10000;pointer-events:none;opacity:0"><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(0deg) translateY(-6px)"></span><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(45deg) translateY(-6px)"></span><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(90deg) translateY(-6px)"></span><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(135deg) translateY(-6px)"></span><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(180deg) translateY(-6px)"></span><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(225deg) translateY(-6px)"></span><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(270deg) translateY(-6px)"></span><span class="kz-dash" style="position:absolute;left:-1px;top:-9px;width:2px;height:9px;background:#171412;border-radius:2px;transform-origin:1px 9px;opacity:0;transform:rotate(315deg) translateY(-6px)"></span></div>
-<div class="kz-dot" style="position:fixed;left:50%;top:50%;width:16px;height:16px;z-index:10001;border-radius:50%;background:#171412;transform:translate(-50%,-50%) scale(0);pointer-events:none;opacity:0"></div>
-
+<div class="kz-wipe" style="position:fixed;left:50%;top:50%;width:0;height:0;z-index:10002;pointer-events:none;background:#ffffff;clip-path:circle(0px at 50% 50%);opacity:1"></div>
 <!-- HERO -->
   <section style="position:relative;overflow:hidden;background:#FFD048">
     <picture>
@@ -323,30 +320,6 @@ p.style.filter='none';
 function kzLine4Exit(p,t){ p.style.transform='scale('+(1-0.25*t)+')'; }
 var enterFns=[kzLine0Enter,kzLine1Enter,kzLine2Enter,kzLine3Enter,kzLine4Enter];
 var exitFns2=[kzLine0Exit,kzLine1Exit,kzLine2Exit,kzLine3Exit,kzLine4Exit];
-function kzApplyDot(shapeT, fadeMult, active){
-var dot=document.querySelector('.kz-dot');
-var glow=document.querySelector('.kz-glow');
-var burst=document.querySelector('.kz-burst');
-if(!dot||!glow||!burst) return;
-if(!active || fadeMult<=0){
-dot.style.opacity='0';
-glow.style.opacity='0';
-burst.style.opacity='0';
-return;
-}
-var pop=kzEaseOutBack(Math.min(1,shapeT*1.6));
-dot.style.opacity=fadeMult.toFixed(2);
-dot.style.transform='translate(-50%,-50%) scale('+(0.3+0.9*pop)+')';
-glow.style.opacity=(0.85*(1-shapeT)*fadeMult).toFixed(2);
-glow.style.transform='translate(-50%,-50%) scale('+(1+shapeT*4)+')';
-burst.style.opacity=fadeMult.toFixed(2);
-var dashes=burst.querySelectorAll('.kz-dash');
-for(var i=0;i<dashes.length;i++){
-var dd=shapeT*22;
-dashes[i].style.opacity=(1-shapeT).toFixed(2);
-dashes[i].style.transform='rotate('+(i*45)+'deg) translateY(-'+(6+dd).toFixed(1)+'px)';
-}
-}
 function applyIntro(ep, rect){
 var waveOverlay=document.querySelector('.kz-wave-overlay');
 var waveProgress=Math.max(0,Math.min(1,(ep-0.3)/0.5));
@@ -381,9 +354,6 @@ var p=lines[i];
 if(i===0){ p.style.opacity=textProgress>0?'1':'0'; kzLine0Enter(p, textProgress); }
 else { p.style.opacity='0'; }
 }
-var dbt=Math.max(0,Math.min(1, textProgress/0.3));
-var dfade=1-Math.max(0,Math.min(1,(textProgress-0.6)/0.4));
-kzApplyDot(dbt, dfade, textProgress>0);
 }
 function applyContinuous(v, wrapRect){
 var n=5;
@@ -391,7 +361,6 @@ var idx=Math.floor(v); if(idx>=n-1) idx=n-1;
 var localT=(idx===n-1)?0:Math.max(0,Math.min(1,v-idx));
 var exitT=Math.min(1, localT/0.5);
 var lines=document.querySelectorAll('.scrolly-line');
-var dotActive=false, dotShapeT=0, dotFade=0;
 for(var li=0; li<lines.length; li++){
 var p=lines[li];
 if(li===idx){
@@ -403,14 +372,22 @@ p.style.opacity=(idx===n-1)?'1':(exitT<1?'1':'0');
 var enterT=(localT-0.5)/0.5;
 p.style.opacity='1';
 enterFns[li](p, enterT);
-var bt=Math.max(0,Math.min(1, enterT/0.3));
-var fadeOut=1-Math.max(0,Math.min(1,(enterT-0.6)/0.4));
-dotActive=true;
-dotShapeT=bt;
-dotFade=fadeOut;
 } else { p.style.opacity='0'; }
 }
-kzApplyDot(dotShapeT, dotFade, dotActive);
+var wipe=document.querySelector('.kz-wipe');
+if(wipe){
+var wipeT=0;
+if(idx<n-1){
+if(localT>=0.3 && localT<0.5){ wipeT=(localT-0.3)/0.2; }
+else if(localT>=0.5 && localT<0.75){ wipeT=1-(localT-0.5)/0.25; }
+}
+if(wipeT>0){
+var maxR=0.5*Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight);
+wipe.style.clipPath='circle('+(wipeT*maxR).toFixed(0)+'px at 50% 50%)';
+} else {
+wipe.style.clipPath='circle(0px at 50% 50%)';
+}
+}
 var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
 if(bgA&&bgB){
