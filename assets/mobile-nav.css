@@ -75,6 +75,10 @@ header.site-header nav a:not(.cta){
 .kz-nav a.active::after, header.site-header nav a.active::after{
   transform:scaleX(1);
 }
+.kz-nav a.active, header.site-header nav a.active{
+  border-bottom:none!important;
+  padding-bottom:3px!important;
+}
 /* CTA button hover (also dead via style-hover on inline-styled pages before this fix). */
 .kz-nav a.kz-nav-cta:hover,
 header.site-header nav a.cta:hover{
