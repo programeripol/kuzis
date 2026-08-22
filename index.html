@@ -989,15 +989,21 @@ var track=wrap&&wrap.querySelector('.usluge-track');
 if(!track) return;
 if(wrap.__kzInit){ if(wrap.__kzSync) wrap.__kzSync(); return; }
 wrap.__kzInit=true;
-var fade=wrap.querySelector('.usluge-fade');
+var fade=null, dots=null;
+/* Template runtime zna prerenderati sadrzaj .usluge-wrap i obrisati ove
+   dvije injektirane djece, zato ih provjeravamo pri SVAKOM syncu. */
+function ensure(){
+fade=wrap.querySelector('.usluge-fade');
 if(!fade){ fade=document.createElement('div'); fade.className='usluge-fade'; wrap.appendChild(fade); }
-var dots=wrap.querySelector('.usluge-dots');
+dots=wrap.querySelector('.usluge-dots');
 if(!dots){ dots=document.createElement('div'); dots.className='usluge-dots'; wrap.appendChild(dots); }
+}
 function cards(){ return track.querySelectorAll('.usluga-card'); }
 function markDots(){
+if(!dots) return;
 var cs=cards(), mid=track.scrollLeft+track.clientWidth/2, best=0, bd=1e9;
 for(var i=0;i<cs.length;i++){ var cc=cs[i].offsetLeft+cs[i].offsetWidth/2, d=Math.abs(cc-mid); if(d<bd){ bd=d; best=i; } }
-for(var j=0;j<dots.children.length;j++){ dots.children[j].className='usluge-dot'+(j===best?' on':''); }
+for(var jj=0;jj<dots.children.length;jj++){ dots.children[jj].className='usluge-dot'+(jj===best?' on':''); }
 }
 function buildDots(){
 var cs=cards();
@@ -1005,16 +1011,17 @@ if(dots.children.length===cs.length){ markDots(); return; }
 dots.innerHTML='';
 for(var i=0;i<cs.length;i++){
 (function(i){
-var b=document.createElement('button');
-b.type='button'; b.className='usluge-dot';
-b.setAttribute('aria-label','Usluga '+(i+1));
-b.addEventListener('click',function(){ var c=cards()[i]; if(c) track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.offsetWidth)/2, behavior:'smooth'}); });
-dots.appendChild(b);
+var bt=document.createElement('button');
+bt.type='button'; bt.className='usluge-dot';
+bt.setAttribute('aria-label','Usluga '+(i+1));
+bt.addEventListener('click',function(){ var c=cards()[i]; if(c) track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.offsetWidth)/2, behavior:'smooth'}); });
+dots.appendChild(bt);
 })(i);
 }
 markDots();
 }
 function sync(){
+ensure();
 if(track.scrollWidth-track.clientWidth>12){ wrap.classList.add('has-more'); }
 else { wrap.classList.remove('has-more'); }
 buildDots();
@@ -1033,6 +1040,8 @@ window.addEventListener('resize',sync);
 sync();
 setTimeout(sync,900);
 setTimeout(sync,2500);
+setTimeout(sync,5000);
+setTimeout(sync,8000);
 }
 if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',kzUsl); } else { kzUsl(); }
 window.addEventListener('load',kzUsl);
