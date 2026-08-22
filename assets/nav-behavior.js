@@ -337,7 +337,7 @@
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
         '<div class="kz-nl-kicker">Bodovi: ' + score + '</div>' +
         '<h3 class="kz-nl-h">' + praise + '</h3>' +
-        '<p class="kz-nl-p">Ovako preskačemo i sve ostalo što vam krade vrijeme. Jednom mjesečno šaljemo konkretne trikove za Canvu, Excel i web.</p>' +
+        '<p class="kz-nl-p">Ovako preskačemo i sve ostalo što vam krade vrijeme. Jednom tjedno šaljemo konkretne trikove za Canvu, Excel i web.</p>' +
         '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="ime@gmail.com" aria-label="Email adresa">' +
         '<button class="kz-nl-go" type="submit">Prijavi se na novosti</button></form>' +
         '<button type="button" class="kz-nl-again2">Igraj još jednom</button>';
