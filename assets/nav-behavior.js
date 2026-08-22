@@ -160,46 +160,66 @@
       '.kz-fnl input{box-sizing:border-box;padding:11px 14px;border:none;border-radius:10px;font:400 14px Inter;outline:none;min-width:190px}',
       '.kz-fnl button{padding:11px 20px;background:#FFD048;color:#171412;border:none;border-radius:10px;font:700 14px Inter;cursor:pointer;transition:transform .2s ease}',
       '.kz-fnl button:hover{transform:translateY(-2px)}',
-      '.kz-fnl-ok{font:600 14px Inter;color:#FFD048}'
+      '.kz-fnl-ok{font:600 14px Inter;color:#FFD048}',
+      '.kz-fnl-right{display:flex;flex-direction:column;gap:9px;align-items:flex-end}',
+      '.kz-fnl-play{background:none;border:none;color:#FFD048;font:600 13px Inter;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}',
+      '.kz-fnl-playbig{background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:14px 16px 12px 15px;padding:12px 22px;font:700 14.5px Inter;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}',
+      '.kz-fnl-playbig:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(255,255,255,.35)}'
     ].join('\n');
     document.head.appendChild(s);
   }
 
   /* ---------- footer form ---------- */
-  function footerForm() {
-    var f = document.querySelector('footer');
-    if (!f || f.querySelector('.kz-fnl')) return;
-    if (f.querySelector('input[type="email"]')) return;
+  function hasNlSection() {
     var secs = document.querySelectorAll('section');
     for (var q = 0; q < secs.length; q++) {
       if (!secs[q].querySelector('input[type="email"]')) continue;
       var tx = (secs[q].innerText || '').toLowerCase();
-      if (tx.indexOf('newsletter') >= 0 || tx.indexOf('ne propustite') >= 0 || tx.indexOf('inbox') >= 0) return;
+      if (tx.indexOf('newsletter') >= 0 || tx.indexOf('ne propustite') >= 0 || tx.indexOf('inbox') >= 0) return true;
     }
+    return false;
+  }
+  function footerForm() {
+    var f = document.querySelector('footer');
+    if (!f || f.querySelector('.kz-fnl')) return;
     styles();
+    var slim = hasNlSection() || !!f.querySelector('input[type="email"]');
     var box = document.createElement('div');
     box.className = 'kz-fnl';
-    box.innerHTML =
-      '<div><p class="kz-fnl-t">Kužiš newsletter</p>' +
-      '<p class="kz-fnl-s">Jednom mjesečno: konkretni trikovi za Canvu, Excel i web. Bez spama.</p></div>' +
-      '<form novalidate><input type="email" required placeholder="vasa@email.com" aria-label="Email adresa">' +
-      '<button type="submit">Prijavi me</button></form>';
+    if (slim) {
+      box.innerHTML =
+        '<div><p class="kz-fnl-t">Kužiš newsletter</p>' +
+        '<p class="kz-fnl-s">Preskoči prepreke pa se prijavi - traje dvadeset sekundi.</p></div>' +
+        '<button type="button" class="kz-fnl-play kz-fnl-playbig">Igraj i prijavi se</button>';
+    } else {
+      box.innerHTML =
+        '<div><p class="kz-fnl-t">Kužiš newsletter</p>' +
+        '<p class="kz-fnl-s">Jednom mjesečno: konkretni trikovi za Canvu, Excel i web. Bez spama.</p></div>' +
+        '<div class="kz-fnl-right"><form novalidate><input type="email" required placeholder="vasa@email.com" aria-label="Email adresa">' +
+        '<button type="submit">Prijavi me</button></form>' +
+        '<button type="button" class="kz-fnl-play">ili odigraj igricu</button></div>';
+    }
     var grid = f.querySelector('.footer-grid');
     if (grid && grid.parentNode) grid.parentNode.insertBefore(box, grid.nextSibling);
     else f.insertBefore(box, f.firstChild);
+    var play = box.querySelector('.kz-fnl-play');
+    if (play) play.addEventListener('click', function () { popup(true); });
     var form = box.querySelector('form');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var v = form.querySelector('input').value.trim();
-      if (!v || v.indexOf('@') < 0) return;
-      subscribe(v);
-      form.outerHTML = '<div class="kz-fnl-ok">Hvala! Provjerite inbox za potvrdu prijave.</div>';
-    });
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = form.querySelector('input').value.trim();
+        if (!v || v.indexOf('@') < 0) return;
+        subscribe(v);
+        form.outerHTML = '<div class="kz-fnl-ok">Hvala! Provjerite inbox za potvrdu prijave.</div>';
+      });
+    }
   }
 
   /* ---------- pop-up: mini igrica ---------- */
-  function popup() {
-    if (ls(K_CLOSED) || ls(K_DONE)) return;
+  function popup(force) {
+    if (!force && (ls(K_CLOSED) || ls(K_DONE))) return;
+    if (document.querySelector('.kz-nl-ov')) return;
     styles();
     var ov = document.createElement('div');
     ov.className = 'kz-nl-ov';
@@ -414,6 +434,7 @@
     }, true);
   }
 
+  window.kzOpenNewsletter = function () { popup(true); };
   function init() { footerForm(); arm(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
