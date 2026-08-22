@@ -38,19 +38,18 @@
   }
 }
 
-/* Desktop nav hover — same yellow underline as the active tab, on every page.
+/* Desktop nav hover — plain yellow line, NO animation (Dorin zahtjev 2026-08-22).
    Applies to both nav markup patterns used sitewide: inline-styled links
    (.kz-nav, on Pocetna/Mentorstvo/etc.) and class-based links (header.site-header,
-   on blog articles). Border-bottom is reserved at rest (transparent) so hover
-   doesn't shift layout. NOTE: the inline style-hover="..." attribute seen on
-   some pages' nav links is not real CSS/JS and does nothing in a browser —
-   this stylesheet is the actual, working hover implementation; don't rely on
-   that attribute when adding future nav links. */
+   on blog articles). The line is always laid out (width:100%) and only toggles
+   opacity, so nothing slides, swipes or shifts. The inline style-hover="..."
+   attribute on some pages' nav links is overridden here with !important so the
+   old lift/underline can't come back. */
 .kz-nav a:not(.kz-nav-cta),
 header.site-header nav a:not(.cta){
   position:relative;
   padding-bottom:3px;
-  transition:color .2s ease;
+  transition:none!important;
 }
 .kz-nav a:not(.kz-nav-cta)::after, header.site-header nav a:not(.cta)::after{
   content:'';
@@ -61,19 +60,21 @@ header.site-header nav a:not(.cta){
   height:1.5px;
   background:#FFD048;
   border-radius:2px;
-  transform:scaleX(0);
-  transform-origin:left center;
-  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  opacity:0;
+  transform:none;
+  transition:none;
 }
 .kz-nav a:not(.kz-nav-cta):hover, header.site-header nav a:not(.cta):hover{
   color:#171412!important;
   text-decoration:none!important;
+  transform:none!important;
+  transition:none!important;
 }
 .kz-nav a:not(.kz-nav-cta):hover::after, header.site-header nav a:not(.cta):hover::after{
-  transform:scaleX(1);
+  opacity:1;
 }
 .kz-nav a.active::after, header.site-header nav a.active::after{
-  transform:scaleX(1);
+  opacity:1;
 }
 .kz-nav a.active, header.site-header nav a.active{
   border-bottom:none!important;
