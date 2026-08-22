@@ -291,7 +291,7 @@
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
         '<div class="kz-nl-kicker">Pauza od posla</div>' +
         '<h3 class="kz-nl-h">Preskoči prepreke</h3>' +
-        '<p class="kz-nl-p">' + (TOUCH ? 'Tapni za skok. Klackalica, feder i kosina te izbace uvis.' : 'Klik ili razmaknica za skok. Klackalica, feder i kosina te izbace uvis.') + '</p>' +
+        '<p class="kz-nl-p">' + (TOUCH ? 'Tapni za skok.' : 'Klik ili razmaknica za skok.') + ' Klackalica, feder i kosina te izbace uvis - iskoristi ih za ono odmah iza.</p>' +
         '<canvas class="kz-nl-cv" width="' + W + '" height="' + H + '"></canvas>' +
         (TOUCH ? '<button type="button" class="kz-nl-jump">SKOK</button>' : '') +
         '<p class="kz-nl-fine"><a href="#" class="kz-nl-skip">Preskoči igru i prijavi se na novosti</a></p>';
@@ -301,20 +301,31 @@
       var cv = card.querySelector('.kz-nl-cv');
       var ctx = cv.getContext('2d');
       var TAU = Math.PI * 2;
-      var G = 0.92, JUMP = 14.6;
+      var G = 0.62, JUMP = 12.4, CEIL = 190;
 
       /* kind: 'o' = prepreka (smrtonosna), 'l' = katapult (izbaci uvis) */
       var DEF = {
-        drvo: { kind: 'o', w: 56, h: 64, hit: 60 },
-        grmic: { kind: 'o', w: 68, h: 40, hit: 38 },
-        oblacic: { kind: 'o', w: 76, h: 46, hit: 44 },
-        kosina: { kind: 'l', w: 72, h: 42, pow: 16.0 },
-        klackalica: { kind: 'l', w: 92, h: 46, pow: 17.0 },
-        feder: { kind: 'l', w: 46, h: 50, pow: 18.0 }
+        tratincice: { kind: 'o', w: 62, cw: 46, h: 50, hit: 48 },
+        ruza: { kind: 'o', w: 46, cw: 40, h: 45, hit: 56 },
+        drvo: { kind: 'o', w: 56, cw: 40, h: 64, hit: 60 },
+        kisa: { kind: 'o', w: 84, cw: 44, h: 128, hit: 112 },
+        kosina: { kind: 'l', w: 72, h: 42, pow: 13.5 },
+        klackalica: { kind: 'l', w: 92, h: 46, pow: 14.5 },
+        feder: { kind: 'l', w: 46, h: 50, pow: 15.0 }
       };
-      var SEQ = ['drvo', 'feder', 'grmic', 'klackalica', 'oblacic', 'kosina'];
+      /* katapult uvijek dolazi PRIJE prepreke da ti pomogne */
+      var PAT = [
+        [['tratincice', 0]],
+        [['feder', 0], ['kisa', 16]],
+        [['ruza', 0]],
+        [['kosina', 0], ['drvo', 20]],
+        [['tratincice', 0]],
+        [['klackalica', 0], ['ruza', 22]],
+        [['drvo', 0]],
+        [['feder', 0], ['kisa', 16]]
+      ];
 
-      var st = { y: 0, v: 0, run: false, over: false, score: 0, sp: 5, t: 0, n: 0, obs: [], next: 120, land: 0 };
+      var st = { y: 0, v: 0, run: false, over: false, score: 0, sp: 5, t: 0, gi: 0, ii: 0, rot: 0, obs: [], next: 110, land: 0 };
 
       function jump() {
         if (st.over) return;
@@ -348,8 +359,7 @@
         ctx.fillStyle = col; ctx.fill();
         ctx.lineWidth = 4.5; ctx.lineJoin = 'round'; ctx.strokeStyle = '#171412'; ctx.stroke();
       }
-      /* spoji vise krugova/pravokutnika u JEDAN oblik bez unutarnjih crta:
-         prvo debeli obrub svima, pa ispune preko njega */
+      /* spoji vise krugova/pravokutnika u JEDAN oblik bez unutarnjih crta */
       function shape(parts, col) {
         function path(p) {
           if (p.length === 3) { ctx.beginPath(); ctx.arc(p[0], p[1], p[2], 0, TAU); }
@@ -367,37 +377,103 @@
         ctx.beginPath(); ctx.arc(ex + rx * 0.28, ey - ry * 0.32, rx * 0.50, 0, TAU); ctx.fill();
         ctx.beginPath(); ctx.arc(ex - rx * 0.46, ey + ry * 0.46, rx * 0.21, 0, TAU); ctx.fill();
       }
-      function ball(x, y, r, sq, dead) {
+      function ball(x, y, r, sq, dead, rot, rolling) {
         ctx.save();
         ctx.translate(x, y);
         ctx.scale(1 + sq, 1 - sq);
+        ctx.save();
+        ctx.rotate(rot);
         ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); fs('#FFD048');
+        if (!dead && rolling) {
+          /* kotrlja se sa zatvorenim ocima */
+          ctx.strokeStyle = '#171412'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+          for (var s2 = -1; s2 <= 1; s2 += 2) {
+            ctx.beginPath();
+            ctx.arc(s2 * r * 0.34, -r * 0.02, r * 0.20, Math.PI * 1.12, Math.PI * 1.88);
+            ctx.stroke();
+          }
+        }
+        ctx.restore();
         if (dead) {
           ctx.strokeStyle = '#171412'; ctx.lineWidth = 4.2; ctx.lineCap = 'round';
-          for (var s2 = -1; s2 <= 1; s2 += 2) {
-            var ex = s2 * r * 0.33, ey = -r * 0.04, q = r * 0.18;
+          for (var s3 = -1; s3 <= 1; s3 += 2) {
+            var ex = s3 * r * 0.33, ey = -r * 0.04, q = r * 0.18;
             ctx.beginPath();
             ctx.moveTo(ex - q, ey - q); ctx.lineTo(ex + q, ey + q);
             ctx.moveTo(ex + q, ey - q); ctx.lineTo(ex - q, ey + q);
             ctx.stroke();
           }
-        } else {
+        } else if (!rolling) {
+          /* u zraku - oci otvorene i uspravne */
           eye(-r * 0.34, -r * 0.04, r * 0.235, r * 0.30);
           eye(r * 0.34, -r * 0.04, r * 0.235, r * 0.30);
         }
         ctx.restore();
       }
+      function daisy(x, base, h, s) {
+        ctx.strokeStyle = '#171412'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(x, base);
+        ctx.quadraticCurveTo(x - 4 * s, base - h * 0.5, x, base - h * 0.68);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, base - h * 0.44);
+        ctx.quadraticCurveTo(x + 14 * s, base - h * 0.58, x + 16 * s, base - h * 0.34);
+        ctx.quadraticCurveTo(x + 7 * s, base - h * 0.29, x, base - h * 0.44);
+        ctx.closePath(); fs('#9FC58C');
+        var cy = base - h * 0.80, R2 = 10 * s, parts = [];
+        for (var i = 0; i < 6; i++) { var a = TAU * i / 6; parts.push([x + Math.cos(a) * R2, cy + Math.sin(a) * R2, 7.5 * s]); }
+        shape(parts, '#FFFFFF');
+        ctx.beginPath(); ctx.arc(x, cy, 6 * s, 0, TAU); fs('#FFD048');
+      }
+      function rose(cx, base, h) {
+        ctx.strokeStyle = '#171412'; ctx.lineWidth = 4.5; ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(cx, base);
+        ctx.quadraticCurveTo(cx - 5, base - h * 0.45, cx, base - h * 0.66);
+        ctx.stroke();
+        ctx.fillStyle = '#171412';
+        var th = [[0.24, -1], [0.40, 1], [0.55, -1]];
+        for (var i = 0; i < th.length; i++) {
+          var yy = base - h * th[i][0], d = th[i][1];
+          ctx.beginPath();
+          ctx.moveTo(cx + d * 2, yy); ctx.lineTo(cx + d * 12, yy - 4); ctx.lineTo(cx + d * 2, yy - 8);
+          ctx.closePath(); ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.moveTo(cx, base - h * 0.36);
+        ctx.quadraticCurveTo(cx - 15, base - h * 0.50, cx - 18, base - h * 0.26);
+        ctx.quadraticCurveTo(cx - 8, base - h * 0.23, cx, base - h * 0.36);
+        ctx.closePath(); fs('#9FC58C');
+        var cy = base - h * 0.78;
+        shape([[cx - 8, cy + 2, 12], [cx + 8, cy + 2, 12], [cx, cy - 8, 13]], '#E0504B');
+        ctx.strokeStyle = 'rgba(23,20,18,.40)'; ctx.lineWidth = 2.6; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.arc(cx, cy - 1, 6, 0.5, 4.7); ctx.stroke();
+        ctx.beginPath(); ctx.arc(cx, cy - 1, 11.5, 1.4, 4.1); ctx.stroke();
+      }
       function drawObs(o) {
         var b = GND, cx = o.x + o.w / 2;
         var a = o.fired ? Math.min(1, o.a / 13) : 0;
-        if (o.t === 'drvo') {
+        if (o.t === 'tratincice') {
+          daisy(cx - 15, b, 40, 1.05);
+          daisy(cx + 16, b, 31, 0.88);
+        } else if (o.t === 'ruza') {
+          rose(cx, b, o.h);
+        } else if (o.t === 'drvo') {
           rr(cx - 9, b - 30, 18, 30, 6); fs('#D97757');
           shape([[cx - 15, b - 44, 19], [cx + 15, b - 46, 19], [cx, b - 58, 23]], '#9FC58C');
-        } else if (o.t === 'grmic') {
-          shape([[cx - 20, b - 15, 17], [cx + 20, b - 14, 16], [cx, b - 24, 20]], '#9FC58C');
-        } else if (o.t === 'oblacic') {
-          shape([[cx - 22, b - 16, 16], [cx + 22, b - 17, 15], [cx - 2, b - 27, 20],
-          [cx - 30, b - 20, 60, 20, 10]], '#8ECAE6');
+        } else if (o.t === 'kisa') {
+          var cy2 = b - o.h + 26;
+          shape([[cx - 24, cy2, 20], [cx + 24, cy2 - 2, 18], [cx, cy2 - 12, 24],
+          [cx - 34, cy2 - 4, 68, 24, 12]], '#B9BCC4');
+          var cb = cy2 + 20, span = b - cb;
+          ctx.strokeStyle = '#8ECAE6'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+          for (var c2 = -1; c2 <= 1; c2++) {
+            for (var dd = 0; dd < 3; dd++) {
+              var yy2 = cb + ((st.t * 5 + dd * span / 3 + c2 * 17) % span);
+              ctx.beginPath(); ctx.moveTo(cx + c2 * 20 + 3, yy2); ctx.lineTo(cx + c2 * 20, yy2 + 12); ctx.stroke();
+            }
+          }
         } else if (o.t === 'kosina') {
           var pu = Math.sin(a * Math.PI) * 0.16;
           ctx.save(); ctx.translate(cx, b); ctx.scale(1, 1 + pu); ctx.translate(-cx, -b);
@@ -429,10 +505,10 @@
           var hh = (o.h - 22) * comp;
           ctx.strokeStyle = '#171412'; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
           ctx.beginPath();
-          for (var i = 0; i <= 7; i++) {
-            var yy = b - 9 - hh * i / 7;
-            var xx = cx + (i % 2 === 0 ? -o.w * 0.30 : o.w * 0.30);
-            if (i === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+          for (var i2 = 0; i2 <= 7; i2++) {
+            var yy = b - 9 - hh * i2 / 7;
+            var xx = cx + (i2 % 2 === 0 ? -o.w * 0.30 : o.w * 0.30);
+            if (i2 === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
           }
           ctx.stroke();
           rr(cx - o.w * 0.50, b - 11, o.w, 12, 6); fs('#D8C8F7');
@@ -452,7 +528,7 @@
         for (var i = 0; i < st.obs.length; i++) drawObs(st.obs[i]);
 
         var sq = st.land > 0 ? 0.13 * (st.land / 6) : 0;
-        ball(PX, GND - R - st.y + (st.land > 0 ? R * sq : 0), R, sq, st.over);
+        ball(PX, GND - R - st.y + (st.land > 0 ? R * sq : 0), R, sq, st.over, st.rot, st.y <= 1);
 
         ctx.fillStyle = '#171412';
         ctx.font = '700 30px Inter, system-ui, sans-serif';
@@ -476,28 +552,35 @@
         st.t++;
         st.v -= G;
         st.y += st.v;
-        if (st.y <= 0) { if (st.v < -5) st.land = 6; st.y = 0; st.v = 0; }
+        if (st.y <= 0) { if (st.v < -4) st.land = 6; st.y = 0; st.v = 0; }
         if (st.land > 0) st.land--;
-        st.sp = Math.min(MOB ? 7.4 : 9, (MOB ? 4.3 : 5) + st.score * (MOB ? 0.12 : 0.15));
+        st.sp = Math.min(MOB ? 8.6 : 11, (MOB ? 4.3 : 5) + st.score * (MOB ? 0.20 : 0.26));
+        st.rot += (st.y <= 1 ? st.sp / R : st.sp / R * 0.35);
         st.next--;
         if (st.next <= 0) {
-          var key = SEQ[st.n % SEQ.length]; st.n++;
-          var d = DEF[key];
-          st.obs.push({ t: key, kind: d.kind, w: d.w, h: d.h, hit: d.hit || 0, pow: d.pow || 0, x: W + 30, done: false, fired: false, a: 0 });
-          st.next = Math.round((MOB ? 96 : 112) + (st.t * 17 % 40) - Math.min(28, st.score * 1.0));
+          var grp = PAT[st.gi % PAT.length];
+          var it = grp[st.ii];
+          var d = DEF[it[0]];
+          st.obs.push({ t: it[0], kind: d.kind, w: d.w, cw: d.cw || d.w, h: d.h, hit: d.hit || 0, pow: d.pow || 0, x: W + 30, done: false, fired: false, a: 0 });
+          st.ii++;
+          if (st.ii < grp.length) { st.next = grp[st.ii][1]; }
+          else { st.ii = 0; st.gi++; st.next = Math.round((MOB ? 100 : 118) + (st.t * 17 % 36) - Math.min(30, st.score * 0.9)); }
         }
         for (var i = st.obs.length - 1; i >= 0; i--) {
           var o = st.obs[i];
           o.x -= st.sp;
           if (o.fired) o.a++;
           if (!o.done && o.x + o.w < PX - R) { o.done = true; st.score++; }
-          if (o.x + o.w < -80) { st.obs.splice(i, 1); continue; }
-          var overlap = (PX + R * 0.6 > o.x) && (PX - R * 0.6 < o.x + o.w);
+          if (o.x + o.w < -90) { st.obs.splice(i, 1); continue; }
           if (o.kind === 'l') {
-            if (!o.fired && overlap && st.y < 46) { st.v = o.pow; o.fired = true; o.a = 0; }
+            if (!o.fired && PX + R * 0.6 > o.x && PX - R * 0.6 < o.x + o.w) {
+              var maxV = Math.sqrt(Math.max(0, 2 * G * (CEIL - st.y)));
+              st.v = Math.min(o.pow, maxV);
+              o.fired = true; o.a = 0;
+            }
           } else {
-            var bottom = GND - st.y;
-            if (PX + R - 12 > o.x + 10 && PX - R + 12 < o.x + o.w - 10 && bottom - 6 > GND - o.hit + 8) st.over = true;
+            var half = o.cw / 2, ocx = o.x + o.w / 2, bottom = GND - st.y;
+            if (PX + R - 12 > ocx - half && PX - R + 12 < ocx + half && bottom - 6 > GND - o.hit + 8) st.over = true;
           }
         }
         draw();
