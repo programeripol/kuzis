@@ -48,6 +48,12 @@
   .usluge-prev { left: -6px; }
   .usluge-next { right: -6px; }
   .usluge-wrap.has-more .usluge-nav { display: flex; }
+  .usluge-dots { display: none; justify-content: center; align-items: center; gap: 9px; margin: -14px 0 4px; }
+  .usluge-wrap.has-more .usluge-dots { display: flex; }
+  .usluge-dot { width: 9px; height: 9px; padding: 0; border-radius: 50%; background: #fff; border: 2.5px solid #171412; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+  .usluge-dot.on { background: #FFD048; transform: scale(1.3); }
+  .usluge-fade { display: none; position: absolute; top: 0; right: 0; width: 54px; height: calc(100% - 46px); pointer-events: none; z-index: 2; background: linear-gradient(to left, #FFFFFF 16%, rgba(255,255,255,0)); }
+  .usluge-wrap.has-more .usluge-fade { display: block; }
   .kz-steps { position: relative; max-width: 920px; margin: 0 auto; }
   .kz-steps-line { position: absolute; left: 50%; top: 12px; width: 130px; height: calc(100% - 24px); transform: translateX(-50%); pointer-events: none; z-index: 0; }
   .kz-steps-list { position: relative; z-index: 1; }
@@ -57,7 +63,10 @@
   .kz-step-num { flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%; background: #FFD048; border: 2.5px solid #171412; display: flex; align-items: center; justify-content: center; font-family: 'Baloo 2', Inter, sans-serif; font-weight: 800; font-size: 19px; color: #171412; }
   .kz-step-arrow { width: 58px; height: 28px; flex: 0 0 auto; }
   @media (max-width: 860px) {
-    .usluga-card { flex: 0 0 84vw; }
+    .usluga-card { flex: 0 0 82vw; }
+    .usluge-prev { left: 0; }
+    .usluge-next { right: 0; }
+    .usluge-fade { width: 40px; }
     .kz-steps-line { left: 30px; width: 66px; transform: none; }
     .kz-step { grid-template-columns: 62px 1fr; gap: 8px; margin-bottom: 16px; }
     .kz-step-box { grid-column: 2 !important; justify-self: stretch !important; transform: none !important; max-width: none; }
@@ -978,10 +987,39 @@ function kzUsl(){
 var wrap=document.querySelector('.usluge-wrap');
 var track=wrap&&wrap.querySelector('.usluge-track');
 if(!track) return;
+if(wrap.__kzInit){ if(wrap.__kzSync) wrap.__kzSync(); return; }
+wrap.__kzInit=true;
+var fade=wrap.querySelector('.usluge-fade');
+if(!fade){ fade=document.createElement('div'); fade.className='usluge-fade'; wrap.appendChild(fade); }
+var dots=wrap.querySelector('.usluge-dots');
+if(!dots){ dots=document.createElement('div'); dots.className='usluge-dots'; wrap.appendChild(dots); }
+function cards(){ return track.querySelectorAll('.usluga-card'); }
+function markDots(){
+var cs=cards(), mid=track.scrollLeft+track.clientWidth/2, best=0, bd=1e9;
+for(var i=0;i<cs.length;i++){ var cc=cs[i].offsetLeft+cs[i].offsetWidth/2, d=Math.abs(cc-mid); if(d<bd){ bd=d; best=i; } }
+for(var j=0;j<dots.children.length;j++){ dots.children[j].className='usluge-dot'+(j===best?' on':''); }
+}
+function buildDots(){
+var cs=cards();
+if(dots.children.length===cs.length){ markDots(); return; }
+dots.innerHTML='';
+for(var i=0;i<cs.length;i++){
+(function(i){
+var b=document.createElement('button');
+b.type='button'; b.className='usluge-dot';
+b.setAttribute('aria-label','Usluga '+(i+1));
+b.addEventListener('click',function(){ var c=cards()[i]; if(c) track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.offsetWidth)/2, behavior:'smooth'}); });
+dots.appendChild(b);
+})(i);
+}
+markDots();
+}
 function sync(){
 if(track.scrollWidth-track.clientWidth>12){ wrap.classList.add('has-more'); }
 else { wrap.classList.remove('has-more'); }
+buildDots();
 }
+wrap.__kzSync=sync;
 function step(dir){
 var card=track.querySelector('.usluga-card');
 var w=card?card.getBoundingClientRect().width+30:320;
@@ -990,6 +1028,7 @@ track.scrollBy({left:dir*w,behavior:'smooth'});
 var p=wrap.querySelector('.usluge-prev'), n=wrap.querySelector('.usluge-next');
 if(p) p.addEventListener('click',function(){ step(-1); });
 if(n) n.addEventListener('click',function(){ step(1); });
+track.addEventListener('scroll',markDots,{passive:true});
 window.addEventListener('resize',sync);
 sync();
 setTimeout(sync,900);
