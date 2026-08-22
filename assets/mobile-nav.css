@@ -5,17 +5,99 @@
    copies of these rules. Placed after each page's own <style> block so it
    wins the cascade (same selectors, same !important, later wins). */
 
+/* ==========================================================================
+   MOBILNI MENI — JEDINI IZVOR ISTINE (2026-08-22)
+   Prije ovoga je svaka stranica imala svoju kopiju ovih pravila u vlastitom
+   inline <style> bloku, pa je meni izgledao drugačije na Početnoj nego na
+   ostalim stranicama (panel je kretao od vrha ekrana i prekrivao logo i X).
+   Ovaj blok pokriva SVA tri markup obrasca koja postoje na sajtu:
+     - Početna:       input#kz-nav-toggle → a.hp-logo-link → label.kz-hamb → nav.kz-nav
+     - core stranice: a > img → input#kz-nav-toggle → label.kz-hamb → nav.kz-nav
+     - blog članci:   header.site-header, CTA ima klasu .cta (ne .kz-nav-cta)
+   Sve je !important i dolazi zadnje u kaskadi pa nadjačava lokalne kopije.
+   ========================================================================== */
 @media (max-width:860px){
-  .kz-nav a.active{
-    padding-top:18px!important;
-    padding-bottom:4px!important;
+  #kz-nav-toggle{ display:none!important; }
+
+  /* Hamburger / X — z-index iznad panela da X ostane vidljiv dok je meni otvoren. */
+  .kz-hamb{
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    gap:5px!important;
+    width:36px!important;
+    height:36px!important;
+    margin-left:auto!important;
+    flex-shrink:0!important;
+    cursor:pointer!important;
+    position:relative!important;
+    z-index:70!important;
   }
-  .kz-nav a.kz-nav-cta{
+  .kz-hamb span{
+    display:block!important;
+    width:24px!important;
+    height:2.5px!important;
+    background:#171412!important;
+    border-radius:2px!important;
+    transition:transform .2s ease,opacity .2s ease!important;
+  }
+  #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){ transform:translateY(7.5px) rotate(45deg)!important; }
+  #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){ opacity:0!important; }
+  #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){ transform:translateY(-7.5px) rotate(-45deg)!important; }
+
+  /* Header (logo + X) mora ostati iznad panela. */
+  header, header.site-header{ z-index:60!important; }
+
+  /* Panel kreće ISPOD headera (--kz-header-h postavlja nav-behavior.js). */
+  .kz-nav{
+    display:none!important;
+    position:fixed!important;
+    top:var(--kz-header-h,72px)!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    text-align:center!important;
+    flex-wrap:nowrap!important;
+    gap:0!important;
+    background:#fff!important;
+    padding:28px 24px 40px!important;
+    margin:0!important;
+    overflow-y:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+    overscroll-behavior:contain!important;
+    z-index:40!important;
+  }
+  #kz-nav-toggle:checked ~ .kz-nav{ display:flex!important; }
+
+  /* Linkovi: širina = širina riječi (zato se žuta crta podvlači samo ispod
+     riječi, a ne preko cijele širine ekrana) i centrirani su. */
+  .kz-nav a:not(.kz-nav-cta):not(.cta){
+    width:auto!important;
+    max-width:100%!important;
+    align-self:center!important;
+    text-align:center!important;
+    padding:16px 0 5px!important;
+    margin:0 0 6px!important;
+    font-size:24px!important;
+    line-height:1.2!important;
+  }
+  .kz-nav a.active{
+    padding-top:16px!important;
+    padding-bottom:5px!important;
+  }
+
+  /* CTA — veliki gumb na dnu menija, centriran. */
+  .kz-nav a.kz-nav-cta,
+  .kz-nav a.cta{
     box-sizing:border-box!important;
     width:auto!important;
     max-width:calc(100% - 4px)!important;
-    align-self:flex-start!important;
-    padding:14px 40px!important;
+    align-self:center!important;
+    padding:15px 44px!important;
+    margin-top:20px!important;
     border-radius:10px!important;
     border:2px solid #171412!important;
     background:#FFD048!important;
@@ -24,17 +106,20 @@
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
-    margin-top:14px!important;
     font-size:0!important;
   }
-  .kz-nav a.kz-nav-cta::after{
-    content:"Javite se";
-    font:700 17px Inter;
-    color:#171412;
-  }
-  /* Opaque, fully covering menu panel — no page content should show through. */
-  .kz-nav{
-    background:#fff!important;
+  .kz-nav a.kz-nav-cta::after,
+  .kz-nav a.cta::after{
+    content:"Javite se"!important;
+    font:700 17px Inter!important;
+    color:#171412!important;
+    position:static!important;
+    width:auto!important;
+    height:auto!important;
+    background:none!important;
+    border-radius:0!important;
+    opacity:1!important;
+    transform:none!important;
   }
 }
 
@@ -42,16 +127,17 @@
    Applies to both nav markup patterns used sitewide: inline-styled links
    (.kz-nav, on Pocetna/Mentorstvo/etc.) and class-based links (header.site-header,
    on blog articles). The line is always laid out (width:100%) and only toggles
-   opacity, so nothing slides, swipes or shifts. The inline style-hover="..."
-   attribute on some pages' nav links is overridden here with !important so the
-   old lift/underline can't come back. */
-.kz-nav a:not(.kz-nav-cta),
+   opacity, so nothing slides, swipes or shifts. Because the link itself is
+   shrink-wrapped to its text, width:100% == širina riječi. The inline
+   style-hover attribute on some pages' nav links is overridden here with
+   !important so the old lift/underline can't come back. */
+.kz-nav a:not(.kz-nav-cta):not(.cta),
 header.site-header nav a:not(.cta){
   position:relative;
   padding-bottom:3px;
   transition:none!important;
 }
-.kz-nav a:not(.kz-nav-cta)::after, header.site-header nav a:not(.cta)::after{
+.kz-nav a:not(.kz-nav-cta):not(.cta)::after, header.site-header nav a:not(.cta)::after{
   content:'';
   position:absolute;
   left:0;
@@ -64,13 +150,13 @@ header.site-header nav a:not(.cta){
   transform:none;
   transition:none;
 }
-.kz-nav a:not(.kz-nav-cta):hover, header.site-header nav a:not(.cta):hover{
+.kz-nav a:not(.kz-nav-cta):not(.cta):hover, header.site-header nav a:not(.cta):hover{
   color:#171412!important;
   text-decoration:none!important;
   transform:none!important;
   transition:none!important;
 }
-.kz-nav a:not(.kz-nav-cta):hover::after, header.site-header nav a:not(.cta):hover::after{
+.kz-nav a:not(.kz-nav-cta):not(.cta):hover::after, header.site-header nav a:not(.cta):hover::after{
   opacity:1;
 }
 .kz-nav a.active::after, header.site-header nav a.active::after{
