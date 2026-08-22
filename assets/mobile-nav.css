@@ -191,7 +191,10 @@ header.site-header nav a.cta:hover{
    'overflow-x:clip' je jedina vrijednost koja se smije pariti s 'visible',
    pa i dalje rezemo vodoravno, ali bez druge trake.
    NE mijenjaj ovo natrag u hidden. */
-html body div[style*="overflow-x:hidden"]{
+/* DC runtime normalizira inline stil pa atribut moze biti zapisan i sa
+   razmakom ("overflow-x: hidden") i bez njega - pokrivamo oba oblika. */
+html body div[style*="overflow-x:hidden"],
+html body div[style*="overflow-x: hidden"]{
   overflow-x:clip!important;
   overflow-y:visible!important;
 }
