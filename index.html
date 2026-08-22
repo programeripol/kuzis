@@ -150,7 +150,7 @@
 <style>
 @media(max-width:860px){.scrolly-wrap{height:300vh!important}.scrolly-line{font-size:clamp(22px,6vw,32px)!important}}
 </style>
-<section class="scrolly-wrap" style="position:relative;background:#FFD048;height:360vh">
+<section class="scrolly-wrap" style="position:relative;background:#FFC93C;transition:background-color .7s ease;height:360vh">
 <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
 <svg style="position:absolute;top:-8%;left:-10%;width:56vw;max-width:520px;filter:blur(40px);opacity:.32;mix-blend-mode:multiply" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#171412" d="M52.4,-62.3C67.3,-52.9,78.3,-36.4,81.6,-18.6C84.9,-0.8,80.5,18.3,70.6,33.6C60.8,48.9,45.5,60.4,28.4,66.9C11.4,73.4,-7.5,74.9,-24.9,69.6C-42.3,64.3,-58.2,52.2,-67.5,36.3C-76.8,20.4,-79.5,0.7,-75.1,-16.9C-70.7,-34.5,-59.2,-49.9,-44.7,-59.2C-30.2,-68.5,-15.1,-71.7,1.8,-74.1C18.7,-76.5,37.4,-71.7,52.4,-62.3Z" transform="translate(100 100)"></path></svg>
 <svg style="position:absolute;bottom:-12%;right:-10%;width:50vw;max-width:480px;filter:blur(44px);opacity:.28;mix-blend-mode:multiply" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M44.7,-58.7C56.9,-50.4,64.8,-35.3,68.6,-19.1C72.4,-2.9,72.1,14.4,64.9,28.4C57.7,42.4,43.6,53.1,28,60.2C12.4,67.3,-4.7,70.8,-21.1,67.3C-37.5,63.8,-53.2,53.3,-62.6,38.7C-72,24.1,-75.1,5.4,-71.6,-11.5C-68.1,-28.4,-58,-43.5,-44.6,-51.8C-31.2,-60.1,-15.6,-61.6,0.8,-62.7C17.2,-63.8,34.4,-64.5,44.7,-58.7Z" transform="translate(100 100)"></path></svg>
@@ -162,7 +162,7 @@
 <p class="scrolly-line" data-i="1" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Znanje koje ostaje.</p>
 <p class="scrolly-line" data-i="2" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Podrška kad zapne.</p>
 <p class="scrolly-line" data-i="3" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Posao prestaje biti teret.</p>
-<p class="scrolly-line" data-i="4" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;font-family:Inter;color:rgba(23,18,15,.82);font-size:clamp(18px,2.5vw,25px);line-height:1.5;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Možete se posvetiti onome što vas ispunjava, onome u čemu ste zaista najbolji.</p>
+<p class="scrolly-line" data-i="4" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease">Možete se posvetiti onome što vas ispunjava, onome u čemu ste zaista najbolji.</p>
 </div>
 </div>
 </section>
@@ -172,6 +172,7 @@ window.__kzScrollyMarker = 'init-start';
 function kzScrollyInit(){
 window.__kzScrollyMarker = 'init-ran';
 var ticking = false;
+var kzColors=['#FFC93C','#8ECAE6','#D8C8F7','#9FC58C','#D97757'];
 function apply(idx){
 var lines = document.querySelectorAll('.scrolly-line');
 for(var i=0;i<lines.length;i++){
@@ -180,6 +181,8 @@ if(i===idx){ el.style.opacity='1'; el.style.transform='translateY(0) scale(1)'; 
 else if(i<idx){ el.style.opacity='0'; el.style.transform='translateY(-24px) scale(.96)'; }
 else { el.style.opacity='0'; el.style.transform='translateY(24px) scale(.96)'; }
 }
+var wrap = document.querySelector('.scrolly-wrap');
+if(wrap && kzColors[idx]) wrap.style.backgroundColor = kzColors[idx];
 }
 function pin(wrap){
 var sticky = wrap.querySelector('.scrolly-sticky');
