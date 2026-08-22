@@ -279,6 +279,54 @@
     }
   }
 
+  /* Nova stavka izbornika i footera: Izrada web stranica. Nav i footer
+     zive u svakom od ~57 fajlova, pa se stavka dodaje ovdje jednom. */
+  var WEB_HREF = '/izrada-web-stranica';
+  var WEB_NAV = 'Web stranice';
+  var WEB_FOOT = 'Izrada web stranica';
+
+  function navExtra() {
+    var nav = document.querySelector('.kz-nav') || document.querySelector('header.site-header nav');
+    if (!nav || nav.querySelector('.kz-nav-web')) return;
+    var links = nav.querySelectorAll('a');
+    var model = null, ref = null;
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      if (a.classList.contains('kz-nav-cta') || a.classList.contains('cta')) continue;
+      var hh = (a.getAttribute('href') || '').replace(/\.html$/, '');
+      if (hh === WEB_HREF) return;
+      model = a;
+      if (!ref && (hh === '/o-nama' || hh === '/blog')) ref = a;
+    }
+    if (!model) return;
+    var n = model.cloneNode(false);
+    n.className = ((model.className || '') + ' kz-nav-web').trim();
+    n.classList.remove('active');
+    n.setAttribute('href', WEB_HREF);
+    n.style.color = 'rgba(23,18,15,.72)';
+    n.style.fontWeight = '500';
+    n.textContent = WEB_NAV;
+    if (ref) nav.insertBefore(n, ref); else nav.appendChild(n);
+  }
+
+  function footerExtra() {
+    var f = document.querySelector('footer');
+    if (!f || f.querySelector('.kz-f-web')) return;
+    var as = f.querySelectorAll('.footer-grid a');
+    var target = null;
+    for (var i = 0; i < as.length; i++) {
+      var hh = (as[i].getAttribute('href') || '').replace(/\.html$/, '');
+      if (hh === WEB_HREF) return;
+      if (hh === '/mentorstvo') target = as[i];
+    }
+    if (!target) return;
+    var n = target.cloneNode(false);
+    n.className = ((target.className || '') + ' kz-f-web').trim();
+    n.setAttribute('href', WEB_HREF);
+    n.textContent = WEB_FOOT;
+    target.parentNode.insertBefore(n, target.nextSibling);
+  }
+
   function footerForm() {
     var f = document.querySelector('footer');
     if (!f || f.getAttribute('data-kz-footer') === '1') return;
@@ -747,13 +795,13 @@
   }
 
   window.kzOpenNewsletter = function () { popup(true); };
-  function init() { footerForm(); legalLinks(); navActive(); arm(); }
+  function init() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); arm(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
-  window.addEventListener('load', function () { footerForm(); legalLinks(); navActive(); });
+  window.addEventListener('load', function () { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); });
   /* Template runtime zna prerenderati footer nakon nasih poziva - guard je
      data-kz-footer atribut na <footer>, pa ponovni pozivi nisu skupi. */
-  function kzFooterAll() { footerForm(); legalLinks(); navActive(); }
+  function kzFooterAll() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); }
   setTimeout(kzFooterAll, 1200);
   setTimeout(kzFooterAll, 3000);
   setTimeout(kzFooterAll, 6000);
