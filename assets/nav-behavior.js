@@ -168,7 +168,12 @@
     var f = document.querySelector('footer');
     if (!f || f.querySelector('.kz-fnl')) return;
     if (f.querySelector('input[type="email"]')) return;
-    if (document.querySelector('section input[type="email"]')) return;
+    var secs = document.querySelectorAll('section');
+    for (var q = 0; q < secs.length; q++) {
+      if (!secs[q].querySelector('input[type="email"]')) continue;
+      var tx = (secs[q].innerText || '').toLowerCase();
+      if (tx.indexOf('newsletter') >= 0 || tx.indexOf('ne propustite') >= 0 || tx.indexOf('inbox') >= 0) return;
+    }
     styles();
     var box = document.createElement('div');
     box.className = 'kz-fnl';
