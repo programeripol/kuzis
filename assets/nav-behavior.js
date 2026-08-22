@@ -98,6 +98,27 @@
       var toggle = document.getElementById('kz-nav-toggle');
       if (toggle && !toggle.checked) unlockScroll();
     });
+
+    // Bulletproof reconcile: ako iz bilo kojeg razloga (template runtime
+    // zamijeni checkbox node pa se 'change' izgubi, povratak preko back
+    // gumba, prekinuta navigacija) ostane body.position:fixed dok meni NIJE
+    // otvoren, stranica se na mobitelu UOPCE ne moze skrolati. Ovo to sanira.
+    function syncLock() {
+      var t = document.getElementById('kz-nav-toggle');
+      var open = !!(t && t.checked);
+      if (isLocked && !open) { unlockScroll(); return; }
+      if (!isLocked && !open && document.body.style.position === 'fixed') {
+        var body = document.body;
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+      }
+    }
+    setInterval(syncLock, 400);
+    window.addEventListener('pagehide', syncLock);
+    document.addEventListener('click', function () { setTimeout(syncLock, 80); }, true);
   });
 })();
 
@@ -306,7 +327,7 @@
       /* kind: 'o' = prepreka (smrtonosna), 'l' = katapult (izbaci uvis) */
       var DEF = {
         tratincice: { kind: 'o', w: 62, cw: 46, h: 50, hit: 48 },
-        ruza: { kind: 'o', w: 46, cw: 40, h: 45, hit: 56 },
+        ruza: { kind: 'o', w: 50, cw: 40, h: 45, hit: 62 },
         drvo: { kind: 'o', w: 56, cw: 40, h: 64, hit: 60 },
         kisa: { kind: 'o', w: 84, cw: 44, h: 128, hit: 112 },
         kosina: { kind: 'l', w: 72, h: 42, pow: 13.5 },
@@ -427,29 +448,41 @@
         ctx.beginPath(); ctx.arc(x, cy, 6 * s, 0, TAU); fs('#FFD048');
       }
       function rose(cx, base, h) {
-        ctx.strokeStyle = '#171412'; ctx.lineWidth = 4.5; ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(cx, base);
-        ctx.quadraticCurveTo(cx - 5, base - h * 0.45, cx, base - h * 0.66);
-        ctx.stroke();
+        var cy = base - h * 0.88;
+        /* stabljika: zelena s crnim rubom */
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#171412'; ctx.lineWidth = 9;
+        ctx.beginPath(); ctx.moveTo(cx, base); ctx.lineTo(cx, cy + 10); ctx.stroke();
+        ctx.strokeStyle = '#9FC58C'; ctx.lineWidth = 4.5;
+        ctx.beginPath(); ctx.moveTo(cx, base); ctx.lineTo(cx, cy + 10); ctx.stroke();
+        /* trnovi */
         ctx.fillStyle = '#171412';
-        var th = [[0.24, -1], [0.40, 1], [0.55, -1]];
+        var th = [[0.30, -1], [0.52, 1]];
         for (var i = 0; i < th.length; i++) {
           var yy = base - h * th[i][0], d = th[i][1];
           ctx.beginPath();
-          ctx.moveTo(cx + d * 2, yy); ctx.lineTo(cx + d * 12, yy - 4); ctx.lineTo(cx + d * 2, yy - 8);
+          ctx.moveTo(cx + d * 3, yy + 3); ctx.lineTo(cx + d * 13, yy - 3); ctx.lineTo(cx + d * 3, yy - 6);
           ctx.closePath(); ctx.fill();
         }
-        ctx.beginPath();
-        ctx.moveTo(cx, base - h * 0.36);
-        ctx.quadraticCurveTo(cx - 15, base - h * 0.50, cx - 18, base - h * 0.26);
-        ctx.quadraticCurveTo(cx - 8, base - h * 0.23, cx, base - h * 0.36);
-        ctx.closePath(); fs('#9FC58C');
-        var cy = base - h * 0.78;
-        shape([[cx - 8, cy + 2, 12], [cx + 8, cy + 2, 12], [cx, cy - 8, 13]], '#E0504B');
-        ctx.strokeStyle = 'rgba(23,20,18,.40)'; ctx.lineWidth = 2.6; ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.arc(cx, cy - 1, 6, 0.5, 4.7); ctx.stroke();
-        ctx.beginPath(); ctx.arc(cx, cy - 1, 11.5, 1.4, 4.1); ctx.stroke();
+        /* listovi */
+        for (var s4 = -1; s4 <= 1; s4 += 2) {
+          var ly = base - h * (s4 < 0 ? 0.22 : 0.36);
+          ctx.beginPath();
+          ctx.moveTo(cx, ly);
+          ctx.quadraticCurveTo(cx + s4 * 12, ly - 12, cx + s4 * 19, ly - 1);
+          ctx.quadraticCurveTo(cx + s4 * 10, ly + 5, cx, ly);
+          ctx.closePath(); fs('#9FC58C');
+        }
+        /* glava: 5 latica u krug + spirala u sredini */
+        var parts = [];
+        for (var p = 0; p < 5; p++) {
+          var a2 = -Math.PI / 2 + TAU * p / 5;
+          parts.push([cx + Math.cos(a2) * 10, cy + Math.sin(a2) * 10, 12]);
+        }
+        shape(parts, '#E0504B');
+        ctx.strokeStyle = 'rgba(23,20,18,.55)'; ctx.lineWidth = 2.6; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.arc(cx, cy, 5.5, 0.5, 5.0); ctx.stroke();
+        ctx.beginPath(); ctx.arc(cx, cy, 11.5, 1.4, 5.7); ctx.stroke();
       }
       function drawObs(o) {
         var b = GND, cx = o.x + o.w / 2;
