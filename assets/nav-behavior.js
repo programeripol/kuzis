@@ -1,3 +1,24 @@
+/* Kužiš — osiguraj da je zajednicki mobilni CSS ucitan na SVAKOJ stranici.
+   blog.html je "bundler" export koji nakon ucitavanja prepise <head>, pa se
+   staticki <link> na mobile-nav.css izgubi (script se vec izvrsio pa prezivi).
+   Zato ga ubacujemo iz JS-a, i ponavljamo provjeru ako ga netko obrise.
+   Bonus: nijedna nova stranica ga ne moze zaboraviti ukljuciti. */
+(function () {
+  function ensureCss() {
+    if (document.querySelector('link[href*="mobile-nav.css"]')) return;
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = '/assets/mobile-nav.css';
+    (document.head || document.documentElement).appendChild(l);
+  }
+  ensureCss();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensureCss);
+  window.addEventListener('load', ensureCss);
+  setTimeout(ensureCss, 800);
+  setTimeout(ensureCss, 2500);
+  setTimeout(ensureCss, 6000);
+})();
+
 /* Kužiš — shared mobile header/nav behavior.
    Loaded on every page. Handles:
    - --kz-header-h CSS var (so the mobile menu panel starts exactly below
