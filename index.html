@@ -361,7 +361,7 @@ p.appendChild(row);
 p.__kzGroups=key;
 p.__kzFitW=null;
 }
-function kzFitRows(p){
+function kzFitRows(p, cap){
 var avail=p.clientWidth-48;
 if(avail<80) return;
 if(p.__kzFitW===avail) return;
@@ -370,33 +370,50 @@ for(var i=0;i<rows.length;i++){
 var r=rows[i];
 var prev=r.style.transform;
 r.style.transform='none';
+r.style.display='flex';
 r.style.fontSize='40px';
 var w=r.getBoundingClientRect().width;
-if(w>4){ r.style.fontSize=(40*avail/w).toFixed(2)+'px'; }
+if(w>4){
+var fs=40*avail/w;
+if(cap&&fs>cap) fs=cap;
+r.style.fontSize=fs.toFixed(2)+'px';
+} else {
+r.style.display='none';
+}
 r.style.transform=prev;
 }
 p.__kzFitW=avail;
 }
 function kzLine4Enter(p, localT){
 kzBuild4(p);
-kzFitRows(p);
 var words=p.querySelectorAll('.kz-w');
 var n=words.length;
 var beat=1/n;
 var snap=0.34;
+var k=localT<=0?0:Math.min(n, Math.floor(localT/beat)+1);
 for(var i=0;i<n;i++){
+words[i].style.display=(i<k)?'inline-block':'none';
+}
+if(p.__kzK!==k){ p.__kzK=k; p.__kzFitW=null; }
+kzFitRows(p, (p.clientWidth-48)*0.19);
+for(var i=0;i<k;i++){
 var w=words[i];
+if(i<k-1){
+w.style.opacity='1';
+w.style.transform='none';
+w.style.color='#171412';
+continue;
+}
 var t=(localT-i*beat)/(beat*snap);
-if(t<=0){ w.style.opacity='0'; w.style.transform='scale(.55)'; continue; }
-var e=t>=1?1:kzStompEase(t);
-var inv=1-e;
+var e=t>=1?1:kzStompEase(Math.max(0,t));
 var v=i%4, tf;
-if(v===0){ tf='scale('+(1+inv*0.6).toFixed(3)+')'; }
-else if(v===1){ tf='scale('+(1-inv*0.65).toFixed(3)+') rotate('+(inv*-9).toFixed(2)+'deg)'; }
-else if(v===2){ tf='translateY('+(inv*-0.55).toFixed(3)+'em) scale('+(1+inv*0.3).toFixed(3)+')'; }
-else { tf='translateY('+(inv*0.5).toFixed(3)+'em) rotate('+(inv*7).toFixed(2)+'deg)'; }
+if(v===0){ tf='scale('+(1+kzOS(0.6,e)).toFixed(3)+')'; }
+else if(v===1){ tf='scale('+(1+kzOS(-0.55,e)).toFixed(3)+') rotate('+kzOS(-9,e).toFixed(2)+'deg)'; }
+else if(v===2){ tf='translateY('+kzOS(-0.45,e).toFixed(3)+'em) scale('+(1+kzOS(0.28,e)).toFixed(3)+')'; }
+else { tf='translateY('+kzOS(0.4,e).toFixed(3)+'em) rotate('+kzOS(7,e).toFixed(2)+'deg)'; }
 w.style.opacity='1';
 w.style.transform=tf;
+w.style.color='#FFFFFF';
 }
 p.style.transform='none';
 p.style.filter='none';
