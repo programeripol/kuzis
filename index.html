@@ -370,7 +370,7 @@ var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
 if(bgA){ bgA.style.background='#ffffff'; }
 if(bgB){ bgB.style.background='#ffffff'; bgB.style.clipPath='none'; }
-var textProgress=Math.max(0,Math.min(1,(ep-0.0625)/0.5));
+var textProgress=Math.max(0,Math.min(1,(ep-0.22)/0.38));
 var sticky=rect && document.querySelector('.scrolly-wrap .scrolly-sticky');
 if(sticky){
 if(textProgress>0){
@@ -526,11 +526,11 @@ if(rect.top>0){
 window.__kzWavePhase=(Date.now()/650)%(Math.PI*2);
 var vh=window.innerHeight;
 var ep=Math.max(0,Math.min(1,(vh-rect.top)/vh));
-var waveProgress=Math.max(0,Math.min(1,(ep-0.15)/0.45));
+var waveProgress=Math.max(0,Math.min(1,(ep-0.05)/0.17));
 if(waveProgress>0){
 var clip=kzWavePath(window.innerWidth, window.innerHeight, waveProgress);
 waveOverlay.style.clipPath=clip;
-if(sticky) sticky.style.clipPath=clip;
+if(sticky) sticky.style.clipPath = waveProgress>=1 ? 'none' : clip;
 } else {
 waveOverlay.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')";
 if(sticky) sticky.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')";
