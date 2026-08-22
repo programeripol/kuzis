@@ -202,40 +202,65 @@
     }
     return false;
   }
+  /* Footer: ujednaci ga s Pocetnom i ubaci newsletter kao obicnu stavku u
+     stupac "Pratite nas". Prije je ovdje bio veliki isprekidani box (.kz-fnl)
+     preko cijele sirine - maknut na Dorin zahtjev ("a ne cijeli box").
+     Klik otvara isti pop-up s igricom, i na mobu i na desktopu.
+     Usput poravnava footere ostalih stranica s onim na Pocetnoj:
+       - naslov stupca "Program" -> "Usluge"
+       - zuti CTA gumb ide u stupac Kontakt (ne u prvi stupac)
+       - LinkedIn se mice iz Kontakta (ostaje pod "Pratite nas")
+     Radi na zivom DOM-u jer isti footer postoji u ~57 datoteka. */
   function footerForm() {
     var f = document.querySelector('footer');
-    if (!f || f.querySelector('.kz-fnl')) return;
-    styles();
-    var slim = hasNlSection() || !!f.querySelector('input[type="email"]');
-    var box = document.createElement('div');
-    box.className = 'kz-fnl';
-    if (slim) {
-      box.innerHTML =
-        '<div><p class="kz-fnl-t">Kužiš newsletter</p>' +
-        '<p class="kz-fnl-s">Preskoči prepreke pa se prijavi - traje dvadeset sekundi.</p></div>' +
-        '<button type="button" class="kz-fnl-play kz-fnl-playbig">Igraj i prijavi se</button>';
-    } else {
-      box.innerHTML =
-        '<div><p class="kz-fnl-t">Kužiš newsletter</p>' +
-        '<p class="kz-fnl-s">Jednom mjesečno: konkretni trikovi za Canvu, Excel i web. Bez zatrpavanja inboxa.</p></div>' +
-        '<div class="kz-fnl-right"><form novalidate><input type="email" required placeholder="vasa@email.com" aria-label="Email adresa">' +
-        '<button type="submit">Prijavi me</button></form>' +
-        '<button type="button" class="kz-fnl-play">ili odigraj igricu</button></div>';
-    }
+    if (!f || f.getAttribute('data-kz-footer') === '1') return;
     var grid = f.querySelector('.footer-grid');
-    if (grid && grid.parentNode) grid.parentNode.insertBefore(box, grid.nextSibling);
-    else f.insertBefore(box, f.firstChild);
-    var play = box.querySelector('.kz-fnl-play');
-    if (play) play.addEventListener('click', function () { popup(true); });
-    var form = box.querySelector('form');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var v = form.querySelector('input').value.trim();
-        if (!v || v.indexOf('@') < 0) return;
-        subscribe(v);
-        form.outerHTML = '<div class="kz-fnl-ok">Hvala! Provjerite inbox za potvrdu prijave.</div>';
-      });
+    if (!grid || grid.children.length < 2) return;
+
+    var cols = [].slice.call(grid.children);
+    function headEl(col) {
+      var k = col.firstElementChild;
+      while (k) {
+        var t = (k.textContent || '').trim();
+        if (t && t.length < 22 && k.tagName !== 'A' && k.tagName !== 'P' && !k.querySelector('a')) return k;
+        k = k.nextElementSibling;
+      }
+      return null;
+    }
+    var colKontakt = null, colSocial = null;
+    for (var i = 0; i < cols.length; i++) {
+      var he = headEl(cols[i]);
+      var t = he ? he.textContent.trim().toLowerCase() : '';
+      if (/^kontakt/.test(t)) colKontakt = cols[i];
+      else if (/^prati/.test(t)) colSocial = cols[i];
+      else if (/^program/.test(t)) he.textContent = 'Usluge';
+    }
+    if (!colSocial) return;
+    f.setAttribute('data-kz-footer', '1');
+
+    if (colKontakt) {
+      var links = colKontakt.querySelectorAll('a');
+      for (var k2 = 0; k2 < links.length; k2++) {
+        var lt = links[k2].textContent.trim();
+        if (/^linkedin$/i.test(lt)) links[k2].style.display = 'none';
+        if (/po[s\u0161]aljite upit/i.test(lt)) {
+          links[k2].setAttribute('style', 'align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;margin-top:4px;padding:11px 20px;background:#FFD048;color:#171412;border-radius:8px;font:600 13.5px Inter;text-decoration:none;transition:transform .25s ease');
+        }
+      }
+      var dupBtn = cols[0].querySelector('a[href*="kontakt"]');
+      if (dupBtn) dupBtn.style.display = 'none';
+      var firstP = cols[0].querySelector('p');
+      if (firstP) firstP.style.marginBottom = '0';
+    }
+
+    if (!colSocial.querySelector('.kz-fnl-nl')) {
+      var sib = colSocial.querySelector('a');
+      var link = sib ? sib.cloneNode(false) : document.createElement('a');
+      link.className = ((link.className || '') + ' kz-fnl-nl').trim();
+      link.setAttribute('href', '#');
+      link.textContent = 'Prijavi se na newsletter';
+      link.addEventListener('click', function (e) { e.preventDefault(); popup(true); });
+      (sib && sib.parentNode ? sib.parentNode : colSocial).appendChild(link);
     }
   }
 
@@ -561,7 +586,7 @@
         for (var i = 0; i < st.obs.length; i++) drawObs(st.obs[i]);
 
         var sq = st.land > 0 ? 0.13 * (st.land / 6) : 0;
-        ball(PX, GND - R - st.y + (st.land > 0 ? R * sq : 0), R, sq, st.over, st.rot, st.y <= 1);
+        ball(PX, GND - R - st.y + (st.land > 0 ? R * sq : 0), R, sq, st.over, st.rot, st.run && st.y <= 1);
 
         ctx.fillStyle = '#171412';
         ctx.font = '700 30px Inter, system-ui, sans-serif';
@@ -648,4 +673,9 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
   window.addEventListener('load', footerForm);
+  /* Template runtime zna prerenderati footer nakon nasih poziva - guard je
+     data-kz-footer atribut na <footer>, pa ponovni pozivi nisu skupi. */
+  setTimeout(footerForm, 1200);
+  setTimeout(footerForm, 3000);
+  setTimeout(footerForm, 6000);
 })();
