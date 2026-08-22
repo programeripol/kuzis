@@ -36,6 +36,35 @@
 <helmet>
 <style>
   .usluga-card:hover .usluga-icon { transform: scale(1.14) rotate(-4deg); }
+  .usluge-wrap { position: relative; }
+  .usluge-track { display: flex; gap: 30px; width: max-content; max-width: 100%; margin: 0 auto; overflow-x: auto; scroll-snap-type: x mandatory; padding: 16px 6px 30px; scrollbar-width: none; }
+  .usluge-track::-webkit-scrollbar { display: none; }
+  .usluga-card { flex: 0 0 332px; scroll-snap-align: center; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 30px 26px 28px; background: #FFFFFF; border: 2.5px solid #171412; border-radius: 32px 26px 34px 24px; box-shadow: 8px 8px 0 #FFD048; }
+  .usluga-card:hover { transform: translate(-4px, -4px) !important; box-shadow: 12px 12px 0 #FFD048; }
+  .usluga-ico { width: 64px; height: 64px; border-radius: 50%; background: #FFD048; border: 2.5px solid #171412; display: flex; align-items: center; justify-content: center; }
+  .usluga-ico .usluga-icon { width: 32px; height: 32px; }
+  .usluge-nav { position: absolute; top: 46%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; background: #fff; border: 2.5px solid #171412; font: 800 22px/1 Inter; color: #171412; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 3; padding: 0; transition: background .18s ease; }
+  .usluge-nav:hover { background: #FFD048; }
+  .usluge-prev { left: -6px; }
+  .usluge-next { right: -6px; }
+  .usluge-wrap.has-more .usluge-nav { display: flex; }
+  .kz-steps { position: relative; max-width: 920px; margin: 0 auto; }
+  .kz-steps-line { position: absolute; left: 50%; top: 12px; width: 130px; height: calc(100% - 24px); transform: translateX(-50%); pointer-events: none; z-index: 0; }
+  .kz-steps-list { position: relative; z-index: 1; }
+  .kz-step { display: grid; grid-template-columns: 1fr 150px 1fr; align-items: center; margin-bottom: 20px; }
+  .kz-step-box { grid-row: 1; max-width: 370px; box-sizing: border-box; padding: 20px 22px; background: #FFFFFF; border: 2.5px solid #171412; border-radius: 24px 20px 26px 18px; box-shadow: 6px 6px 0 #FFD048; }
+  .kz-step-mid { grid-column: 2; grid-row: 1; display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .kz-step-num { flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%; background: #FFD048; border: 2.5px solid #171412; display: flex; align-items: center; justify-content: center; font-family: 'Baloo 2', Inter, sans-serif; font-weight: 800; font-size: 19px; color: #171412; }
+  .kz-step-arrow { width: 58px; height: 28px; flex: 0 0 auto; }
+  @media (max-width: 860px) {
+    .usluga-card { flex: 0 0 84vw; }
+    .kz-steps-line { left: 30px; width: 66px; transform: none; }
+    .kz-step { grid-template-columns: 62px 1fr; gap: 8px; margin-bottom: 16px; }
+    .kz-step-box { grid-column: 2 !important; justify-self: stretch !important; transform: none !important; max-width: none; }
+    .kz-step-mid { grid-column: 1 !important; justify-content: flex-start; flex-direction: row !important; }
+    .kz-step-arrow { display: none; }
+  }
+
   #blog-slider-track::-webkit-scrollbar { display: none; }
   .cta-underline { position: relative; text-decoration: none; padding-bottom: 3px; display: inline-block; }
   .cta-underline::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: #FFD048; border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.4,0,.2,1); }
@@ -901,6 +930,32 @@ if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(function(){ 
 if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', kzScrollyInit); } else { kzScrollyInit(); }
 window.addEventListener('load', kzScrollyInit);
 })();
+(function(){
+function kzUsl(){
+var wrap=document.querySelector('.usluge-wrap');
+var track=wrap&&wrap.querySelector('.usluge-track');
+if(!track) return;
+function sync(){
+if(track.scrollWidth-track.clientWidth>12){ wrap.classList.add('has-more'); }
+else { wrap.classList.remove('has-more'); }
+}
+function step(dir){
+var card=track.querySelector('.usluga-card');
+var w=card?card.getBoundingClientRect().width+30:320;
+track.scrollBy({left:dir*w,behavior:'smooth'});
+}
+var p=wrap.querySelector('.usluge-prev'), n=wrap.querySelector('.usluge-next');
+if(p) p.addEventListener('click',function(){ step(-1); });
+if(n) n.addEventListener('click',function(){ step(1); });
+window.addEventListener('resize',sync);
+sync();
+setTimeout(sync,900);
+setTimeout(sync,2500);
+}
+if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',kzUsl); } else { kzUsl(); }
+window.addEventListener('load',kzUsl);
+})();
+
 </script>
 
   <!-- PREGLED EDUKACIJA -->
@@ -910,11 +965,13 @@ window.addEventListener('load', kzScrollyInit);
         <div style="display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">Usluge</div>
         <h2 style="margin:0;font-weight:800;font-size:clamp(26px,4vw,34px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Kužimo vas, zato smo tu</h2>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
-        <div style="flex:1 1 480px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px">
-          <sc-for list="{{ overview }}" as="o" hint-placeholder-count="4">
-            <div data-reveal="1" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:8px 10px;height:100%;opacity:0;transform:translateY(24px);transition:opacity .6s ease {{ $index }}00ms,transform .6s ease {{ $index }}00ms" class="usluga-card">
-              <sc-if value="{{ o.icon }}" hint-placeholder-val="canva">
+      <div class="usluge-wrap">
+<button class="usluge-nav usluge-prev" type="button" aria-label="Prethodna usluga">&#8249;</button>
+<div class="usluge-track">
+<sc-for list="{{ overview }}" as="o" hint-placeholder-count="4">
+<div data-reveal="1" class="usluga-card" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease {{ $index }}00ms,transform .6s ease {{ $index }}00ms">
+<div class="usluga-ico">
+<sc-if value="{{ o.icon }}" hint-placeholder-val="canva">
                 <sc-if value="{{ o.iconIsCanva }}" hint-placeholder-val="{{ false }}">
                   <svg class="usluga-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .35s ease">
                     <circle cx="12" cy="12" r="9"></circle>
@@ -940,9 +997,10 @@ window.addEventListener('load', kzScrollyInit);
                   </svg>
                 </sc-if>
               </sc-if>
-              <h3 style="margin:0;font:700 18px/1.3 Inter;letter-spacing:-.005em">{{ o.title }}</h3>
-              <p style="margin:0;font:400 14px/1.6 Inter;color:rgba(23,18,15,.62);flex:1">{{ o.desc }}</p>
-              <sc-if value="{{ o.dual }}" hint-placeholder-val="{{ false }}">
+</div>
+<h3 style="margin:0;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:23px;line-height:1.15;letter-spacing:-.01em;color:#171412">{{ o.title }}</h3>
+<p style="margin:0;font:400 14.5px/1.65 Inter;color:rgba(23,18,15,.66);flex:1">{{ o.desc }}</p>
+<sc-if value="{{ o.dual }}" hint-placeholder-val="{{ false }}">
                 <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:22px;margin-top:6px">
                   <a href="{{ o.href2 }}" class="cta-underline-inv">{{ o.cta2 }} →</a>
                   <a href="{{ o.href1 }}" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap;align-self:center">{{ o.cta1 }} →</a>
@@ -951,9 +1009,11 @@ window.addEventListener('load', kzScrollyInit);
               <sc-if value="{{ o.notDual }}" hint-placeholder-val="{{ false }}">
                 <a href="{{ o.href }}" class="usluga-cta-btn" style="margin-top:6px;display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;font-size:14px;font-family:Inter;text-decoration:none;border:2.5px solid #171412;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease">{{ o.cta }}</a>
               </sc-if>
-            </div>
-          </sc-for>
-        </div>
+</div>
+</sc-for>
+</div>
+<button class="usluge-nav usluge-next" type="button" aria-label="Sljedeća usluga">&#8250;</button>
+</div>
       </div>
     </div>
   </section>
@@ -986,14 +1046,23 @@ window.addEventListener('load', kzScrollyInit);
         <div style="display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">Naš pristup</div>
         <h2 style="margin:0;font-weight:800;font-size:clamp(26px,4vw,36px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Metodologija, ne improvizacija</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
-        <sc-for list="{{ methodology }}" as="m" hint-placeholder-count="6">
-          <div style="padding:28px 24px;background:#FFFFFF;border-radius:16px;border:1px solid rgba(23,18,15,.08);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-5px);box-shadow:0 14px 32px rgba(23,18,15,.08)">
-            <div style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;font:800 16px Inter;color:#171412;background:#FFD048;border-radius:9px;margin-bottom:12px;transition:transform .3s ease" style-hover="transform:rotate(-8deg) scale(1.08)">{{ m.num }}</div>
-            <h3 style="margin:0 0 8px;font:700 16px Inter">{{ m.title }}</h3>
-            <p style="margin:0;font:400 14px/1.6 Inter;color:rgba(23,18,15,.62)">{{ m.desc }}</p>
-          </div>
-        </sc-for>
+      <div class="kz-steps">
+<svg class="kz-steps-line" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M50 6 C 8 110, 92 205, 50 300 C 8 395, 92 490, 50 585 C 8 680, 92 775, 50 870 C 30 925, 62 960, 50 994" fill="none" stroke="#FFD048" stroke-width="9" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></svg>
+<div class="kz-steps-list">
+<sc-for list="{{ methodology }}" as="m" hint-placeholder-count="6">
+<div class="kz-step" data-reveal="1" style="opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease">
+<div class="kz-step-box" style="grid-column:{{ m.col }};justify-self:{{ m.just }};transform:rotate({{ m.rot }})">
+<h3 style="margin:0 0 6px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:19px;line-height:1.2;color:#171412">{{ m.title }}</h3>
+<p style="margin:0;font:400 14px/1.6 Inter;color:rgba(23,18,15,.64)">{{ m.desc }}</p>
+</div>
+<div class="kz-step-mid" style="flex-direction:{{ m.dir }}">
+<svg class="kz-step-arrow" viewBox="0 0 64 30" aria-hidden="true" style="transform:{{ m.flip }}"><path d="M60 13 C 44 3, 26 25, 8 15" fill="none" stroke="#171412" stroke-width="2.4" stroke-dasharray="5 7" stroke-linecap="round"></path><path d="M16 8 L 7 15 L 16 22" fill="none" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div class="kz-step-num">{{ m.num }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
       </div>
     </div>
   </section>
@@ -1293,6 +1362,14 @@ class Component extends DCLogic {
       { num: '05', title: 'S podrškom', desc: 'Podrška nakon edukacije za dodatna pitanja.' },
       { num: '06', title: 'S rezultatima', desc: 'Cilj je konkretna promjena u svakodnevnom radu.' },
     ];
+    methodology.forEach((m, i) => {
+      const L = i % 2 === 0;
+      m.col = L ? '1' : '3';
+      m.just = L ? 'end' : 'start';
+      m.rot = L ? '-0.9deg' : '0.9deg';
+      m.dir = L ? 'row' : 'row-reverse';
+      m.flip = L ? 'none' : 'scaleX(-1)';
+    });
 
     const BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
