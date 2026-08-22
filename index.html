@@ -81,6 +81,9 @@
 .hp-hero-cut{margin-top:-90px!important}
 }
 @media (max-width:860px){
+.hp-hero-cut{margin-top:-35px!important}
+}
+@media (max-width:860px){
     .kz-nav{display:none!important;position:fixed!important;top:var(--kz-header-h,72px)!important;left:0;right:0;bottom:0;flex-direction:column!important;align-items:stretch!important;flex-wrap:nowrap!important;gap:0!important;background:#fff;padding:22px 24px;margin:0;overflow-y:auto;z-index:40}
     .kz-nav a{width:100%!important;padding:18px 0!important;font-size:24px!important}
     .kz-nav a.active{width:auto!important;display:inline-block!important;align-self:flex-start!important;padding-top:18px!important;padding-bottom:4px!important}
@@ -135,7 +138,7 @@
   </header>
 
   <div class="kz-wave-overlay" style="position:fixed;inset:0;z-index:9998;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
-<div class="kz-wipe" style="position:fixed;inset:0;z-index:10002;pointer-events:none;background:#ffffff;clip-path:circle(0px at 50% 50%);opacity:1"></div>
+<div class="kz-dot-proxy" style="position:fixed;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#171412;z-index:10005;pointer-events:none;opacity:0;transform:scale(1)"></div>
 <!-- HERO -->
   <section style="position:relative;overflow:hidden;background:#ffffff">
     <picture>
@@ -167,7 +170,7 @@
 <p class="scrolly-line" data-i="1" style="position:absolute;inset:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.15;letter-spacing:-.01em;will-change:transform,opacity,filter;opacity:0"><span class="kz-w" style="display:block;will-change:transform,opacity">Znanje</span><span class="kz-w" style="display:block;will-change:transform,opacity">koje</span><span class="kz-w" style="display:block;will-change:transform,opacity">ostaje.</span></p>
 <p class="scrolly-line" data-i="2" style="position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;opacity:0"><span style="position:relative;display:inline-block;width:100%;height:1.3em"><span class="kz-reel" data-slot="-3" style="position:absolute;left:0;right:0;top:50%;white-space:nowrap;will-change:transform,opacity">Podrška kad zapne.</span><span class="kz-reel" data-slot="-2" style="position:absolute;left:0;right:0;top:50%;white-space:nowrap;will-change:transform,opacity">Podrška kad zapne.</span><span class="kz-reel" data-slot="-1" style="position:absolute;left:0;right:0;top:50%;white-space:nowrap;will-change:transform,opacity">Podrška kad zapne.</span><span class="kz-reel" data-slot="0" style="position:absolute;left:0;right:0;top:50%;white-space:nowrap;will-change:transform,opacity">Podrška kad zapne.</span><span class="kz-reel" data-slot="1" style="position:absolute;left:0;right:0;top:50%;white-space:nowrap;will-change:transform,opacity">Podrška kad zapne.</span><span class="kz-reel" data-slot="2" style="position:absolute;left:0;right:0;top:50%;white-space:nowrap;will-change:transform,opacity">Podrška kad zapne.</span><span class="kz-reel" data-slot="3" style="position:absolute;left:0;right:0;top:50%;white-space:nowrap;will-change:transform,opacity">Podrška kad zapne.</span></span></p>
 <p class="scrolly-line" data-i="3" style="position:absolute;inset:0;margin:0;display:grid;grid-template-columns:auto auto;column-gap:20px;row-gap:2px;align-items:center;justify-content:center;text-align:center;font-family:'Baloo 2';color:#171412;letter-spacing:-.01em;will-change:opacity;opacity:0"><span class="kz-l3-posao" style="grid-column:1;grid-row:1;font-weight:800;font-size:clamp(26px,4.6vw,48px);display:inline-block;will-change:transform,opacity"><span class="kz-c" style="display:inline-block;will-change:transform,opacity;opacity:0;text-transform:uppercase">p</span><span class="kz-c" style="display:inline-block;will-change:transform,opacity;opacity:0;text-transform:uppercase">o</span><span class="kz-c" style="display:inline-block;will-change:transform,opacity;opacity:0;text-transform:uppercase">s</span><span class="kz-c" style="display:inline-block;will-change:transform,opacity;opacity:0;text-transform:uppercase">a</span><span class="kz-c" style="display:inline-block;will-change:transform,opacity;opacity:0;text-transform:uppercase">o</span></span><span class="kz-l3-prestaje" style="grid-column:1;grid-row:2;font-weight:800;font-size:clamp(18px,3.2vw,32px);text-transform:uppercase;color:#ffffff;text-shadow:0 1px 4px rgba(23,20,18,.35);display:inline-block;will-change:transform,opacity;opacity:0">prestaje</span><span class="kz-l3-biti" style="grid-column:2;grid-row:1;font-weight:400;font-size:clamp(20px,3.6vw,36px);display:inline-block;will-change:transform,opacity;opacity:0">biti</span><span class="kz-l3-teret" style="grid-column:2;grid-row:2;font-weight:800;font-size:clamp(24px,4.2vw,44px);display:inline-block;will-change:transform,opacity;opacity:0">teret.</span></p>
-<p class="scrolly-line" data-i="4" style="position:absolute;inset:0;margin:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;row-gap:0;column-gap:.32em;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;will-change:transform,opacity,filter;opacity:0"><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">Možete</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">se</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">posvetiti</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">onome</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">što</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">vas</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">ispunjava,</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">onome</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">u</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">čemu</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">ste</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">zaista</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">najbolji.</span></p>
+<p class="scrolly-line" data-i="4" style="position:absolute;inset:0;margin:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;row-gap:0;column-gap:.32em;font-weight:800;font-family:'Baloo 2';color:#171412;font-size:clamp(26px,4.6vw,48px);line-height:1.3;letter-spacing:-.01em;will-change:transform,opacity,filter;opacity:0"><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">Možete</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">se</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">posvetiti</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">onome</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">što</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">vas</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">ispunjava,</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">onome</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">u</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">čemu</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">ste</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;font-weight:300;color:#171412">zaista</span><span class="kz-w" style="display:inline-block;will-change:transform,opacity;color:#171412">najbolji<span class="kz-dot-final" style="display:inline-block;color:#171412">.</span></span></p>
 </div>
 </div>
 </section>
@@ -201,27 +204,37 @@ return "path('"+kzSmoothPath(pts)+"')";
 }
 function kzWavePath(W,H,progress){
 var amp=46;
-var baseY=H-progress*(H+amp+60);
-var pts=[[0,H+60],[0,baseY]];
-var seg=8;
+var baseY=H-progress*(H+amp+80);
+var seg=12;
+var phase=window.__kzWavePhase||0;
+var pts=[];
 for(var i=0;i<=seg;i++){
 var x=(i/seg)*W;
-var y=baseY+Math.sin((i/seg)*Math.PI*2.4)*amp;
+var y=baseY+Math.sin((i/seg)*Math.PI*2.6+phase)*amp+Math.sin((i/seg)*Math.PI*5.2-phase*1.4)*(amp*0.32);
 pts.push([x,y]);
 }
-pts.push([W,baseY]);
-pts.push([W,H+60]);
-return "path('"+kzSmoothPath(pts)+"')";
+var d='M -8 '+(H+15).toFixed(1)+' L -8 '+pts[0][1].toFixed(1)+' L '+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1)+' ';
+for(var i=0;i<pts.length-1;i++){
+var mx=(pts[i][0]+pts[i+1][0])/2;
+var my=(pts[i][1]+pts[i+1][1])/2;
+d+='Q '+pts[i][0].toFixed(1)+' '+pts[i][1].toFixed(1)+' '+mx.toFixed(1)+' '+my.toFixed(1)+' ';
+}
+d+='L '+pts[pts.length-1][0].toFixed(1)+' '+pts[pts.length-1][1].toFixed(1)+' ';
+d+='L '+(W+8).toFixed(1)+' '+pts[pts.length-1][1].toFixed(1)+' ';
+d+='L '+(W+8).toFixed(1)+' '+(H+15).toFixed(1)+' Z';
+return "path('"+d+"')";
 }
 function kzEaseOutBack(x){
 var c1=1.70158, c3=c1+1;
 return 1 + c3*Math.pow(x-1,3) + c1*Math.pow(x-1,2);
 }
 function kzLine0Enter(p, localT){
-var scale=2.4-1.4*localT;
-var blur=(1-localT)*14;
+var scale=3.2-2.2*localT;
+var blur=(1-localT)*26;
+var op=Math.max(0,Math.min(1, localT/0.55));
 p.style.transform='scale('+scale+')';
 p.style.filter='blur('+blur+'px)';
+p.style.opacity=op.toFixed(2);
 }
 function kzLine0Exit(p, t){
 var scale=1-0.6*t;
@@ -342,12 +355,6 @@ function kzLine4Exit(p,t){ p.style.transform='scale('+(1-0.25*t)+')'; }
 var enterFns=[kzLine0Enter,kzLine1Enter,kzLine2Enter,kzLine3Enter,kzLine4Enter];
 var exitFns2=[kzLine0Exit,kzLine1Exit,kzLine2Exit,kzLine3Exit,kzLine4Exit];
 function applyIntro(ep, rect){
-var waveOverlay=document.querySelector('.kz-wave-overlay');
-var waveProgress=Math.max(0,Math.min(1,(ep-0.3)/0.5));
-if(waveOverlay){
-if(waveProgress>0){ waveOverlay.style.clipPath=kzWavePath(window.innerWidth, window.innerHeight, waveProgress); }
-else { waveOverlay.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')"; }
-}
 var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
 if(bgA){ bgA.style.background='#ffffff'; }
@@ -441,42 +448,84 @@ applyIntro(ep, rect);
 window.__kzScrollyMarker='intro:'+ep.toFixed(2);
 return;
 }
-var waveOverlay2=document.querySelector('.kz-wave-overlay');
-if(waveOverlay2){ waveOverlay2.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')"; }
 var total=rect.height-vh;
 var scrolled=Math.min(Math.max(-rect.top,0),total);
 var progress=total>0?scrolled/total:0;
 var v=progress*lines.length;
 if(v>lines.length-0.0001) v=lines.length-0.0001;
 applyContinuous(v, rect);
-pin(wrap);
 var outroWin=vh*0.9;
 var op=Math.max(0,Math.min(1,(vh-rect.bottom)/outroWin));
-var wipe=document.querySelector('.kz-wipe');
-if(wipe){
-var owt=0;
-if(op>0){
-if(op<0.35){ owt=op/0.35; } else { owt=Math.max(0,1-(op-0.35)/0.65); }
-}
-var maxR=0.5*Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight);
-wipe.style.clipPath='circle('+(owt*maxR).toFixed(0)+'px at 50% 50%)';
-}
+var dotFinal=document.querySelector('.kz-dot-final');
+var proxy=document.querySelector('.kz-dot-proxy');
 var usluge=document.getElementById('usluge');
-if(usluge){
-if(op>0){
-var zp=Math.max(0,Math.min(1,(op-0.3)/0.6));
-var sc=0.8+0.2*zp;
-usluge.style.transform='scale('+sc.toFixed(3)+')';
-usluge.style.transformOrigin='50% 35%';
+if(op>0 && dotFinal && proxy){
+var sticky=wrap.querySelector('.scrolly-sticky');
+if(sticky && op<0.46){
+sticky.style.position='fixed';
+sticky.style.top='0px';
+sticky.style.left=rect.left+'px';
+sticky.style.width=rect.width+'px';
+sticky.style.height=vh+'px';
 } else {
-usluge.style.transform='';
+pin(wrap);
 }
+var dr=dotFinal.getBoundingClientRect();
+var cx=dr.left+dr.width/2;
+var cy=dr.top+dr.height/2;
+proxy.style.left=cx+'px';
+proxy.style.top=cy+'px';
+proxy.style.opacity='1';
+var colorT=Math.max(0,Math.min(1,(op-0.03)/0.09));
+var rr=Math.round(23+(255-23)*colorT), gg=Math.round(20+(255-20)*colorT), bb=Math.round(18+(255-18)*colorT);
+var rgb='rgb('+rr+','+gg+','+bb+')';
+dotFinal.style.color=rgb;
+proxy.style.background=rgb;
+var growT=Math.max(0,Math.min(1,(op-0.1)/0.32));
+var maxR=0.5*Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight);
+var scaleNeeded=(maxR*2)/16+4;
+var sc=1+growT*(scaleNeeded-1);
+proxy.style.transform='scale('+sc.toFixed(2)+')';
+var fadeT=Math.max(0,Math.min(1,(op-0.42)/0.48));
+proxy.style.opacity=(1-fadeT).toFixed(2);
+if(usluge){
+var zp=Math.max(0,Math.min(1,(op-0.4)/0.5));
+usluge.style.transform='scale('+(0.8+0.2*zp).toFixed(3)+')';
+usluge.style.transformOrigin='50% 35%';
+}
+} else {
+pin(wrap);
+if(proxy){ proxy.style.opacity='0'; proxy.style.transform='scale(1)'; }
+if(dotFinal){ dotFinal.style.color='#171412'; }
+if(usluge){ usluge.style.transform=''; }
 }
 window.__kzScrollyMarker='updated:'+v.toFixed(2);
 }
 function onScroll(){ update(); }
+function kzWaveTick(){
+var wrap=document.querySelector('.scrolly-wrap');
+var waveOverlay=document.querySelector('.kz-wave-overlay');
+if(wrap && waveOverlay){
+var rect=wrap.getBoundingClientRect();
+if(rect.top>0){
+window.__kzWavePhase=(Date.now()/650)%(Math.PI*2);
+var vh=window.innerHeight;
+var ep=Math.max(0,Math.min(1,(vh-rect.top)/vh));
+var waveProgress=Math.max(0,Math.min(1,(ep-0.15)/0.45));
+if(waveProgress>0){
+waveOverlay.style.clipPath=kzWavePath(window.innerWidth, window.innerHeight, waveProgress);
+} else {
+waveOverlay.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')";
+}
+} else {
+waveOverlay.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')";
+}
+}
+requestAnimationFrame(kzWaveTick);
+}
 function kzScrollyInit(){
 window.__kzScrollyMarker='init-ran';
+requestAnimationFrame(kzWaveTick);
 window.addEventListener('scroll', onScroll, {passive:true});
 window.addEventListener('resize', onScroll);
 update();
