@@ -952,7 +952,6 @@ window.addEventListener('load', kzScrollyInit);
     <div style="max-width:1120px;margin:0 auto;text-align:center">
       <div style="display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">Reference</div>
       <h2 style="margin:0 0 16px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Edukacije već održane za organizacije</h2>
-      <p style="margin:0 auto 36px;max-width:560px;font:400 15.5px/1.65 Inter;color:rgba(23,18,15,.66)">Dodatni primjeri programa i povratne informacije polaznika dostupni su na upit.</p>
       <div style="overflow:hidden;width:100vw;max-width:100vw;margin:0 calc(50% - 50vw)">
         <div style="display:flex;align-items:center;gap:64px;width:max-content;animation:logoMarquee 80s linear infinite" style-hover="animation-play-state:paused">
           <a href="https://dalmatiastorytelling.com/" style="flex:0 0 auto;width:160px;height:64px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .3s ease" style-hover="transform:translateY(-3px)"><img src="assets/logo-dalmatia.png" alt="Dalmatia - storytelling destination" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain" /></a>
@@ -1209,8 +1208,8 @@ class Component extends DCLogic {
   }
   renderVals() {
     const overview = [
-      { title: 'Edukacije', desc: 'Radionice i tečajevi iz Canve, Excela, SEO-a i AI alata za pojedince i organizacije, uživo ili online. Dio edukacija je potpuno besplatan.', badge: 'Za pojedince i organizacije', badgeBg: 'rgba(23,18,15,.08)', badgeColor: 'rgba(23,18,15,.65)', badgeDisplay: 'inline-flex', dual: false, notDual: true, icon: 'edu', iconIsCanva: false, iconIsEdu: true, iconIsMentor: false, cta: 'Pogledajte edukacije', href: '/edukacije' },
-      { title: 'Izrada web stranica', desc: 'Moderne, brze web stranice prilagođene vašem poslovanju, od ideje do objave, uz SEO optimizaciju od starta.', badge: 'Nova usluga', badgeBg: 'rgba(23,18,15,.08)', badgeColor: 'rgba(23,18,15,.65)', badgeDisplay: 'inline-flex', dual: false, notDual: true, icon: 'mentor', iconIsCanva: false, iconIsEdu: false, iconIsMentor: true, cta: 'Javite se', href: '/kontakt' },
+      { title: 'Edukacije', desc: 'Radionice i tečajevi iz Canve, Excela, SEO-a i AI alata za pojedince i organizacije, uživo ili online. Webinari su besplatni.', badge: 'Za pojedince i organizacije', badgeBg: 'rgba(23,18,15,.08)', badgeColor: 'rgba(23,18,15,.65)', badgeDisplay: 'inline-flex', dual: false, notDual: true, icon: 'edu', iconIsCanva: false, iconIsEdu: true, iconIsMentor: false, cta: 'Pogledajte edukacije', href: '/edukacije' },
+      { title: 'Izrada web stranica', desc: 'Moderne i brze stranice koje posjetitelji pamte - web identitet i korisničko iskustvo po kojem vas prepoznaju, uz SEO optimizaciju od prvog dana.', badge: 'Nova usluga', badgeBg: 'rgba(23,18,15,.08)', badgeColor: 'rgba(23,18,15,.65)', badgeDisplay: 'inline-flex', dual: false, notDual: true, icon: 'mentor', iconIsCanva: false, iconIsEdu: false, iconIsMentor: true, cta: 'Javite se', href: '/kontakt' },
     ];
 
     const audiences = [
@@ -1237,7 +1236,7 @@ class Component extends DCLogic {
 
     const methodology = [
       { num: '01', title: 'Kratko i jasno', desc: 'Jedan dan, jasan cilj - bez razvučenih programa.' },
-      { num: '02', title: 'Praktično', desc: 'Radimo na stvarnim zadacima, ne gledamo prezentacije.' },
+      { num: '02', title: 'Praktično', desc: 'Prezentacije su kratke i vizualne, a najveći dio vremena radimo na vašim stvarnim zadacima.' },
       { num: '03', title: 'Prilagođeno radu', desc: 'Sadržaj prilagođen vašoj djelatnosti i timu.' },
       { num: '04', title: 'S materijalima', desc: 'Gotovi predlošci i upute za samostalan nastavak.' },
       { num: '05', title: 'S podrškom', desc: 'Podrška nakon edukacije za dodatna pitanja.' },
