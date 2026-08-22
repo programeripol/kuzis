@@ -108,6 +108,21 @@
     justify-content:center!important;
     font-size:0!important;
   }
+  /* Footer CTA na mobitelu: kao gumb se tekst lomio u dva reda i izgledalo je
+     lose, pa je tamo obican link kao i ostale stavke u footeru. */
+  html body footer .kz-foot-cta{
+    background:none!important;
+    border:none!important;
+    box-shadow:none!important;
+    padding:0!important;
+    margin-top:0!important;
+    border-radius:0!important;
+    color:rgba(255,255,255,.7)!important;
+    font:400 14.5px Inter!important;
+    align-self:flex-start!important;
+    display:inline!important;
+  }
+
   html body .kz-nav a.kz-nav-cta::after,
   html body .kz-nav a.cta::after{
     content:"Javite se"!important;
