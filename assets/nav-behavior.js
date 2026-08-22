@@ -151,6 +151,8 @@
       '.kz-nl-fine{margin:10px 0 0;font:400 12px/1.5 Inter;color:rgba(23,18,15,.5)}',
       '.kz-nl-fine a{color:#171412;font-weight:600}',
       '.kz-nl-cv{display:block;width:100%;height:auto;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;background:#FFFCF2;cursor:pointer;touch-action:manipulation}',
+      '.kz-nl-jump{display:block;width:100%;margin-top:12px;padding:16px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;font:800 17px Inter;letter-spacing:.08em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}',
+      '.kz-nl-jump:active{transform:translate(2px,2px)}',
       '.kz-nl-doodle{position:absolute;pointer-events:none}',
       '@media(max-width:520px){.kz-nl-card{padding:24px 20px 20px;border-radius:24px}.kz-nl-h{font-size:22px}}',
       '.kz-fnl{max-width:1120px;margin:0 auto 34px;padding:22px 24px;border:2.5px dashed rgba(255,255,255,.35);border-radius:22px 26px 20px 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}',
@@ -280,34 +282,52 @@
 
     /* ---- korak 1: igrica ---- */
     function showGame() {
+      var TOUCH = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+      var MOB = Math.min(window.innerWidth || 9999, document.documentElement.clientWidth || 9999) < 640;
+      var W = MOB ? 420 : 760, H = 320;
+      var GND = 252, R = MOB ? 27 : 30, PX = MOB ? 78 : 116;
+
       card.innerHTML =
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
         '<div class="kz-nl-kicker">Pauza od posla</div>' +
         '<h3 class="kz-nl-h">Preskoči prepreke</h3>' +
-        '<p class="kz-nl-p">Klik ili razmaknica za skok. Koliko ih preskočiš?</p>' +
-        '<canvas class="kz-nl-cv" width="760" height="300"></canvas>' +
+        '<p class="kz-nl-p">' + (TOUCH ? 'Tapni za skok. Klackalica, feder i kosina te izbace uvis.' : 'Klik ili razmaknica za skok. Klackalica, feder i kosina te izbace uvis.') + '</p>' +
+        '<canvas class="kz-nl-cv" width="' + W + '" height="' + H + '"></canvas>' +
+        (TOUCH ? '<button type="button" class="kz-nl-jump">SKOK</button>' : '') +
         '<p class="kz-nl-fine"><a href="#" class="kz-nl-skip">Preskoči igru i prijavi se na novosti</a></p>';
       xBtn();
       card.querySelector('.kz-nl-skip').addEventListener('click', function (e) { e.preventDefault(); showForm(0); });
 
       var cv = card.querySelector('.kz-nl-cv');
       var ctx = cv.getContext('2d');
-      var W = 760, H = 300, GND = 248, R = 30, PX = 116;
       var TAU = Math.PI * 2;
-      var TYPES = [
-        { t: 'kosina', w: 72, h: 42, hit: 40 },
-        { t: 'klackalica', w: 92, h: 48, hit: 46 },
-        { t: 'feder', w: 46, h: 52, hit: 50 }
-      ];
-      var st = { y: 0, v: 0, run: false, over: false, score: 0, sp: 5, t: 0, n: 0, obs: [], next: 130, land: 0 };
+      var G = 0.92, JUMP = 14.6;
+
+      /* kind: 'o' = prepreka (smrtonosna), 'l' = katapult (izbaci uvis) */
+      var DEF = {
+        drvo: { kind: 'o', w: 56, h: 64, hit: 60 },
+        grmic: { kind: 'o', w: 68, h: 40, hit: 38 },
+        oblacic: { kind: 'o', w: 76, h: 46, hit: 44 },
+        kosina: { kind: 'l', w: 72, h: 42, pow: 16.0 },
+        klackalica: { kind: 'l', w: 92, h: 46, pow: 17.0 },
+        feder: { kind: 'l', w: 46, h: 50, pow: 18.0 }
+      };
+      var SEQ = ['drvo', 'feder', 'grmic', 'klackalica', 'oblacic', 'kosina'];
+
+      var st = { y: 0, v: 0, run: false, over: false, score: 0, sp: 5, t: 0, n: 0, obs: [], next: 120, land: 0 };
 
       function jump() {
         if (st.over) return;
         if (!st.run) { st.run = true; loop(); return; }
-        if (st.y <= 1) { st.v = 16.6; }
+        if (st.y <= 1) { st.v = JUMP; }
       }
       cv.addEventListener('mousedown', function (e) { e.preventDefault(); jump(); });
       cv.addEventListener('touchstart', function (e) { e.preventDefault(); jump(); }, { passive: false });
+      var jb = card.querySelector('.kz-nl-jump');
+      if (jb) {
+        jb.addEventListener('touchstart', function (e) { e.preventDefault(); jump(); }, { passive: false });
+        jb.addEventListener('click', function (e) { e.preventDefault(); jump(); });
+      }
       keyH = function (e) {
         if (e.key === ' ' || e.code === 'Space' || e.key === 'ArrowUp') { e.preventDefault(); jump(); }
         if (e.key === 'Escape') close(K_CLOSED);
@@ -328,6 +348,18 @@
         ctx.fillStyle = col; ctx.fill();
         ctx.lineWidth = 4.5; ctx.lineJoin = 'round'; ctx.strokeStyle = '#171412'; ctx.stroke();
       }
+      /* spoji vise krugova/pravokutnika u JEDAN oblik bez unutarnjih crta:
+         prvo debeli obrub svima, pa ispune preko njega */
+      function shape(parts, col) {
+        function path(p) {
+          if (p.length === 3) { ctx.beginPath(); ctx.arc(p[0], p[1], p[2], 0, TAU); }
+          else { rr(p[0], p[1], p[2], p[3], p[4]); }
+        }
+        ctx.strokeStyle = '#171412'; ctx.lineWidth = 9; ctx.lineJoin = 'round';
+        for (var i = 0; i < parts.length; i++) { path(parts[i]); ctx.stroke(); }
+        ctx.fillStyle = col;
+        for (var k = 0; k < parts.length; k++) { path(parts[k]); ctx.fill(); }
+      }
       function eye(ex, ey, rx, ry) {
         ctx.fillStyle = '#171412';
         ctx.beginPath(); ctx.ellipse(ex, ey, rx, ry, 0, 0, TAU); ctx.fill();
@@ -340,28 +372,35 @@
         ctx.translate(x, y);
         ctx.scale(1 + sq, 1 - sq);
         ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); fs('#FFD048');
-        ctx.fillStyle = 'rgba(217,119,87,.42)';
-        ctx.beginPath(); ctx.ellipse(-r * 0.58, r * 0.26, r * 0.17, r * 0.11, 0, 0, TAU); ctx.fill();
-        ctx.beginPath(); ctx.ellipse(r * 0.58, r * 0.26, r * 0.17, r * 0.11, 0, 0, TAU); ctx.fill();
         if (dead) {
-          ctx.strokeStyle = '#171412'; ctx.lineWidth = 4; ctx.lineCap = 'round';
-          [-1, 1].forEach(function (s2) {
-            var ex = s2 * r * 0.30, ey = -r * 0.10, q = r * 0.16;
-            ctx.beginPath(); ctx.moveTo(ex - q, ey - q); ctx.lineTo(ex + q, ey + q);
-            ctx.moveTo(ex + q, ey - q); ctx.lineTo(ex - q, ey + q); ctx.stroke();
-          });
-          ctx.beginPath(); ctx.arc(0, r * 0.42, r * 0.24, 1.22 * Math.PI, 1.78 * Math.PI); ctx.stroke();
+          ctx.strokeStyle = '#171412'; ctx.lineWidth = 4.2; ctx.lineCap = 'round';
+          for (var s2 = -1; s2 <= 1; s2 += 2) {
+            var ex = s2 * r * 0.33, ey = -r * 0.04, q = r * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(ex - q, ey - q); ctx.lineTo(ex + q, ey + q);
+            ctx.moveTo(ex + q, ey - q); ctx.lineTo(ex - q, ey + q);
+            ctx.stroke();
+          }
         } else {
-          eye(-r * 0.32, -r * 0.10, r * 0.215, r * 0.275);
-          eye(r * 0.32, -r * 0.10, r * 0.215, r * 0.275);
-          ctx.strokeStyle = '#171412'; ctx.lineWidth = 3; ctx.lineCap = 'round';
-          ctx.beginPath(); ctx.arc(0, r * 0.16, r * 0.26, 0.22 * Math.PI, 0.78 * Math.PI); ctx.stroke();
+          eye(-r * 0.34, -r * 0.04, r * 0.235, r * 0.30);
+          eye(r * 0.34, -r * 0.04, r * 0.235, r * 0.30);
         }
         ctx.restore();
       }
       function drawObs(o) {
         var b = GND, cx = o.x + o.w / 2;
-        if (o.t === 'kosina') {
+        var a = o.fired ? Math.min(1, o.a / 13) : 0;
+        if (o.t === 'drvo') {
+          rr(cx - 9, b - 30, 18, 30, 6); fs('#D97757');
+          shape([[cx - 15, b - 44, 19], [cx + 15, b - 46, 19], [cx, b - 58, 23]], '#9FC58C');
+        } else if (o.t === 'grmic') {
+          shape([[cx - 20, b - 15, 17], [cx + 20, b - 14, 16], [cx, b - 24, 20]], '#9FC58C');
+        } else if (o.t === 'oblacic') {
+          shape([[cx - 22, b - 16, 16], [cx + 22, b - 17, 15], [cx - 2, b - 27, 20],
+          [cx - 30, b - 20, 60, 20, 10]], '#8ECAE6');
+        } else if (o.t === 'kosina') {
+          var pu = Math.sin(a * Math.PI) * 0.16;
+          ctx.save(); ctx.translate(cx, b); ctx.scale(1, 1 + pu); ctx.translate(-cx, -b);
           ctx.beginPath();
           ctx.moveTo(o.x, b);
           ctx.quadraticCurveTo(o.x + o.w * 0.55, b - o.h * 0.26, o.x + o.w - 13, b - o.h);
@@ -374,18 +413,20 @@
           ctx.moveTo(o.x + o.w * 0.34, b - 7); ctx.lineTo(o.x + o.w * 0.60, b - o.h * 0.44);
           ctx.moveTo(o.x + o.w * 0.52, b - 7); ctx.lineTo(o.x + o.w * 0.74, b - o.h * 0.50);
           ctx.stroke();
+          ctx.restore();
         } else if (o.t === 'klackalica') {
           ctx.beginPath();
           ctx.moveTo(cx - 16, b); ctx.lineTo(cx, b - o.h * 0.5); ctx.lineTo(cx + 16, b);
           ctx.closePath(); fs('#D97757');
+          var tilt = -0.40 + 0.80 * (a < 1 ? a * a * (3 - 2 * a) : 1);
           ctx.save();
           ctx.translate(cx, b - o.h * 0.5 - 2);
-          ctx.rotate(-0.40);
+          ctx.rotate(tilt);
           rr(-o.w * 0.52, -7, o.w * 1.04, 14, 7); fs('#9FC58C');
-          ctx.beginPath(); ctx.arc(-o.w * 0.36, -16, 8, 0, TAU); fs('#FFD048');
           ctx.restore();
         } else {
-          var hh = o.h - 22;
+          var comp = o.fired ? (a < 0.25 ? 1 - 1.6 * a : (a < 0.6 ? 0.6 + 1.1 * (a - 0.25) : 1)) : 1;
+          var hh = (o.h - 22) * comp;
           ctx.strokeStyle = '#171412'; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
           ctx.beginPath();
           for (var i = 0; i <= 7; i++) {
@@ -395,7 +436,7 @@
           }
           ctx.stroke();
           rr(cx - o.w * 0.50, b - 11, o.w, 12, 6); fs('#D8C8F7');
-          rr(cx - o.w * 0.54, b - o.h - 4, o.w * 1.08, 15, 7); fs('#D8C8F7');
+          rr(cx - o.w * 0.54, b - 13 - hh - 8, o.w * 1.08, 15, 7); fs('#D8C8F7');
         }
       }
 
@@ -416,41 +457,48 @@
         ctx.fillStyle = '#171412';
         ctx.font = '700 30px Inter, system-ui, sans-serif';
         ctx.textAlign = 'right';
-        ctx.fillText(st.score, W - 24, 48);
+        ctx.fillText(st.score, W - 20, 44);
         ctx.textAlign = 'center';
         if (!st.run) {
           ctx.fillStyle = 'rgba(23,18,15,.55)';
-          ctx.font = '700 26px Inter, system-ui, sans-serif';
-          ctx.fillText('klikni za start', W / 2, 86);
+          ctx.font = '700 24px Inter, system-ui, sans-serif';
+          ctx.fillText(TOUCH ? 'tapni za start' : 'klikni za start', W / 2, 78);
         }
         if (st.over) {
           ctx.fillStyle = '#171412';
-          ctx.font = '800 40px Inter, system-ui, sans-serif';
-          ctx.fillText('BUM!', W / 2, 92);
+          ctx.font = '800 38px Inter, system-ui, sans-serif';
+          ctx.fillText('BUM!', W / 2, 84);
         }
         ctx.textAlign = 'left';
       }
 
       function step() {
         st.t++;
-        st.v -= 0.92;
+        st.v -= G;
         st.y += st.v;
         if (st.y <= 0) { if (st.v < -5) st.land = 6; st.y = 0; st.v = 0; }
         if (st.land > 0) st.land--;
-        st.sp = Math.min(9, 5 + st.score * 0.15);
+        st.sp = Math.min(MOB ? 7.4 : 9, (MOB ? 4.3 : 5) + st.score * (MOB ? 0.12 : 0.15));
         st.next--;
         if (st.next <= 0) {
-          var d = TYPES[st.n % 3]; st.n++;
-          st.obs.push({ t: d.t, w: d.w, h: d.h, hit: d.hit, x: W + 30, done: false });
-          st.next = Math.round(112 + (st.t * 17 % 44) - Math.min(30, st.score * 1.1));
+          var key = SEQ[st.n % SEQ.length]; st.n++;
+          var d = DEF[key];
+          st.obs.push({ t: key, kind: d.kind, w: d.w, h: d.h, hit: d.hit || 0, pow: d.pow || 0, x: W + 30, done: false, fired: false, a: 0 });
+          st.next = Math.round((MOB ? 96 : 112) + (st.t * 17 % 40) - Math.min(28, st.score * 1.0));
         }
         for (var i = st.obs.length - 1; i >= 0; i--) {
           var o = st.obs[i];
           o.x -= st.sp;
+          if (o.fired) o.a++;
           if (!o.done && o.x + o.w < PX - R) { o.done = true; st.score++; }
-          if (o.x + o.w < -70) { st.obs.splice(i, 1); continue; }
-          var bottom = GND - st.y;
-          if (PX + R - 12 > o.x + 10 && PX - R + 12 < o.x + o.w - 10 && bottom - 6 > GND - o.hit + 8) st.over = true;
+          if (o.x + o.w < -80) { st.obs.splice(i, 1); continue; }
+          var overlap = (PX + R * 0.6 > o.x) && (PX - R * 0.6 < o.x + o.w);
+          if (o.kind === 'l') {
+            if (!o.fired && overlap && st.y < 46) { st.v = o.pow; o.fired = true; o.a = 0; }
+          } else {
+            var bottom = GND - st.y;
+            if (PX + R - 12 > o.x + 10 && PX - R + 12 < o.x + o.w - 10 && bottom - 6 > GND - o.hit + 8) st.over = true;
+          }
         }
         draw();
         if (st.over) { setTimeout(function () { showForm(st.score); }, 1500); return; }
