@@ -152,7 +152,7 @@
     s.textContent = [
       '.kz-nl-ov{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(23,18,15,.55);opacity:0;transition:opacity .35s ease}',
       '.kz-nl-ov.on{opacity:1}',
-      '.kz-nl-card{position:relative;width:100%;max-width:430px;background:#fff;border:3px solid #171412;border-radius:30px 26px 32px 24px;box-shadow:9px 9px 0 #FFD048;padding:28px 26px 24px;box-sizing:border-box;transform:scale(.86) rotate(-2.5deg);opacity:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;font-family:Inter,system-ui,sans-serif}',
+      '.kz-nl-card{position:relative;width:100%;max-width:520px;min-height:412px;background:#fff;border:3px solid #171412;border-radius:30px 26px 32px 24px;box-shadow:9px 9px 0 #FFD048;padding:28px 26px 24px;box-sizing:border-box;transform:scale(.86) rotate(-2.5deg);opacity:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;font-family:Inter,system-ui,sans-serif}',
       '.kz-nl-ov.on .kz-nl-card{transform:scale(1) rotate(-1deg);opacity:1}',
       '.kz-nl-x{position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #171412;font:800 17px/1 Inter;color:#171412;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .18s ease,background .18s ease}',
       '.kz-nl-x:hover{background:#FFD048;transform:rotate(90deg)}',
@@ -164,10 +164,12 @@
       '.kz-nl-dots{display:flex;gap:7px;margin-bottom:14px}',
       '.kz-nl-dot{width:11px;height:11px;border-radius:50%;border:2.5px solid #171412;background:#fff;transition:background .25s ease}',
       '.kz-nl-dot.on{background:#FFD048}',
-      '.kz-nl-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}',
-      '.kz-nl-in{flex:1;min-width:170px;box-sizing:border-box;padding:12px 14px;border:2.5px solid #171412;border-radius:14px 16px 12px 15px;font:400 14.5px Inter;outline:none}',
+      '.kz-nl-form{display:flex;flex-direction:column;gap:10px;margin-top:6px}',
+      '.kz-nl-in{width:100%;box-sizing:border-box;padding:15px 16px;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;font:400 15.5px Inter;outline:none}',
       '.kz-nl-in:focus{box-shadow:3px 3px 0 #FFD048}',
-      '.kz-nl-go{padding:12px 20px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:14px 16px 12px 15px;font:700 14.5px Inter;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}',
+      '.kz-nl-go{display:block;width:100%;padding:16px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;font:800 17px Inter;letter-spacing:.08em;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}',
+      '.kz-nl-again2{display:block;width:100%;margin-top:10px;padding:14px;background:#fff;color:#171412;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;font:700 15px Inter;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}',
+      '.kz-nl-again2:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 #FFD048}',
       '.kz-nl-go:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 #171412}',
       '.kz-nl-fine{margin:10px 0 0;font:400 12px/1.5 Inter;color:rgba(23,18,15,.5)}',
       '.kz-nl-fine a{color:#171412;font-weight:600}',
@@ -175,7 +177,7 @@
       '.kz-nl-jump{display:block;width:100%;margin-top:12px;padding:16px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;font:800 17px Inter;letter-spacing:.08em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}',
       '.kz-nl-jump:active{transform:translate(2px,2px)}',
       '.kz-nl-doodle{position:absolute;pointer-events:none}',
-      '@media(max-width:520px){.kz-nl-card{padding:24px 20px 20px;border-radius:24px}.kz-nl-h{font-size:22px}}',
+      '@media(max-width:520px){.kz-nl-card{padding:24px 20px 20px;border-radius:24px;min-height:380px}.kz-nl-h{font-size:22px}}',
       '.kz-fnl{max-width:1120px;margin:0 auto 34px;padding:22px 24px;border:2.5px dashed rgba(255,255,255,.35);border-radius:22px 26px 20px 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}',
       '.kz-fnl-t{font-family:"Baloo 2",Inter,sans-serif;font-weight:800;font-size:19px;color:#fff;margin:0 0 4px}',
       '.kz-fnl-s{margin:0;font:400 13.5px/1.5 Inter;color:rgba(255,255,255,.6)}',
@@ -301,14 +303,15 @@
       var praise = score >= 12 ? 'Ozbiljno dobro.' : (score >= 6 ? 'Solidno!' : 'Idemo ponovo?');
       card.innerHTML =
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
-        '<div class="kz-nl-kicker">Skor: ' + score + '</div>' +
+        '<div class="kz-nl-kicker">Bodovi: ' + score + '</div>' +
         '<h3 class="kz-nl-h">' + praise + '</h3>' +
-        '<p class="kz-nl-p">Ovako preskačemo i sve ostalo što vam krade vrijeme. Jednom mjesečno šaljemo konkretne trikove za Canvu, Excel i web - bez zatrpavanja inboxa.</p>' +
+        '<p class="kz-nl-p">Ovako preskačemo i sve ostalo što vam krade vrijeme. Jednom mjesečno šaljemo konkretne trikove za Canvu, Excel i web.</p>' +
         '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="vasa@email.com" aria-label="Email adresa">' +
-        '<button class="kz-nl-go" type="submit">Šalji</button></form>' +
-        '<p class="kz-nl-fine"><a href="#" class="kz-nl-again">Igraj još jednom</a> &nbsp;·&nbsp; Bez zatrpavanja inboxa, odjava jednim klikom.</p>';
+        '<button class="kz-nl-go" type="submit">Prijavi se</button></form>' +
+        '<button type="button" class="kz-nl-again2">Igraj još jednom</button>' +
+        '<p class="kz-nl-fine">Odjava jednim klikom.</p>';
       xBtn();
-      var again = card.querySelector('.kz-nl-again');
+      var again = card.querySelector('.kz-nl-again2');
       again.addEventListener('click', function (e) { e.preventDefault(); showGame(); });
       var form = card.querySelector('form');
       form.addEventListener('submit', function (e) {
@@ -337,7 +340,7 @@
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
         '<div class="kz-nl-kicker">Pauza od posla</div>' +
         '<h3 class="kz-nl-h">Preskoči prepreke</h3>' +
-        '<p class="kz-nl-p">' + (TOUCH ? 'Tapni za skok.' : 'Klik ili razmaknica za skok.') + ' Klackalica, feder i kosina te izbace uvis - iskoristi ih za ono odmah iza.</p>' +
+        '<p class="kz-nl-p">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica za skok.') + ' Klackalica, feder i kosina ti pomažu da skočiš više, iskoristi ih.</p>' +
         '<canvas class="kz-nl-cv" width="' + W + '" height="' + H + '"></canvas>' +
         (TOUCH ? '<button type="button" class="kz-nl-jump">SKOK</button>' : '') +
         '<p class="kz-nl-fine"><a href="#" class="kz-nl-skip">Preskoči igru i prijavi se na novosti</a></p>';
@@ -596,7 +599,7 @@
         if (!st.run) {
           ctx.fillStyle = 'rgba(23,18,15,.55)';
           ctx.font = '700 24px Inter, system-ui, sans-serif';
-          ctx.fillText(TOUCH ? 'tapni za start' : 'klikni za start', W / 2, 78);
+          ctx.fillText('klikni za start', W / 2, 78);
         }
         if (st.over) {
           ctx.fillStyle = '#171412';
