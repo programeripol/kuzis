@@ -203,9 +203,9 @@ var pts=kzBlobPts.map(function(p){ return [ox+p[0]*scale, oy+p[1]*scale]; });
 return "path('"+kzSmoothPath(pts)+"')";
 }
 function kzWavePath(W,H,progress){
-var amp=46;
-var baseY=H-progress*(H+amp+80);
 var seg=12;
+var amp=(W/seg)*0.32;
+var baseY=H-progress*(H+amp+80);
 var phase=window.__kzWavePhase||0;
 var pts=[];
 for(var i=0;i<=seg;i++){
@@ -469,50 +469,64 @@ applyContinuous(v, rect);
 var outroWin=vh*0.9;
 var op=Math.max(0,Math.min(1,(vh-rect.bottom)/outroWin));
 var dotFinal=document.querySelector('.kz-dot-final');
-var proxy=document.querySelector('.kz-dot-proxy');
 var usluge=document.getElementById('usluge');
-if(op>0 && dotFinal && proxy){
+if(op>0 && dotFinal && usluge){
 var sticky=wrap.querySelector('.scrolly-sticky');
-if(sticky && op<0.46){
+var revealDone=op>=0.65;
+if(sticky && !revealDone){
 sticky.style.position='fixed';
 sticky.style.top='0px';
 sticky.style.left=rect.left+'px';
 sticky.style.width=rect.width+'px';
 sticky.style.height=vh+'px';
-} else {
+} else if(sticky){
 pin(wrap);
 }
 var dr=dotFinal.getBoundingClientRect();
 var cx=dr.left+dr.width/2;
 var cy=dr.top+dr.height/2;
-proxy.style.left=cx+'px';
-proxy.style.top=cy+'px';
-proxy.style.opacity='1';
 var colorT=Math.max(0,Math.min(1,(op-0.03)/0.09));
 var rr=Math.round(23+(255-23)*colorT), gg=Math.round(20+(255-20)*colorT), bb=Math.round(18+(255-18)*colorT);
-var rgb='rgb('+rr+','+gg+','+bb+')';
-dotFinal.style.color=rgb;
-proxy.style.background=rgb;
-var growT=Math.max(0,Math.min(1,(op-0.1)/0.32));
+dotFinal.style.color='rgb('+rr+','+gg+','+bb+')';
+var growT=Math.max(0,Math.min(1,(op-0.1)/0.55));
 var maxR=0.5*Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight);
-var scaleNeeded=(maxR*2)/16+4;
-var sc=1+growT*(scaleNeeded-1);
-proxy.style.transform='scale('+sc.toFixed(2)+')';
-var fadeT=Math.max(0,Math.min(1,(op-0.42)/0.48));
-proxy.style.opacity=(1-fadeT).toFixed(2);
-if(usluge){
-var zp=Math.max(0,Math.min(1,(op-0.4)/0.5));
-usluge.style.transform='scale('+(0.8+0.2*zp).toFixed(3)+')';
-usluge.style.transformOrigin='50% 35%';
+var rNow=8+growT*(maxR-8);
+if(!revealDone){
+usluge.style.position='fixed';
+usluge.style.top='0px';
+usluge.style.left='0px';
+usluge.style.width='100%';
+usluge.style.height=vh+'px';
+usluge.style.zIndex='10004';
+usluge.style.margin='0';
+usluge.style.clipPath='circle('+rNow.toFixed(1)+'px at '+cx.toFixed(1)+'px '+cy.toFixed(1)+'px)';
+} else {
+usluge.style.position='';
+usluge.style.top='';
+usluge.style.left='';
+usluge.style.width='';
+usluge.style.height='';
+usluge.style.zIndex='';
+usluge.style.margin='';
+usluge.style.clipPath='';
 }
 } else {
 pin(wrap);
-if(proxy){ proxy.style.opacity='0'; proxy.style.transform='scale(1)'; }
 if(dotFinal){ dotFinal.style.color='#171412'; }
-if(usluge){ usluge.style.transform=''; }
+if(usluge){
+usluge.style.position='';
+usluge.style.top='';
+usluge.style.left='';
+usluge.style.width='';
+usluge.style.height='';
+usluge.style.zIndex='';
+usluge.style.margin='';
+usluge.style.clipPath='';
+}
 }
 window.__kzScrollyMarker='updated:'+v.toFixed(2);
 }
+
 function onScroll(){ update(); }
 function kzWaveTick(){
 var wrap=document.querySelector('.scrolly-wrap');
