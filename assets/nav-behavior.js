@@ -239,6 +239,20 @@
        - zuti CTA gumb ide u stupac Kontakt (ne u prvi stupac)
        - LinkedIn se mice iz Kontakta (ostaje pod "Pratite nas")
      Radi na zivom DOM-u jer isti footer postoji u ~57 datoteka. */
+  /* Uvjeti koristenja / Privatnost - stvarne stranice umjesto href="#".
+     Linkovi zive u dnu footera na svakoj od ~57 stranica, pa se postavljaju
+     ovdje umjesto rucnim mijenjanjem svakog fajla. Idempotentno. */
+  function legalLinks() {
+    var f = document.querySelector('footer');
+    if (!f) return;
+    var as = f.querySelectorAll('a');
+    for (var i = 0; i < as.length; i++) {
+      var t = (as[i].textContent || '').trim().toLowerCase();
+      if (t === 'uvjeti kori\u0161tenja' || t === 'uvjeti koristenja') as[i].setAttribute('href', '/uvjeti-koristenja');
+      else if (t === 'privatnost' || t === 'politika privatnosti') as[i].setAttribute('href', '/privatnost');
+    }
+  }
+
   function footerForm() {
     var f = document.querySelector('footer');
     if (!f || f.getAttribute('data-kz-footer') === '1') return;
@@ -707,13 +721,15 @@
   }
 
   window.kzOpenNewsletter = function () { popup(true); };
-  function init() { footerForm(); arm(); }
+  function init() { footerForm(); legalLinks(); arm(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
-  window.addEventListener('load', footerForm);
+  window.addEventListener('load', function () { footerForm(); legalLinks(); });
   /* Template runtime zna prerenderati footer nakon nasih poziva - guard je
      data-kz-footer atribut na <footer>, pa ponovni pozivi nisu skupi. */
-  setTimeout(footerForm, 1200);
-  setTimeout(footerForm, 3000);
-  setTimeout(footerForm, 6000);
+  function kzFooterAll() { footerForm(); legalLinks(); }
+  setTimeout(kzFooterAll, 1200);
+  setTimeout(kzFooterAll, 3000);
+  setTimeout(kzFooterAll, 6000);
+  setTimeout(kzFooterAll, 10000);
 })();
