@@ -220,7 +220,7 @@ pin(wrap);
 window.__kzScrollyMarker = 'updated:'+idx;
 ticking=false;
 }
-function onScroll(){ if(!ticking){ requestAnimationFrame(update); ticking=true; } }
+function onScroll(){ update(); }
 window.addEventListener('scroll', onScroll, {passive:true});
 window.addEventListener('resize', onScroll);
 update();
