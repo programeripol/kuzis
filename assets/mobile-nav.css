@@ -66,7 +66,8 @@ header.site-header nav a.active{
   background:#FFD048;
   border-radius:2px;
   opacity:0;
-  transition:opacity .15s ease;
+  transform:translateY(4px);
+  transition:opacity .25s ease, transform .25s ease;
 }
 .kz-nav a:not(.kz-nav-cta):hover, header.site-header nav a:not(.cta):hover{
   color:#171412!important;
@@ -74,9 +75,11 @@ header.site-header nav a.active{
 }
 .kz-nav a:not(.kz-nav-cta):hover::after, header.site-header nav a:not(.cta):hover::after{
   opacity:1;
+  transform:translateY(0);
 }
 .kz-nav a.active::after, header.site-header nav a.active::after{
   opacity:1;
+  transform:translateY(0);
 }
 /* CTA button hover (also dead via style-hover on inline-styled pages before this fix). */
 .kz-nav a.kz-nav-cta:hover,
