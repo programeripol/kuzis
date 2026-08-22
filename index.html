@@ -134,7 +134,8 @@
     </nav>
   </header>
 
-  <!-- HERO -->
+  <div class="kz-wave-overlay" style="position:fixed;inset:0;z-index:9998;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
+<!-- HERO -->
   <section style="position:relative;overflow:hidden;background:#FFD048">
     <picture>
       <source media="(max-width:860px)" srcset="assets/hero%20kuzis%20mobile.png">
@@ -144,7 +145,7 @@
       <p class="hp-hero-text" style="margin:0;font-weight:800;font-size:clamp(16px,2.1vw,21px);line-height:1.45;font-family:'Baloo 2';color:#171412;transform:translateY(-10px)">Praktična digitalna rješenja, sustavi, optimizacija procesa, <br class="hp-hero-br">edukacije i mentorstvo za pojedince i organizacije <br class="hp-hero-br">koje žele raditi bolje i brže.</p>
       <a href="/kontakt" class="hp-hero-btn" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;font-size:14px;font-family:Inter;text-decoration:none;border:2.5px solid #171412;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
     </div>
-    <div class="hp-hero-yellow-wave" style="position:absolute;inset:0;z-index:5;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
+    
   </section>
 
   <!-- STO RADIMO -->
@@ -195,6 +196,20 @@ var W=rect.width, H=rect.height;
 var ox=o.x*W, oy=o.y*H;
 var scale=Math.max(W,H)*radiusFrac;
 var pts=kzBlobPts.map(function(p){ return [ox+p[0]*scale, oy+p[1]*scale]; });
+return "path('"+kzSmoothPath(pts)+"')";
+}
+function kzWavePath(W,H,progress){
+var amp=46;
+var baseY=H-progress*(H+amp+60);
+var pts=[[0,H+60],[0,baseY]];
+var seg=8;
+for(var i=0;i<=seg;i++){
+var x=(i/seg)*W;
+var y=baseY+Math.sin((i/seg)*Math.PI*2.4)*amp;
+pts.push([x,y]);
+}
+pts.push([W,baseY]);
+pts.push([W,H+60]);
 return "path('"+kzSmoothPath(pts)+"')";
 }
 function kzEaseOutBack(x){
@@ -305,27 +320,38 @@ function kzLine4Exit(p,t){ p.style.transform='scale('+(1-0.25*t)+')'; }
 var enterFns=[kzLine0Enter,kzLine1Enter,kzLine2Enter,kzLine3Enter,kzLine4Enter];
 var exitFns2=[kzLine0Exit,kzLine1Exit,kzLine2Exit,kzLine3Exit,kzLine4Exit];
 function applyIntro(ep, rect){
+var waveOverlay=document.querySelector('.kz-wave-overlay');
+var waveProgress=Math.max(0,Math.min(1,(ep-0.3)/0.5));
+if(waveOverlay){
+if(waveProgress>0){ waveOverlay.style.clipPath=kzWavePath(window.innerWidth, window.innerHeight, waveProgress); }
+else { waveOverlay.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')"; }
+}
 var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
-if(bgA){ bgA.style.background='#ffffff'; }
-if(bgB){ bgB.style.background=kzColors[0]; bgB.style.clipPath=kzBlobClip(rect, 2, ep*1.6); }
-var heroWave=document.querySelector('.hp-hero-yellow-wave');
-if(heroWave){
-var heroSection=document.querySelectorAll('section')[0];
-if(heroSection){
-var heroRect=heroSection.getBoundingClientRect();
-heroWave.style.clipPath=kzBlobClip(heroRect, 4, ep*1.9);
+if(bgA){ bgA.style.background=kzColors[0]; }
+if(bgB){ bgB.style.background=kzColors[0]; bgB.style.clipPath='none'; }
+var textProgress=Math.max(0,Math.min(1,(ep-0.55)/0.45));
+var sticky=rect && document.querySelector('.scrolly-wrap .scrolly-sticky');
+if(sticky){
+if(textProgress>0){
+sticky.style.position='fixed';
+sticky.style.top='0px';
+sticky.style.left=rect.left+'px';
+sticky.style.width=rect.width+'px';
+sticky.style.height=window.innerHeight+'px';
+} else {
+sticky.style.position='absolute';
+sticky.style.top='0px';
+sticky.style.left='0px';
+sticky.style.width='100%';
+sticky.style.height=window.innerHeight+'px';
 }
 }
 var lines=document.querySelectorAll('.scrolly-line');
 for(var i=0;i<lines.length;i++){
 var p=lines[i];
-if(i===0){
-p.style.opacity = ep>0 ? '1':'0';
-kzLine0Enter(p, ep);
-} else {
-p.style.opacity='0';
-}
+if(i===0){ p.style.opacity=textProgress>0?'1':'0'; kzLine0Enter(p, textProgress); }
+else { p.style.opacity='0'; }
 }
 }
 function applyContinuous(v, wrapRect){
@@ -393,10 +419,11 @@ var vh=window.innerHeight;
 if(rect.top>0){
 var ep=Math.max(0,Math.min(1,(vh-rect.top)/vh));
 applyIntro(ep, rect);
-pin(wrap);
 window.__kzScrollyMarker='intro:'+ep.toFixed(2);
 return;
 }
+var waveOverlay2=document.querySelector('.kz-wave-overlay');
+if(waveOverlay2){ waveOverlay2.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')"; }
 var total=rect.height-vh;
 var scrolled=Math.min(Math.max(-rect.top,0),total);
 var progress=total>0?scrolled/total:0;
@@ -604,7 +631,7 @@ window.addEventListener('load', kzScrollyInit);
       <p style="margin:0 0 32px;font:400 16px/1.7 Inter;color:rgba(255,255,255,.72)">Pošaljite upit i javit ćemo vam se s prijedlogom formata prilagođenog vašoj organizaciji.</p>
       <a href="/kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;background:#FFD048;color:#171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,18,15,.2)">Pošaljite upit</a>
     </div>
-    <div class="hp-hero-yellow-wave" style="position:absolute;inset:0;z-index:5;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
+    
   </section>
 
   <!-- NEWSLETTER -->
