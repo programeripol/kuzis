@@ -56,8 +56,7 @@ header.site-header nav a:not(.cta){
 header.site-header nav a.active{
   border-bottom-color:transparent!important;
 }
-.kz-nav a:not(.kz-nav-cta)::after,
-header.site-header nav a:not(.cta)::after{
+.kz-nav a:not(.kz-nav-cta)::after, header.site-header nav a:not(.cta)::after{
   content:'';
   position:absolute;
   left:0;
@@ -66,22 +65,18 @@ header.site-header nav a:not(.cta)::after{
   height:2.5px;
   background:#FFD048;
   border-radius:2px;
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  opacity:0;
+  transition:opacity .15s ease;
 }
-.kz-nav a:not(.kz-nav-cta):hover,
-header.site-header nav a:not(.cta):hover{
+.kz-nav a:not(.kz-nav-cta):hover, header.site-header nav a:not(.cta):hover{
   color:#171412!important;
   text-decoration:none!important;
 }
-.kz-nav a:not(.kz-nav-cta):hover::after,
-header.site-header nav a:not(.cta):hover::after{
-  transform:scaleX(1);
+.kz-nav a:not(.kz-nav-cta):hover::after, header.site-header nav a:not(.cta):hover::after{
+  opacity:1;
 }
-.kz-nav a.active::after,
-header.site-header nav a.active::after{
-  transform:scaleX(1);
+.kz-nav a.active::after, header.site-header nav a.active::after{
+  opacity:1;
 }
 /* CTA button hover (also dead via style-hover on inline-styled pages before this fix). */
 .kz-nav a.kz-nav-cta:hover,
