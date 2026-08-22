@@ -159,8 +159,10 @@ header.site-header nav a:not(.cta){
 .kz-nav a:not(.kz-nav-cta):not(.cta):hover::after, header.site-header nav a:not(.cta):hover::after{
   opacity:1;
 }
+/* Aktivna stavka: !important jer bazno pravilo iznad ima :not(.kz-nav-cta):not(.cta)
+   pa je specificnije od golog .active — bez ovoga zuta crta nestane. */
 .kz-nav a.active::after, header.site-header nav a.active::after{
-  opacity:1;
+  opacity:1!important;
 }
 .kz-nav a.active, header.site-header nav a.active{
   border-bottom:none!important;
