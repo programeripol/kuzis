@@ -75,6 +75,11 @@
   }
 
   #blog-slider-track::-webkit-scrollbar { display: none; }
+  /* image-slot u shadow DOM-u ima :host{aspect-ratio:3/2} i sam racuna "cover",
+     pa je 16:9 sliku clanka rezao lijevo-desno (~18%) i tekst na slici je nestajao.
+     Host aspect se moze nadjacati izvana, a sliku unutra hvatamo preko ::part(image). */
+  #blog-slider-track image-slot { aspect-ratio: 16 / 9 !important; }
+  #blog-slider-track image-slot::part(image) { width: 100% !important; height: 100% !important; object-fit: cover !important; }
   .cta-underline { position: relative; text-decoration: none; padding-bottom: 3px; display: inline-block; }
   .cta-underline::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px; background: #FFD048; border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.4,0,.2,1); }
   .cta-underline:hover::after { transform: scaleX(1); }
@@ -1257,7 +1262,7 @@ window.addEventListener('load',kzUsl);
   <!-- CTA -->
   <section data-reveal="1" style="padding:clamp(56px,8vw,90px) 24px;background:#171412;color:#FFFFFF;text-align:center;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
     <div style="max-width:600px;margin:0 auto">
-      <h2 style="margin:0 0 16px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.25;font-family:'Baloo 2';letter-spacing:-.01em;color:#FFD048">Dogovorimo edukaciju za vaš tim</h2>
+      <h2 style="margin:0 0 16px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.25;font-family:'Baloo 2';letter-spacing:-.01em;color:#FFD048">Dogovorimo edukaciju</h2>
       <p style="margin:0 0 32px;font:400 16px/1.7 Inter;color:rgba(255,255,255,.72)">Pošaljite upit i javit ćemo vam se s prijedlogom formata prilagođenog vašoj organizaciji.</p>
       <a href="/kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;background:#FFD048;color:#171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,18,15,.2)">Pošaljite upit</a>
     </div>
@@ -1268,7 +1273,7 @@ window.addEventListener('load',kzUsl);
   <section style="padding:clamp(48px,7vw,72px) 24px;background:#171412;text-align:center">
     <div style="max-width:520px;margin:0 auto">
       <h2 style="margin:0 0 10px;font-weight:800;font-size:clamp(22px,3vw,28px);line-height:1.25;font-family:Inter;color:#FFFFFF;letter-spacing:-.01em">Ne propustite nijedan članak</h2>
-      <p style="margin:0 0 24px;font:400 14.5px/1.6 Inter;color:rgba(255,255,255,.65)">Tjedni pregled najkorisnijih članaka, alata i savjeta za vaš tim - izravno u inbox.</p>
+      <p style="margin:0 0 24px;font:400 14.5px/1.6 Inter;color:rgba(255,255,255,.65)">Tjedni pregled najkorisnijih članaka, alata i savjeta - izravno u inbox.</p>
       <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
         <div style="font:600 14.5px Inter;color:#FFD048">Hvala! Provjerite inbox za potvrdu prijave.</div>
       </sc-if>
