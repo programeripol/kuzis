@@ -17,10 +17,10 @@
    Sve je !important i dolazi zadnje u kaskadi pa nadjačava lokalne kopije.
    ========================================================================== */
 @media (max-width:860px){
-  #kz-nav-toggle{ display:none!important; }
+  html body #kz-nav-toggle{ display:none!important; }
 
   /* Hamburger / X — z-index iznad panela da X ostane vidljiv dok je meni otvoren. */
-  .kz-hamb{
+  html body .kz-hamb{
     display:flex!important;
     flex-direction:column!important;
     justify-content:center!important;
@@ -33,7 +33,7 @@
     position:relative!important;
     z-index:70!important;
   }
-  .kz-hamb span{
+  html body .kz-hamb span{
     display:block!important;
     width:24px!important;
     height:2.5px!important;
@@ -41,15 +41,15 @@
     border-radius:2px!important;
     transition:transform .2s ease,opacity .2s ease!important;
   }
-  #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){ transform:translateY(7.5px) rotate(45deg)!important; }
-  #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){ opacity:0!important; }
-  #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){ transform:translateY(-7.5px) rotate(-45deg)!important; }
+  html body #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){ transform:translateY(7.5px) rotate(45deg)!important; }
+  html body #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){ opacity:0!important; }
+  html body #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){ transform:translateY(-7.5px) rotate(-45deg)!important; }
 
   /* Header (logo + X) mora ostati iznad panela. */
-  header, header.site-header{ z-index:60!important; }
+  html body header, html body header.site-header{ z-index:60!important; }
 
   /* Panel kreće ISPOD headera (--kz-header-h postavlja nav-behavior.js). */
-  .kz-nav{
+  html body .kz-nav{
     display:none!important;
     position:fixed!important;
     top:var(--kz-header-h,72px)!important;
@@ -70,11 +70,11 @@
     overscroll-behavior:contain!important;
     z-index:40!important;
   }
-  #kz-nav-toggle:checked ~ .kz-nav{ display:flex!important; }
+  html body #kz-nav-toggle:checked ~ .kz-nav{ display:flex!important; }
 
   /* Linkovi: širina = širina riječi (zato se žuta crta podvlači samo ispod
      riječi, a ne preko cijele širine ekrana) i centrirani su. */
-  .kz-nav a:not(.kz-nav-cta):not(.cta){
+  html body .kz-nav a:not(.kz-nav-cta):not(.cta){
     width:auto!important;
     max-width:100%!important;
     align-self:center!important;
@@ -84,14 +84,14 @@
     font-size:24px!important;
     line-height:1.2!important;
   }
-  .kz-nav a.active{
+  html body .kz-nav a.active{
     padding-top:16px!important;
     padding-bottom:5px!important;
   }
 
   /* CTA — veliki gumb na dnu menija, centriran. */
-  .kz-nav a.kz-nav-cta,
-  .kz-nav a.cta{
+  html body .kz-nav a.kz-nav-cta,
+  html body .kz-nav a.cta{
     box-sizing:border-box!important;
     width:auto!important;
     max-width:calc(100% - 4px)!important;
@@ -108,8 +108,8 @@
     justify-content:center!important;
     font-size:0!important;
   }
-  .kz-nav a.kz-nav-cta::after,
-  .kz-nav a.cta::after{
+  html body .kz-nav a.kz-nav-cta::after,
+  html body .kz-nav a.cta::after{
     content:"Javite se"!important;
     font:700 17px Inter!important;
     color:#171412!important;
