@@ -272,6 +272,7 @@
         var lt = links[k2].textContent.trim();
         if (/^linkedin$/i.test(lt)) links[k2].style.display = 'none';
         if (/po[s\u0161]aljite upit/i.test(lt)) {
+          links[k2].className = ((links[k2].className || '') + ' kz-foot-cta').trim();
           links[k2].setAttribute('style', 'align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;margin-top:4px;padding:11px 20px;background:#FFD048;color:#171412;border-radius:8px;font:600 13.5px Inter;text-decoration:none;transition:transform .25s ease');
         }
       }
@@ -279,6 +280,11 @@
       if (dupBtn) dupBtn.style.display = 'none';
       var firstP = cols[0].querySelector('p');
       if (firstP) firstP.style.marginBottom = '0';
+    }
+    /* Dorin tekst: usluge su i za pojedince, ne samo za organizacije. */
+    var introP = cols[0].querySelector('p');
+    if (introP && introP.textContent.indexOf('za organizacije koje žele') >= 0) {
+      introP.textContent = introP.textContent.replace('za organizacije koje žele', 'za pojedince i organizacije koje žele');
     }
 
     if (!colSocial.querySelector('.kz-fnl-nl')) {
@@ -332,10 +338,9 @@
         '<div class="kz-nl-kicker">Bodovi: ' + score + '</div>' +
         '<h3 class="kz-nl-h">' + praise + '</h3>' +
         '<p class="kz-nl-p">Ovako preskačemo i sve ostalo što vam krade vrijeme. Jednom mjesečno šaljemo konkretne trikove za Canvu, Excel i web.</p>' +
-        '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="vasa@email.com" aria-label="Email adresa">' +
-        '<button class="kz-nl-go" type="submit">Prijavi se</button></form>' +
-        '<button type="button" class="kz-nl-again2">Igraj još jednom</button>' +
-        '<p class="kz-nl-fine">Odjava jednim klikom.</p>';
+        '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="ime@gmail.com" aria-label="Email adresa">' +
+        '<button class="kz-nl-go" type="submit">Prijavi se na novosti</button></form>' +
+        '<button type="button" class="kz-nl-again2">Igraj još jednom</button>';
       xBtn();
       var again = card.querySelector('.kz-nl-again2');
       again.addEventListener('click', function (e) { e.preventDefault(); showGame(); });
@@ -366,7 +371,7 @@
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
         '<div class="kz-nl-kicker">Pauza od posla</div>' +
         '<h3 class="kz-nl-h">Preskoči prepreke</h3>' +
-        '<p class="kz-nl-p">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica za skok.') + ' Klackalica, feder i kosina ti pomažu da skočiš više, iskoristi ih.</p>' +
+        '<p class="kz-nl-p">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica (space) za skok.') + ' Klackalica, feder i kosina ti pomažu da skočiš više, iskoristi ih.</p>' +
         '<canvas class="kz-nl-cv" width="' + W + '" height="' + H + '"></canvas>' +
         (TOUCH ? '<button type="button" class="kz-nl-jump">SKOK</button>' : '') +
         '<p class="kz-nl-fine"><a href="#" class="kz-nl-skip">Preskoči igru i prijavi se na novosti</a></p>';
@@ -625,7 +630,10 @@
         if (!st.run) {
           ctx.fillStyle = 'rgba(23,18,15,.55)';
           ctx.font = '700 24px Inter, system-ui, sans-serif';
-          ctx.fillText('klikni za start', W / 2, 78);
+          ctx.font = '800 26px Inter, system-ui, sans-serif';
+          try { ctx.letterSpacing = '5px'; } catch (e) {}
+          ctx.fillText('KLIKNI ZA START', W / 2, 78);
+          try { ctx.letterSpacing = '0px'; } catch (e) {}
         }
         if (st.over) {
           ctx.fillStyle = '#171412';
@@ -678,7 +686,8 @@
       draw();
     }
     showGame();
-    ov.addEventListener('click', function (e) { if (e.target === ov) close(K_CLOSED); });
+    /* Namjerno NEMA zatvaranja klikom izvan kartice (Dorin zahtjev):
+       pop-up se zatvara samo X-om jer zelimo da ljudi barem procitaju ponudu. */
   }
 
   function arm() {
