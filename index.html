@@ -137,7 +137,7 @@
   <div class="kz-wave-overlay" style="position:fixed;inset:0;z-index:9998;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
 <div class="kz-wipe" style="position:fixed;inset:0;z-index:10002;pointer-events:none;background:#ffffff;clip-path:circle(0px at 50% 50%);opacity:1"></div>
 <!-- HERO -->
-  <section style="position:relative;overflow:hidden;background:#FFD048">
+  <section style="position:relative;overflow:hidden;background:#ffffff">
     <picture>
       <source media="(max-width:860px)" srcset="assets/hero%20kuzis%20mobile.png">
       <img class="hp-hero-cut" src="assets/hero kuzis.png" alt="Kužiš - Canva, Excel, Figma, SEO i Claude na jednom mjestu" width="1600" height="900" style="display:block;width:100%;height:auto;margin-top:-10px">
@@ -153,8 +153,8 @@
 <style>
 @media(max-width:860px){.scrolly-wrap{height:300vh!important}.scrolly-line{font-size:clamp(22px,6vw,32px)!important}}
 </style>
-<section class="scrolly-wrap" style="position:relative;height:360vh;background:#FFD048">
-<div class="scrolly-bg-a" style="position:absolute;inset:0;background:#FFD048"></div>
+<section class="scrolly-wrap" style="position:relative;height:360vh;background:#ffffff">
+<div class="scrolly-bg-a" style="position:absolute;inset:0;background:#ffffff"></div>
 <div class="scrolly-bg-b" style="position:absolute;inset:0;background:#8ECAE6"></div>
 <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
 <svg style="position:absolute;top:-8%;left:-10%;width:56vw;max-width:520px;filter:blur(40px);opacity:.4;mix-blend-mode:soft-light" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M52.4,-62.3C67.3,-52.9,78.3,-36.4,81.6,-18.6C84.9,-0.8,80.5,18.3,70.6,33.6C60.8,48.9,45.5,60.4,28.4,66.9C11.4,73.4,-7.5,74.9,-24.9,69.6C-42.3,64.3,-58.2,52.2,-67.5,36.3C-76.8,20.4,-79.5,0.7,-75.1,-16.9C-70.7,-34.5,-59.2,-49.9,-44.7,-59.2C-30.2,-68.5,-15.1,-71.7,1.8,-74.1C18.7,-76.5,37.4,-71.7,52.4,-62.3Z" transform="translate(100 100)"></path></svg>
@@ -224,7 +224,7 @@ p.style.transform='scale('+scale+')';
 p.style.filter='blur('+blur+'px)';
 }
 function kzLine0Exit(p, t){
-var scale=1+1.6*t;
+var scale=1-0.6*t;
 var blur=t*16;
 p.style.transform='scale('+scale+')';
 p.style.filter='blur('+blur+'px)';
@@ -329,8 +329,8 @@ else { waveOverlay.style.clipPath="path('M 0 0 Q 0 0 0 0 Z')"; }
 }
 var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
-if(bgA){ bgA.style.background='#FFD048'; }
-if(bgB){ bgB.style.background='#FFD048'; bgB.style.clipPath='none'; }
+if(bgA){ bgA.style.background='#ffffff'; }
+if(bgB){ bgB.style.background='#ffffff'; bgB.style.clipPath='none'; }
 var textProgress=Math.max(0,Math.min(1,(ep-0.55)/0.45));
 var sticky=rect && document.querySelector('.scrolly-wrap .scrolly-sticky');
 if(sticky){
@@ -373,20 +373,6 @@ var enterT=(localT-0.5)/0.5;
 p.style.opacity='1';
 enterFns[li](p, enterT);
 } else { p.style.opacity='0'; }
-}
-var wipe=document.querySelector('.kz-wipe');
-if(wipe){
-var wipeT=0;
-if(idx<n-1){
-if(localT>=0.3 && localT<0.5){ wipeT=(localT-0.3)/0.2; }
-else if(localT>=0.5 && localT<0.75){ wipeT=1-(localT-0.5)/0.25; }
-}
-if(wipeT>0){
-var maxR=0.5*Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight);
-wipe.style.clipPath='circle('+(wipeT*maxR).toFixed(0)+'px at 50% 50%)';
-} else {
-wipe.style.clipPath='circle(0px at 50% 50%)';
-}
 }
 var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
@@ -443,6 +429,28 @@ var v=progress*lines.length;
 if(v>lines.length-0.0001) v=lines.length-0.0001;
 applyContinuous(v, rect);
 pin(wrap);
+var outroWin=vh*0.9;
+var op=Math.max(0,Math.min(1,(vh-rect.bottom)/outroWin));
+var wipe=document.querySelector('.kz-wipe');
+if(wipe){
+var owt=0;
+if(op>0){
+if(op<0.35){ owt=op/0.35; } else { owt=Math.max(0,1-(op-0.35)/0.65); }
+}
+var maxR=0.5*Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight);
+wipe.style.clipPath='circle('+(owt*maxR).toFixed(0)+'px at 50% 50%)';
+}
+var usluge=document.getElementById('usluge');
+if(usluge){
+if(op>0){
+var zp=Math.max(0,Math.min(1,(op-0.3)/0.6));
+var sc=0.8+0.2*zp;
+usluge.style.transform='scale('+sc.toFixed(3)+')';
+usluge.style.transformOrigin='50% 35%';
+} else {
+usluge.style.transform='';
+}
+}
 window.__kzScrollyMarker='updated:'+v.toFixed(2);
 }
 function onScroll(){ update(); }
