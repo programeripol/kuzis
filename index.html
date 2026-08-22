@@ -144,6 +144,7 @@
       <p class="hp-hero-text" style="margin:0;font-weight:800;font-size:clamp(16px,2.1vw,21px);line-height:1.45;font-family:'Baloo 2';color:#171412;transform:translateY(-10px)">Praktična digitalna rješenja, sustavi, optimizacija procesa, <br class="hp-hero-br">edukacije i mentorstvo za pojedince i organizacije <br class="hp-hero-br">koje žele raditi bolje i brže.</p>
       <a href="/kontakt" class="hp-hero-btn" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;font-size:14px;font-family:Inter;text-decoration:none;border:2.5px solid #171412;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
     </div>
+    <div class="hp-hero-yellow-wave" style="position:absolute;inset:0;z-index:5;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
   </section>
 
   <!-- STO RADIMO -->
@@ -172,7 +173,7 @@
 window.__kzScrollyMarker = 'init-start';
 (function(){
 var kzColors=['#FFC93C','#8ECAE6','#D8C8F7','#9FC58C','#D97757'];
-var kzOrigins=[{x:0.18,y:0.22},{x:0.82,y:0.78},{x:0.5,y:0.5},{x:0.8,y:0.2}];
+var kzOrigins=[{x:0.18,y:0.22},{x:0.82,y:0.78},{x:0.5,y:0.5},{x:0.8,y:0.2},{x:0.5,y:1.05}];
 var kzBlobPts=[[1.0,0],[0.78,0.45],[0.42,0.85],[0,0.78],[-0.42,0.85],[-0.78,0.45],[-0.95,0],[-0.78,-0.45],[-0.42,-0.85],[0,-0.78],[0.42,-0.85],[0.78,-0.45]];
 function kzMid(a,b){ return [(a[0]+b[0])/2,(a[1]+b[1])/2]; }
 function kzSmoothPath(pts){
@@ -286,6 +287,14 @@ var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
 if(bgA){ bgA.style.background='#ffffff'; }
 if(bgB){ bgB.style.background=kzColors[0]; bgB.style.clipPath=kzBlobClip(rect, 2, ep*1.6); }
+var heroWave=document.querySelector('.hp-hero-yellow-wave');
+if(heroWave){
+var heroSection=document.querySelectorAll('section')[0];
+if(heroSection){
+var heroRect=heroSection.getBoundingClientRect();
+heroWave.style.clipPath=kzBlobClip(heroRect, 4, ep*1.9);
+}
+}
 var lines=document.querySelectorAll('.scrolly-line');
 for(var i=0;i<lines.length;i++){
 var p=lines[i];
@@ -573,6 +582,7 @@ window.addEventListener('load', kzScrollyInit);
       <p style="margin:0 0 32px;font:400 16px/1.7 Inter;color:rgba(255,255,255,.72)">Pošaljite upit i javit ćemo vam se s prijedlogom formata prilagođenog vašoj organizaciji.</p>
       <a href="/kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 32px;background:#FFD048;color:#171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,18,15,.2)">Pošaljite upit</a>
     </div>
+    <div class="hp-hero-yellow-wave" style="position:absolute;inset:0;z-index:5;background:#FFC93C;clip-path:path('M 0 0 Q 0 0 0 0 Z');pointer-events:none"></div>
   </section>
 
   <!-- NEWSLETTER -->
