@@ -100,7 +100,7 @@
     .hp-blog-toplink{display:none!important}
     .hp-fade-right{width:34px!important}
     .hp-fade-left{width:24px!important}
-    .hp-hero-wrap{bottom:24%!important;gap:12px!important;padding:0 10px!important;width:100%!important;box-sizing:border-box!important}
+    .hp-hero-wrap{bottom:calc(24% + 10px)!important;gap:12px!important;padding:0 10px!important;width:100%!important;box-sizing:border-box!important}
     .hp-hero-text{width:100%!important;font-size:20px!important;line-height:1.34!important}
     .hp-hero-br{display:none!important}
     .hp-hero-btn{padding:8px 32px!important;font-size:13px!important;border-radius:10px!important;border-width:2px!important;box-shadow:0 6px 16px rgba(23,18,15,.24)!important}
@@ -370,7 +370,8 @@ var bgA=document.querySelector('.scrolly-bg-a');
 var bgB=document.querySelector('.scrolly-bg-b');
 if(bgA){ bgA.style.background='#ffffff'; }
 if(bgB){ bgB.style.background='#ffffff'; bgB.style.clipPath='none'; }
-var textProgress=Math.max(0,Math.min(1,(ep-0.1)/0.25));
+var kzMob=window.innerWidth<=860;
+var textProgress=Math.max(0,Math.min(1,(ep-(kzMob?0.27:0.1))/0.25));
 var sticky=rect && document.querySelector('.scrolly-wrap .scrolly-sticky');
 if(sticky){
 if(textProgress>0){
@@ -526,7 +527,8 @@ if(rect.top>0){
 window.__kzWavePhase=(Date.now()/650)%(Math.PI*2);
 var vh=window.innerHeight;
 var ep=Math.max(0,Math.min(1,(vh-rect.top)/vh));
-var waveProgress=Math.max(0,Math.min(1,(ep-0.03)/0.07));
+var kzMobW=window.innerWidth<=860;
+var waveProgress=Math.max(0,Math.min(1,(ep-(kzMobW?0.15:0.03))/(kzMobW?0.12:0.07)));
 if(waveProgress>0){
 var clip=kzWavePath(window.innerWidth, window.innerHeight, waveProgress);
 waveOverlay.style.clipPath=clip;
