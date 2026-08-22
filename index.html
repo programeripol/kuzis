@@ -110,7 +110,7 @@
 .hp-hero-cut{margin-top:-90px!important}
 }
 @media (max-width:860px){
-.hp-hero-cut{margin-top:0px!important}
+.hp-hero-cut{margin-top:-10px!important}
 }
 @media (max-width:860px){
     .kz-nav{display:none!important;position:fixed!important;top:var(--kz-header-h,72px)!important;left:0;right:0;bottom:0;flex-direction:column!important;align-items:stretch!important;flex-wrap:nowrap!important;gap:0!important;background:#fff;padding:22px 24px;margin:0;overflow-y:auto;z-index:40}
@@ -920,9 +920,14 @@ applyContinuous(idx, localT, rect);
 if(rect.top<=0){ pin(wrap); }
 window.__kzScrollyMarker='updated:'+(idx+localT).toFixed(2);
 }
-function onScroll(){ update(); }
+var kzRafPending=false;
+function onScroll(){ if(kzRafPending) return; kzRafPending=true; requestAnimationFrame(function(){ kzRafPending=false; update(); }); }
+var kzWrapCache=null;
 function kzWaveTick(){
-var wrap=document.querySelector('.scrolly-wrap');
+var wrap=(kzWrapCache&&kzWrapCache.isConnected)?kzWrapCache:(kzWrapCache=document.querySelector('.scrolly-wrap'));
+if(!wrap){ requestAnimationFrame(kzWaveTick); return; }
+var kzR0=wrap.getBoundingClientRect();
+if(kzR0.top>window.innerHeight*1.15 || kzR0.bottom<-40){ requestAnimationFrame(kzWaveTick); return; }
 var waveOverlay=document.querySelector('.kz-wave-overlay');
 var sticky=document.querySelector('.scrolly-wrap .scrolly-sticky');
 if(wrap && waveOverlay){
