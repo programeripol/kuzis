@@ -14,9 +14,14 @@
   ensureCss();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensureCss);
   window.addEventListener('load', ensureCss);
-  setTimeout(ensureCss, 800);
-  setTimeout(ensureCss, 2500);
-  setTimeout(ensureCss, 6000);
+  /* Bundler na /blog prepise <head> u nepredvidivom trenutku (vidio sam i
+     poslije 6s), pa fiksni setTimeout-i nisu dovoljni - provjeravamo svake
+     sekunde prvih ~40s. Provjera je jedan querySelector, dakle besplatna. */
+  var kzCssTries = 0;
+  var kzCssTimer = setInterval(function () {
+    ensureCss();
+    if (++kzCssTries > 40) clearInterval(kzCssTimer);
+  }, 1000);
 })();
 
 /* Kužiš — shared mobile header/nav behavior.
