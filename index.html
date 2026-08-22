@@ -229,7 +229,7 @@ var c1=1.70158, c3=c1+1;
 return 1 + c3*Math.pow(x-1,3) + c1*Math.pow(x-1,2);
 }
 function kzLine0Enter(p, localT){
-var scale=22-21*localT;
+var scale=2.5-1.5*localT;
 var blur=(1-localT)*34;
 var op=Math.max(0,Math.min(1, localT/0.4));
 p.style.transform='scale('+scale+')';
