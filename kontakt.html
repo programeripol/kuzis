@@ -11,10 +11,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="only light">
 <title>Kontakt | Kužiš</title>
-<meta name="description" content="Zatražite prijedlog edukacije, radionice ili mentorstva za svoj tim, obrt ili organizaciju - javljamo se s prijedlogom formata.">
+<meta name="description" content="Pošaljite upit za edukaciju, mentorstvo ili izradu web stranice - za sebe ili za svoj tim. Javljamo se u pravilu isti ili sljedeći radni dan.">
 <link rel="canonical" href="https://kuzis.hr/kontakt">
 <meta property="og:title" content="Kontakt | Kužiš">
-<meta property="og:description" content="Zatražite prijedlog edukacije, radionice ili mentorstva za svoj tim, obrt ili organizaciju - javljamo se s prijedlogom formata.">
+<meta property="og:description" content="Pošaljite upit za edukaciju, mentorstvo ili izradu web stranice - za sebe ili za svoj tim. Javljamo se u pravilu isti ili sljedeći radni dan.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kuzis.hr/assets/kuzis-og-image.png">
 <meta property="og:image:alt" content="Kužiš">
@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="Kužiš">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kontakt | Kužiš">
-<meta name="twitter:description" content="Zatražite prijedlog edukacije, radionice ili mentorstva za svoj tim, obrt ili organizaciju - javljamo se s prijedlogom formata.">
+<meta name="twitter:description" content="Pošaljite upit za edukaciju, mentorstvo ili izradu web stranice - za sebe ili za svoj tim. Javljamo se u pravilu isti ili sljedeći radni dan.">
 <meta name="twitter:image" content="https://kuzis.hr/assets/kuzis-og-image.png">
 <meta name="twitter:image:alt" content="Kužiš">
 <script src="/support.js"></script>
@@ -41,7 +41,7 @@
 </svg>
 </template>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#FFFFFF;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
@@ -64,7 +64,31 @@ footer{padding:44px 20px 26px!important}
 .footer-grid{grid-template-columns:repeat(3,1fr)!important;gap:14px!important;margin-bottom:32px!important}
 .footer-grid>div:first-child{grid-column:1/-1!important;margin-bottom:12px}
 header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-.kz-form-2col{grid-template-columns:1fr!important}
+}
+
+/* --- doodle stil, uskladeno s Pocetnom (2026-08-22) --- */
+.kz-pill{display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase}
+.kz-h2{margin:0 0 14px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;letter-spacing:-.01em;color:#171412}
+.kz-card{background:#FFFFFF;border:2.5px solid #171412;border-radius:28px 22px 30px 20px;box-shadow:7px 7px 0 #FFD048;padding:26px 24px;box-sizing:border-box}
+.kz-stat{font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(38px,6vw,54px);line-height:1;color:#171412}
+.kz-ico{width:56px;height:56px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.kz-step-badge{width:40px;height:40px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:17px;color:#171412}
+.kz-grid{display:grid;gap:22px}
+.kz-grid-3{grid-template-columns:repeat(3,1fr)}
+.kz-grid-4{grid-template-columns:repeat(2,1fr)}
+.kz-flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:12px}
+.kz-flow-item{flex:1 1 200px;max-width:236px}
+.kz-flow-arrow{display:flex;align-items:center;justify-content:center;flex:0 0 42px}
+.kz-marquee{animation:kzLogoMarquee 80s linear infinite}
+@keyframes kzLogoMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:980px){
+.kz-flow-item{flex:1 1 100%;max-width:470px}
+.kz-flow-arrow{flex-basis:100%;transform:rotate(90deg);height:30px}
+}
+@media (max-width:860px){
+.kz-grid-3{grid-template-columns:1fr}
+.kz-grid-4{grid-template-columns:1fr}
+.kz-card{border-radius:24px 20px 26px 18px;box-shadow:6px 6px 0 #FFD048;padding:24px 20px}
 }
 </style>
 </helmet>
@@ -79,60 +103,79 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 <a href="/edukacije" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Edukacije</a>
 <a href="/za-tvrtke" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Za tvrtke</a>
 <a href="/mentorstvo" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Mentorstvo</a>
-<a href="/o-nama" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">O nama</a>
+<a href="/o-nama" style="text-decoration:none;color:#171412;font-weight:700;padding-bottom:3px">O nama</a>
 <a href="/blog" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Blog</a>
 <a href="/kontakt" class="kz-nav-cta" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
 </nav>
 </header>
 
-<section data-hero-fade="1" style="padding:clamp(56px,8vw,90px) 24px 20px;max-width:640px;margin:0 auto;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-<div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Kontakt</div>
-<h1 style="margin:0 0 18px;font-weight:800;font-size:clamp(28px,4.6vw,42px);line-height:1.16;font-family:Inter;letter-spacing:-.02em">Dogovorimo edukaciju za vaš tim.</h1>
-<p style="margin:0;font:400 16px/1.65 Inter;color:rgba(23,18,15,.68)">Za edukacije za timove, organizacije i ustanove pošaljite upit i javit ćemo vam se s prijedlogom formata.</p>
-</section>
-
-<section data-reveal="1" style="padding:clamp(40px,6vw,64px) 24px clamp(64px,9vw,100px);opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
-<sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
-<div style="max-width:560px;margin:0 auto;padding:36px;background:#FFF8E1;border-radius:16px;text-align:center;border:1px solid rgba(23,18,15,.08)">
-<p style="margin:0;font:600 17px/1.6 Inter;color:#171412">Hvala! Vaš upit je zabilježen - javljamo se uskoro.</p>
-</div>
-</sc-if>
-
-<form style="{{ formDisplay }};max-width:560px;margin:0 auto;flex-direction:column;gap:16px" onSubmit="{{ handleSubmit }}">
-<div class="kz-form-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-<input name="ime" type="text" placeholder="Ime i prezime" required="true" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412" />
-<input name="email" type="email" placeholder="Email" required="true" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412" />
-</div>
-<input name="organizacija" type="text" placeholder="Organizacija / tvrtka" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412" />
-<div class="kz-form-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-<select name="tema" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412">
-<option value="">Tema interesa</option>
-<option value="canva">Canva za organizacije</option>
-<option value="tvrtke">Edukacija za tvrtku / tim</option>
-<option value="mentorstvo">Mentorstvo</option>
-<option value="ai">AI alati za posao i marketing</option>
-<option value="excel">Excel / Google Sheets</option>
-<option value="tecaj">Kreiranje vlastitog online tečaja</option>
-<option value="ostalo">Nešto drugo</option>
-</select>
-<select name="format" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412">
-<option value="">Željeni format</option>
-<option value="uzivo">Uživo</option>
-<option value="online">Online</option>
-<option value="nije-vazno">Nije bitno</option>
-</select>
-</div>
-<input name="broj_polaznika" type="text" placeholder="Broj polaznika (okvirno)" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412" />
-<textarea name="poruka" placeholder="Poruka - recite nam nešto o vašem timu i cilju edukacije" rows="4" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:9px;border:1px solid rgba(23,18,15,.18);background:#FFFFFF;font:400 14.5px Inter;color:#171412;resize:vertical"></textarea>
-<button type="submit" style="padding:16px;background:#FFD048;color:#171412;border:none;border-radius:9px;font:600 15px Inter;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-2px);box-shadow:0 10px 24px rgba(23,18,15,.2)">Pošaljite upit</button>
-</form>
-</section>
-
-<!-- NEWSLETTER -->
+<!-- HERO -->
+<style>
+/* Kontakt: dvije kolone na desktopu, jedna na mobitelu. */
+@media (max-width:900px){
+  .kz-kontakt-grid{grid-template-columns:1fr!important}
+}
+@media (max-width:560px){
+  .kz-form-2col{grid-template-columns:1fr!important}
+}
+#kz-form input:focus,#kz-form select:focus,#kz-form textarea:focus{box-shadow:0 0 0 3px rgba(255,208,72,.55)}
+#kz-send:disabled{opacity:.6;cursor:default}
+</style>
+<section data-hero-fade="1" style="background:#FFFCF2;padding:clamp(64px,9vw,104px) 24px clamp(28px,4vw,44px)"><div style="max-width:820px;margin:0 auto;text-align:center"><span class="kz-pill">Kontakt</span><h1 style="margin:18px 0 16px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(32px,5.8vw,52px);line-height:1.1;letter-spacing:-.02em;color:#171412">Dogovorimo edukaciju</h1><p style="margin:0 auto;max-width:640px;font:400 clamp(16px,2vw,18px)/1.6 Inter;color:rgba(23,20,18,.72)">Pošaljite upit i javit ćemo vam se s prijedlogom formata prilagođenog vama ili vašem timu.</p></div></section><section style="background:#FFFCF2;padding:0 24px clamp(56px,8vw,92px)"><div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.35fr 1fr;gap:26px;align-items:start" class="kz-kontakt-grid"><div class="kz-card" style="padding:clamp(24px,3.4vw,36px)"><form id="kz-form" novalidate style="margin:0"><div class="kz-form-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:0 15px"><div style="margin-bottom:15px"><label style="display:block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.5);margin:0 0 7px">Ime i prezime</label><input name="ime" type="text" required style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:10px;border:2px solid #171412;background:#FFFFFF;font:400 14.5px Inter;color:#171412;outline:none"></div><div style="margin-bottom:15px"><label style="display:block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.5);margin:0 0 7px">E-mail</label><input name="email" type="email" required placeholder="ime@gmail.com" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:10px;border:2px solid #171412;background:#FFFFFF;font:400 14.5px Inter;color:#171412;outline:none"></div></div><div style="margin-bottom:15px"><label style="display:block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.5);margin:0 0 7px">Organizacija <span style="text-transform:none;letter-spacing:0;font-weight:400">(ako se javljate u ime tima)</span></label><input name="organizacija" type="text" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:10px;border:2px solid #171412;background:#FFFFFF;font:400 14.5px Inter;color:#171412;outline:none"></div><div class="kz-form-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:0 15px"><div style="margin-bottom:15px"><label style="display:block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.5);margin:0 0 7px">Tema</label><select name="tema" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:10px;border:2px solid #171412;background:#FFFFFF;font:400 14.5px Inter;color:#171412;outline:none"><option value="">Odaberite temu</option><option value="Canva edukacija">Canva edukacija</option><option value="Edukacija za tim ili organizaciju">Edukacija za tim ili organizaciju</option><option value="Mentorstvo 1-na-1">Mentorstvo 1-na-1</option><option value="AI alati za posao i marketing">AI alati za posao i marketing</option><option value="Excel / Google Sheets">Excel / Google Sheets</option><option value="Izrada web stranice">Izrada web stranice</option><option value="Kreiranje vlastitog online tečaja">Kreiranje vlastitog online tečaja</option><option value="Nešto drugo">Nešto drugo</option></select></div><div style="margin-bottom:15px"><label style="display:block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.5);margin:0 0 7px">Format</label><select name="format" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:10px;border:2px solid #171412;background:#FFFFFF;font:400 14.5px Inter;color:#171412;outline:none"><option value="">Odaberite format</option><option value="Uživo">Uživo</option><option value="Online">Online</option><option value="Nije bitno">Nije bitno</option></select></div></div><div style="margin-bottom:15px"><label style="display:block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.5);margin:0 0 7px">Broj polaznika <span style="text-transform:none;letter-spacing:0;font-weight:400">(okvirno)</span></label><input name="polaznici" type="text" placeholder="npr. 1 ili 12" style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:10px;border:2px solid #171412;background:#FFFFFF;font:400 14.5px Inter;color:#171412;outline:none"></div><div style="margin-bottom:15px"><label style="display:block;font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.5);margin:0 0 7px">Poruka</label><textarea name="poruka" rows="5" placeholder="Recite ukratko što radite i što biste htjeli naučiti ili dobiti." style="box-sizing:border-box;width:100%;padding:14px 16px;border-radius:10px;border:2px solid #171412;background:#FFFFFF;font:400 14.5px Inter;color:#171412;outline:none;resize:vertical"></textarea></div><button type="submit" id="kz-send" style="width:100%;padding:16px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:10px;font:800 16px Inter;letter-spacing:.02em;cursor:pointer;box-shadow:5px 5px 0 #171412;transition:transform .2s ease" style-hover="transform:translateY(-2px)">Pošaljite upit</button><p id="kz-err" style="display:none;margin:14px 0 0;font:400 14px/1.55 Inter;color:#B3261E"></p><p style="margin:14px 0 0;font:400 13px/1.55 Inter;color:rgba(23,20,18,.55)">Podatke koristimo samo da vam odgovorimo na upit. Više u <a href="/privatnost" style="color:#171412">Politici privatnosti</a>.</p></form><div id="kz-sent" style="display:none;text-align:center;padding:18px 4px"><div style="width:64px;height:64px;margin:0 auto 16px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12.5 10 17.5 19 6.5"></polyline></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:24px;color:#171412">Hvala! Upit je poslan.</h3><p style="margin:0;font:400 15.5px/1.6 Inter;color:rgba(23,20,18,.72)">Javljamo se u pravilu isti ili sljedeći radni dan.</p></div></div><div><div class="kz-card" style="padding:clamp(24px,3.4vw,32px);margin-bottom:22px"><h2 class="kz-h2" style="font-size:22px;margin-bottom:20px">Ili nam se javite izravno</h2><div style="display:flex;gap:13px;align-items:flex-start;margin-bottom:20px"><span style="flex:0 0 42px;height:42px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><polyline points="3.5 6.5 12 13 20.5 6.5"></polyline></svg></span><div><div style="font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.45);margin-bottom:3px">E-mail</div><div style="font:500 15.5px/1.5 Inter;color:#171412"><a href="mailto:info@kuzis.hr" style="color:#171412;text-decoration:underline">info@kuzis.hr</a></div></div></div><div style="display:flex;gap:13px;align-items:flex-start;margin-bottom:20px"><span style="flex:0 0 42px;height:42px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></span><div><div style="font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.45);margin-bottom:3px">Sjedište</div><div style="font:500 15.5px/1.5 Inter;color:#171412">Zagreb, Hrvatska<br><span style="font:400 14px Inter;color:rgba(23,20,18,.6)">Radimo online s cijelom Hrvatskom</span></div></div></div><div style="display:flex;gap:13px;align-items:flex-start;margin-bottom:20px"><span style="flex:0 0 42px;height:42px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3.2 1.9"></path></svg></span><div><div style="font:700 12px Inter;letter-spacing:.06em;text-transform:uppercase;color:rgba(23,20,18,.45);margin-bottom:3px">Odgovor</div><div style="font:500 15.5px/1.5 Inter;color:#171412">U pravilu isti ili sljedeći radni dan</div></div></div><div style="margin:0;padding-top:4px"></div></div><div class="kz-card" style="padding:clamp(24px,3.4vw,32px);box-shadow:7px 7px 0 #171412;background:#FFD048"><h2 class="kz-h2" style="font-size:20px;margin-bottom:14px">Što se događa nakon upita</h2><ol style="margin:0;padding-left:20px;font:400 15px/1.7 Inter;color:rgba(23,20,18,.82)"><li style="margin-bottom:7px">Javimo se s par pitanja da shvatimo situaciju.</li><li style="margin-bottom:7px">Kratki razgovor - besplatan i bez obveze.</li><li style="margin-bottom:7px">Dobijete prijedlog programa i fiksnu cijenu.</li><li>Vi odlučite. Bez pritiska i bez pretplata.</li></ol></div></div></div></section><script>
+/* Slanje upita. Prije ovoga obrazac NIJE nikamo slao - samo je prikazivao
+   "Hvala!" i upit se gubio. Sad ide na FormSubmit (besplatno, bez ključa),
+   a ako to iz bilo kojeg razloga ne prođe, otvara se mail s ispunjenim
+   tekstom pa upit ne nestane. Listener je na documentu jer template runtime
+   zna prerenderati formu. */
+(function () {
+  var TO = "info@kuzis.hr";
+  var busy = false;
+  function val(f, n) { var el = f.querySelector('[name="' + n + '"]'); return el ? String(el.value || "").trim() : ""; }
+  function body(d) {
+    return "Ime: " + d.ime + "\nE-mail: " + d.email + "\nOrganizacija: " + (d.organizacija || "-") +
+      "\nTema: " + (d.tema || "-") + "\nFormat: " + (d.format || "-") +
+      "\nBroj polaznika: " + (d.polaznici || "-") + "\n\nPoruka:\n" + (d.poruka || "-");
+  }
+  function done() {
+    var s = document.getElementById("kz-sent"), f = document.getElementById("kz-form");
+    if (s) s.style.display = "block";
+    if (f) f.style.display = "none";
+  }
+  function mailFallback(d) {
+    var href = "mailto:" + TO + "?subject=" + encodeURIComponent("Upit s kuzis.hr - " + (d.tema || "opcenito")) +
+      "&body=" + encodeURIComponent(body(d));
+    window.location.href = href;
+    var e = document.getElementById("kz-err");
+    if (e) { e.style.display = "block"; e.textContent = "Otvorili smo vam mail s ispunjenim upitom - posaljite ga i javljamo se. Ili pisite izravno na " + TO + "."; }
+  }
+  document.addEventListener("submit", function (ev) {
+    var f = ev.target;
+    if (!f || f.id !== "kz-form") return;
+    ev.preventDefault();
+    if (busy) return;
+    var d = { ime: val(f, "ime"), email: val(f, "email"), organizacija: val(f, "organizacija"), tema: val(f, "tema"), format: val(f, "format"), polaznici: val(f, "polaznici"), poruka: val(f, "poruka") };
+    var err = document.getElementById("kz-err");
+    if (!d.ime || d.email.indexOf("@") < 0) {
+      if (err) { err.style.display = "block"; err.textContent = "Molimo upisite ime i ispravnu e-mail adresu."; }
+      return;
+    }
+    if (err) { err.style.display = "none"; err.textContent = ""; }
+    busy = true;
+    var btn = document.getElementById("kz-send");
+    if (btn) { btn.textContent = "Saljem..."; btn.disabled = true; }
+    var payload = { name: d.ime, email: d.email, _subject: "Upit s kuzis.hr - " + (d.tema || "opcenito"), Ime: d.ime, "E-mail": d.email, Organizacija: d.organizacija, Tema: d.tema, Format: d.format, "Broj polaznika": d.polaznici, Poruka: d.poruka, _template: "table", _captcha: "false" };
+    var to = setTimeout(function () { busy = false; mailFallback(d); }, 9000);
+    fetch("https://formsubmit.co/ajax/" + TO, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function () { clearTimeout(to); done(); })
+      .catch(function () { clearTimeout(to); busy = false; if (btn) { btn.textContent = "Posaljite upit"; btn.disabled = false; } mailFallback(d); });
+  }, true);
+})();
+</script><!-- NEWSLETTER -->
 <section style="padding:clamp(48px,7vw,72px) 24px;background:#171412;text-align:center">
 <div style="max-width:520px;margin:0 auto">
-<h2 style="margin:0 0 10px;font-weight:800;font-size:clamp(22px,3vw,28px);line-height:1.25;font-family:Inter;color:#FFFFFF;letter-spacing:-.01em">Ne propustite nijedan članak.</h2>
-<p style="margin:0 0 24px;font:400 14.5px/1.6 Inter;color:rgba(255,255,255,.65)">Tjedni pregled najkorisnijih članaka, alata i savjeta za vaš tim - izravno u inbox.</p>
+<h2 style="margin:0 0 10px;font-weight:800;font-size:clamp(22px,3vw,28px);line-height:1.25;font-family:Inter;color:#FFFFFF;letter-spacing:-.01em">Ne propustite nijedan članak</h2>
+<p style="margin:0 0 24px;font:400 14.5px/1.6 Inter;color:rgba(255,255,255,.65)">Tjedni pregled najkorisnijih članaka, alata i savjeta - izravno u inbox.</p>
 <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
 <div style="font:600 14.5px Inter;color:#FFD048">Hvala! Provjerite inbox za potvrdu prijave.</div>
 </sc-if>
@@ -197,7 +240,7 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-state = { submitted: false, showTop: false, email: '', subscribed: false };
+state = { showTop: false, email: '', subscribed: false };
 componentDidMount() {
 setTimeout(() => {
 document.querySelectorAll('[data-hero-fade]').forEach((el) => {
@@ -230,16 +273,15 @@ componentWillUnmount() {
 if (this._io) this._io.disconnect();
 if (this._onScrollTop) window.removeEventListener('scroll', this._onScrollTop);
 }
-handleSubmit(e) {
-e.preventDefault();
-this.setState({ submitted: true });
-}
 renderVals() {
+const beliefs = [
+'Kvalitetno znanje ne mora biti komplicirano.',
+'Učimo alate kroz stvarne zadatke, ne kroz pasivno gledanje prezentacija.',
+'Cilj nije završiti tečaj, nego stvarno početi koristiti naučeno.',
+'Bez suvišne teorije. Bez kaosa. Bez gubljenja vremena.',
+];
 return {
-submitted: this.state.submitted,
-formDisplay: this.state.submitted ? 'display:none' : 'display:flex',
-year: new Date().getFullYear(),
-handleSubmit: (e) => this.handleSubmit(e),
+beliefs, year: new Date().getFullYear(),
 topBtnOpacity: this.state.showTop ? 1 : 0,
 topBtnTransform: this.state.showTop ? 'translateY(0) scale(1)' : 'translateY(12px) scale(.9)',
 topBtnPointer: this.state.showTop ? 'auto' : 'none',
