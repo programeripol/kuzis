@@ -10,11 +10,11 @@
 <meta name="theme-color" content="#FFD048">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="only light">
-<title>Mentorstvo 1-na-1 za digitalne alate i sustave | Kužiš</title>
-<meta name="description" content="Individualno mentorstvo ili rad u maloj grupi, usmjeren na vaš konkretan alat, sadržaj ili sustav - kad grupna radionica nije dovoljno.">
+<title>Mentorstvo | Kužiš</title>
+<meta name="description" content="Individualno mentorstvo za pojedince i male timove - Canva, AI alati, Excel i web, na vašim stvarnim materijalima i vašim tempom.">
 <link rel="canonical" href="https://kuzis.hr/mentorstvo">
-<meta property="og:title" content="Mentorstvo 1-na-1 za digitalne alate i sustave | Kužiš">
-<meta property="og:description" content="Individualno mentorstvo ili rad u maloj grupi, usmjeren na vaš konkretan alat, sadržaj ili sustav - kad grupna radionica nije dovoljno.">
+<meta property="og:title" content="Mentorstvo | Kužiš">
+<meta property="og:description" content="Individualno mentorstvo za pojedince i male timove - Canva, AI alati, Excel i web, na vašim stvarnim materijalima i vašim tempom.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kuzis.hr/assets/kuzis-og-image.png">
 <meta property="og:image:alt" content="Kužiš">
@@ -23,8 +23,8 @@
 <meta property="og:url" content="https://kuzis.hr/mentorstvo">
 <meta property="og:site_name" content="Kužiš">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mentorstvo 1-na-1 za digitalne alate i sustave | Kužiš">
-<meta name="twitter:description" content="Individualno mentorstvo ili rad u maloj grupi, usmjeren na vaš konkretan alat, sadržaj ili sustav - kad grupna radionica nije dovoljno.">
+<meta name="twitter:title" content="Mentorstvo | Kužiš">
+<meta name="twitter:description" content="Individualno mentorstvo za pojedince i male timove - Canva, AI alati, Excel i web, na vašim stvarnim materijalima i vašim tempom.">
 <meta name="twitter:image" content="https://kuzis.hr/assets/kuzis-og-image.png">
 <meta name="twitter:image:alt" content="Kužiš">
 <script src="/support.js"></script>
@@ -41,7 +41,7 @@
 </svg>
 </template>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#FFFFFF;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
@@ -65,6 +65,31 @@ footer{padding:44px 20px 26px!important}
 .footer-grid>div:first-child{grid-column:1/-1!important;margin-bottom:12px}
 header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 }
+
+/* --- doodle stil, uskladeno s Pocetnom (2026-08-22) --- */
+.kz-pill{display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase}
+.kz-h2{margin:0 0 14px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;letter-spacing:-.01em;color:#171412}
+.kz-card{background:#FFFFFF;border:2.5px solid #171412;border-radius:28px 22px 30px 20px;box-shadow:7px 7px 0 #FFD048;padding:26px 24px;box-sizing:border-box}
+.kz-stat{font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(38px,6vw,54px);line-height:1;color:#171412}
+.kz-ico{width:56px;height:56px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.kz-step-badge{width:40px;height:40px;border-radius:50%;background:#FFD048;border:2.5px solid #171412;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:17px;color:#171412}
+.kz-grid{display:grid;gap:22px}
+.kz-grid-3{grid-template-columns:repeat(3,1fr)}
+.kz-grid-4{grid-template-columns:repeat(2,1fr)}
+.kz-flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:12px}
+.kz-flow-item{flex:1 1 200px;max-width:236px}
+.kz-flow-arrow{display:flex;align-items:center;justify-content:center;flex:0 0 42px}
+.kz-marquee{animation:kzLogoMarquee 80s linear infinite}
+@keyframes kzLogoMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:980px){
+.kz-flow-item{flex:1 1 100%;max-width:470px}
+.kz-flow-arrow{flex-basis:100%;transform:rotate(90deg);height:30px}
+}
+@media (max-width:860px){
+.kz-grid-3{grid-template-columns:1fr}
+.kz-grid-4{grid-template-columns:1fr}
+.kz-card{border-radius:24px 20px 26px 18px;box-shadow:6px 6px 0 #FFD048;padding:24px 20px}
+}
 </style>
 </helmet>
 
@@ -77,72 +102,19 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 <a href="/" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Početna</a>
 <a href="/edukacije" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Edukacije</a>
 <a href="/za-tvrtke" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Za tvrtke</a>
-<a href="/mentorstvo" class="active" style="text-decoration:none;color:#171412;font-weight:700;padding-bottom:3px">Mentorstvo</a>
-<a href="/o-nama" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">O nama</a>
+<a href="/mentorstvo" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Mentorstvo</a>
+<a href="/o-nama" style="text-decoration:none;color:#171412;font-weight:700;padding-bottom:3px">O nama</a>
 <a href="/blog" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Blog</a>
 <a href="/kontakt" class="kz-nav-cta" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
 </nav>
 </header>
 
-<section data-hero-fade="1" style="padding:clamp(56px,8vw,90px) 24px 40px;max-width:760px;margin:0 auto;text-align:center;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-<div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Mentorstvo</div>
-<h1 style="margin:0 0 18px;font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.14;font-family:Inter;letter-spacing:-.02em">Individualan rad, konkretan cilj.</h1>
-<p style="margin:0 0 32px;font:400 16px/1.65 Inter;color:rgba(23,18,15,.68)">Za one kojima grupna radionica nije dovoljno - rad jedan-na-jedan ili u maloj grupi, usmjeren na vaš konkretan alat, sadržaj ili sustav.</p>
-<a href="/kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:16px 30px;background:#FFD048;color:#171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,18,15,.2)">Prijavite interes</a>
-</section>
-
-<section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
-<div style="max-width:1120px;margin:0 auto">
-<div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Za koga</div>
-<h2 style="margin:0 0 28px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.25;font-family:Inter;letter-spacing:-.01em">Za ljude koji rade sami - ali ne žele učiti sami.</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px">
-<sc-for list="{{ audiences }}" as="a" hint-placeholder-count="4">
-<div style="padding:26px 24px;background:#FFFFFF;border-radius:16px;border:1px solid rgba(23,18,15,.08)">
-<h3 style="margin:0 0 8px;font:700 16px Inter">{{ a.title }}</h3>
-<p style="margin:0;font:400 14.5px/1.6 Inter;color:rgba(23,18,15,.64)">{{ a.desc }}</p>
-</div>
-</sc-for>
-</div>
-</div>
-</section>
-
-<section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFF8E1;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
-<div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px">
-<div>
-<div style="font:700 13px Inter;color:#171412;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Kako izgleda</div>
-<div style="display:flex;flex-direction:column;gap:14px">
-<sc-for list="{{ format }}" as="f" hint-placeholder-count="4">
-<div style="display:flex;gap:12px;align-items:flex-start">
-<div style="width:6px;height:6px;border-radius:50%;background:#FFD048;margin-top:9px;flex-shrink:0"></div>
-<p style="margin:0;font:400 15px/1.6 Inter;color:rgba(23,18,15,.72)">{{ f }}</p>
-</div>
-</sc-for>
-</div>
-</div>
-<div style="padding:26px 26px;background:#FFFFFF;border-radius:16px;border:1px solid rgba(23,18,15,.08)">
-<div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Trajanje</div>
-<p style="margin:0 0 18px;font:600 15.5px Inter">Pojedinačne sesije ili paket sesija kroz nekoliko tjedana</p>
-<div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Izvedba</div>
-<p style="margin:0 0 18px;font:600 15.5px Inter">Online, prilagođeno vašem rasporedu</p>
-<div style="font:700 12.5px Inter;color:rgba(23,18,15,.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Cijena</div>
-<p style="margin:0;font:600 15.5px Inter">Cijena na upit - ovisno o opsegu i broju sesija</p>
-</div>
-</div>
-</section>
-
-<section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#171412;color:#FFFFFF;text-align:center;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
-<div style="max-width:560px;margin:0 auto">
-<h2 style="margin:0 0 16px;font-weight:800;font-size:clamp(22px,3.4vw,30px);line-height:1.25;font-family:Inter;letter-spacing:-.01em">Recite nam na čemu radite.</h2>
-<p style="margin:0 0 28px;font:400 15.5px/1.65 Inter;color:rgba(255,255,255,.72)">Javljamo se s prijedlogom formata mentorstva prilagođenog vašem cilju.</p>
-<a href="/kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:15px 28px;background:#FFD048;color:#171412;border-radius:9px;font:600 15px Inter;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 10px 26px rgba(23,18,15,.2)">Prijavite interes</a>
-</div>
-</section>
-
-<!-- NEWSLETTER -->
+<!-- HERO -->
+<section data-hero-fade="1" style="background:#FFFCF2;padding:clamp(64px,9vw,110px) 24px clamp(40px,5vw,60px)"><div style="max-width:840px;margin:0 auto;text-align:center"><span class="kz-pill">Mentorstvo</span><h1 style="margin:18px 0 16px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(32px,5.8vw,52px);line-height:1.1;letter-spacing:-.02em;color:#171412">Individualan rad, konkretan cilj</h1><p style="margin:0 auto;max-width:660px;font:400 clamp(16px,2vw,18px)/1.6 Inter;color:rgba(23,20,18,.72)">Za one kojima grupna radionica nije dovoljno - rad jedan-na-jedan ili u maloj grupi, usmjeren na vaš konkretan alat, sadržaj ili sustav.</p><div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px"><a href="/kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:14px 30px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:10px;font:700 15px Inter;text-decoration:none;box-shadow:5px 5px 0 #171412;transition:transform .2s ease" style-hover="transform:translateY(-2px)">Prijavite interes</a><a href="/edukacije" style="display:inline-flex;align-items:center;justify-content:center;padding:14px 30px;background:#FFFFFF;color:#171412;border:2.5px solid #171412;border-radius:10px;font:700 15px Inter;text-decoration:none;transition:transform .2s ease" style-hover="transform:translateY(-2px)">Pogledajte edukacije</a></div></div></section><section style="background:#FFFFFF;padding:clamp(56px,8vw,92px) 24px;border-top:2px solid #FFD048;border-bottom:2px solid #FFD048"><div style="max-width:1120px;margin:0 auto"><div style="max-width:660px;margin-bottom:38px"><span class="kz-pill">Za koga</span><h2 class="kz-h2" style="margin-top:14px">Za ljude koji rade sami - ali ne žele učiti sami</h2><p style="margin:0;font:400 16px/1.65 Inter;color:rgba(23,20,18,.72)">Mentorstvo je za pojedince, ali jednako dobro radi i za dvoje-troje ljudi iz istog tima koji rješavaju isti zadatak.</p></div><div class="kz-grid kz-grid-4" style="text-align:left"><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.4L20 9l-4 3.8.9 5.7L12 15.9 7.1 18.5 8 12.8 4 9l5.6-.6z"></path></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Freelanceri</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Želite sami raditi svoj vizualni sadržaj i materijale, bez ovisnosti o agenciji.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l9-5 9 5v11"></path><path d="M9 20v-6h6v6"></path></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Mali poduzetnici i obrti</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Trebate konkretan alat svladati brzo, bez gubljenja vremena na isprobavanje.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H20v16H6.5A2.5 2.5 0 0 1 4 17.5z"></path><line x1="9" y1="9" x2="16" y2="9"></line><line x1="9" y1="13" x2="14" y2="13"></line></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Osobe koje uče alat</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Želite naučiti konkretan alat - Canvu, AI, Excel - na svom tempu, uz vodstvo.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v11H3z"></path><line x1="12" y1="16" x2="12" y2="20"></line><line x1="8" y1="20" x2="16" y2="20"></line></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Budući predavači</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Želite izgraditi svoj vizualni sustav, sadržaj ili vlastitu edukaciju.</p></div></div></div></section><section style="background:#FFFCF2;padding:clamp(56px,8vw,92px) 24px"><div style="max-width:1120px;margin:0 auto"><div style="max-width:640px;margin-bottom:38px"><span class="kz-pill">Na čemu radimo</span><h2 class="kz-h2" style="margin-top:14px">Teme koje se najčešće otvore</h2><p style="margin:0;font:400 16px/1.65 Inter;color:rgba(23,20,18,.72)">Nema fiksnog plana - krećemo od onoga što vas trenutno koči.</p></div><div class="kz-grid kz-grid-3"><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3.2 1.9"></path></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Canva i vizualni sustav</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Predlošci, boje, fontovi i Brand Kit posloženi tako da poslije samo popunjavate, a ne crtate ispočetka.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4.5 4.5 0 0 0-4.5 4.5c0 1 .3 1.8.9 2.6A4.6 4.6 0 0 0 12 21a4.6 4.6 0 0 0 3.6-10.9c.6-.8.9-1.6.9-2.6A4.5 4.5 0 0 0 12 3z"></path></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">AI alati u svakodnevnom radu</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Gdje AI stvarno štedi sate, kako pisati upit i kada rezultatu ne treba vjerovati.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><rect x="7" y="11" width="3" height="6"></rect><rect x="13" y="7" width="3" height="10"></rect></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Excel i tablice</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Formule, čišćenje podataka i mali sustavi koji zamjenjuju ručno prepisivanje.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Vlastita web stranica</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Kako sami održavati stranicu, pisati tekstove i ne pokvariti ništa usput.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a1 1 0 0 1 1-1h9l6 6v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"></path><polyline points="14 4 14 10 20 10"></polyline></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Sadržaj i objave</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Plan objava, ton komunikacije i predlošci koji se ponavljaju bez razmišljanja.</p></div><div class="kz-card"><div class="kz-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#171412" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v11H3z"></path><line x1="12" y1="16" x2="12" y2="20"></line><line x1="8" y1="20" x2="16" y2="20"></line></svg></div><h3 style="margin:0 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:20px;color:#171412">Vaša edukacija ili tečaj</h3><p style="margin:0;font:400 15px/1.65 Inter;color:rgba(23,20,18,.72)">Struktura programa, materijali i alati - od ideje do prve grupe polaznika.</p></div></div></div></section><section style="background:#FFFFFF;padding:clamp(56px,8vw,92px) 24px;border-top:2px solid #FFD048;border-bottom:2px solid #FFD048"><div style="max-width:1120px;margin:0 auto"><div style="max-width:640px;margin:0 auto 38px;text-align:center"><span class="kz-pill">Kako izgleda</span><h2 class="kz-h2" style="margin-top:14px">Četiri koraka do samostalnosti</h2></div><div class="kz-flow"><div class="kz-flow-item kz-card" style="text-align:left"><div class="kz-step-badge">1</div><h3 style="margin:12px 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:18px;color:#171412">Uvodni razgovor</h3><p style="margin:0;font:400 14.5px/1.6 Inter;color:rgba(23,20,18,.72)">O vašem cilju i trenutnom znanju - da znamo odakle krećemo i kamo idemo.</p></div><div class="kz-flow-arrow"><svg width="42" height="26" viewBox="0 0 64 30" aria-hidden="true"><path d="M4 15 C 20 5, 40 25, 58 15" fill="none" stroke="#171412" stroke-width="2.4" stroke-dasharray="5 7" stroke-linecap="round"></path><path d="M50 9 L 59 15 L 50 21" fill="none" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="kz-flow-item kz-card" style="text-align:left"><div class="kz-step-badge">2</div><h3 style="margin:12px 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:18px;color:#171412">Plan sesija</h3><p style="margin:0;font:400 14.5px/1.6 Inter;color:rgba(23,20,18,.72)">Prilagođen konkretnom zadatku koji rješavate, a ne generičkom programu tečaja.</p></div><div class="kz-flow-arrow"><svg width="42" height="26" viewBox="0 0 64 30" aria-hidden="true"><path d="M4 15 C 20 5, 40 25, 58 15" fill="none" stroke="#171412" stroke-width="2.4" stroke-dasharray="5 7" stroke-linecap="round"></path><path d="M50 9 L 59 15 L 50 21" fill="none" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="kz-flow-item kz-card" style="text-align:left"><div class="kz-step-badge">3</div><h3 style="margin:12px 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:18px;color:#171412">Rad na vašim materijalima</h3><p style="margin:0;font:400 14.5px/1.6 Inter;color:rgba(23,20,18,.72)">Ne na izmišljenim primjerima. Ono što napravimo na sesiji odmah koristite.</p></div><div class="kz-flow-arrow"><svg width="42" height="26" viewBox="0 0 64 30" aria-hidden="true"><path d="M4 15 C 20 5, 40 25, 58 15" fill="none" stroke="#171412" stroke-width="2.4" stroke-dasharray="5 7" stroke-linecap="round"></path><path d="M50 9 L 59 15 L 50 21" fill="none" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="kz-flow-item kz-card" style="text-align:left"><div class="kz-step-badge">4</div><h3 style="margin:12px 0 8px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:18px;color:#171412">Podrška između sesija</h3><p style="margin:0;font:400 14.5px/1.6 Inter;color:rgba(23,20,18,.72)">Za pitanja koja se pojave usput - jer se najviše nauči kad zapne u stvarnom radu.</p></div></div></div></section><section style="background:#FFFCF2;padding:clamp(56px,8vw,92px) 24px"><div style="max-width:1020px;margin:0 auto"><div style="max-width:640px;margin-bottom:34px"><span class="kz-pill">Detalji</span><h2 class="kz-h2" style="margin-top:14px">Trajanje, izvedba i cijena</h2></div><div class="kz-grid kz-grid-3"><div class="kz-card" style="box-shadow:5px 5px 0 #FFD048"><div style="font:700 12px Inter;letter-spacing:.08em;text-transform:uppercase;color:rgba(23,20,18,.45);margin-bottom:9px">Trajanje</div><p style="margin:0;font:400 15.5px/1.6 Inter;color:rgba(23,20,18,.8)">Pojedinačne sesije ili paket sesija kroz nekoliko tjedana - kako vam bolje leži.</p></div><div class="kz-card" style="box-shadow:5px 5px 0 #FFD048"><div style="font:700 12px Inter;letter-spacing:.08em;text-transform:uppercase;color:rgba(23,20,18,.45);margin-bottom:9px">Izvedba</div><p style="margin:0;font:400 15.5px/1.6 Inter;color:rgba(23,20,18,.8)">Online, prilagođeno vašem rasporedu. Uživo u Zagrebu po dogovoru.</p></div><div class="kz-card" style="box-shadow:5px 5px 0 #FFD048"><div style="font:700 12px Inter;letter-spacing:.08em;text-transform:uppercase;color:rgba(23,20,18,.45);margin-bottom:9px">Cijena</div><p style="margin:0;font:400 15.5px/1.6 Inter;color:rgba(23,20,18,.8)">Na upit - ovisi o opsegu i broju sesija. Uvodni razgovor je besplatan.</p></div></div></div></section><section style="background:#FFD048;padding:clamp(56px,8vw,88px) 24px"><div style="max-width:720px;margin:0 auto;text-align:center"><h2 style="margin:0 0 14px;font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(26px,4vw,36px);line-height:1.18;letter-spacing:-.01em;color:#171412">Recite nam na čemu radite</h2><p style="margin:0 0 26px;font:400 16.5px/1.65 Inter;color:rgba(23,20,18,.75)">Javljamo se s prijedlogom formata mentorstva prilagođenog vašem cilju - vama ili vašem timu.</p><a href="/kontakt" style="display:inline-flex;align-items:center;justify-content:center;padding:15px 34px;background:#171412;color:#FFD048;border:2.5px solid #171412;border-radius:10px;font:700 16px Inter;text-decoration:none;box-shadow:5px 5px 0 rgba(23,20,18,.25);transition:transform .2s ease" style-hover="transform:translateY(-2px)">Prijavite interes</a></div></section><!-- NEWSLETTER -->
 <section style="padding:clamp(48px,7vw,72px) 24px;background:#171412;text-align:center">
 <div style="max-width:520px;margin:0 auto">
-<h2 style="margin:0 0 10px;font-weight:800;font-size:clamp(22px,3vw,28px);line-height:1.25;font-family:Inter;color:#FFFFFF;letter-spacing:-.01em">Ne propustite nijedan članak.</h2>
-<p style="margin:0 0 24px;font:400 14.5px/1.6 Inter;color:rgba(255,255,255,.65)">Tjedni pregled najkorisnijih članaka, alata i savjeta za vaš tim - izravno u inbox.</p>
+<h2 style="margin:0 0 10px;font-weight:800;font-size:clamp(22px,3vw,28px);line-height:1.25;font-family:Inter;color:#FFFFFF;letter-spacing:-.01em">Ne propustite nijedan članak</h2>
+<p style="margin:0 0 24px;font:400 14.5px/1.6 Inter;color:rgba(255,255,255,.65)">Tjedni pregled najkorisnijih članaka, alata i savjeta - izravno u inbox.</p>
 <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
 <div style="font:600 14.5px Inter;color:#FFD048">Hvala! Provjerite inbox za potvrdu prijave.</div>
 </sc-if>
@@ -241,20 +213,14 @@ if (this._io) this._io.disconnect();
 if (this._onScrollTop) window.removeEventListener('scroll', this._onScrollTop);
 }
 renderVals() {
-const audiences = [
-{ title: 'Freelanceri', desc: 'Želite sami raditi svoj vizualni sadržaj i materijale, bez ovisnosti o agenciji.' },
-{ title: 'Mali poduzetnici', desc: 'Trebate konkretan alat svladati brzo, bez gubljenja vremena na isprobavanje.' },
-{ title: 'Osobe koje uče alat', desc: 'Želite naučiti konkretan alat - Canvu, AI, Excel - na svom tempu, uz vodstvo.' },
-{ title: 'Budući predavači', desc: 'Želite izgraditi svoj vizualni sustav, sadržaj ili vlastitu edukaciju.' },
-];
-const format = [
-'Uvodni razgovor o vašem cilju i trenutnom znanju',
-'Plan sesija prilagođen konkretnom zadatku koji rješavate',
-'Rad na vašim stvarnim materijalima, ne generičkim primjerima',
-'Podrška između sesija za pitanja koja se pojave usput',
+const beliefs = [
+'Kvalitetno znanje ne mora biti komplicirano.',
+'Učimo alate kroz stvarne zadatke, ne kroz pasivno gledanje prezentacija.',
+'Cilj nije završiti tečaj, nego stvarno početi koristiti naučeno.',
+'Bez suvišne teorije. Bez kaosa. Bez gubljenja vremena.',
 ];
 return {
-audiences, format, year: new Date().getFullYear(),
+beliefs, year: new Date().getFullYear(),
 topBtnOpacity: this.state.showTop ? 1 : 0,
 topBtnTransform: this.state.showTop ? 'translateY(0) scale(1)' : 'translateY(12px) scale(.9)',
 topBtnPointer: this.state.showTop ? 'auto' : 'none',
