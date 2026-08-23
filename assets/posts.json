@@ -1,5 +1,45 @@
 [
   {
+    "href": "/canva-magic-switch-jedan-dizajn-svi-formati",
+    "title": "Jedan dizajn, svi formati: kako Canva sama prilagodi i prevede objavu",
+    "category": "Canva",
+    "date": "23. kol 2026.",
+    "iso": "2026-08-23",
+    "readingTime": 4,
+    "img": "assets/canva-magic-switch-jedan-dizajn-svi-formati.webp",
+    "excerpt": "Magic Resize i Magic Switch u Canvi mijenjaju veličinu dizajna, prevode ga na preko 100 jezika i pretvaraju u dokument. Kako ih koristiti i što provjeriti."
+  },
+  {
+    "href": "/excel-if-funkcija-pocetnici",
+    "title": "Kako da tablica sama donese odluku: IF funkcija za apsolutne početnike",
+    "category": "Excel i Google Sheets",
+    "date": "23. kol 2026.",
+    "iso": "2026-08-23",
+    "readingTime": 5,
+    "img": "assets/excel-if-funkcija-pocetnici.webp",
+    "excerpt": "IF funkcija u Excelu i Google Sheetsu objašnjena korak po korak: tablica sama piše plaćeno ili čeka, s primjerom popisa računa i tri česte greške."
+  },
+  {
+    "href": "/web-dizajn-koliko-kosta-web-stranica",
+    "title": "Koliko košta web stranica i o čemu cijena zapravo ovisi",
+    "category": "Web dizajn",
+    "date": "23. kol 2026.",
+    "iso": "2026-08-23",
+    "readingTime": 5,
+    "img": "assets/web-dizajn-koliko-kosta-web-stranica.webp",
+    "excerpt": "Cijena web stranice ne ovisi o broju podstranica. Evo iz čega se slaže, koji se troškovi zaborave i što obavezno mora pisati u ponudi prije nego potpišeš."
+  },
+  {
+    "href": "/claude-provjeri-odgovor-greske",
+    "title": "Kako prepoznati kad Claude griješi i što napraviti da se to rjeđe događa",
+    "category": "Claude",
+    "date": "23. kol 2026.",
+    "iso": "2026-08-23",
+    "readingTime": 5,
+    "img": "assets/claude-provjeri-odgovor-greske.webp",
+    "excerpt": "AI odgovor zvuči jednako uvjerljivo i kad je netočan. Tri vrste grešaka, kako ih prepoznati, kako ih smanjiti u pitanju i što nikad ne slati dalje bez provjere."
+  },
+  {
     "href": "/seo-meta-naslovi-opisi-alt-tekstovi",
     "title": "Meta naslovi, meta opisi i alt tekstovi: što tražilica stvarno čita na tvojoj stranici",
     "category": "SEO",
