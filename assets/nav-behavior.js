@@ -178,7 +178,7 @@
     s.textContent = [
       '.kz-nl-ov{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(23,18,15,.55);opacity:0;transition:opacity .35s ease}',
       '.kz-nl-ov.on{opacity:1}',
-      '.kz-nl-card{position:relative;width:100%;max-width:520px;min-height:412px;background:#fff;border:3px solid #171412;border-radius:30px 26px 32px 24px;box-shadow:9px 9px 0 #FFD048;padding:28px 26px 24px;box-sizing:border-box;transform:scale(.86) rotate(-2.5deg);opacity:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;font-family:Inter,system-ui,sans-serif}',
+      '.kz-nl-card{position:relative;width:100%;max-width:520px;min-height:412px;background:#fff;border:3px solid #171412;border-radius:30px 26px 32px 24px;box-shadow:9px 9px 0 #FFD048;padding:28px 26px 24px;box-sizing:border-box;max-height:calc(100vh - 40px);overflow-y:auto;transform:scale(.86) rotate(-2.5deg);opacity:0;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;font-family:Inter,system-ui,sans-serif}',
       '.kz-nl-ov.on .kz-nl-card{transform:scale(1) rotate(-1deg);opacity:1}',
       '.kz-nl-x{position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #171412;font:800 17px/1 Inter;color:#171412;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .18s ease,background .18s ease}',
       '.kz-nl-x:hover{background:#FFD048;transform:rotate(90deg)}',
@@ -198,6 +198,7 @@
       '.kz-nl-again2:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 #FFD048}',
       '.kz-nl-go:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 #171412}',
       '.kz-nl-fine{margin:10px 0 0;font:400 12px/1.5 Inter;color:rgba(23,18,15,.5)}',
+      '.kz-nl-hint{margin:9px 0 14px;font:400 12.5px/1.5 Inter;color:rgba(23,18,15,.5);text-align:center}',
       '.kz-nl-fine a{color:#171412;font-weight:600}',
       '.kz-nl-cv{display:block;width:100%;height:auto;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;background:#FFFCF2;cursor:pointer;touch-action:manipulation}',
       '.kz-nl-jump{display:block;width:100%;margin-top:12px;padding:16px;background:#FFD048;color:#171412;border:2.5px solid #171412;border-radius:16px 20px 14px 18px;font:800 17px Inter;letter-spacing:.08em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}',
@@ -396,7 +397,7 @@
       var link = sib ? sib.cloneNode(false) : document.createElement('a');
       link.className = ((link.className || '') + ' kz-fnl-nl').trim();
       link.setAttribute('href', '#');
-      link.textContent = 'Prijavi se na newsletter';
+      link.textContent = 'Prijavi se na novosti';
       link.addEventListener('click', function (e) { e.preventDefault(); popup(true); });
       (sib && sib.parentNode ? sib.parentNode : colSocial).appendChild(link);
     }
@@ -436,14 +437,17 @@
     function showForm(score) {
       if (raf) cancelAnimationFrame(raf);
       raf = null;
-      var praise = score >= 12 ? 'Ozbiljno dobro.' : (score >= 6 ? 'Solidno!' : 'Idemo ponovo?');
+      /* Naslov na OBA prozora govori isto: ovo je prijava na novosti.
+         Bodovi i pohvala su sporedni pa idu u mali kicker iznad. */
+      var praise = score >= 12 ? 'ozbiljno dobro' : (score >= 6 ? 'solidno' : 'idemo ponovo?');
+      var kick = score > 0 ? 'Bodovi: ' + score + ' &middot; ' + praise : 'Novosti &middot; 1&times; tjedno';
       card.innerHTML =
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
-        '<div class="kz-nl-kicker">Bodovi: ' + score + '</div>' +
-        '<h3 class="kz-nl-h">' + praise + '</h3>' +
-        '<p class="kz-nl-p">Ovako preskačemo i sve ostalo što vam krade vrijeme. Jednom tjedno šaljemo konkretne trikove za Canvu, Excel i web.</p>' +
+        '<div class="kz-nl-kicker">' + kick + '</div>' +
+        '<h3 class="kz-nl-h">Prijavi se na novosti</h3>' +
+        '<p class="kz-nl-p">Upiši mail i gotovo. Jednom tjedno šaljemo konkretne savjete za Canvu, Excel i web.</p>' +
         '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="ime@gmail.com" aria-label="Email adresa">' +
-        '<button class="kz-nl-go" type="submit">Prijavi se na novosti</button></form>' +
+        '<button class="kz-nl-go" type="submit">Prijavi me na novosti</button></form>' +
         '<button type="button" class="kz-nl-again2">Igraj još jednom</button>';
       xBtn();
       var again = card.querySelector('.kz-nl-again2');
@@ -473,14 +477,15 @@
 
       card.innerHTML =
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
-        '<div class="kz-nl-kicker">Pauza od posla</div>' +
-        '<h3 class="kz-nl-h">Preskoči prepreke</h3>' +
-        '<p class="kz-nl-p">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica (space) za skok.') + ' Klackalica, feder i kosina ti pomažu da skočiš više, iskoristi ih.</p>' +
+        '<div class="kz-nl-kicker">Novosti &middot; 1&times; tjedno</div>' +
+        '<h3 class="kz-nl-h">Prijavi se na novosti</h3>' +
+        '<p class="kz-nl-p">Jednom tjedno konkretni savjeti za Canvu, Excel i web. Prijavi se odmah - ili prvo zaigraj, pa onda.</p>' +
         '<canvas class="kz-nl-cv" width="' + W + '" height="' + H + '"></canvas>' +
         (TOUCH ? '<button type="button" class="kz-nl-jump">SKOK</button>' : '') +
-        '<p class="kz-nl-fine"><a href="#" class="kz-nl-skip">Preskoči igru i prijavi se na novosti</a></p>';
+        '<p class="kz-nl-hint">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica (space) za skok.') + ' Klackalica, feder i kosina ti pomažu da skočiš više.</p>' +
+        '<button type="button" class="kz-nl-go kz-nl-skip">Prijavi se na novosti</button>';
       xBtn();
-      card.querySelector('.kz-nl-skip').addEventListener('click', function (e) { e.preventDefault(); showForm(0); });
+      card.querySelector('.kz-nl-skip').addEventListener('click', function (e) { e.preventDefault(); showForm(st && st.score ? st.score : 0); });
 
       var cv = card.querySelector('.kz-nl-cv');
       var ctx = cv.getContext('2d');
