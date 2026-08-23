@@ -327,6 +327,23 @@
     target.parentNode.insertBefore(n, target.nextSibling);
   }
 
+  /* Kartica 'Izrada web stranica' na Pocetnoj sad vodi na svoju stranicu.
+     Kartice crta template runtime pa se poveznica popravlja ovdje, umjesto
+     u index.html (koji je prevelik za web-editor u jednom komadu). */
+  function homeCards() {
+    var cards = document.querySelectorAll('.usluga-card');
+    for (var i = 0; i < cards.length; i++) {
+      if (cards[i].textContent.toLowerCase().indexOf('izrada web stranica') < 0) continue;
+      var a = cards[i].querySelector('a');
+      if (!a || (a.getAttribute('href') || '').indexOf(WEB_HREF) >= 0) continue;
+      a.setAttribute('href', WEB_HREF);
+      var sp = a.querySelector('span');
+      a.textContent = 'Saznajte vi\u0161e ';
+      if (!sp) { sp = document.createElement('span'); sp.setAttribute('aria-hidden', 'true'); sp.textContent = '\u2192'; }
+      a.appendChild(sp);
+    }
+  }
+
   function footerForm() {
     var f = document.querySelector('footer');
     if (!f || f.getAttribute('data-kz-footer') === '1') return;
@@ -795,13 +812,13 @@
   }
 
   window.kzOpenNewsletter = function () { popup(true); };
-  function init() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); arm(); }
+  function init() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); homeCards(); arm(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
-  window.addEventListener('load', function () { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); });
+  window.addEventListener('load', function () { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); homeCards(); });
   /* Template runtime zna prerenderati footer nakon nasih poziva - guard je
      data-kz-footer atribut na <footer>, pa ponovni pozivi nisu skupi. */
-  function kzFooterAll() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); }
+  function kzFooterAll() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); homeCards(); }
   setTimeout(kzFooterAll, 1200);
   setTimeout(kzFooterAll, 3000);
   setTimeout(kzFooterAll, 6000);
