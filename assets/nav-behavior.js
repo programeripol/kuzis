@@ -337,10 +337,9 @@
       var a = cards[i].querySelector('a');
       if (!a || (a.getAttribute('href') || '').indexOf(WEB_HREF) >= 0) continue;
       a.setAttribute('href', WEB_HREF);
-      var sp = a.querySelector('span');
-      a.textContent = 'Saznajte vi\u0161e ';
-      if (!sp) { sp = document.createElement('span'); sp.setAttribute('aria-hidden', 'true'); sp.textContent = '\u2192'; }
-      a.appendChild(sp);
+      /* Runtime umota {{ o.cta }} u vlastiti <span>, pa se postojeci span ne
+         smije reciklirati - inace uz novi tekst ostane i stari. */
+      a.innerHTML = 'Saznajte vi\u0161e <span aria-hidden="true">\u2192</span>';
     }
   }
 
@@ -823,4 +822,9 @@
   setTimeout(kzFooterAll, 3000);
   setTimeout(kzFooterAll, 6000);
   setTimeout(kzFooterAll, 10000);
+  /* Runtime zna prerenderati i kasnije (npr. kad se ucitaju podaci), pa se
+     jos 30 s lagano provjerava. Sve funkcije imaju guard i nista ne rade
+     ako je vec sve na mjestu. */
+  var kzTicks = 0;
+  var kzTimer = setInterval(function () { kzFooterAll(); if (++kzTicks > 20) clearInterval(kzTimer); }, 1500);
 })();
