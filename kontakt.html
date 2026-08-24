@@ -163,7 +163,25 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
     busy = true;
     var btn = document.getElementById("kz-send");
     if (btn) { btn.textContent = "Saljem..."; btn.disabled = true; }
-    var payload = { name: d.ime, email: d.email, _subject: "Upit s kuzis.hr - " + (d.tema || "opcenito"), Ime: d.ime, "E-mail": d.email, Organizacija: d.organizacija, Tema: d.tema, Format: d.format, "Broj polaznika": d.polaznici, Poruka: d.poruka, _template: "table", _captcha: "false" };
+    /* Polja se salju SAMO jednom i samo ako su popunjena - inace mail izgleda
+       kao tablica s praznim redovima i dvostrukim imenom/mailom. Podcrtana
+       polja (_subject, _replyto...) FormSubmit koristi kao postavke i ne
+       prikazuje ih u tablici. */
+    var payload = {
+      _subject: "Upit s kuzis.hr - " + d.ime + (d.tema ? " (" + d.tema + ")" : ""),
+      _replyto: d.email,
+      _template: "box",
+      _captcha: "false",
+      _autoresponse: "Hvala na upitu! Zaprimila sam ga i javljam se u pravilu isti ili sljedeci radni dan.\n\nLijep pozdrav,\nDora - Kuzis\nhttps://kuzis.hr"
+    };
+    function put(k, v) { if (v) payload[k] = v; }
+    put("Ime", d.ime);
+    put("E-mail", d.email);
+    put("Organizacija", d.organizacija);
+    put("Tema", d.tema);
+    put("Format", d.format);
+    put("Broj polaznika", d.polaznici);
+    put("Poruka", d.poruka);
     var to = setTimeout(function () { busy = false; mailFallback(d); }, 9000);
     fetch("https://formsubmit.co/ajax/" + TO, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
