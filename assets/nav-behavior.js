@@ -833,3 +833,111 @@
   var kzTicks = 0;
   var kzTimer = setInterval(function () { kzFooterAll(); if (++kzTicks > 20) clearInterval(kzTimer); }, 1500);
 })();
+
+/* Kuzis - prijave na tecajeve i besplatni webinar.
+   Stranice /canva-tecaj-za-pocetnike, /canva-ai-tecaj,
+   /canva-tecaj-drustvene-mreze i /canva-webinar sve imaju istu formu
+   (#prijava-forma s poljima tecaj / ime / email / poruka) i skriveni
+   #prijava-hvala.
+
+   Do 2026-08-23 ta forma NIJE imala nikakav handler: ni action, ni skriptu.
+   Klik na "Prijavi se" nije radio nista i svaka prijava se gubila. Sad:
+     1. osoba ulazi u MailerLite listu (isti obrazac kao newsletter na Pocetnoj)
+     2. prijava stize mailom na info@kuzis.hr preko FormSubmita
+     3. ako mail ne prodje, otvara se mailto s ispunjenim tekstom
+   Listener je na documentu jer template runtime zna prerenderati sadrzaj. */
+(function () {
+  var TO = 'info@kuzis.hr';
+  var ML = 'https://assets.mailerlite.com/jsonp/2532018/forms/194591584556156410/subscribe';
+  var busy = false;
+
+  function val(f, n) {
+    var el = f.querySelector('[name="' + n + '"]');
+    return el ? String(el.value || '').trim() : '';
+  }
+  function errBox(f) {
+    var e = f.querySelector('.kz-prijava-err');
+    if (!e) {
+      e = document.createElement('p');
+      e.className = 'kz-prijava-err';
+      e.setAttribute('style', 'margin:12px 0 0;font:400 14px/1.55 Inter;color:#FFB4A2');
+      f.appendChild(e);
+    }
+    return e;
+  }
+  function body(d) {
+    return 'Edukacija: ' + d.tecaj + '\nIme: ' + d.ime + '\nE-mail: ' + d.email +
+      '\n\nPitanje:\n' + (d.poruka || '-');
+  }
+  function done(f) {
+    var h = document.getElementById('prijava-hvala');
+    if (h) h.style.display = 'block';
+    f.style.display = 'none';
+  }
+  function mailFallback(f, d) {
+    window.location.href = 'mailto:' + TO +
+      '?subject=' + encodeURIComponent('Prijava: ' + d.tecaj) +
+      '&body=' + encodeURIComponent(body(d));
+    errBox(f).textContent = 'Otvorili smo vam mail s ispunjenom prijavom - posaljite ga i vidimo se. Ili pisite izravno na ' + TO + '.';
+  }
+
+  document.addEventListener('submit', function (ev) {
+    var f = ev.target;
+    if (!f || f.id !== 'prijava-forma') return;
+    ev.preventDefault();
+    if (busy) return;
+
+    var d = {
+      tecaj: val(f, 'tecaj') || 'Kuzis edukacija',
+      ime: val(f, 'ime'),
+      email: val(f, 'email'),
+      poruka: val(f, 'poruka')
+    };
+    var e = errBox(f);
+    if (!d.ime || d.email.indexOf('@') < 0) {
+      e.textContent = 'Molimo upisite ime i ispravnu e-mail adresu.';
+      return;
+    }
+    e.textContent = '';
+    busy = true;
+    var btn = f.querySelector('button[type="submit"]');
+    var label = btn ? btn.textContent : '';
+    if (btn) { btn.textContent = 'Saljem...'; btn.disabled = true; }
+
+    /* 1. MailerLite lista - salje se odmah, greska ne smije zaustaviti prijavu */
+    try {
+      var fd = new FormData();
+      fd.append('fields[email]', d.email);
+      fd.append('fields[name]', d.ime);
+      fetch(ML, { method: 'POST', body: fd }).catch(function () {});
+    } catch (x) {}
+
+    /* 2. mail Dori */
+    var payload = {
+      _subject: 'Prijava: ' + d.tecaj + ' - ' + d.ime,
+      _replyto: d.email,
+      _template: 'table',
+      _captcha: 'false',
+      _autoresponse: 'Hvala na prijavi!\n\nZaprimili smo je i sve detalje (termin, poveznicu i pripremu) saljemo na ovaj mail.\n\nLijep pozdrav,\nDora - Kuzis\nhttps://kuzis.hr'
+    };
+    payload['Edukacija'] = d.tecaj;
+    payload['Ime'] = d.ime;
+    payload['E-mail'] = d.email;
+    if (d.poruka) payload['Pitanje'] = d.poruka;
+
+    var to = setTimeout(function () { busy = false; mailFallback(f, d); }, 9000);
+    fetch('https://formsubmit.co/ajax/' + TO, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function () { clearTimeout(to); done(f); })
+      .catch(function () {
+        clearTimeout(to);
+        busy = false;
+        if (btn) { btn.textContent = label; btn.disabled = false; }
+        mailFallback(f, d);
+      });
+  }, true);
+})();
