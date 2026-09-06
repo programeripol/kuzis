@@ -136,12 +136,15 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 @media (max-width:860px){.kz-flag{left:-8px;top:-14px}}
 
 /* naslovnica AI tecaja - crta se CSS-om, nema slike */
-.kz-ai-cover{aspect-ratio:16/9;background:#E3D2FE;display:flex;align-items:center;justify-content:center;padding:18px;box-sizing:border-box;position:relative;overflow:hidden}
+.kz-thumb-wrap.kz-ai-cover{aspect-ratio:16/9;background:#E3D2FE;display:flex;align-items:center;justify-content:center;padding:18px;box-sizing:border-box;position:relative;overflow:hidden}
+.kz-ai-cover::before,.kz-ai-cover::after{content:"\2726";position:absolute;color:#171412;opacity:.5;font-size:15px;line-height:1}
+.kz-ai-cover::before{top:14px;left:20px;transform:rotate(-12deg)}
+.kz-ai-cover::after{bottom:16px;right:22px;font-size:20px;transform:rotate(10deg)}
 .kz-ai-inner{text-align:center;max-width:100%}
 .kz-ai-spark{font-size:22px;line-height:1;color:#171412;margin-bottom:6px}
 .kz-ai-title{font-family:'Baloo 2',Inter,sans-serif;font-weight:800;font-size:clamp(30px,5vw,44px);line-height:1;color:#171412;letter-spacing:-.02em}
 .kz-ai-sub{font:700 clamp(13px,1.6vw,16px) Inter;color:rgba(23,20,18,.72);margin-top:4px}
-.kz-ai-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.kz-ai-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px}
 .kz-ai-chips span{font:600 11px Inter;color:#171412;background:#FFFFFF;border:2px solid #171412;border-radius:100px;padding:4px 10px;white-space:nowrap}
 
 /* naslovne fotke edukacija */
