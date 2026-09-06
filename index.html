@@ -1113,8 +1113,8 @@ window.addEventListener('load',kzUsl);
 <p style="margin:0;font:400 14.5px/1.65 Inter;color:rgba(23,18,15,.66);flex:1">{{ o.desc }}</p>
 <sc-if value="{{ o.dual }}" hint-placeholder-val="{{ false }}">
                 <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:22px;margin-top:6px">
-                  <a href="{{ o.href2 }}" class="cta-underline-inv">{{ o.cta2 }} →</a>
-                  <a href="{{ o.href1 }}" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap;align-self:center">{{ o.cta1 }} →</a>
+                  <a href="{{ o.href2 }}" class="cta-underline-inv">{{ o.cta2 }}</a>
+                  <a href="{{ o.href1 }}" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap;align-self:center">{{ o.cta1 }}</a>
                 </div>
               </sc-if>
               <sc-if value="{{ o.notDual }}" hint-placeholder-val="{{ false }}">
@@ -1130,9 +1130,9 @@ window.addEventListener('load',kzUsl);
   </section>
 
   <!-- ZA KOGA -->
-  <section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+  <section id="za-koga" data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
     <div style="max-width:1120px;margin:0 auto">
-      <div style="max-width:560px;margin-bottom:36px">
+      <div style="max-width:680px;margin-bottom:36px">
         <div style="display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">Za koga</div>
         <h2 style="margin:0;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Za organizacije koje same rade svoj posao</h2>
       </div>
@@ -1179,11 +1179,11 @@ window.addEventListener('load',kzUsl);
   </section>
 
   <!-- REFERENCE -->
-  <section data-reveal="1" style="padding:clamp(48px,7vw,80px) 24px;background:#FFFFFF;border-top:2px solid #FFD048;border-bottom:2px solid #FFD048;overflow-x:clip;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+  <section data-reveal="1" style="padding:clamp(28px,4vw,46px) 24px clamp(48px,7vw,80px);background:#FFFFFF;border-top:2px solid #FFD048;border-bottom:2px solid #FFD048;overflow-x:clip;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
     <div style="max-width:1120px;margin:0 auto;text-align:center">
       <div style="display:inline-block;font:700 13px Inter;color:#171412;background:#FFD048;padding:5px 12px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">Reference</div>
       <h2 style="margin:0 0 16px;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Edukacije već održane za organizacije</h2>
-      <div style="overflow:hidden;width:100vw;max-width:100vw;margin:44px calc(50% - 50vw) 0">
+      <div style="overflow:hidden;width:100vw;max-width:100vw;margin:32px calc(50% - 50vw) 0">
         <div style="display:flex;align-items:center;gap:64px;width:max-content;animation:logoMarquee 80s linear infinite" style-hover="animation-play-state:paused">
           <a href="https://dalmatiastorytelling.com/" style="flex:0 0 auto;width:160px;height:64px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .3s ease" style-hover="transform:translateY(-3px)"><img src="assets/logo-dalmatia.png" alt="Dalmatia - storytelling destination" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain" /></a>
           <a href="https://www.welearn.ie/" style="flex:0 0 auto;width:160px;height:64px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .3s ease" style-hover="transform:translateY(-3px)"><img src="assets/logo-welearn.png" alt="WeLearn" loading="lazy" style="max-width:100%;max-height:100%;object-fit:contain" /></a>
@@ -1231,7 +1231,7 @@ window.addEventListener('load',kzUsl);
           <h2 style="margin:0;font-weight:800;font-size:clamp(24px,3.6vw,32px);line-height:1.2;font-family:'Baloo 2';letter-spacing:-.01em;color:#171412">Najnovije s bloga</h2>
         </div>
         <div style="display:flex;align-items:center;gap:14px">
-        <a href="/blog" class="cta-underline hp-blog-toplink" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+        <a href="/blog" class="cta-underline hp-blog-toplink" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog</a>
         </div>
       </div>
       <div style="position:relative">
@@ -1255,7 +1255,7 @@ window.addEventListener('load',kzUsl);
       <button type="button" id="blog-slider-prev" aria-label="Prethodni članci" style="position:absolute;left:10px;top:0;bottom:56px;margin:auto 0;z-index:5;width:46px;height:46px;border-radius:50%;border:none;background:#171412;color:#FFFFFF;box-shadow:0 6px 18px rgba(23,18,15,.28);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s ease"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
       <button type="button" id="blog-slider-next" aria-label="Sljedeći članci" style="position:absolute;right:10px;top:0;bottom:56px;margin:auto 0;z-index:5;width:46px;height:46px;border-radius:50%;border:none;background:#171412;color:#FFFFFF;box-shadow:0 6px 18px rgba(23,18,15,.28);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:auto;transition:opacity .35s ease"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
       </div>
-      <a href="/blog" class="cta-underline hp-mobile-blog-btn" style="display:none;align-items:center;margin-top:20px;font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog<svg width="24" height="15" viewBox="0 0 24 15" fill="none" style="display:inline-block;vertical-align:-2px;margin-left:6px"><path d="M1.5 7.5h15" stroke="#171412" stroke-width="2.4" stroke-linecap="round"/><path d="M11 1.5l6.5 6-6.5 6" stroke="#171412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></a>
+      <a href="/blog" class="cta-underline hp-mobile-blog-btn" style="display:none;align-items:center;margin-top:20px;font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog</a>
     </div>
   </section>
 
@@ -1398,7 +1398,14 @@ class Component extends DCLogic {
     this._onScrollTop = () => {
       const doc = document.documentElement;
       const scrollable = doc.scrollHeight - window.innerHeight;
-      const show = scrollable > 0 && (window.scrollY / scrollable) > 0.66;
+      /* Gumb se pojavi cim korisnik dodje do sekcije "Za koga", a ne tek pri dnu. */
+      const anchor = document.getElementById('za-koga');
+      let show;
+      if (anchor) {
+        show = anchor.getBoundingClientRect().top <= window.innerHeight * 0.6;
+      } else {
+        show = scrollable > 0 && (window.scrollY / scrollable) > 0.66;
+      }
       if (show !== this.state.showTop) this.setState({ showTop: show });
     };
     window.addEventListener('scroll', this._onScrollTop, { passive: true });
@@ -1463,7 +1470,7 @@ class Component extends DCLogic {
     audiences.forEach((a, i) => { a.blobRadius = blobRadii[i % blobRadii.length]; });
 
     const methodology = [
-      { num: '01', title: 'Kratko i jasno', desc: 'Jedan dan, jasan cilj - bez razvučenih programa.' },
+      { num: '01', title: 'Kratko i jasno', desc: 'Svaki susret ima jasan cilj - bez razvučenih programa.' },
       { num: '02', title: 'Praktično', desc: 'Prezentacije su kratke i vizualne, a najveći dio vremena radimo na vašim stvarnim zadacima.' },
       { num: '03', title: 'Prilagođeno radu', desc: 'Sadržaj prilagođen vašoj djelatnosti i timu.' },
       { num: '04', title: 'S materijalima', desc: 'Gotovi predlošci i upute za samostalan nastavak.' },
