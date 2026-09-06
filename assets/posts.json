@@ -1,5 +1,25 @@
 [
   {
+    "href": "/claude-skills-nauci-kako-radis",
+    "title": "Claude Skills: nauči Claudea kako ti radiš",
+    "category": "Claude",
+    "date": "6. ruj 2026.",
+    "iso": "2026-09-06",
+    "readingTime": 5,
+    "img": "assets/claude-skills-nauci-kako-radis.webp",
+    "excerpt": "Umjesto da svaki put objašnjavaš isto, zapakiraj svoj način rada u vještinu koju Claude pamti i sam pozove kad zatreba."
+  },
+  {
+    "href": "/seo-ai-botovi-robots-txt",
+    "title": "AI botovi na tvojoj stranici: blokirati ili pustiti?",
+    "category": "SEO",
+    "date": "6. ruj 2026.",
+    "iso": "2026-09-06",
+    "readingTime": 6,
+    "img": "assets/seo-ai-botovi-robots-txt.webp",
+    "excerpt": "GPTBot, ClaudeBot i Google-Extended nisu isti bot. Jedni uče modele, drugi odlučuju hoćeš li se pojaviti u AI odgovorima. Evo koga blokirati."
+  },
+  {
     "href": "/web-dizajn-pristupacnost-zakon",
     "title": "Mora li tvoja web stranica biti pristupačna?",
     "category": "Web dizajn",
