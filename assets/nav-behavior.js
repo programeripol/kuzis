@@ -340,7 +340,7 @@
       a.setAttribute('href', WEB_HREF);
       /* Runtime umota {{ o.cta }} u vlastiti <span>, pa se postojeci span ne
          smije reciklirati - inace uz novi tekst ostane i stari. */
-      a.innerHTML = 'Saznajte vi\u0161e <span aria-hidden="true">\u2192</span>';
+      a.innerHTML = 'Saznajte vi\u0161e';
     }
   }
 
@@ -401,6 +401,20 @@
       link.addEventListener('click', function (e) { e.preventDefault(); popup(true); });
       (sib && sib.parentNode ? sib.parentNode : colSocial).appendChild(link);
     }
+
+    /* Instagram i LinkedIn jos ne postoje. Dok ne postoje, ne smiju biti
+       poveznice koje vode nikamo - ostaje ime i oznaka "uskoro" sa strane. */
+    var soc = colSocial.querySelectorAll('a');
+    for (var s3 = 0; s3 < soc.length; s3++) {
+      var sa = soc[s3];
+      var stx = (sa.textContent || '').trim();
+      if (!/^(instagram|linkedin)$/i.test(stx)) continue;
+      var sp = document.createElement('span');
+      sp.setAttribute('data-kz-soon', '1');
+      sp.setAttribute('style', 'display:inline-flex;align-items:baseline;gap:8px;color:rgba(255,255,255,.5);cursor:default');
+      sp.innerHTML = '<span>' + stx + '</span><span style="font:700 10.5px Inter;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.32)">uskoro</span>';
+      sa.parentNode.replaceChild(sp, sa);
+    }
   }
 
   /* ---------- pop-up: mini igrica ---------- */
@@ -434,7 +448,7 @@
     }
 
     /* ---- korak 2: mail ---- */
-    function showForm(score) {
+    function showForm(score, played) {
       if (raf) cancelAnimationFrame(raf);
       raf = null;
       /* Naslov na OBA prozora govori isto: ovo je prijava na novosti.
@@ -445,7 +459,9 @@
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
         '<div class="kz-nl-kicker">' + kick + '</div>' +
         '<h3 class="kz-nl-h">Prijavi se na novosti</h3>' +
-        '<p class="kz-nl-p">Upiši e-mail. Jednom tjedno šaljemo konkretne savjete za Canvu, Excel i web.</p>' +
+        '<p class="kz-nl-p">' + (played
+          ? 'Tu je stalo. Dalje preuzimamo mi - jednom tjedno mail koji ti skrati posao.'
+          : 'Upiši e-mail. Jednom tjedno šaljemo konkretne savjete za Canvu, Excel i web.') + '</p>' +
         '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="ime@gmail.com" aria-label="Email adresa">' +
         '<button class="kz-nl-go" type="submit">Prijavi me na novosti</button></form>' +
         '<button type="button" class="kz-nl-again2">Igraj još jednom</button>';
@@ -482,7 +498,7 @@
         '<p class="kz-nl-p">Jednom tjedno konkretni savjeti za Canvu, Excel i web. Prijavi se odmah - ili prvo zaigraj, pa onda.</p>' +
         '<canvas class="kz-nl-cv" width="' + W + '" height="' + H + '"></canvas>' +
         (TOUCH ? '<button type="button" class="kz-nl-jump">SKOK</button>' : '') +
-        '<p class="kz-nl-hint">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica (space) za skok.') + ' Klackalica, feder i kosina ti pomažu da skočiš više.</p>' +
+        '<p class="kz-nl-hint">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica (space) za skok.') + '<br />Klackalica, feder i kosina ti pomažu da skočiš više.</p>' +
         '<button type="button" class="kz-nl-go kz-nl-skip">Prijavi se na novosti</button>';
       xBtn();
       card.querySelector('.kz-nl-skip').addEventListener('click', function (e) { e.preventDefault(); showForm(st && st.score ? st.score : 0); });
@@ -788,7 +804,7 @@
           }
         }
         draw();
-        if (st.over) { setTimeout(function () { showForm(st.score); }, 1500); return; }
+        if (st.over) { setTimeout(function () { showForm(st.score, true); }, 1500); return; }
         raf = requestAnimationFrame(step);
       }
       function loop() { raf = requestAnimationFrame(step); }
