@@ -959,13 +959,25 @@
 })();
 
 /* Kuzis - gumb "Povratak na vrh" na Pocetnoj.
-   Pocetna se zna prerenderati pa stanje komponente za ovaj gumb ostane
-   zamrznuto i gumb se nikad ne pojavi. Zato se ovdje, samo na Pocetnoj,
-   stil postavlja izravno: gumb se pojavi cim korisnik dodje do sekcije
-   "Za koga" (id="za-koga"), a ne tek pri dnu stranice. */
+   Pocetna se prerendera pa komponenta stalno prepisuje style atribut gumba
+   i njezino stanje ostane zamrznuto na "sakriven". Zato se vidljivost vodi
+   klasom na <html> (nju runtime ne dira) i CSS-om s !important.
+   Gumb se pojavi cim korisnik dodje do sekcije "Za koga" (id="za-koga"). */
 (function () {
   var p = (location.pathname || '/').replace(/index\.html$/, '');
   if (p !== '/' && p !== '') return;
+
+  var SEL = 'button[aria-label="Povratak na vrh"]';
+
+  function css() {
+    if (document.getElementById('kz-top-css')) return;
+    var st = document.createElement('style');
+    st.id = 'kz-top-css';
+    st.textContent =
+      'html.kz-showtop ' + SEL + '{opacity:1!important;transform:translateY(0) scale(1)!important;pointer-events:auto!important}' +
+      'html:not(.kz-showtop) ' + SEL + '{opacity:0!important;transform:translateY(12px) scale(.9)!important;pointer-events:none!important}';
+    (document.head || document.documentElement).appendChild(st);
+  }
 
   function wanted() {
     var a = document.getElementById('za-koga');
@@ -975,13 +987,10 @@
   }
 
   function apply() {
-    var b = document.querySelector('button[aria-label="Povratak na vrh"]');
-    if (!b) return;
-    var show = wanted();
-    b.style.opacity = show ? '1' : '0';
-    b.style.transform = show ? 'translateY(0) scale(1)' : 'translateY(12px) scale(.9)';
-    b.style.pointerEvents = show ? 'auto' : 'none';
-    if (!b.getAttribute('data-kz-top')) {
+    css();
+    document.documentElement.classList.toggle('kz-showtop', wanted());
+    var b = document.querySelector(SEL);
+    if (b && !b.getAttribute('data-kz-top')) {
       b.setAttribute('data-kz-top', '1');
       b.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
