@@ -1,3 +1,3 @@
 # Kužiš
 
-Edukacijski brend – web stranica.
+Edukacijski brend - web stranica.
