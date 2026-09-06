@@ -895,14 +895,14 @@
     };
     var e = errBox(f);
     if (!d.ime || d.email.indexOf('@') < 0) {
-      e.textContent = 'Molimo upisite ime i ispravnu e-mail adresu.';
+      e.textContent = 'Molimo upišite ime i ispravnu e-mail adresu.';
       return;
     }
     e.textContent = '';
     busy = true;
     var btn = f.querySelector('button[type="submit"]');
     var label = btn ? btn.textContent : '';
-    if (btn) { btn.textContent = 'Saljem...'; btn.disabled = true; }
+    if (btn) { btn.textContent = 'Šaljem…'; btn.disabled = true; }
 
     /* 1. MailerLite lista - salje se odmah, greska ne smije zaustaviti prijavu */
     try {
