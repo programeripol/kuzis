@@ -949,12 +949,13 @@
     })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (j) {
-        /* FormSubmit zna vratiti HTTP 200 i {"success":"false"} - npr. dok
-           adresa primatelja nije aktivirana. Tada mail NIJE poslan, pa se ne
-           smije pokazati "Hvala": bolje otvoriti mailto nego tiho izgubiti
-           prijavu. */
-        var ok = j && (j.success === true || String(j.success) === 'true');
-        if (!ok) return Promise.reject('not-sent');
+        /* FormSubmit zna vratiti HTTP 200 i {"success":"false"} - npr. ako
+           adresa primatelja vise nije aktivirana. Tada mail NIJE poslan, pa se
+           ne smije pokazati "Hvala": bolje otvoriti mailto nego tiho izgubiti
+           prijavu. Provjerava se samo izricit neuspjeh, da nepoznat oblik
+           odgovora nikad ne obori prijavu koja je zapravo prosla. */
+        var failed = j && (j.success === false || String(j.success).toLowerCase() === 'false');
+        if (failed) return Promise.reject('not-sent');
         clearTimeout(to);
         done(f);
       })
