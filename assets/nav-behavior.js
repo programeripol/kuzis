@@ -948,7 +948,16 @@
       body: JSON.stringify(payload)
     })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(function () { clearTimeout(to); done(f); })
+      .then(function (j) {
+        /* FormSubmit zna vratiti HTTP 200 i {"success":"false"} - npr. dok
+           adresa primatelja nije aktivirana. Tada mail NIJE poslan, pa se ne
+           smije pokazati "Hvala": bolje otvoriti mailto nego tiho izgubiti
+           prijavu. */
+        var ok = j && (j.success === true || String(j.success) === 'true');
+        if (!ok) return Promise.reject('not-sent');
+        clearTimeout(to);
+        done(f);
+      })
       .catch(function () {
         clearTimeout(to);
         busy = false;
