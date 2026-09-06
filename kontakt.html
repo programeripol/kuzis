@@ -103,7 +103,7 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 <a href="/edukacije" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Edukacije</a>
 <a href="/za-tvrtke" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Za tvrtke</a>
 <a href="/mentorstvo" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Mentorstvo</a>
-<a href="/o-nama" style="text-decoration:none;color:#171412;font-weight:700;padding-bottom:3px">O nama</a>
+<a href="/izrada-web-stranica" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Web stranice</a><a href="/o-nama" style="text-decoration:none;color:#171412;font-weight:700;padding-bottom:3px">O nama</a>
 <a href="/blog" style="text-decoration:none;color:rgba(23,18,15,.72);display:inline-block;transition:color .2s ease,transform .2s ease" style-hover="color:#171412;text-decoration:underline;text-underline-offset:4px;transform:translateY(-2px)">Blog</a>
 <a href="/kontakt" class="kz-nav-cta" style="display:inline-flex;align-items:center;padding:10px 20px;background:#FFD048;color:#171412;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease" style-hover="background:#171412;color:#FFD048;transform:translateY(-2px);box-shadow:0 8px 20px rgba(23,18,15,.18)">Pošaljite upit</a>
 </nav>
@@ -169,12 +169,12 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
     var d = { ime: val(f, "ime"), email: val(f, "email"), organizacija: val(f, "organizacija"), tema: val(f, "tema"), format: val(f, "format"), polaznici: val(f, "polaznici"), poruka: val(f, "poruka") };
     var err = document.getElementById("kz-err");
     if (!d.ime || d.email.indexOf("@") < 0) {
-      if (err) { err.style.display = "block"; err.textContent = "Molimo upisite ime i ispravnu e-mail adresu."; }
+      if (err) { err.style.display = "block"; err.textContent = "Molimo upišite ime i ispravnu e-mail adresu."; }
       return;
     }
     /* Kratka poruka tipa "pozdrav" ne kaze nista, pa se trazi barem 20 znakova. */
     if (d.poruka.length < 20) {
-      if (err) { err.style.display = "block"; err.textContent = "Napisite jos malo u polju Poruka - barem 20 znakova (trenutno " + d.poruka.length + ")."; }
+      if (err) { err.style.display = "block"; err.textContent = "Napišite još malo u polju Poruka - barem 20 znakova (trenutno " + d.poruka.length + ")."; }
       var t = f.querySelector('[name="poruka"]');
       if (t) t.focus();
       return;
@@ -182,7 +182,7 @@ header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
     if (err) { err.style.display = "none"; err.textContent = ""; }
     busy = true;
     var btn = document.getElementById("kz-send");
-    if (btn) { btn.textContent = "Saljem..."; btn.disabled = true; }
+    if (btn) { btn.textContent = "Šaljem…"; btn.disabled = true; }
     /* Polja se salju SAMO jednom i samo ako su popunjena - inace mail izgleda
        kao tablica s praznim redovima i dvostrukim imenom/mailom. Podcrtana
        polja (_subject, _replyto...) FormSubmit koristi kao postavke i ne
