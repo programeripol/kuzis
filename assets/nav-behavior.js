@@ -460,7 +460,7 @@
         '<div class="kz-nl-kicker">' + kick + '</div>' +
         '<h3 class="kz-nl-h">Prijavi se na novosti</h3>' +
         '<p class="kz-nl-p">' + (played
-          ? 'Tu je stalo. Dalje preuzimamo mi - jednom tjedno mail koji ti skrati posao.'
+          ? 'Dalje preuzimamo mi. Jednom tjedno šaljemo ti mail s novostima.'
           : 'Upiši e-mail. Jednom tjedno šaljemo konkretne savjete za Canvu, Excel i web.') + '</p>' +
         '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="ime@gmail.com" aria-label="Email adresa">' +
         '<button class="kz-nl-go" type="submit">Prijavi me na novosti</button></form>' +
@@ -851,8 +851,8 @@
 })();
 
 /* Kuzis - prijave na tecajeve i besplatni webinar.
-   Stranice /canva-tecaj-za-pocetnike, /canva-ai-tecaj
-   i /canva-webinar sve imaju istu formu
+   Stranice /canva-ai-tecaj i /canva-webinar
+   imaju istu formu
    (#prijava-forma s poljima tecaj / ime / email / poruka) i skriveni
    #prijava-hvala.
 
