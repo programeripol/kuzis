@@ -851,8 +851,8 @@
 })();
 
 /* Kuzis - prijave na tecajeve i besplatni webinar.
-   Stranice /canva-tecaj-za-pocetnike, /canva-ai-tecaj,
-   /canva-tecaj-drustvene-mreze i /canva-webinar sve imaju istu formu
+   Stranice /canva-tecaj-za-pocetnike, /canva-ai-tecaj
+   i /canva-webinar sve imaju istu formu
    (#prijava-forma s poljima tecaj / ime / email / poruka) i skriveni
    #prijava-hvala.
 
