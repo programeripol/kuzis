@@ -283,6 +283,8 @@
   /* Nova stavka izbornika i footera: Izrada web stranica. Nav i footer
      zive u svakom od ~57 fajlova, pa se stavka dodaje ovdje jednom. */
   var WEB_HREF = '/izrada-web-stranica';
+  var WEB_HREF2 = '/webinari';
+  var WEB_NAV2 = 'Webinari';
   var WEB_NAV = 'Web stranice';
   var WEB_FOOT = 'Izrada web stranica';
 
@@ -308,6 +310,34 @@
     n.style.fontWeight = '500';
     n.textContent = WEB_NAV;
     if (ref) nav.insertBefore(n, ref); else nav.appendChild(n);
+    navWebinari(nav, model);
+  }
+
+  /* Webinari se ubacuju odmah iza Edukacija, jer su besplatni ulaz u ponudu. */
+  function navWebinari(nav, model) {
+    if (!nav || !model) return;
+    if (nav.querySelector('.kz-nav-webinari')) return;
+    var links = nav.querySelectorAll('a');
+    var after = null;
+    for (var i = 0; i < links.length; i++) {
+      var hh = (links[i].getAttribute('href') || '').replace(/\.html$/, '');
+      if (hh === WEB_HREF2) return;
+      if (hh === '/edukacije') after = links[i];
+    }
+    var w = model.cloneNode(false);
+    w.className = ((model.className || '') + ' kz-nav-webinari').trim();
+    w.classList.remove('active');
+    w.setAttribute('href', WEB_HREF2);
+    w.style.color = 'rgba(23,18,15,.72)';
+    w.style.fontWeight = '500';
+    w.textContent = WEB_NAV2;
+    if ((location.pathname || '').replace(/\.html$/, '') === WEB_HREF2) {
+      w.classList.add('active');
+      w.style.color = '';
+    }
+    if (after && after.nextSibling) nav.insertBefore(w, after.nextSibling);
+    else if (after) nav.appendChild(w);
+    else nav.insertBefore(w, links[1] || null);
   }
 
   function footerExtra() {
@@ -326,6 +356,14 @@
     n.setAttribute('href', WEB_HREF);
     n.textContent = WEB_FOOT;
     target.parentNode.insertBefore(n, target.nextSibling);
+
+    if (!f.querySelector('.kz-f-webinari')) {
+      var w = target.cloneNode(false);
+      w.className = ((target.className || '') + ' kz-f-webinari').trim();
+      w.setAttribute('href', WEB_HREF2);
+      w.textContent = WEB_NAV2;
+      n.parentNode.insertBefore(w, n.nextSibling);
+    }
   }
 
   /* Kartica 'Izrada web stranica' na Pocetnoj sad vodi na svoju stranicu.
@@ -460,11 +498,9 @@
         '<div class="kz-nl-kicker">' + kick + '</div>' +
         '<h3 class="kz-nl-h">Prijavi se na novosti</h3>' +
         '<p class="kz-nl-p">' + (played
-          ? 'Dalje preuzimamo mi. Jednom tjedno šaljemo ti mail s novostima.'
+          ? 'Tu je stalo. Dalje preuzimamo mi - jednom tjedno mail koji ti skrati posao.'
           : 'Upiši e-mail. Jednom tjedno šaljemo konkretne savjete za Canvu, Excel i web.') + '</p>' +
-        '<form class="kz-nl-form" novalidate>' +
-        '<input class="kz-nl-in kz-nl-name" type="text" required="required" placeholder="Tvoje ime" aria-label="Ime" autocomplete="given-name">' +
-        '<input class="kz-nl-in kz-nl-mail" type="email" required="required" placeholder="ime@gmail.com" aria-label="Email adresa" autocomplete="email">' +
+        '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="ime@gmail.com" aria-label="Email adresa">' +
         '<button class="kz-nl-go" type="submit">Prijavi me na novosti</button></form>' +
         '<button type="button" class="kz-nl-again2">Igraj još jednom</button>';
       xBtn();
@@ -473,15 +509,9 @@
       var form = card.querySelector('form');
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var nEl = form.querySelector('.kz-nl-name');
-        var mEl = form.querySelector('.kz-nl-mail') || form.querySelector('input[type="email"]');
-        var nm = nEl ? nEl.value.trim() : '';
-        var v = mEl ? mEl.value.trim() : '';
-        /* Ime je obavezno - bez njega je personalizacija u newsletteru prazna. */
-        if (!nm) { if (nEl) { nEl.style.borderColor = '#C0392B'; nEl.focus(); } return; }
-        if (nEl) nEl.style.borderColor = '#171412';
-        if (!v || v.indexOf('@') < 0) { if (mEl) { mEl.style.borderColor = '#C0392B'; mEl.focus(); } return; }
-        subscribe(v, nm);
+        var v = form.querySelector('input').value.trim();
+        if (!v || v.indexOf('@') < 0) return;
+        subscribe(v);
         card.innerHTML =
           '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
           '<div class="kz-nl-kicker">Gotovo</div>' +
@@ -859,8 +889,8 @@
 })();
 
 /* Kuzis - prijave na tecajeve i besplatni webinar.
-   Stranice /canva-ai-tecaj i /canva-webinar
-   imaju istu formu
+   Stranice /canva-tecaj-za-pocetnike, /canva-ai-tecaj
+   i /canva-webinar sve imaju istu formu
    (#prijava-forma s poljima tecaj / ime / email / poruka) i skriveni
    #prijava-hvala.
 
@@ -956,17 +986,7 @@
       body: JSON.stringify(payload)
     })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(function (j) {
-        /* FormSubmit zna vratiti HTTP 200 i {"success":"false"} - npr. ako
-           adresa primatelja vise nije aktivirana. Tada mail NIJE poslan, pa se
-           ne smije pokazati "Hvala": bolje otvoriti mailto nego tiho izgubiti
-           prijavu. Provjerava se samo izricit neuspjeh, da nepoznat oblik
-           odgovora nikad ne obori prijavu koja je zapravo prosla. */
-        var failed = j && (j.success === false || String(j.success).toLowerCase() === 'false');
-        if (failed) return Promise.reject('not-sent');
-        clearTimeout(to);
-        done(f);
-      })
+      .then(function () { clearTimeout(to); done(f); })
       .catch(function () {
         clearTimeout(to);
         busy = false;
@@ -1023,72 +1043,4 @@
   /* Pocetna ponekad proguta scroll dogadjaje (runtime ih presretne), pa se
      stanje uz to jos i lagano provjerava. Jedan rect po ciklusu je jeftino. */
   setInterval(apply, 250);
-})();
-
-/* Kuzis - obavezno polje "Ime" u prijavi na novosti.
-   Pop-up ima svoje polje (gore). Ovdje se isto polje dodaje i u sekciju
-   "Ne propustite nijedan clanak" koja je dio svake stranice.
-   Vazno: postojeci React handler se NE preuzima. Samo se, uz njega, posalje
-   jos jedan poziv MailerLiteu koji nosi i ime. MailerLite radi upsert, a
-   poziv bez imena ne brise postojece ime, pa se postojeca prijava ne moze
-   pokvariti ni ako se nase polje u medjuvremenu izgubi u prerenderu. */
-(function () {
-  var ML = 'https://assets.mailerlite.com/jsonp/2532018/forms/194591584556156410/subscribe';
-
-  function isNewsletterForm(f) {
-    if (!f || f.classList.contains('kz-nl-form') || f.id === 'prijava-forma') return false;
-    if (!f.querySelector('input[type="email"]')) return false;
-    var sec = f.closest ? f.closest('section') : null;
-    var t = ((sec ? sec.textContent : '') || '').toLowerCase();
-    return t.indexOf('ne propustite') >= 0 || t.indexOf('newsletter') >= 0;
-  }
-
-  function addName() {
-    var forms = document.querySelectorAll('form');
-    for (var i = 0; i < forms.length; i++) {
-      var f = forms[i];
-      if (!isNewsletterForm(f)) continue;
-      if (f.querySelector('.kz-nlp-name')) continue;
-      var mail = f.querySelector('input[type="email"]');
-      var n = document.createElement('input');
-      n.type = 'text';
-      n.className = 'kz-nlp-name';
-      n.placeholder = 'Vaše ime';
-      n.setAttribute('aria-label', 'Ime');
-      n.setAttribute('required', 'required');
-      n.setAttribute('autocomplete', 'given-name');
-      n.setAttribute('style', mail.getAttribute('style') || '');
-      mail.parentNode.insertBefore(n, mail);
-    }
-  }
-
-  document.addEventListener('submit', function (e) {
-    var f = e.target;
-    if (!isNewsletterForm(f)) return;
-    var nEl = f.querySelector('.kz-nlp-name');
-    if (!nEl) return;
-    var mEl = f.querySelector('input[type="email"]');
-    var nm = (nEl.value || '').trim();
-    var em = ((mEl && mEl.value) || '').trim();
-    if (!nm) {
-      e.preventDefault();
-      e.stopPropagation();
-      nEl.style.borderColor = '#C0392B';
-      nEl.focus();
-      return;
-    }
-    if (!em || em.indexOf('@') < 0) return;
-    try {
-      var fd = new FormData();
-      fd.append('fields[email]', em);
-      fd.append('fields[name]', nm);
-      fetch(ML, { method: 'POST', body: fd }).catch(function () {});
-    } catch (x) {}
-  }, true);
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addName);
-  else addName();
-  /* Runtime zna prerenderati sekciju, pa se polje vraca dok se stranica smiri. */
-  var t = 0;
-  var iv = setInterval(function () { addName(); if (++t > 30) clearInterval(iv); }, 1000);
 })();
