@@ -310,15 +310,19 @@
     n.style.fontWeight = '500';
     n.textContent = WEB_NAV;
     if (ref) nav.insertBefore(n, ref); else nav.appendChild(n);
-    navWebinari(nav, model);
   }
 
   /* Webinari se ubacuju odmah iza Edukacija, jer su besplatni ulaz u ponudu. */
-  function navWebinari(nav, model) {
-    if (!nav || !model) return;
-    if (nav.querySelector('.kz-nav-webinari')) return;
+  function navWebinari() {
+    var nav = document.querySelector('.kz-nav') || document.querySelector('header.site-header nav');
+    if (!nav || nav.querySelector('.kz-nav-webinari')) return;
     var links = nav.querySelectorAll('a');
-    var after = null;
+    var model = null, after = null;
+    for (var m = 0; m < links.length; m++) {
+      if (links[m].classList.contains('kz-nav-cta') || links[m].classList.contains('cta')) continue;
+      model = links[m];
+    }
+    if (!model) return;
     for (var i = 0; i < links.length; i++) {
       var hh = (links[i].getAttribute('href') || '').replace(/\.html$/, '');
       if (hh === WEB_HREF2) return;
@@ -870,13 +874,13 @@
   }
 
   window.kzOpenNewsletter = function () { popup(true); };
-  function init() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); homeCards(); arm(); }
+  function init() { footerForm(); legalLinks(); footerExtra(); navExtra(); navWebinari(); navActive(); homeCards(); arm(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
-  window.addEventListener('load', function () { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); homeCards(); });
+  window.addEventListener('load', function () { footerForm(); legalLinks(); footerExtra(); navExtra(); navWebinari(); navActive(); homeCards(); });
   /* Template runtime zna prerenderati footer nakon nasih poziva - guard je
      data-kz-footer atribut na <footer>, pa ponovni pozivi nisu skupi. */
-  function kzFooterAll() { footerForm(); legalLinks(); footerExtra(); navExtra(); navActive(); homeCards(); }
+  function kzFooterAll() { footerForm(); legalLinks(); footerExtra(); navExtra(); navWebinari(); navActive(); homeCards(); }
   setTimeout(kzFooterAll, 1200);
   setTimeout(kzFooterAll, 3000);
   setTimeout(kzFooterAll, 6000);
