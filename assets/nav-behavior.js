@@ -1002,7 +1002,7 @@
   window.addEventListener('resize', apply);
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
   else apply();
-  setTimeout(apply, 800);
-  setTimeout(apply, 2500);
-  setTimeout(apply, 6000);
+  /* Pocetna ponekad proguta scroll dogadjaje (runtime ih presretne), pa se
+     stanje uz to jos i lagano provjerava. Jedan rect po ciklusu je jeftino. */
+  setInterval(apply, 250);
 })();
