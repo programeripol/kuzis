@@ -957,3 +957,43 @@
       });
   }, true);
 })();
+
+/* Kuzis - gumb "Povratak na vrh" na Pocetnoj.
+   Pocetna se zna prerenderati pa stanje komponente za ovaj gumb ostane
+   zamrznuto i gumb se nikad ne pojavi. Zato se ovdje, samo na Pocetnoj,
+   stil postavlja izravno: gumb se pojavi cim korisnik dodje do sekcije
+   "Za koga" (id="za-koga"), a ne tek pri dnu stranice. */
+(function () {
+  var p = (location.pathname || '/').replace(/index\.html$/, '');
+  if (p !== '/' && p !== '') return;
+
+  function wanted() {
+    var a = document.getElementById('za-koga');
+    if (a) return a.getBoundingClientRect().top <= window.innerHeight * 0.6;
+    var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    return scrollable > 0 && (window.scrollY / scrollable) > 0.66;
+  }
+
+  function apply() {
+    var b = document.querySelector('button[aria-label="Povratak na vrh"]');
+    if (!b) return;
+    var show = wanted();
+    b.style.opacity = show ? '1' : '0';
+    b.style.transform = show ? 'translateY(0) scale(1)' : 'translateY(12px) scale(.9)';
+    b.style.pointerEvents = show ? 'auto' : 'none';
+    if (!b.getAttribute('data-kz-top')) {
+      b.setAttribute('data-kz-top', '1');
+      b.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  }
+
+  window.addEventListener('scroll', apply, { passive: true });
+  window.addEventListener('resize', apply);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
+  else apply();
+  setTimeout(apply, 800);
+  setTimeout(apply, 2500);
+  setTimeout(apply, 6000);
+})();
