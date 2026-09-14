@@ -502,8 +502,8 @@
         '<div class="kz-nl-kicker">' + kick + '</div>' +
         '<h3 class="kz-nl-h">Prijavi se na novosti</h3>' +
         '<p class="kz-nl-p">' + (played
-          ? 'Tu je stalo. Dalje preuzimamo mi - jednom tjedno mail koji ti skrati posao.'
-          : 'Upiši e-mail. Jednom tjedno šaljemo konkretne savjete za Canvu, Excel i web.') + '</p>' +
+          ? 'Tu je stalo. Dalje preuzimamo mi - jednom tjedno šaljemo ti mail s novostima.'
+          : 'Upiši e-mail. Jednom tjedno šaljemo savjete za Canvu, Claude, Excel i Google Sheets, SEO i web dizajn.') + '</p>' +
         '<form class="kz-nl-form" novalidate><input class="kz-nl-in" type="email" required placeholder="ime@gmail.com" aria-label="Email adresa">' +
         '<button class="kz-nl-go" type="submit">Prijavi me na novosti</button></form>' +
         '<button type="button" class="kz-nl-again2">Igraj još jednom</button>';
@@ -537,7 +537,7 @@
         '<button class="kz-nl-x" aria-label="Zatvori">&times;</button>' +
         '<div class="kz-nl-kicker">Novosti &middot; 1&times; tjedno</div>' +
         '<h3 class="kz-nl-h">Prijavi se na novosti</h3>' +
-        '<p class="kz-nl-p">Jednom tjedno konkretni savjeti za Canvu, Excel i web. Prijavi se odmah - ili prvo zaigraj, pa onda.</p>' +
+        '<p class="kz-nl-p">Jednom tjedno šaljemo savjete za Canvu, Claude, Excel i Google Sheets, SEO i web dizajn. Prijavi se odmah ili prvo zaigraj, pa onda.</p>' +
         '<canvas class="kz-nl-cv" width="' + W + '" height="' + H + '"></canvas>' +
         (TOUCH ? '<button type="button" class="kz-nl-jump">SKOK</button>' : '') +
         '<p class="kz-nl-hint">' + (TOUCH ? 'Klikni za skok.' : 'Klik ili razmaknica (space) za skok.') + '<br />Klackalica, feder i kosina ti pomažu da skočiš više.</p>' +
