@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#FFD048">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
+<title>Koliko dana kasni taj račun: datumi u Excelu | Kužiš</title>
+<meta name="description" content="Formule za rokove i kašnjenja u Excelu i Google Sheetsu, gotova tablica za praćenje računa i postavka zbog koje ti nenaplaćeni račun sam pocrveni.">
+<link rel="canonical" href="https://kuzis.hr/excel-datumi-rokovi-racuni">
+<meta property="og:title" content="Koliko dana kasni taj račun: datumi u Excelu">
+<meta property="og:description" content="Formule za rokove i kašnjenja u Excelu i Google Sheetsu, gotova tablica za praćenje računa i postavka zbog koje ti nenaplaćeni račun sam pocrveni.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://kuzis.hr/assets/excel-datumi-rokovi-racuni.webp">
+<meta property="og:image:alt" content="Koliko dana kasni taj račun: datumi u Excelu">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:url" content="https://kuzis.hr/excel-datumi-rokovi-racuni">
+<meta property="og:site_name" content="Kužiš">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Koliko dana kasni taj račun: datumi u Excelu">
+<meta name="twitter:description" content="Formule za rokove i kašnjenja u Excelu i Google Sheetsu, gotova tablica za praćenje računa i postavka zbog koje ti nenaplaćeni račun sam pocrveni.">
+<meta name="twitter:image" content="https://kuzis.hr/assets/excel-datumi-rokovi-racuni.webp">
+<meta name="twitter:image:alt" content="Koliko dana kasni taj račun: datumi u Excelu">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Koliko dana kasni taj račun: datumi u Excelu","datePublished":"2026-08-23","author":{"@type":"Person","name":"Dora Šušković Stipanović","jobTitle":"Specijalistica digitalnog marketinga"},"publisher":{"@type":"Organization","name":"Kužiš"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Kako u Excelu izračunati broj dana između dva datuma?", "acceptedAnswer": {"@type": "Answer", "text": "Oduzmi raniji datum od kasnijeg, na primjer =C2-B2. Ako ti rezultat izgleda kao datum, promijeni format ćelije u Općenito. Za dane kašnjenja od danas koristi =TODAY()-F2, a ako ne želiš negativne brojeve, =MAX(0;TODAY()-F2)."}}, {"@type": "Question", "name": "Zašto mi formula s datumima vraća grešku?", "acceptedAnswer": {"@type": "Answer", "text": "Najčešće zato što datum u ćeliji nije datum nego tekst. Provjeri s =ISNUMBER(D2). Ako vrati FALSE, pretvori ga s =DATEVALUE(D2) ili alatom Tekst u stupce. Druga mogućnost je krivi znak za odvajanje argumenata, točka sa zarezom umjesto zareza ili obrnuto."}}, {"@type": "Question", "name": "Može li Excel sam izbaciti vikende iz računa?", "acceptedAnswer": {"@type": "Answer", "text": "Može, funkcijom NETWORKDAYS. Ona broji samo radne dane između dva datuma. Blagdane ne poznaje, njih moraš upisati u poseban stupac i dodati kao treći argument."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Početna","item":"https://kuzis.hr/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://kuzis.hr/blog"},{"@type":"ListItem","position":3,"name":"Excel i Google Sheets"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --accent:#FFD048; }
+body { font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif; color:#171412; line-height:1.6; background:#fff; }
+a { color:inherit; }
+.progress-bar { position:fixed; top:0; left:0; height:3px; width:0%; background:var(--accent); z-index:100; transition:width .1s linear; }
+header.site-header { position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding:18px clamp(20px,4vw,48px); background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-bottom:1px solid #f1efec; }
+header.site-header a.logo { font:800 22px/1 Inter; color:#171412; text-decoration:none; letter-spacing:-.01em; }
+header.site-header nav { display:flex; flex-wrap:wrap; gap:clamp(14px,2.6vw,28px); align-items:center; font:500 14px Inter; }
+header.site-header nav a { text-decoration:none; color:rgba(23,18,15,.72); transition:color .2s ease; }
+header.site-header nav a:hover { color:#171412; text-decoration:underline; text-underline-offset:4px; }
+header.site-header nav a.active { color:#171412; font-weight:700; border-bottom:2.5px solid #FFD048; padding-bottom:2px; }
+header.site-header nav a.active:hover { text-decoration:none; }
+header.site-header nav a.cta { display:inline-flex; align-items:center; padding:10px 20px; background:#FFD048; color:#171412; border-radius:8px; font-weight:600; transition:transform .2s ease; }
+header.site-header nav a.cta:hover { transform:translateY(-2px); text-decoration:none; }
+.breadcrumb { max-width:960px; margin:0 auto; padding:24px 24px 0; font:500 13px Inter; color:rgba(23,18,15,.5); }
+.breadcrumb a { text-decoration:none; }
+.breadcrumb a:hover { color:#171412; }
+.breadcrumb .sep { margin:0 6px; }
+.breadcrumb .current { color:#171412; }
+.article-header { max-width:960px; margin:0 auto; padding:20px 24px 28px; }
+.badge, .crumb-pill { display:inline-block; font:700 11px Inter; color:#171412; background:var(--accent); padding:5px 12px; border-radius:100px; letter-spacing:.03em; text-transform:uppercase; }
+.crumb-pill { transition:filter .2s ease; }
+.crumb-pill:hover { filter:brightness(.93); }
+.badge { margin-bottom:16px; }
+.article-header h1 { margin:0 0 18px; font-weight:800; font-size:clamp(28px,4.6vw,44px); line-height:1.18; letter-spacing:-.02em; font-family:'Baloo 2',Inter,sans-serif; }
+.article-meta { display:flex; align-items:center; gap:12px; font:400 14px Inter; color:rgba(23,18,15,.55); }
+.hero-wrap { max-width:960px; margin:0 auto; padding:0 24px 40px; }
+.hero-frame { width:100%; aspect-ratio:16/9; border-radius:18px; overflow:hidden; background:linear-gradient(135deg,#FFD048,#fff3cf); display:flex; align-items:center; justify-content:center; }
+.hero-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+.hero-frame span { font:600 14px Inter; color:rgba(23,18,15,.45); padding:0 24px; text-align:center; }
+.layout-grid { max-width:960px; margin:0 auto; padding:0 24px clamp(48px,7vw,72px); display:grid; grid-template-columns:1fr 200px; gap:56px; }
+@media (max-width:800px) { .layout-grid { grid-template-columns:1fr; } .toc-aside { display:none; } }
+article.post-body { min-width:0; max-width:680px; }
+article.post-body .lead { margin:0 0 22px; font-weight:500; font-size:19px; line-height:1.7; color:#171412; }
+.section-head { display:flex; gap:16px; align-items:center; margin:36px 0 14px; }
+.section-num { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; background:var(--accent); font:800 14px Inter; color:#171412; }
+.section-head h2 { margin:0; font-weight:800; font-size:24px; line-height:1.3; letter-spacing:-.01em; font-family:'Baloo 2',Inter,sans-serif; }
+article.post-body p { margin:0 0 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
+article.post-body ul { margin:0 0 18px; padding-left:22px; font:400 16px/1.85 Inter; color:rgba(23,18,15,.8); }
+article.post-body li { margin-bottom:6px; }
+.pull-quote { margin:28px 0; padding:22px 24px; background:color-mix(in srgb, var(--accent) 18%, white); border-radius:14px; border-left:4px solid var(--accent); }
+.pull-quote p { margin:0 !important; font:500 16px/1.6 Inter; font-style:italic; color:#171412 !important; }
+.tip-box { margin:28px 0; padding:22px 24px; background:#FFF8E1; border-radius:14px; border:1.5px dashed color-mix(in srgb, var(--accent) 60%, white); }
+.tip-box p { margin:0 !important; font:400 16px/1.7 Inter; color:#171412 !important; }
+.tip-box strong { font-weight:800; }
+.faq-block { margin:40px 0 0; }
+.faq-block h2 { margin:0 0 18px; font-weight:800; font-size:22px; letter-spacing:-.01em; font-family:'Baloo 2',Inter,sans-serif; }
+
+.tag-chips { margin:36px 0 0; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.tag-chips .label { font:600 13px Inter; color:rgba(23,18,15,.5); margin-right:4px; }
+.tag-chips a { text-decoration:none; padding:7px 14px; border-radius:100px; background:#FFF8E1; color:#171412; font:600 13px Inter; transition:background .2s ease,transform .15s ease; }
+.tag-chips a:hover { background:#FFD048; transform:translateY(-2px); }
+.engage-row { margin:40px 0 0; padding-top:24px; border-top:1px solid rgba(23,18,15,.1); display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; }
+.engage-row .label { font:600 14px Inter; color:#171412; }
+.engage-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.like-btn { display:flex; align-items:center; gap:8px; padding:9px 16px; border-radius:100px; border:1.5px solid rgba(23,18,15,.15); background:#FFFFFF; color:#171412; font:600 13.5px Inter; cursor:pointer; transition:transform .15s ease,background .2s ease,border-color .2s ease; }
+.like-btn:hover { transform:translateY(-2px); }
+.like-btn.liked { background:#FFD048; border-color:#FFD048; }
+.divider-v { width:1px; height:22px; background:rgba(23,18,15,.12); }
+.icon-btn { display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#FFF8E1; color:#171412; text-decoration:none; border:none; cursor:pointer; transition:background .2s ease,transform .2s ease; }
+.icon-btn:hover { background:#FFD048; transform:translateY(-2px); }
+.toast-msg { margin-top:8px; text-align:right; font:500 13px Inter; color:rgba(23,18,15,.5); min-height:18px; }
+.toc-aside { min-width:0; }
+.toc-box { position:sticky; top:96px; padding:20px; border:1px solid rgba(23,18,15,.14); border-radius:14px; }
+.toc-box .toc-label { font:700 12px Inter; color:#171412; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
+.toc-box nav { display:flex; flex-direction:column; gap:2px; font:500 13.5px Inter; }
+.toc-box nav a { text-decoration:none; padding:6px 0 6px 12px; border-left:2px solid transparent; color:rgba(23,18,15,.6); transition:color .2s ease,border-color .2s ease; }
+.toc-box nav a:hover { color:#171412; }
+.toc-box nav a.active { color:#171412; border-left-color:var(--accent); }
+.related-section { padding:0 24px clamp(56px,8vw,80px); }
+.related-inner { max-width:1120px; margin:0 auto; }
+.related-inner h2 { margin:0 0 22px; font-weight:800; font-size:clamp(19px,2.4vw,24px); letter-spacing:-.01em; font-family:'Baloo 2',Inter,sans-serif; }
+.related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
+.related-card { display:flex; flex-direction:column; height:100%; text-decoration:none; color:inherit; border-radius:16px; overflow:hidden; border:1px solid rgba(23,18,15,.08); transition:transform .25s ease,box-shadow .25s ease; }
+.related-card:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(23,18,15,.1); }
+.related-card .thumb { width:100%; aspect-ratio:16/9; background:#FFF8E1; }
+.related-card .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.related-card .rc-body { display:flex; flex-direction:column; flex:1; padding:18px; }
+.rc-badge{display:inline-block;align-self:flex-start;font:600 11.5px Inter;color:#A8790A;border-bottom:3px solid #FFC93C;padding:0 0 3px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.rc-badge[data-cat="Excel i Google Sheets"]{color:#5E8C4A;border-bottom-color:#9FC58C}
+.rc-badge[data-cat="Web dizajn"]{color:#6F55B8;border-bottom-color:#D8C8F7}
+.rc-badge[data-cat="SEO"]{color:#2E7FA8;border-bottom-color:#8ECAE6}
+.rc-badge[data-cat="Claude"]{color:#8A3D1F;border-bottom-color:#D97757}
+.related-card h3 { margin:0 0 8px; font-weight:700; font-size:16px; line-height:1.35; letter-spacing:-.005em; }
+.related-card .rc-meta { margin-top:auto; font:400 12.5px Inter; color:rgba(23,18,15,.5); }
+footer.site-footer { padding:64px 24px 32px; background:#171412; border-top:1px solid rgba(255,255,255,.1); }
+.footer-grid { max-width:1120px; margin:0 auto 40px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; }
+@media (max-width:860px) { .footer-grid { grid-template-columns:repeat(3,1fr)!important; } footer.site-footer{padding:44px 20px 26px!important} .footer-grid{gap:14px!important;margin-bottom:32px!important} .footer-grid>div:first-child{grid-column:1/-1!important;margin-bottom:12px} header.site-header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important} }
+.footer-grid .brand { font:800 22px Inter; color:#FFFFFF; margin-bottom:34px; }
+.footer-grid .brand img { height:35px; margin:-12px 0; filter:brightness(0) invert(1); display:block; }
+.footer-grid p { font:400 14px/1.6 Inter; color:rgba(255,255,255,.5); max-width:260px; margin-bottom:20px; }
+.footer-cta { display:inline-flex; align-items:center; justify-content:center; padding:11px 20px; background:#FFD048; color:#171412; border-radius:8px; font:600 13.5px Inter; text-decoration:none; transition:transform .25s ease; }
+.footer-cta:hover { transform:translateY(-2px); }
+.footer-col-title { font:700 12px Inter; color:rgba(255,255,255,.4); margin-bottom:16px; text-transform:uppercase; letter-spacing:.08em; }
+.footer-links { display:flex; flex-direction:column; gap:12px; font:400 14.5px Inter; color:rgba(255,255,255,.7); }
+.footer-links a { text-decoration:none; color:inherit; transition:color .2s ease; }
+.footer-links a:hover { color:#FFD048; }
+.footer-bottom { max-width:1120px; margin:0 auto; padding-top:24px; border-top:1px solid rgba(255,255,255,.1); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font:400 13px Inter; color:rgba(255,255,255,.4); }
+.footer-bottom a { text-decoration:none; color:inherit; transition:color .2s ease; }
+.footer-bottom a:hover { color:#FFD048; }
+.footer-bottom-links { display:flex; gap:20px; }
+.back-to-top { position:fixed; right:24px; bottom:24px; width:46px; height:46px; border-radius:50%; background:#FFD048; color:#171412; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(23,18,15,.28); opacity:0; transform:translateY(12px) scale(.9); pointer-events:none; transition:opacity .3s ease,transform .3s ease; z-index:60; }
+.back-to-top.visible { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+.cta-underline { position:relative; text-decoration:none; padding-bottom:3px; display:inline-block; }
+.cta-underline::after { content:''; position:absolute; left:0; bottom:0; width:100%; height:1.5px; background:#FFD048; border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.4,0,.2,1); }
+.cta-underline:hover::after { transform:scaleX(1); }
+.cta-underline:hover { transform:translateY(-1px); transition:transform .3s ease; }
+@keyframes underline-swipe { 0%{transform:scaleX(1)} 45%{transform:scaleX(0)} 100%{transform:scaleX(1)} }
+.faq-item { margin:0 0 12px; border:1px solid color-mix(in srgb, var(--accent) 45%, white); border-radius:10px; overflow:hidden; }
+.faq-item summary { list-style:none; cursor:pointer; padding:16px 44px 16px 18px; position:relative; font:500 16px Inter; color:#171412; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::after { content:''; position:absolute; right:16px; top:50%; width:14px; height:9px; background-color:var(--accent); -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5l5.5 6 5.5-6' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; transform:translateY(-50%); transition:transform .25s ease; }
+.faq-item[open] summary::after { transform:translateY(-50%) rotate(180deg); }
+.faq-item p { margin:0; padding:0 18px 18px; font:400 16px/1.75 Inter; color:rgba(23,18,15,.8); }
+  .kz-hamb{display:none}
+  #kz-nav-toggle{display:none}
+  @media (max-width:860px){
+    .kz-nav{display:none!important;position:fixed!important;top:0;left:0;right:0;bottom:0;height:100vh!important;height:100dvh!important;flex-direction:column!important;align-items:stretch!important;flex-wrap:nowrap!important;gap:0!important;background:#fff;padding:84px 24px 22px;margin:0;overflow-y:auto;z-index:40}
+    .kz-nav a{width:100%!important;padding:18px 0!important;font-size:24px!important}
+    .kz-nav a.active{width:auto!important;display:inline-block!important;align-self:flex-start!important}
+    .kz-nav a.cta{width:auto!important;align-self:flex-start!important;font-size:0!important;background:#FFD048!important;color:#171412!important;border-radius:9px!important;border:2px solid #171412!important;padding:9px 20px!important;box-shadow:0 6px 16px rgba(23,18,15,.22)!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-top:6px!important}
+    .kz-nav a.cta::after{content:"Javite se";font:700 14px Inter;color:#171412}
+    .kz-hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;margin-left:auto;flex-shrink:0}
+    .kz-hamb span{display:block;width:24px;height:2.5px;background:#171412;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+    #kz-nav-toggle:checked ~ .kz-nav{display:flex!important}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(2){opacity:0}
+    #kz-nav-toggle:checked ~ .kz-hamb span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+    header.site-header img[alt="Kužiš"]{height:35px!important;margin:-12px 0!important}
+  }
+.figure-box { margin:28px 0; padding:22px 22px 16px; background:color-mix(in srgb, var(--accent) 14%, white); border-radius:14px; }
+.figure-box svg { display:block; width:100%; height:auto; }
+.figure-box figcaption { margin-top:14px; font:400 13px/1.6 Inter; color:rgba(23,18,15,.6); }
+</style>
+<link rel="stylesheet" href="assets/mobile-nav.css">
+<script defer src="assets/nav-behavior.js"></script>
+</head>
+<body style="--accent:#9FC58C;">
+
+<div class="progress-bar"></div>
+
+<header class="site-header">
+<a class="logo" href="/"><img src="assets/logo.png" alt="Kužiš" style="height:44px;margin:-15px 0;display:block"></a>
+<input type="checkbox" id="kz-nav-toggle"><label for="kz-nav-toggle" class="kz-hamb" aria-label="Izbornik"><span></span><span></span><span></span></label>
+<nav class="kz-nav">
+<a href="/">Početna</a>
+<a href="/edukacije">Edukacije</a>
+<a href="/za-tvrtke">Za tvrtke</a>
+<a href="/mentorstvo">Mentorstvo</a>
+<a href="/izrada-web-stranica">Web stranice</a><a href="/o-nama">O nama</a>
+<a href="/blog" class="active">Blog</a>
+<a href="/kontakt" class="cta">Pošaljite upit</a>
+</nav>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="/">Početna</a>
+<span class="sep">/</span>
+<a href="/blog">Blog</a>
+<span class="sep">/</span>
+<a class="crumb-pill" href="/blog">Excel i Google Sheets</a>
+</nav>
+
+<header class="article-header">
+<h1>Koliko dana kasni taj račun: datumi u Excelu</h1>
+<div class="article-meta">
+<time datetime="2026-09-15">15. ruj 2026.</time>
+<span>·</span>
+<span>7 min čitanja</span>
+<span>·</span><span>Dora Šušković Stipanović</span></div>
+</header>
+
+<div class="hero-wrap">
+<div class="hero-frame"><img src="assets/excel-datumi-rokovi-racuni.webp" alt="Koliko dana kasni taj račun: datumi u Excelu" loading="lazy" width="1600" height="900"></div>
+</div>
+
+<div class="layout-grid">
+<article class="post-body">
+<p class="lead">Kratak odgovor: upiši <code>=TODAY()-F2</code>, gdje je F2 datum dospijeća, i dobit ćeš broj dana kašnjenja. Ako ti Excel umjesto broja vrati neki datum iz 1900., ćelija je samo ostala u formatu datuma, promijeni je u Općenito i broj se pojavi. Ako želiš da minus ne smeta, koristi <code>=MAX(0;TODAY()-F2)</code> pa računi koji još nisu dospjeli pokazuju nulu. Ostatak ovog teksta je tablica u koju to sjedne i formule koje pokrivaju sve ostalo oko rokova.</p>
+<div class="section-head">
+<span class="section-num">01</span>
+<h2 id="datum-umjesto-broja">Zašto Excel vrati datum umjesto broja dana?</h2>
+</div>
+<p>Jer datum u Excelu i nije datum, nego broj. Prvi siječnja 1900. je jedan, a svaki sljedeći dan jedan više. Kad oduzmeš dva datuma, dobiješ broj dana. Problem je što ćelija zna naslijediti format datuma od formule koju si u nju stavila, pa ti taj broj prikaže kao datum.</p>
+<p>Rješenje je format ćelije, ne formula. Označi stupac, pa Polazno, Broj, i izaberi Općenito ili Broj. Formula je cijelo vrijeme bila točna.</p>
+<div class="tip-box"><p><strong>Druga česta zamka:</strong> datumi uvezeni iz webshopa ili knjigovodstvenog programa često nisu datumi nego tekst. Provjera je <code>=ISNUMBER(D2)</code>. Ako vrati FALSE, to je tekst i nijedna formula s datumima neće raditi. Popravi ga s <code>=DATEVALUE(D2)</code> ili alatom Tekst u stupce.</p></div>
+<p>Brza vizualna provjera bez formule: pravi datum Excel sam poravna udesno, tekst ostane lijevo.</p>
+<div class="section-head">
+<span class="section-num">02</span>
+<h2 id="formule">Devet formula koje pokrivaju gotovo sve</h2>
+</div>
+<p>Sve su napisane s točkom sa zarezom jer je tako u hrvatskim postavkama. Ako ti Excel prijavi grešku, u tvojim postavkama ide zarez.</p>
+<ul>
+<li><code>=TODAY()</code> upiše današnji datum i sam se mijenja svaki dan.</li>
+<li><code>=D2+30</code> daje datum 30 dana nakon datuma u D2. Tako se računa rok plaćanja.</li>
+<li><code>=F2-D2</code> kaže koliko dana ima između izdavanja i dospijeća.</li>
+<li><code>=TODAY()-F2</code> daje dane kašnjenja. Negativan broj znači da rok još nije prošao.</li>
+<li><code>=MAX(0;TODAY()-F2)</code> isto to, ali bez minusa.</li>
+<li><code>=EDATE(D2;1)</code> daje isti dan sljedeći mjesec, i sam pazi na mjesece različite duljine.</li>
+<li><code>=EOMONTH(D2;0)</code> daje zadnji dan mjeseca u kojem je račun izdan. Za rok "do kraja mjeseca".</li>
+<li><code>=NETWORKDAYS(D2;TODAY())</code> broji samo radne dane, bez subota i nedjelja.</li>
+<li><code>=DATEDIF(D2;TODAY();"m")</code> daje broj punih mjeseci između dva datuma.</li>
+</ul>
+<p>Uz njih ide i jedan uvjet, <code>=IF(TODAY()&gt;F2;"kasni";"u roku")</code>. Ako ti IF nije poznat, objasnila sam ga korak po korak u tekstu o <a href="/excel-if-funkcija-pocetnici">IF funkciji za početnike</a>.</p>
+<div class="section-head">
+<span class="section-num">03</span>
+<h2 id="tablica">Tablica za praćenje računa, stupac po stupac</h2>
+</div>
+<p>Otvori prazan list i složi zaglavlje ovako. Sve što je formula piše se samo u drugi red i onda povuče prema dolje.</p>
+<ul>
+<li><strong>A Broj računa</strong> i <strong>B Kupac</strong> upisuješ ručno.</li>
+<li><strong>C Iznos</strong> upisuješ ručno.</li>
+<li><strong>D Datum izdavanja</strong> upisuješ ručno.</li>
+<li><strong>E Rok u danima</strong> upisuješ ručno, najčešće 15 ili 30.</li>
+<li><strong>F Datum dospijeća:</strong> <code>=D2+E2</code></li>
+<li><strong>G Plaćeno</strong> upisuješ da ili ne.</li>
+<li><strong>H Dana kašnjenja:</strong> <code>=IF(G2="da";0;MAX(0;TODAY()-F2))</code></li>
+<li><strong>I Status:</strong> <code>=IF(G2="da";"plaćeno";IF(H2=0;"u roku";"kasni "&amp;H2&amp;" dana"))</code></li>
+</ul>
+<p>Stupac I je onaj zbog kojeg cijela tablica ima smisla. Kad ga jednom složiš, ujutro otvoriš datoteku i odmah vidiš kome treba poslati podsjetnik, bez ijednog računanja.</p>
+<div class="pull-quote"><p>Znak &amp; u zadnjoj formuli spaja tekst i broj, pa umjesto suhog "kasni" dobiješ "kasni 12 dana".</p></div>
+<div class="section-head">
+<span class="section-num">04</span>
+<h2 id="boje">Neka kasni račun sam pocrveni</h2>
+</div>
+<p>Označi cijelu tablicu od A2 do I100, pa Polazno, Uvjetno oblikovanje, Novo pravilo, i izaberi opciju u kojoj sama upisuješ formulu.</p>
+<ul>
+<li>Za crveno upiši <code>=$H2&gt;0</code> i odaberi crvenu ispunu.</li>
+<li>Za zeleno dodaj drugo pravilo, <code>=$G2="da"</code>, i zelenu ispunu.</li>
+<li>Za žuto upozorenje tri dana prije roka dodaj i <code>=AND($G2="ne";$F2-TODAY()&lt;=3;$F2&gt;=TODAY())</code>.</li>
+</ul>
+<p>Znak dolara ispred slova stupca je ovdje ključan. Bez njega se pravilo primijeni samo na jedan stupac umjesto na cijeli red. Detaljnije o tome kako uvjetno oblikovanje radi ima u tekstu o <a href="/excel-uvjetno-oblikovanje-pocetnici">uvjetnom oblikovanju za početnike</a>.</p>
+<div class="section-head">
+<span class="section-num">05</span>
+<h2 id="zbroj">Koliko ti ukupno duguju</h2>
+</div>
+<p>Kad tablica stoji, ovo su tri brojke koje vrijedi imati negdje na vrhu lista.</p>
+<ul>
+<li>Ukupno nenaplaćeno: <code>=SUMIF(G2:G100;"ne";C2:C100)</code></li>
+<li>Nenaplaćeno, a rok je prošao: <code>=SUMIFS(C2:C100;G2:G100;"ne";H2:H100;"&gt;0")</code></li>
+<li>Koliko računa kasni: <code>=COUNTIFS(G2:G100;"ne";H2:H100;"&gt;0")</code></li>
+</ul>
+<p>Ta druga brojka je ona koju vrijedi pogledati prije nego se odlučiš hoćeš li uzeti još jedan posao ovaj mjesec.</p>
+<div class="section-head">
+<span class="section-num">06</span>
+<h2 id="zapinje">Gdje ovo zapinje</h2>
+</div>
+<p><strong>DATEDIF je funkcija koju Microsoft ne nudi u popisu.</strong> Postoji zbog kompatibilnosti sa starim programima i radi, ali se ne pojavljuje dok tipkaš i nema pomoć uz sebe. Njezin oblik s razmakom "md" zna dati krive rezultate, pa ga izbjegavaj. Za mjesece i godine je u redu.</p>
+<p><strong>NETWORKDAYS ne zna za hrvatske blagdane.</strong> Izbacuje samo subote i nedjelje. Ako ti blagdani trebaju, upiši ih u poseban stupac i dodaj ga kao treći argument, <code>=NETWORKDAYS(D2;TODAY();$L$2:$L$20)</code>. Taj popis moraš održavati svake godine sama.</p>
+<p><strong>TODAY se mijenja svaki put kad otvoriš datoteku.</strong> Ako nekome pošalješ tablicu, kod njega će pisati drugi broj dana. Kad ti treba brojka zamrznuta na određeni dan, kopiraj stupac pa ga zalijepi natrag kao vrijednost, s Ctrl i Shift i V.</p>
+<p><strong>Ovo nije knjigovodstvo.</strong> Tablica ne zna za djelomična plaćanja, zatezne kamate, kompenzacije ni PDV. Ona ti samo kaže tko kasni i koliko. Za sve ostalo i dalje treba program ili knjigovođa.</p>
+<div class="section-head">
+<span class="section-num">07</span>
+<h2 id="sheets">Radi li isto u Google Sheets?</h2>
+</div>
+<p>Radi, gotovo bez izmjena. TODAY, EDATE, EOMONTH, NETWORKDAYS, DATEDIF, SUMIF, SUMIFS i COUNTIFS postoje pod istim imenima.</p>
+<p>Dvije razlike koje ćeš primijetiti. Prva je da Sheets odvaja argumente zarezom, pa je <code>=IF(G2="da",0,MAX(0,TODAY()-F2))</code>. Druga je da se uvjetno oblikovanje nalazi pod Oblikovanje, Uvjetno oblikovanje, i tamo se bira Prilagođena formula.</p>
+<p>Prednost Sheetsa je što se tablica sama osvježava i kod svih koji je otvore, pa ako računima pristupa više ljudi, tamo je jednostavnije.</p>
+<p>Ako ti se ovakva tablica čini korisnom, ali ne znaš je složiti na svojim podacima, kroz to prolazim jedan na jedan u <a href="/mentorstvo">mentorstvu</a>. Cijeli popis onoga što radim je na <a href="/edukacije">stranici s edukacijama</a>.</p>
+<div class="faq-block" id="faq">
+<h2>Najčešća pitanja</h2>
+<details class="faq-item">
+<summary><span class="faq-q">Kako u Excelu izračunati broj dana između dva datuma?</span></summary>
+<p>Oduzmi raniji datum od kasnijeg, na primjer =C2-B2. Ako ti rezultat izgleda kao datum, promijeni format ćelije u Općenito. Za dane kašnjenja od danas koristi =TODAY()-F2, a ako ne želiš negativne brojeve, =MAX(0;TODAY()-F2).</p>
+</details>
+<details class="faq-item">
+<summary><span class="faq-q">Zašto mi formula s datumima vraća grešku?</span></summary>
+<p>Najčešće zato što datum u ćeliji nije datum nego tekst. Provjeri s =ISNUMBER(D2). Ako vrati FALSE, pretvori ga s =DATEVALUE(D2) ili alatom Tekst u stupce. Druga mogućnost je krivi znak za odvajanje argumenata, točka sa zarezom umjesto zareza ili obrnuto.</p>
+</details>
+<details class="faq-item">
+<summary><span class="faq-q">Može li Excel sam izbaciti vikende iz računa?</span></summary>
+<p>Može, funkcijom NETWORKDAYS. Ona broji samo radne dane između dva datuma. Blagdane ne poznaje, njih moraš upisati u poseban stupac i dodati kao treći argument.</p>
+</details>
+</div>
+<div style="margin:36px 0 0;padding:20px 22px;border:1px solid rgba(23,18,15,.1);border-radius:14px;display:flex;gap:16px;align-items:flex-start">
+  <img src="assets/dora-autorica.jpg" alt="Dora Šušković Stipanović" width="44" height="44" loading="lazy" style="flex-shrink:0;width:44px;height:44px;border-radius:50%;object-fit:cover">
+  <div>
+    <div style="font:700 15px Inter;color:#171412;margin-bottom:4px">O autorici</div>
+    <p style="margin:0;font:400 14.5px/1.7 Inter;color:rgba(23,18,15,.75)">Dora Šušković Stipanović radi kao specijalistica digitalnog marketinga u jednom od najvećih webshopova u Hrvatskoj, uz freelance projekte u marketingu i web dizajnu. Vodila je Canva AI edukacije za međunarodnu tvrtku i javnu instituciju, a kroz Kužiš dijeli praktične digitalne alate i AI savjete za male biznise i obrte.</p>
+  </div>
+</div>
+<div class="engage-row">
+<div class="label">Svidio vam se članak?</div>
+<div class="engage-actions">
+<button class="like-btn" type="button" aria-label="Sviđa mi se">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"></path></svg>
+<span class="like-count">4</span>
+</button>
+<div class="divider-v"></div>
+<button class="icon-btn" type="button" data-action="native-share" aria-label="Podijeli" style="display:none;width:auto;border-radius:100px;padding:9px 16px;gap:8px;background:#FFFFFF;border:1.5px solid rgba(23,18,15,.15)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line></svg>
+<span>Podijeli</span>
+</button>
+<a class="icon-btn" href="#" data-share-linkedin target="_blank" rel="noopener" aria-label="Podijeli na LinkedInu">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.9 8.65 21 11.3 21 14.1V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.16V21H9z"></path></svg>
+</a>
+<button class="icon-btn" type="button" data-action="share-instagram" aria-label="Podijeli na Instagramu" title="Podijeli na Instagramu">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+</button>
+<a class="icon-btn" href="#" data-share-email aria-label="Podijeli e-mailom">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+</a>
+<button class="icon-btn" type="button" data-action="copy-link" aria-label="Kopiraj poveznicu" title="Kopiraj poveznicu">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.07 0l2-2a5 5 0 00-7.07-7.07l-1.14 1.13"></path><path d="M14 11a5 5 0 00-7.07 0l-2 2a5 5 0 007.07 7.07l1.13-1.13"></path></svg>
+</button>
+</div>
+</div>
+<div class="toast-msg"></div>
+</article>
+<aside class="toc-aside">
+<div class="toc-box">
+<div class="toc-label">Sadržaj</div>
+<nav aria-label="Sadržaj članka">
+<a href="#datum-umjesto-broja" data-toc-target="datum-umjesto-broja">Datum umjesto broja</a>
+<a href="#formule" data-toc-target="formule">Devet formula</a>
+<a href="#tablica" data-toc-target="tablica">Tablica</a>
+<a href="#boje" data-toc-target="boje">Boje</a>
+<a href="#zbroj" data-toc-target="zbroj">Koliko duguju</a>
+<a href="#zapinje" data-toc-target="zapinje">Gdje zapinje</a>
+<a href="#sheets" data-toc-target="sheets">Google Sheets</a>
+<a href="#faq" data-toc-target="faq">Najčešća pitanja</a>
+</nav>
+</div>
+</aside>
+</div>
+
+<section class="related-section" data-current-href="/excel-datumi-rokovi-racuni">
+<div class="related-inner">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px">
+<h2 style="margin:0">Nastavite čitati</h2>
+<a href="/blog" class="cta-underline" style="font:600 14px Inter;color:#171412;white-space:nowrap">Pogledajte cijeli blog</a>
+</div>
+<div class="related-grid" id="related-grid"></div>
+</div>
+</section>
+
+<footer class="site-footer">
+<div class="footer-grid">
+<div>
+<div class="brand"><img src="assets/logo.png" alt="Kužiš"></div>
+<p>Praktična digitalna rješenja, sustavi, optimizacija procesa, edukacije i mentorstvo za organizacije koje žele raditi bolje i brže.</p>
+<a class="footer-cta" href="/kontakt">Pošaljite upit</a>
+</div>
+<div>
+<div class="footer-col-title">Program</div>
+<div class="footer-links">
+<a href="/edukacije">Edukacije</a>
+<a href="/za-tvrtke">Za tvrtke</a>
+<a href="/mentorstvo">Mentorstvo</a>
+<a href="/o-nama">O nama</a>
+<a href="/blog">Blog</a>
+</div>
+</div>
+<div>
+<div class="footer-col-title">Kontakt</div>
+<div class="footer-links">
+<a href="mailto:info@kuzis.hr">info@kuzis.hr</a>
+<a href="#">LinkedIn</a>
+<a href="/kontakt">Pošaljite upit</a>
+</div>
+</div>
+<div>
+<div class="footer-col-title">Pratite nas</div>
+<div class="footer-links">
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Kužiš. Sva prava pridržana.</span>
+<span class="footer-bottom-links">
+<a href="#">Uvjeti korištenja</a>
+<a href="#">Privatnost</a>
+</span>
+</div>
+</footer>
+
+<button class="back-to-top" type="button" aria-label="Povratak na vrh">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
+<script>
+(function () {
+var progressBar = document.querySelector('.progress-bar');
+var articleEl = document.querySelector('.post-body');
+var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc-box nav a'));
+var backToTop = document.querySelector('.back-to-top');
+var sectionEls = tocLinks.map(function (l) { return document.getElementById(l.getAttribute('data-toc-target')); });
+
+function onScroll() {
+if (articleEl) {
+var scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+var articleBottom = articleEl.offsetTop + articleEl.offsetHeight;
+var total = articleBottom - window.innerHeight;
+var progress = total > 0 ? Math.min(100, Math.max(0, (scrollTop / total) * 100)) : 0;
+if (progressBar) progressBar.style.width = progress.toFixed(1) + '%';
+}
+var active = 0;
+sectionEls.forEach(function (el, i) {
+if (el && el.getBoundingClientRect().top < 140) active = i;
+});
+tocLinks.forEach(function (l, i) { l.classList.toggle('active', i === active); });
+
+var doc = document.documentElement;
+var scrollable = doc.scrollHeight - window.innerHeight;
+var showTop = scrollable > 0 && (window.scrollY / scrollable) > 0.66;
+if (backToTop) backToTop.classList.toggle('visible', showTop);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll);
+onScroll();
+
+if (backToTop) {
+backToTop.addEventListener('click', function () {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+}
+
+var toast = document.querySelector('.toast-msg');
+var toastTimer;
+function flashToast(msg) {
+if (!toast) return;
+toast.textContent = msg;
+clearTimeout(toastTimer);
+toastTimer = setTimeout(function () { toast.textContent = ''; }, 2200);
+}
+
+var likeBtn = document.querySelector('.like-btn');
+if (likeBtn) {
+var liked = false;
+var countEl = likeBtn.querySelector('.like-count');
+var baseCount = parseInt(countEl ? countEl.textContent : '0', 10) || 0;
+likeBtn.addEventListener('click', function () {
+liked = !liked;
+likeBtn.classList.toggle('liked', liked);
+if (countEl) countEl.textContent = String(baseCount + (liked ? 1 : 0));
+});
+}
+
+var url = window.location.href;
+var pageTitle = document.title;
+var copyLinkBtn = document.querySelector('[data-action="copy-link"]');
+if (copyLinkBtn) {
+copyLinkBtn.addEventListener('click', function () {
+if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function () {});
+flashToast('Poveznica kopirana!');
+});
+}
+var igBtn = document.querySelector('[data-action="share-instagram"]');
+if (igBtn) {
+igBtn.addEventListener('click', function () {
+if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function () {});
+flashToast('Link kopiran - zalijepite ga u Instagram Story ili poruku.');
+});
+}
+var nativeShareBtn = document.querySelector('[data-action="native-share"]');
+if (nativeShareBtn) {
+if (navigator.share) {
+nativeShareBtn.style.display = 'flex';
+nativeShareBtn.addEventListener('click', function () {
+navigator.share({ title: pageTitle, url: url }).catch(function () {});
+});
+} else {
+nativeShareBtn.style.display = 'none';
+}
+}
+})();
+
+document.querySelector('[data-share-linkedin]').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href);
+document.querySelector('[data-share-email]').href = 'mailto:?subject=' + encodeURIComponent(document.title) + '&body=' + encodeURIComponent(window.location.href);
+</script>
+
+<script>
+(function () {
+var grid = document.getElementById('related-grid');
+var section = document.querySelector('.related-section');
+if (!grid || !section) return;
+var currentHref = section.getAttribute('data-current-href') || '';
+var pillEl = document.querySelector('.crumb-pill');
+var currentCategory = pillEl ? pillEl.textContent.trim() : '';
+fetch('assets/posts.json').then(function (r) { return r.json(); }).then(function (posts) {
+var others = posts.filter(function (p) { return p.href !== currentHref; });
+var sameCat = others.filter(function (p) { return p.category === currentCategory; });
+var rest = others.filter(function (p) { return p.category !== currentCategory; });
+var picks = sameCat.concat(rest).slice(0, 3);
+if (!picks.length) return;
+grid.innerHTML = picks.map(function (p) {
+var alt = String(p.title).replace(/"/g, '&quot;');
+return '<a class="related-card" href="' + p.href + '">' +
+'<div class="thumb"><img src="' + p.img + '" alt="' + alt + '" loading="lazy"></div>' +
+'<div class="rc-body"><div class="rc-badge" data-cat="' + p.category + '">' + p.category + '</div><h3>' + p.title + '</h3>' +
+'<div class="rc-meta">' + p.date + ' · ' + p.readingTime + ' min čitanja</div></div></a>';
+}).join('');
+}).catch(function () {});
+})();
+</script>
+</body>
+</html>
