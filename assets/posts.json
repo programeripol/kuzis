@@ -1,5 +1,45 @@
 [
   {
+    "href": "/claude-racuni-u-tablicu",
+    "title": "Slikaj račun, Claude ga prepiše u tablicu",
+    "category": "Claude",
+    "date": "15. ruj 2026.",
+    "iso": "2026-09-15",
+    "readingTime": 7,
+    "img": "assets/claude-racuni-u-tablicu.webp",
+    "excerpt": "Od hrpe papirića do stupaca u Excelu, s promptom koji možeš prepisati i popisom mjesta na kojima Claude zna krivo pročitati."
+  },
+  {
+    "href": "/web-dizajn-obavezni-podaci-obrt",
+    "title": "Što po zakonu mora pisati na stranici obrta",
+    "category": "Web dizajn",
+    "date": "15. ruj 2026.",
+    "iso": "2026-09-15",
+    "readingTime": 7,
+    "img": "assets/web-dizajn-obavezni-podaci-obrt.webp",
+    "excerpt": "Popis obveznih podataka je kraći nego što misliš, obrt ima manje obveza od tvrtke, a banner za kolačiće ne treba svaka stranica."
+  },
+  {
+    "href": "/excel-datumi-rokovi-racuni",
+    "title": "Koliko dana kasni taj račun: datumi u Excelu",
+    "category": "Excel i Google Sheets",
+    "date": "15. ruj 2026.",
+    "iso": "2026-09-15",
+    "readingTime": 7,
+    "img": "assets/excel-datumi-rokovi-racuni.webp",
+    "excerpt": "TODAY, DATEDIF, NETWORKDAYS i jedna tablica koja ti sama kaže tko kasni i koliko. Sve formule su napisane da ih možeš prepisati."
+  },
+  {
+    "href": "/seo-promet-pada-pozicije-stoje",
+    "title": "Zašto ti promet pada, a pozicije stoje",
+    "category": "SEO",
+    "date": "15. ruj 2026.",
+    "iso": "2026-09-15",
+    "readingTime": 7,
+    "img": "assets/seo-promet-pada-pozicije-stoje.webp",
+    "excerpt": "Prosječna pozicija ista, klikovi upola manji. Nije kazna, nego Google koji sve češće sam odgovara. Kako to prepoznati i što se realno može napraviti."
+  },
+  {
     "href": "/canva-stranica-google-seo",
     "title": "Canva stranica i Google: zašto te nitko ne nalazi",
     "category": "Canva",
